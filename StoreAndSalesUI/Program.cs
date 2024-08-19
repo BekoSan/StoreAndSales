@@ -20,8 +20,8 @@ namespace StoreAndSalesUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //CheckActivation();
-            Application.Run(new DashboardForm());
+            CheckActivation();
+            //Application.Run(new DashboardForm());
         }
 
         private static void SystemDateChanged()
