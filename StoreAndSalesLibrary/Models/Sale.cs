@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace StoreAndSalesLibrary.Models
+{
+    public class Sale
+    {
+        public int Id { get; set; }
+
+        public int CustomerId { get; set; }
+
+        public DateTime SaleDate { get; set; }
+
+        public decimal Total { get; set; }
+
+        public decimal Disscount { get; set; }
+
+        public List<SaleDetail> SaleDetails = new List<SaleDetail>();
+        public string Notes { get; set; }
+    }
+}
