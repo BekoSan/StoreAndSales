@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
             this.purchasesListGroupBox = new System.Windows.Forms.GroupBox();
             this.purchasesDataGridView = new System.Windows.Forms.DataGridView();
             this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -49,10 +49,11 @@
             this.dateToLabel = new System.Windows.Forms.Label();
             this.dateToDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.periodTotalCostStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.periodTotalValueToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.periodTotalTextToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.periodTotalValueToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.supplierNameTextBox = new System.Windows.Forms.TextBox();
             this.supplierNameLabel = new System.Windows.Forms.Label();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.purchasesListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.purchasesDataGridView)).BeginInit();
             this.periodTotalCostStatusStrip.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             this.purchasesListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.purchasesListGroupBox.Controls.Add(this.loadingLabel);
             this.purchasesListGroupBox.Controls.Add(this.purchasesDataGridView);
             this.purchasesListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.purchasesListGroupBox.Location = new System.Drawing.Point(0, 134);
@@ -81,14 +83,14 @@
             this.purchasesDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.purchasesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.purchasesDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchasesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle50.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle50.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle50.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchasesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
             this.purchasesDataGridView.ColumnHeadersHeight = 29;
             this.purchasesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.purchasesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -108,10 +110,10 @@
             this.purchasesDataGridView.RowHeadersVisible = false;
             this.purchasesDataGridView.RowHeadersWidth = 51;
             this.purchasesDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.Black;
-            this.purchasesDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle56.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.Color.Black;
+            this.purchasesDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle56;
             this.purchasesDataGridView.RowTemplate.Height = 24;
             this.purchasesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.purchasesDataGridView.Size = new System.Drawing.Size(717, 331);
@@ -121,10 +123,10 @@
             // selectColumn
             // 
             this.selectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle37.NullValue = "إختيار";
-            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle51.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle51.NullValue = "إختيار";
+            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle51;
             this.selectColumn.HeaderText = "";
             this.selectColumn.MinimumWidth = 6;
             this.selectColumn.Name = "selectColumn";
@@ -135,9 +137,9 @@
             // 
             this.supplierNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.supplierNameColumn.DataPropertyName = "SupplierName";
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.supplierNameColumn.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.supplierNameColumn.DefaultCellStyle = dataGridViewCellStyle52;
             this.supplierNameColumn.HeaderText = "إسم المــورد";
             this.supplierNameColumn.MinimumWidth = 6;
             this.supplierNameColumn.Name = "supplierNameColumn";
@@ -148,9 +150,9 @@
             // 
             this.purchaseDateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.purchaseDateColumn.DataPropertyName = "PurchaseDate";
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.Format = "d";
-            this.purchaseDateColumn.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle53.Format = "d";
+            this.purchaseDateColumn.DefaultCellStyle = dataGridViewCellStyle53;
             this.purchaseDateColumn.HeaderText = "التاريخ";
             this.purchaseDateColumn.MinimumWidth = 6;
             this.purchaseDateColumn.Name = "purchaseDateColumn";
@@ -160,9 +162,9 @@
             // totalColumn
             // 
             this.totalColumn.DataPropertyName = "Total";
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle40.Format = "N";
-            this.totalColumn.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle54.Format = "N";
+            this.totalColumn.DefaultCellStyle = dataGridViewCellStyle54;
             this.totalColumn.HeaderText = "الإجمالي";
             this.totalColumn.MinimumWidth = 6;
             this.totalColumn.Name = "totalColumn";
@@ -171,9 +173,9 @@
             // disscountColumn
             // 
             this.disscountColumn.DataPropertyName = "Disscount";
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle41.Format = "N";
-            this.disscountColumn.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle55.Format = "N";
+            this.disscountColumn.DefaultCellStyle = dataGridViewCellStyle55;
             this.disscountColumn.HeaderText = "الخصم";
             this.disscountColumn.MinimumWidth = 6;
             this.disscountColumn.Name = "disscountColumn";
@@ -236,7 +238,7 @@
             this.dateToDateTimePicker.ShowUpDown = true;
             this.dateToDateTimePicker.Size = new System.Drawing.Size(132, 29);
             this.dateToDateTimePicker.TabIndex = 13;
-            this.dateToDateTimePicker.Value = new System.DateTime(2024, 7, 23, 15, 11, 0, 0);
+            this.dateToDateTimePicker.Value = new System.DateTime(2024, 8, 29, 0, 0, 0, 0);
             this.dateToDateTimePicker.ValueChanged += new System.EventHandler(this.dateToDateTimePicker_ValueChanged);
             // 
             // periodTotalCostStatusStrip
@@ -253,19 +255,19 @@
             this.periodTotalCostStatusStrip.TabIndex = 15;
             this.periodTotalCostStatusStrip.Text = "statusStrip1";
             // 
-            // periodTotalValueToolStripStatusLabel
-            // 
-            this.periodTotalValueToolStripStatusLabel.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold);
-            this.periodTotalValueToolStripStatusLabel.Name = "periodTotalValueToolStripStatusLabel";
-            this.periodTotalValueToolStripStatusLabel.Size = new System.Drawing.Size(27, 29);
-            this.periodTotalValueToolStripStatusLabel.Text = "0";
-            // 
             // periodTotalTextToolStripStatusLabel
             // 
             this.periodTotalTextToolStripStatusLabel.Font = new System.Drawing.Font("Arial Black", 11F, System.Drawing.FontStyle.Bold);
             this.periodTotalTextToolStripStatusLabel.Name = "periodTotalTextToolStripStatusLabel";
             this.periodTotalTextToolStripStatusLabel.Size = new System.Drawing.Size(225, 29);
             this.periodTotalTextToolStripStatusLabel.Text = "إجمالي المشتريات خلال الفترة:";
+            // 
+            // periodTotalValueToolStripStatusLabel
+            // 
+            this.periodTotalValueToolStripStatusLabel.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold);
+            this.periodTotalValueToolStripStatusLabel.Name = "periodTotalValueToolStripStatusLabel";
+            this.periodTotalValueToolStripStatusLabel.Size = new System.Drawing.Size(27, 29);
+            this.periodTotalValueToolStripStatusLabel.Text = "0";
             // 
             // supplierNameTextBox
             // 
@@ -286,6 +288,16 @@
             this.supplierNameLabel.Size = new System.Drawing.Size(89, 22);
             this.supplierNameLabel.TabIndex = 17;
             this.supplierNameLabel.Text = "إسم المـورد:";
+            // 
+            // loadingLabel
+            // 
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Location = new System.Drawing.Point(302, 186);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(119, 22);
+            this.loadingLabel.TabIndex = 1;
+            this.loadingLabel.Text = " جاري التحميل ...";
+            this.loadingLabel.Visible = false;
             // 
             // ChoosePurchaseForm
             // 
@@ -315,6 +327,7 @@
             this.Text = "إختيار فاتورة مشتريات";
             this.Load += new System.EventHandler(this.ChoosePurchaseForm_Load);
             this.purchasesListGroupBox.ResumeLayout(false);
+            this.purchasesListGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.purchasesDataGridView)).EndInit();
             this.periodTotalCostStatusStrip.ResumeLayout(false);
             this.periodTotalCostStatusStrip.PerformLayout();
@@ -343,5 +356,6 @@
         private System.Windows.Forms.ToolStripStatusLabel periodTotalTextToolStripStatusLabel;
         private System.Windows.Forms.TextBox supplierNameTextBox;
         private System.Windows.Forms.Label supplierNameLabel;
+        private System.Windows.Forms.Label loadingLabel;
     }
 }

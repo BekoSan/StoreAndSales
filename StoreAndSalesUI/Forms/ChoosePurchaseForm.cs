@@ -5,6 +5,7 @@ using StoreAndSalesUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
@@ -33,10 +34,17 @@ namespace StoreAndSalesUI.Forms
 
         #region Private Methods
 
-        private void LoadPurchasesByDate()
+        private async Task LoadPurchasesByDate(DateTime dateFrom, DateTime dateTo)
         {
-            _purchases = _purchaseData.GetPurchasesByDate<PurchaseView>(dateFromDateTimePicker.Value.Date,
-                dateToDateTimePicker.Value.Date);
+            loadingLabel.Visible = true;
+            await Task.Run(() =>
+            {
+                _purchases =
+                _purchaseData.GetPurchasesByDate<PurchaseView>(dateFrom.Date,
+                dateTo.Date);
+            });
+            loadingLabel.Visible = false;
+
             purchasesDataGridView.AutoGenerateColumns = false;
             purchasesDataGridView.DataSource = _purchases;
 
@@ -82,19 +90,19 @@ namespace StoreAndSalesUI.Forms
 
         #endregion
 
-        private void ChoosePurchaseForm_Load(object sender, EventArgs e)
+        private async void ChoosePurchaseForm_Load(object sender, EventArgs e)
         {
-            LoadPurchasesByDate();
+           await LoadPurchasesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date);
         }
 
-        private void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private async void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            LoadPurchasesByDate();
+         await  LoadPurchasesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
         }
 
-        private void dateToDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private async void dateToDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            LoadPurchasesByDate();
+         await LoadPurchasesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
         }
 
         private void purchasesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

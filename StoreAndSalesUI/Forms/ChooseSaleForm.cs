@@ -39,10 +39,16 @@ namespace StoreAndSalesUI.Forms
 
         #region Private Methods
 
-        private void LoadSalesByDate()
+        private async Task LoadSalesByDate(DateTime dateFrom,DateTime dateTo)
         {
-            _sales = _saleData.GetSalesByDate<SaleView>(dateFromDateTimePicker.Value.Date,
-                dateToDateTimePicker.Value.Date);
+            loadingLabel.Visible = true;
+            await Task.Run(() =>
+            {
+                _sales = _saleData.GetSalesByDate<SaleView>(dateFrom.Date,
+                dateTo.Date);
+            });
+            loadingLabel.Visible = false;
+
             salesDataGridView.AutoGenerateColumns = false;
             salesDataGridView.DataSource = _sales;
             CalculatePeriodTotalCost(_sales);
@@ -89,19 +95,19 @@ namespace StoreAndSalesUI.Forms
 
         #endregion
 
-        private void ChooseSaleForm_Load(object sender, EventArgs e)
+        private async void ChooseSaleForm_Load(object sender, EventArgs e)
         {
-            LoadSalesByDate(); 
+          await  LoadSalesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date); 
         }
 
-        private void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private async void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            LoadSalesByDate();
+           await LoadSalesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
         }
 
-        private void dateToDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private async void dateToDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            LoadSalesByDate();
+           await LoadSalesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
         }
 
         private void salesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

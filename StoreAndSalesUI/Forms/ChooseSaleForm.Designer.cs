@@ -53,6 +53,7 @@
             this.periodTotalValueToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.customerNameLabel = new System.Windows.Forms.Label();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.salesListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesDataGridView)).BeginInit();
             this.periodTotalCostStatusStrip.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // salesListGroupBox
             // 
+            this.salesListGroupBox.Controls.Add(this.loadingLabel);
             this.salesListGroupBox.Controls.Add(this.salesDataGridView);
             this.salesListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.salesListGroupBox.Location = new System.Drawing.Point(0, 134);
@@ -286,6 +288,16 @@
             this.customerNameTextBox.TabIndex = 18;
             this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
             // 
+            // loadingLabel
+            // 
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Location = new System.Drawing.Point(302, 164);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(119, 22);
+            this.loadingLabel.TabIndex = 2;
+            this.loadingLabel.Text = " جاري التحميل ...";
+            this.loadingLabel.Visible = false;
+            // 
             // ChooseSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -314,6 +326,7 @@
             this.Text = "إختيار فاتورة مبيعات";
             this.Load += new System.EventHandler(this.ChooseSaleForm_Load);
             this.salesListGroupBox.ResumeLayout(false);
+            this.salesListGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesDataGridView)).EndInit();
             this.periodTotalCostStatusStrip.ResumeLayout(false);
             this.periodTotalCostStatusStrip.PerformLayout();
@@ -342,5 +355,6 @@
         private System.Windows.Forms.ToolStripStatusLabel periodTotalValueToolStripStatusLabel;
         private System.Windows.Forms.Label customerNameLabel;
         private System.Windows.Forms.TextBox customerNameTextBox;
+        private System.Windows.Forms.Label loadingLabel;
     }
 }
