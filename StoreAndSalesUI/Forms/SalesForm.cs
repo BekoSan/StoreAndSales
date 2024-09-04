@@ -219,13 +219,11 @@ namespace StoreAndSalesUI.Forms
             int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
             int unitId = dgvRow.Cells[5].Value.ToString().ParseToInt();
             int quantityToTake = dgvRow.Cells[3].Value.ToString().ParseToInt();
-            string itemName = dgvRow.Cells[1].Value.ToString();
 
             int itemQuantity = _itemData.GetItemQuantity(itemId,unitId);
 
             if (quantityToTake > itemQuantity) 
             {
-                MessageBox.Show($"لا تتوفر كمية كافية من الصنف {itemName} ، قم بتوريد كمية جديدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
             }
                 
@@ -258,15 +256,19 @@ namespace StoreAndSalesUI.Forms
             decimal defaultUnitPrice = itemUnit.UnitPrice;
             string defaultUnitName = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()).UnitName;
             // Get Default Unit Price
-            saleDetailsDataGridView.Rows.Add
+           int rowIndex = saleDetailsDataGridView.Rows.Add
                 (
                 item.Id,
                 item.ItemName,
                 defaultUnitName,
                 1,
                 defaultUnitPrice,
-                UsefulMethods.GetDefaultUnitId()
-                );
+                UsefulMethods.GetDefaultUnitId());
+            if (!isQuantityAvailable(saleDetailsDataGridView.Rows[rowIndex]))
+            {
+                MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {defaultUnitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         public void AddUnit(Unit unit)
@@ -330,7 +332,11 @@ namespace StoreAndSalesUI.Forms
                 if (_sale.Id == 0)
                 {
                     isEdit = true;
-                    if (!isQuantityAvailable(saleDetailsDataGridView.Rows[e.RowIndex])) return;
+                    if (!isQuantityAvailable(saleDetailsDataGridView.Rows[e.RowIndex]))
+                    {
+                        MessageBox.Show($"لا تتوفر كمية كافية من الصنف  ، قم بتوريد كمية جديدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     isEdit = false;
                 }
                 CalculateTotalCost();
@@ -357,15 +363,9 @@ namespace StoreAndSalesUI.Forms
         private void saleDetailsDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             LoadItemNameAndUnitFromRow(saleDetailsDataGridView.Rows[e.RowIndex]);
+            
             if (_sale.Id != 0) return;
-            if (!isEdit)
-            {
-                if (!isQuantityAvailable(saleDetailsDataGridView.Rows[e.RowIndex]))
-                {
-                    saleDetailsDataGridView.Rows.Remove(saleDetailsDataGridView.Rows[e.RowIndex]);
-                    return;
-                }
-            }
+           
             CalculateTotalCost();
             PreviewTotalCost(_totalCost); 
         }
