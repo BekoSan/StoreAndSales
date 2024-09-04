@@ -213,13 +213,10 @@ namespace StoreAndSalesUI.Forms
             new ChooseSaleForm(this).ShowDialog();  
         }
 
-        private bool isQuantityAvailable(DataGridViewRow dgvRow)
+        private bool isQuantityAvailable(int itemId, int unitId, int quantityToTake)
         {
             bool output = true;
-            int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
-            int unitId = dgvRow.Cells[5].Value.ToString().ParseToInt();
-            int quantityToTake = dgvRow.Cells[3].Value.ToString().ParseToInt();
-
+            
             int itemQuantity = _itemData.GetItemQuantity(itemId,unitId);
 
             if (quantityToTake > itemQuantity) 
@@ -265,6 +262,7 @@ namespace StoreAndSalesUI.Forms
             ItemUnit itemUnit = _itemUnitData.GetItemUnits(item.Id).First();
             decimal defaultUnitPrice = itemUnit.UnitPrice;
             string defaultUnitName = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()).UnitName;
+            
             // Get Default Unit Price
            int rowIndex = saleDetailsDataGridView.Rows.Add
                 (
@@ -274,9 +272,18 @@ namespace StoreAndSalesUI.Forms
                 1,
                 defaultUnitPrice,
                 UsefulMethods.GetDefaultUnitId());
-            if (!isQuantityAvailable(saleDetailsDataGridView.Rows[rowIndex]))
+
+            string unitName = saleDetailsDataGridView.Rows[rowIndex].Cells[2].Value.ToString();
+            if (!isQuantityAvailable(item.Id, itemUnit.UnitId,1))
             {
-                MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {defaultUnitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            List<ItemUnit> itemUnits = _itemUnitData.GetItemUnits(item.Id).Where(_itemUnit => _itemUnit.UnitId == UsefulMethods.GetDefaultUnitId()).ToList();
+
+            if (itemUnits.Count == 0)
+            {
+                MessageBox.Show($"الوحدة {defaultUnitName} لا تنتمي لهذا الصـنف", "وحدة الصنف", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -292,7 +299,11 @@ namespace StoreAndSalesUI.Forms
                 MessageBox.Show($"الوحدة {unit.UnitName} لا تنتمي لهذا الصـنف","وحدة الصنف",MessageBoxButtons.OK ,MessageBoxIcon.Warning); 
                 return;
             }
-               
+            if (!isQuantityAvailable(itemId,unit.Id,1))
+            {
+                MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unit.UnitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             currentRow.Cells[2].Value = unit.UnitName;
             currentRow.Cells[5].Value = unit.Id;
             currentRow.Cells[4].Value = itemUnits.First().UnitPrice;
@@ -345,15 +356,19 @@ namespace StoreAndSalesUI.Forms
         private void saleDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (saleDetailsDataGridView.Rows.Count == 0) return;
+            string unitName = saleDetailsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+            int itemId = saleDetailsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString().ParseToInt();
+            int unitId = saleDetailsDataGridView.Rows[e.RowIndex].Cells[5].Value.ToString().ParseToInt();
+            int quantity = saleDetailsDataGridView.Rows[e.RowIndex].Cells[3].Value.ToString().ParseToInt();
 
             if (e.ColumnIndex == 4 || e.ColumnIndex == 3)
             {
                 if (_sale.Id == 0)
                 {
                     isEdit = true;
-                    if (!isQuantityAvailable(saleDetailsDataGridView.Rows[e.RowIndex]))
+                    if (!isQuantityAvailable(itemId,unitId, quantity))
                     {
-                        MessageBox.Show($"لا تتوفر كمية كافية من الصنف  ، قم بتوريد كمية جديدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                     isEdit = false;
