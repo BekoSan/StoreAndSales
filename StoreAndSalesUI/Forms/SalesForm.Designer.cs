@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleDataGroupBox = new System.Windows.Forms.GroupBox();
             this.notesLabel = new System.Windows.Forms.Label();
             this.notesTextBox = new System.Windows.Forms.TextBox();
@@ -48,15 +49,16 @@
             this.saleDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.addItemButton = new System.Windows.Forms.Button();
             this.saleDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.saleDataGroupBox.SuspendLayout();
             this.saleDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDataGridView)).BeginInit();
@@ -265,28 +267,29 @@
             this.unitColumn,
             this.quantityColumn,
             this.unitPriceColumn,
-            this.unitIdColumn});
+            this.unitIdColumn,
+            this.colDelete});
             this.saleDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.saleDetailsDataGridView.EnableHeadersVisualStyles = false;
             this.saleDetailsDataGridView.GridColor = System.Drawing.Color.Black;
             this.saleDetailsDataGridView.Location = new System.Drawing.Point(3, 48);
             this.saleDetailsDataGridView.MultiSelect = false;
             this.saleDetailsDataGridView.Name = "saleDetailsDataGridView";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.saleDetailsDataGridView.RowHeadersVisible = false;
             this.saleDetailsDataGridView.RowHeadersWidth = 51;
             this.saleDetailsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.saleDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.saleDetailsDataGridView.RowTemplate.Height = 24;
             this.saleDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.saleDetailsDataGridView.Size = new System.Drawing.Size(603, 272);
@@ -295,59 +298,6 @@
             this.saleDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDetailsDataGridView_CellValueChanged);
             this.saleDetailsDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.saleDetailsDataGridView_RowPostPaint);
             this.saleDetailsDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.saleDetailsDataGridView_RowsAdded);
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Visible = false;
-            // 
-            // itemNameColumn
-            // 
-            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.itemNameColumn.HeaderText = "الصـــنف";
-            this.itemNameColumn.MinimumWidth = 6;
-            this.itemNameColumn.Name = "itemNameColumn";
-            this.itemNameColumn.ReadOnly = true;
-            this.itemNameColumn.Width = 290;
-            // 
-            // unitColumn
-            // 
-            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.unitColumn.HeaderText = "الوحــدة";
-            this.unitColumn.MinimumWidth = 6;
-            this.unitColumn.Name = "unitColumn";
-            this.unitColumn.ReadOnly = true;
-            this.unitColumn.Width = 125;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "N0";
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.quantityColumn.HeaderText = "الكمــية";
-            this.quantityColumn.MinimumWidth = 6;
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.Width = 90;
-            // 
-            // unitPriceColumn
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "N0";
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.unitPriceColumn.HeaderText = "السعـــر";
-            this.unitPriceColumn.MinimumWidth = 6;
-            this.unitPriceColumn.Name = "unitPriceColumn";
-            this.unitPriceColumn.ReadOnly = true;
-            // 
-            // unitIdColumn
-            // 
-            this.unitIdColumn.HeaderText = "unitId";
-            this.unitIdColumn.MinimumWidth = 6;
-            this.unitIdColumn.Name = "unitIdColumn";
-            this.unitIdColumn.Visible = false;
             // 
             // searchButton
             // 
@@ -387,6 +337,72 @@
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Visible = false;
+            // 
+            // itemNameColumn
+            // 
+            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.itemNameColumn.HeaderText = "الصـــنف";
+            this.itemNameColumn.MinimumWidth = 6;
+            this.itemNameColumn.Name = "itemNameColumn";
+            this.itemNameColumn.ReadOnly = true;
+            this.itemNameColumn.Width = 290;
+            // 
+            // unitColumn
+            // 
+            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.unitColumn.HeaderText = "الوحــدة";
+            this.unitColumn.MinimumWidth = 6;
+            this.unitColumn.Name = "unitColumn";
+            this.unitColumn.ReadOnly = true;
+            this.unitColumn.Width = 125;
+            // 
+            // quantityColumn
+            // 
+            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "N0";
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.quantityColumn.HeaderText = "الكمــية";
+            this.quantityColumn.MinimumWidth = 6;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.Width = 90;
+            // 
+            // unitPriceColumn
+            // 
+            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N0";
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.unitPriceColumn.HeaderText = "السعـــر";
+            this.unitPriceColumn.MinimumWidth = 6;
+            this.unitPriceColumn.Name = "unitPriceColumn";
+            this.unitPriceColumn.ReadOnly = true;
+            this.unitPriceColumn.Width = 53;
+            // 
+            // unitIdColumn
+            // 
+            this.unitIdColumn.HeaderText = "unitId";
+            this.unitIdColumn.MinimumWidth = 6;
+            this.unitIdColumn.Name = "unitIdColumn";
+            this.unitIdColumn.Visible = false;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = "حذف";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colDelete.HeaderText = "...";
+            this.colDelete.MinimumWidth = 6;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Width = 50;
             // 
             // SalesForm
             // 
@@ -440,13 +456,14 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button addItemButton;
+        private System.Windows.Forms.Label notesLabel;
+        private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
-        private System.Windows.Forms.Label notesLabel;
-        private System.Windows.Forms.TextBox notesTextBox;
+        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
     }
 }

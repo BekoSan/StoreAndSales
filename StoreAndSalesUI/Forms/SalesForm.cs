@@ -246,6 +246,16 @@ namespace StoreAndSalesUI.Forms
             return output;
         }
 
+        private void DeleteRow(int rowIndex)
+        {
+            if (MessageBox.Show("سيتم حذف الصنف من الفاتورة ، تأكيد؟",
+                "حذف الصنف", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
+                MessageBoxDefaultButton.Button2) == DialogResult.No) return;
+
+            saleDetailsDataGridView.Rows.RemoveAt(rowIndex);
+        }
+
         #endregion
 
         public void AddItem(Item item)
@@ -319,8 +329,17 @@ namespace StoreAndSalesUI.Forms
 
         private void saleDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 2) return;
-            ChangeUnit();
+            switch (e.ColumnIndex)
+            {
+                case 2:
+                    ChangeUnit();
+                    break;
+                case 6:
+                    DeleteRow(e.RowIndex);
+                    CalculateTotalCost();
+                    PreviewTotalCost(_totalCost);
+                    break;
+            }
         }
 
         private void saleDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
