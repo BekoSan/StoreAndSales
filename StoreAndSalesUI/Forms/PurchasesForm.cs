@@ -209,6 +209,16 @@ namespace StoreAndSalesUI.Forms
             new ChoosePurchaseForm(this).ShowDialog();
         }
 
+        private void DeleteRow(int rowIndex)
+        {
+            if (MessageBox.Show("سيتم حذف الصنف من الفاتورة ، تأكيد؟",
+                "حذف الصنف",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.No) return;
+
+            purchaseDetailsDataGridView.Rows.RemoveAt(rowIndex);
+        }
+
         #endregion
 
         private void PurchasesForm_Load(object sender, EventArgs e)
@@ -283,8 +293,17 @@ namespace StoreAndSalesUI.Forms
 
         private void purchaseDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 2) return;
-            ChangeUnit();
+            switch (e.ColumnIndex)
+            {
+                case 2:
+                    ChangeUnit();
+                    break;
+                case 6:
+                    DeleteRow(e.RowIndex);
+                    CalculateTotalCost();
+                    PreviewTotalCost(_totalCost); 
+                    break;
+            }
         }
 
         private void purchaseDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.purchaseDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.notesLabel = new System.Windows.Forms.Label();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
             this.supplierLabel = new System.Windows.Forms.Label();
             this.suppliersComboBox = new System.Windows.Forms.ComboBox();
             this.disscountLabel = new System.Windows.Forms.Label();
@@ -46,17 +49,16 @@
             this.purchaseDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.addItemButton = new System.Windows.Forms.Button();
             this.purchaseDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
-            this.notesTextBox = new System.Windows.Forms.TextBox();
-            this.notesLabel = new System.Windows.Forms.Label();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.purchaseDataGroupBox.SuspendLayout();
             this.purchaseDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDetailsDataGridView)).BeginInit();
@@ -83,6 +85,26 @@
             this.purchaseDataGroupBox.TabIndex = 0;
             this.purchaseDataGroupBox.TabStop = false;
             this.purchaseDataGroupBox.Text = "البيانات الأساسية";
+            // 
+            // notesLabel
+            // 
+            this.notesLabel.AutoSize = true;
+            this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.notesLabel.Location = new System.Drawing.Point(528, 83);
+            this.notesLabel.Name = "notesLabel";
+            this.notesLabel.Size = new System.Drawing.Size(66, 19);
+            this.notesLabel.TabIndex = 15;
+            this.notesLabel.Text = "الملاحظات";
+            // 
+            // notesTextBox
+            // 
+            this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.notesTextBox.Location = new System.Drawing.Point(14, 105);
+            this.notesTextBox.MaxLength = 2000;
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(577, 52);
+            this.notesTextBox.TabIndex = 14;
             // 
             // supplierLabel
             // 
@@ -229,14 +251,14 @@
             this.purchaseDetailsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.purchaseDetailsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.purchaseDetailsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchaseDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchaseDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.purchaseDetailsDataGridView.ColumnHeadersHeight = 29;
             this.purchaseDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.purchaseDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -245,28 +267,29 @@
             this.unitColumn,
             this.quantityColumn,
             this.unitPriceColumn,
-            this.unitIdColumn});
+            this.unitIdColumn,
+            this.colDelete});
             this.purchaseDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.purchaseDetailsDataGridView.EnableHeadersVisualStyles = false;
             this.purchaseDetailsDataGridView.GridColor = System.Drawing.Color.Black;
             this.purchaseDetailsDataGridView.Location = new System.Drawing.Point(3, 48);
             this.purchaseDetailsDataGridView.MultiSelect = false;
             this.purchaseDetailsDataGridView.Name = "purchaseDetailsDataGridView";
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchaseDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchaseDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.purchaseDetailsDataGridView.RowHeadersVisible = false;
             this.purchaseDetailsDataGridView.RowHeadersWidth = 51;
             this.purchaseDetailsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
-            this.purchaseDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.purchaseDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.purchaseDetailsDataGridView.RowTemplate.Height = 24;
             this.purchaseDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.purchaseDetailsDataGridView.Size = new System.Drawing.Size(603, 272);
@@ -274,58 +297,6 @@
             this.purchaseDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDetailsDataGridView_CellContentClick);
             this.purchaseDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDetailsDataGridView_CellValueChanged);
             this.purchaseDetailsDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.purchaseDetailsDataGridView_RowPostPaint);
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Visible = false;
-            // 
-            // itemNameColumn
-            // 
-            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.itemNameColumn.HeaderText = "الصـــنف";
-            this.itemNameColumn.MinimumWidth = 6;
-            this.itemNameColumn.Name = "itemNameColumn";
-            this.itemNameColumn.ReadOnly = true;
-            this.itemNameColumn.Width = 290;
-            // 
-            // unitColumn
-            // 
-            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.unitColumn.HeaderText = "الوحــدة";
-            this.unitColumn.MinimumWidth = 6;
-            this.unitColumn.Name = "unitColumn";
-            this.unitColumn.ReadOnly = true;
-            this.unitColumn.Width = 125;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.NullValue = "N0";
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle27;
-            this.quantityColumn.HeaderText = "الكمــية";
-            this.quantityColumn.MinimumWidth = 6;
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.Width = 90;
-            // 
-            // unitPriceColumn
-            // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.Format = "N0";
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle28;
-            this.unitPriceColumn.HeaderText = "السعـــر";
-            this.unitPriceColumn.MinimumWidth = 6;
-            this.unitPriceColumn.Name = "unitPriceColumn";
-            // 
-            // unitIdColumn
-            // 
-            this.unitIdColumn.HeaderText = "UnitId";
-            this.unitIdColumn.MinimumWidth = 6;
-            this.unitIdColumn.Name = "unitIdColumn";
-            this.unitIdColumn.Visible = false;
             // 
             // searchButton
             // 
@@ -366,25 +337,72 @@
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
-            // notesTextBox
+            // IdColumn
             // 
-            this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.notesTextBox.Location = new System.Drawing.Point(14, 105);
-            this.notesTextBox.MaxLength = 2000;
-            this.notesTextBox.Multiline = true;
-            this.notesTextBox.Name = "notesTextBox";
-            this.notesTextBox.Size = new System.Drawing.Size(577, 52);
-            this.notesTextBox.TabIndex = 14;
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Visible = false;
             // 
-            // notesLabel
+            // itemNameColumn
             // 
-            this.notesLabel.AutoSize = true;
-            this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.notesLabel.Location = new System.Drawing.Point(528, 83);
-            this.notesLabel.Name = "notesLabel";
-            this.notesLabel.Size = new System.Drawing.Size(66, 19);
-            this.notesLabel.TabIndex = 15;
-            this.notesLabel.Text = "الملاحظات";
+            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.itemNameColumn.HeaderText = "الصـــنف";
+            this.itemNameColumn.MinimumWidth = 6;
+            this.itemNameColumn.Name = "itemNameColumn";
+            this.itemNameColumn.ReadOnly = true;
+            this.itemNameColumn.Width = 290;
+            // 
+            // unitColumn
+            // 
+            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.unitColumn.HeaderText = "الوحــدة";
+            this.unitColumn.MinimumWidth = 6;
+            this.unitColumn.Name = "unitColumn";
+            this.unitColumn.ReadOnly = true;
+            this.unitColumn.Width = 125;
+            // 
+            // quantityColumn
+            // 
+            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "N0";
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.quantityColumn.HeaderText = "الكمــية";
+            this.quantityColumn.MinimumWidth = 6;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.Width = 90;
+            // 
+            // unitPriceColumn
+            // 
+            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N0";
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.unitPriceColumn.HeaderText = "السعـــر";
+            this.unitPriceColumn.MinimumWidth = 6;
+            this.unitPriceColumn.Name = "unitPriceColumn";
+            this.unitPriceColumn.Width = 53;
+            // 
+            // unitIdColumn
+            // 
+            this.unitIdColumn.HeaderText = "UnitId";
+            this.unitIdColumn.MinimumWidth = 6;
+            this.unitIdColumn.Name = "unitIdColumn";
+            this.unitIdColumn.Visible = false;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = "حذف";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colDelete.HeaderText = "حذف";
+            this.colDelete.MinimumWidth = 6;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colDelete.Width = 50;
             // 
             // PurchasesForm
             // 
@@ -438,13 +456,14 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button addItemButton;
+        private System.Windows.Forms.TextBox notesTextBox;
+        private System.Windows.Forms.Label notesLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
-        private System.Windows.Forms.TextBox notesTextBox;
-        private System.Windows.Forms.Label notesLabel;
+        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
     }
 }
