@@ -37,6 +37,7 @@
             this.unitsButton = new System.Windows.Forms.Button();
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.storePreviewButton = new System.Windows.Forms.Button();
+            this.usersButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -144,12 +145,24 @@
             this.storePreviewButton.UseVisualStyleBackColor = true;
             this.storePreviewButton.Click += new System.EventHandler(this.storePreviewButton_Click);
             // 
+            // usersButton
+            // 
+            this.usersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.usersButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.usersButton.Location = new System.Drawing.Point(465, 275);
+            this.usersButton.Name = "usersButton";
+            this.usersButton.Size = new System.Drawing.Size(118, 33);
+            this.usersButton.TabIndex = 8;
+            this.usersButton.Text = "إدارة المستخدمين";
+            this.usersButton.UseVisualStyleBackColor = true;
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.usersButton);
             this.Controls.Add(this.storePreviewButton);
             this.Controls.Add(this.copyrightLabel);
             this.Controls.Add(this.unitsButton);
@@ -184,6 +197,7 @@
         private System.Windows.Forms.Button unitsButton;
         private System.Windows.Forms.Label copyrightLabel;
         private System.Windows.Forms.Button storePreviewButton;
+        private System.Windows.Forms.Button usersButton;
     }
 }
 
