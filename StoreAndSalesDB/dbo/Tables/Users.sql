@@ -1,0 +1,24 @@
+﻿CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](8) NOT NULL,
+	[Status] [bit] NOT NULL,
+	[RoleId] [int] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF_Users_Status]  DEFAULT ((1)) FOR [Status]
+GO
+
+ALTER TABLE [dbo].[Users]  ADD  CONSTRAINT [FK_Users_UserRoles] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[UserRoles] ([Id])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_UserRoles]
+GO

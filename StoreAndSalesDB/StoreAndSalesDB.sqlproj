@@ -117,6 +117,15 @@
     <Build Include="dbo\StoredProcedures\spGetSaleById.sql" />
     <Build Include="dbo\StoredProcedures\spGetItemQuantity.sql" />
     <Build Include="dbo\StoredProcedures\spGetItemLatestPrice.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
+    <Build Include="dbo\StoredProcedures\sp_CreateUser.sql" />
+    <Build Include="dbo\StoredProcedures\sp_EditUser.sql" />
+    <Build Include="dbo\StoredProcedures\sp_GetAllUsers.sql" />
+    <Build Include="dbo\StoredProcedures\sp_RemoveUser.sql" />
+    <Build Include="dbo\StoredProcedures\sp_GetUserById.sql" />
+    <Build Include="dbo\StoredProcedures\sp_Login.sql" />
+    <Build Include="dbo\StoredProcedures\sp_GetAllRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
