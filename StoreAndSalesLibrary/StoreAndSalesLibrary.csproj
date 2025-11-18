@@ -54,6 +54,7 @@
     <Compile Include="DataAccess\SaleDetailData.cs" />
     <Compile Include="DataAccess\SupplierData.cs" />
     <Compile Include="DataAccess\UnitData.cs" />
+    <Compile Include="DataAccess\UserData.cs" />
     <Compile Include="Internal\SqlDataAccess.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Item.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Models\SaleDetail.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Unit.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserRoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
