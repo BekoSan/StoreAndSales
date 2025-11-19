@@ -148,6 +148,7 @@
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\UsefulMethods.cs" />
     <Compile Include="Interfaces\IItemRequester.cs" />
+    <Compile Include="Interfaces\ILogout.cs" />
     <Compile Include="Interfaces\IPurchaseRequester.cs" />
     <Compile Include="Interfaces\ISaleRequester.cs" />
     <Compile Include="Interfaces\IUnitRequester.cs" />
