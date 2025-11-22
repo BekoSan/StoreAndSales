@@ -211,7 +211,7 @@ namespace StoreAndSalesUI.Forms
 
         private void SelectUser(int rowIndex)
         {
-            //TODO:Fix the bug of row index
+            if (rowIndex == -1) return;
             int selectedUserId;
             int.TryParse(usersDataGridView.Rows[rowIndex].Cells[0].Value.ToString(), out selectedUserId);
 
