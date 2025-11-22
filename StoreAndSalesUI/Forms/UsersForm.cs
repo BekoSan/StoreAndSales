@@ -26,7 +26,7 @@ namespace StoreAndSalesUI.Forms
 
         #region Private Members
 
-        private UserData _userData = new UserData();
+        private readonly UserData _userData = new UserData();
         private UserModel _user = new UserModel();
         private List<UserModel> _users = new List<UserModel>();
         private List<UserRoleModel> _roles = new List<UserRoleModel>();
@@ -212,8 +212,7 @@ namespace StoreAndSalesUI.Forms
         private void SelectUser(int rowIndex)
         {
             if (rowIndex == -1) return;
-            int selectedUserId;
-            int.TryParse(usersDataGridView.Rows[rowIndex].Cells[0].Value.ToString(), out selectedUserId);
+            int.TryParse(usersDataGridView.Rows[rowIndex].Cells[0].Value.ToString(), out int selectedUserId);
 
             _user = _users.Where(user => user.Id == selectedUserId).First();
             _isUserSelected = true;
