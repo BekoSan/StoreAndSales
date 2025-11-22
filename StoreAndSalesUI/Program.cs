@@ -81,7 +81,7 @@ namespace StoreAndSalesUI
                             else if (DateTime.Today.Date <= kv.Expiration.Date)
                             {
                                 //Application.Run(new SplashScreenForm());
-                                new DashboardForm().ShowDialog();
+                                new LoginForm().ShowDialog();
                             }
                             else if (DateTime.Today.Date > kv.Expiration.Date)
                             {
@@ -92,7 +92,7 @@ namespace StoreAndSalesUI
                         }
                         else
                         {
-                            new DashboardForm().ShowDialog();
+                            new LoginForm().ShowDialog();
                         }
                     }
                 }
