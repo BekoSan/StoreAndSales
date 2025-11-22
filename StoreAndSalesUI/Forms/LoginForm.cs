@@ -116,7 +116,7 @@ namespace StoreAndSalesUI.Forms
 
         void LoadSession(int roleId)
         {
-            DashboardForm dashboard = new DashboardForm(roleId);
+            DashboardForm dashboard = new DashboardForm(roleId,this);
             dashboard.ShowDialog(); 
         }
 

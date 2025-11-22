@@ -1,13 +1,42 @@
-﻿using System;
+﻿using StoreAndSalesUI.Interfaces;
+using System;
 using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
 {
     public partial class DashboardForm : Form
     {
-        public DashboardForm()
+        private  int _userRoleId = -1;
+        private ILogout _loginForm;
+
+        public DashboardForm(int userRoleId = -1, ILogout logout = null)
         {
             InitializeComponent();
+            _userRoleId = userRoleId;
+            _loginForm = logout;
+        }
+
+        private void ConfigureUserSession()
+        {
+            // Check if user is adminstrator or user role not passed
+            if (_userRoleId == -1 || _userRoleId == 1) return;
+
+            foreach (Control control in Controls)
+            {
+                if (!typeof(Button).Equals(control.GetType())) continue;
+
+                if (control.Tag == null)
+                {
+                    if (control.Name.Equals("signOutButton")) continue;
+                    control.Enabled = false;
+                    continue;
+                }
+
+                if (control.Tag.ToString().Equals(_userRoleId.ToString()))
+                    control.Enabled = true; 
+                else
+                    control.Enabled = false;
+            }
         }
 
         private void itemsButton_Click(object sender, EventArgs e)
@@ -43,6 +72,16 @@ namespace StoreAndSalesUI.Forms
         private void storePreviewButton_Click(object sender, EventArgs e)
         {
             new StoreViewForm().ShowDialog();
+        }
+
+        private void DashboardForm_Load(object sender, EventArgs e)
+        {
+            ConfigureUserSession();
+        }
+
+        private void signOutButton_Click(object sender, EventArgs e)
+        {
+            _loginForm.Logout(this); 
         }
     }
 }

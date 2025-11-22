@@ -38,6 +38,7 @@
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.storePreviewButton = new System.Windows.Forms.Button();
             this.usersButton = new System.Windows.Forms.Button();
+            this.signOutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -59,6 +60,7 @@
             this.salesButton.Name = "salesButton";
             this.salesButton.Size = new System.Drawing.Size(118, 33);
             this.salesButton.TabIndex = 1;
+            this.salesButton.Tag = "2";
             this.salesButton.Text = "المبيعات";
             this.salesButton.UseVisualStyleBackColor = true;
             this.salesButton.Click += new System.EventHandler(this.salesButton_Click);
@@ -71,6 +73,7 @@
             this.purchasesButton.Name = "purchasesButton";
             this.purchasesButton.Size = new System.Drawing.Size(118, 33);
             this.purchasesButton.TabIndex = 2;
+            this.purchasesButton.Tag = "3";
             this.purchasesButton.Text = "المشتريات";
             this.purchasesButton.UseVisualStyleBackColor = true;
             this.purchasesButton.Click += new System.EventHandler(this.purchasesButton_Click);
@@ -156,12 +159,25 @@
             this.usersButton.Text = "إدارة المستخدمين";
             this.usersButton.UseVisualStyleBackColor = true;
             // 
+            // signOutButton
+            // 
+            this.signOutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signOutButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.signOutButton.Location = new System.Drawing.Point(678, 3);
+            this.signOutButton.Name = "signOutButton";
+            this.signOutButton.Size = new System.Drawing.Size(118, 33);
+            this.signOutButton.TabIndex = 9;
+            this.signOutButton.Text = "تسجيل الخروج";
+            this.signOutButton.UseVisualStyleBackColor = true;
+            this.signOutButton.Click += new System.EventHandler(this.signOutButton_Click);
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.signOutButton);
             this.Controls.Add(this.usersButton);
             this.Controls.Add(this.storePreviewButton);
             this.Controls.Add(this.copyrightLabel);
@@ -181,6 +197,7 @@
             this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.Text = "نظام إدارة المخـــازن";
+            this.Load += new System.EventHandler(this.DashboardForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +215,7 @@
         private System.Windows.Forms.Label copyrightLabel;
         private System.Windows.Forms.Button storePreviewButton;
         private System.Windows.Forms.Button usersButton;
+        private System.Windows.Forms.Button signOutButton;
     }
 }
 
