@@ -6,5 +6,6 @@
     [Total] MONEY NOT NULL, 
     [Disscount] MONEY NOT NULL, 
     [Notes] NVARCHAR(2000) NOT NULL DEFAULT '', 
+    [PaymentType] BIT NOT NULL DEFAULT 0, 
     CONSTRAINT [FK_Purchase_Supplier] FOREIGN KEY (SupplierId) REFERENCES [Supplier]([Id])
 )
