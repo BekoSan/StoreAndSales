@@ -35,4 +35,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Disscount" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="fec226d2-6547-4004-a845-2529178d367b" ChangeDateTime="11/25/2025 12:03:59">
+    <Property Name="ElementName" Value="[dbo].[Voucher].[A]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Voucher]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Amount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a4d2c333-d7b6-4d8e-90af-a216102630ad" ChangeDateTime="11/25/2025 12:05:34">
+    <Property Name="ElementName" Value="[dbo].[Voucher].[C]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Voucher]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e24e88bc-a45b-4563-ba43-acc368f70680" ChangeDateTime="11/25/2025 12:10:59">
+    <Property Name="ElementName" Value="[dbo].[Voucher].[Des]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Voucher]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Notes" />
+  </Operation>
 </Operations>
