@@ -126,6 +126,8 @@
     <Build Include="dbo\StoredProcedures\sp_GetUserById.sql" />
     <Build Include="dbo\StoredProcedures\sp_Login.sql" />
     <Build Include="dbo\StoredProcedures\sp_GetAllRoles.sql" />
+    <Build Include="dbo\StoredProcedures\spEditSaleStatus.sql" />
+    <Build Include="dbo\StoredProcedures\spEditPurchaseStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
