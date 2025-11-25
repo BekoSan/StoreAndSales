@@ -4,13 +4,15 @@
 @SupplierId int,
 @Total Money,
 @Disscount Money,
-@Notes nvarchar(2000)
+@Notes nvarchar(2000),
+@PaymentType bit,
+@IsDisscount bit
 
 AS
 BEGIN
-Insert Into Purchase(SupplierId,Total,Disscount,Notes)
+Insert Into Purchase(SupplierId,Total,Disscount,Notes,PaymentType,IsDisscount)
 Values
-(@SupplierId,@Total,@Disscount,@Notes)
+(@SupplierId,@Total,@Disscount,@Notes,@PaymentType,@IsDisscount)
 
 Select @Id = SCOPE_IDENTITY()
 END
