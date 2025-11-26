@@ -7,5 +7,9 @@
     [PurchaseId] INT NULL, 
     [CustomerId] INT NULL, 
     [SupplierId] INT NULL, 
-    [Notes] NVARCHAR(2000) NOT NULL
+    [Notes] NVARCHAR(2000) NOT NULL, 
+    CONSTRAINT [FK_Voucher_Sale] FOREIGN KEY (SaleId) REFERENCES Sale(Id),
+    CONSTRAINT [FK_Voucher_Purchase] FOREIGN KEY (PurchaseId) REFERENCES Purchase(Id),
+    CONSTRAINT [FK_Voucher_Customer] FOREIGN KEY (CustomerId) REFERENCES Customer(Id),
+    CONSTRAINT [FK_Voucher_Supplier] FOREIGN KEY (SupplierId) REFERENCES Supplier(Id)
 )
