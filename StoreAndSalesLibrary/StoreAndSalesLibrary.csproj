@@ -55,6 +55,7 @@
     <Compile Include="DataAccess\SupplierData.cs" />
     <Compile Include="DataAccess\UnitData.cs" />
     <Compile Include="DataAccess\UserData.cs" />
+    <Compile Include="DataAccess\VoucherData.cs" />
     <Compile Include="Internal\SqlDataAccess.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Item.cs" />
