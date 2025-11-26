@@ -3,6 +3,7 @@
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [SupplierName] NVARCHAR(250) NOT NULL, 
     [Address] NVARCHAR(150) NOT NULL, 
-    [Phone] NVARCHAR(13) NOT NULL, 
+    [Phone] NVARCHAR(13) NOT NULL,  
+    [Balance] MONEY DEFAULT 0 NOT NULL,
     [Status] BIT NOT NULL DEFAULT 1
 )
