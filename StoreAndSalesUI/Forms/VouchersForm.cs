@@ -11,7 +11,7 @@ namespace StoreAndSalesUI.Forms
         {
             InitializeComponent();
             GetFormData();
-            LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
+            LoadCustomerLists();
         }
 
         #region Private Members
@@ -45,14 +45,19 @@ namespace StoreAndSalesUI.Forms
             _saleInvoices = _saleData.GetAllSales(); 
         }
 
+        private void LoadCustomerLists()
+        {
+            LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
+            LoadListData(invoicesComboBox, _saleInvoices, "Id", "Id");
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
         {
             if (customerVocuherRadioButton.Checked)
             {
-                LoadListData(peopleComboBox,_customers, "Id", "CustomerName");
-                LoadListData(invoicesComboBox, _saleInvoices, "Id", "Id");
+                LoadCustomerLists();
             }
             else
             {
