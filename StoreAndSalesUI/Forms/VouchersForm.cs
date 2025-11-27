@@ -75,6 +75,16 @@ namespace StoreAndSalesUI.Forms
                 decimal saleVouchersTotal = _voucherData.GetTotalSaleVoucher(saleInvoiceId, customerId, "P");
                 _remainingAmount = totalDisscount - saleVouchersTotal;
             }
+            else
+            {
+                int purchaseInvoiceId;
+                int.TryParse(invoicesComboBox.SelectedValue.ToString(), out purchaseInvoiceId);
+                int supplierId;
+                int.TryParse(peopleComboBox.SelectedValue.ToString(), out supplierId);
+                decimal totalDisscount = _purchaseInvoices.Find(purchase => purchase.Id == purchaseInvoiceId).Disscount;
+                decimal purchaseVouchersTotal = _voucherData.GetTotalPurchaseVoucher(purchaseInvoiceId, supplierId, "P");
+                _remainingAmount = totalDisscount - purchaseVouchersTotal;
+            }
 
         }
 
