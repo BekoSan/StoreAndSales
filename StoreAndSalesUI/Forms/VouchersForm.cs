@@ -20,6 +20,8 @@ namespace StoreAndSalesUI.Forms
         private List<Customer> _customers = new List<Customer>();
         private readonly SupplierData  _supplierData  = new SupplierData();
         private List<Supplier> _suppliers = new List<Supplier>();
+        private SaleData _saleData = new SaleData();    
+        private List<Sale> _saleInvoices = new List<Sale>();
 
         #endregion
 
@@ -39,7 +41,8 @@ namespace StoreAndSalesUI.Forms
         private void GetFormData() 
         {
             _customers = _customerData.GetAllCustomers();
-            _suppliers = _supplierData.GetAllSuppliers(); 
+            _suppliers = _supplierData.GetAllSuppliers();
+            _saleInvoices = _saleData.GetAllSales(); 
         }
 
         #endregion
@@ -49,6 +52,7 @@ namespace StoreAndSalesUI.Forms
             if (customerVocuherRadioButton.Checked)
             {
                 LoadListData(peopleComboBox,_customers, "Id", "CustomerName");
+                LoadListData(invoicesComboBox, _saleInvoices, "Id", "Id");
             }
             else
             {
