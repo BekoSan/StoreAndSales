@@ -11,5 +11,8 @@
         public string Phone { get; set; }
 
         public bool Status { get; set; }
+
+        public decimal Balance { get; set; }
+
     }
 }

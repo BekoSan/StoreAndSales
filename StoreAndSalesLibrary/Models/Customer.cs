@@ -12,5 +12,7 @@
 
         public bool Status { get; set; }
 
+        public decimal Balance { get; set; }
+
     }
 }
