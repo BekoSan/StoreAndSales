@@ -19,6 +19,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@CustomerName", customer.CustomerName);
             p.Add("@Address", customer.Address);
             p.Add("@Phone", customer.Phone);
+            p.Add("@Balance", customer.Balance);
 
             _sql.SaveData("spCreateCustomer", p, _sql.GetConnectionName());
         }
