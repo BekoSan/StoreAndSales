@@ -158,6 +158,7 @@
             this.invoicesComboBox.Name = "invoicesComboBox";
             this.invoicesComboBox.Size = new System.Drawing.Size(365, 29);
             this.invoicesComboBox.TabIndex = 1;
+            this.invoicesComboBox.SelectedIndexChanged += new System.EventHandler(this.invoicesComboBox_SelectedIndexChanged);
             // 
             // invoicesLabel
             // 

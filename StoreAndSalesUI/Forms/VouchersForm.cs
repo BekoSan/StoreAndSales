@@ -24,7 +24,9 @@ namespace StoreAndSalesUI.Forms
         private List<Sale> _saleInvoices = new List<Sale>();
         private PurchaseData _purchaseData = new PurchaseData();
         private List<Purchase> _purchaseInvoices = new List<Purchase>();
-
+        private decimal _remainingAmount = 0;
+        private VoucherData _voucherData = new VoucherData();
+        
         #endregion
 
         #region Private Methods
@@ -61,6 +63,26 @@ namespace StoreAndSalesUI.Forms
             LoadListData(invoicesComboBox, _purchaseInvoices, "Id", "Id");
         }
 
+        private void CallculateRemainnigAmount()
+        {
+            if (customerVocuherRadioButton.Checked)
+            {
+                int saleInvoiceId;
+                int.TryParse(invoicesComboBox.SelectedValue.ToString(),out saleInvoiceId);
+                int customerId;
+                int.TryParse(peopleComboBox.SelectedValue.ToString(), out customerId);
+                decimal totalDisscount = _saleInvoices.Find(sale => sale.Id == saleInvoiceId).Disscount;
+                decimal saleVouchersTotal = _voucherData.GetTotalSaleVoucher(saleInvoiceId, customerId, "P");
+                _remainingAmount = totalDisscount - saleVouchersTotal;
+            }
+
+        }
+
+        private void PreviewRemmainingAmount() 
+        {
+            remainingTotalTextBox.Text = _remainingAmount.ToString("#,0");
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -73,6 +95,13 @@ namespace StoreAndSalesUI.Forms
             {
                 LoadSupplierLists(); 
             }
+        }
+
+        private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (peopleComboBox.SelectedIndex == -1) return;
+            CallculateRemainnigAmount();
+            PreviewRemmainingAmount();
         }
     }
 }
