@@ -22,6 +22,8 @@ namespace StoreAndSalesUI.Forms
         private List<Supplier> _suppliers = new List<Supplier>();
         private SaleData _saleData = new SaleData();    
         private List<Sale> _saleInvoices = new List<Sale>();
+        private PurchaseData _purchaseData = new PurchaseData();
+        private List<Purchase> _purchaseInvoices = new List<Purchase>();
 
         #endregion
 
@@ -42,13 +44,21 @@ namespace StoreAndSalesUI.Forms
         {
             _customers = _customerData.GetAllCustomers();
             _suppliers = _supplierData.GetAllSuppliers();
-            _saleInvoices = _saleData.GetAllSales(); 
+            _saleInvoices = _saleData.GetAllSales();
+            _purchaseInvoices = _purchaseData.GetAllPurchases();
         }
 
         private void LoadCustomerLists()
         {
             LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
             LoadListData(invoicesComboBox, _saleInvoices, "Id", "Id");
+        }
+
+        private void LoadSupplierLists()
+        {
+
+            LoadListData(peopleComboBox, _suppliers, "Id", "SupplierName");
+            LoadListData(invoicesComboBox, _purchaseInvoices, "Id", "Id");
         }
 
         #endregion
@@ -61,7 +71,7 @@ namespace StoreAndSalesUI.Forms
             }
             else
             {
-                LoadListData(peopleComboBox, _suppliers, "Id", "SupplierName");
+                LoadSupplierLists(); 
             }
         }
     }
