@@ -48,6 +48,7 @@ namespace StoreAndSalesUI.Forms
             _supplier.Address = currentRow.Cells[2].Value.ToString();
             _supplier.Phone  =  currentRow.Cells[3].Value.ToString();
             _supplier.Balance = decimal.Parse(currentRow.Cells[4].Value.ToString());
+            BalanceFieldStatus();
         }
 
         private void CollectData()
@@ -119,6 +120,7 @@ namespace StoreAndSalesUI.Forms
             addressTextBox.Clear();
             phoneTextBox.Clear();
             balanceTextBox.Clear();
+            BalanceFieldStatus();
         }
 
         private void ResetForm()
@@ -146,6 +148,11 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void BalanceFieldStatus()
+        {
+            balanceTextBox.Enabled = _supplier.Id == 0 ? true : false;
+        }
+
         #endregion
 
         private void newButton_Click(object sender, EventArgs e)
@@ -170,6 +177,7 @@ namespace StoreAndSalesUI.Forms
         {
             SelectSupplier();
             LoadSupplierData();
+            BalanceFieldStatus();
         }
 
         private void SuppliersForm_Load(object sender, EventArgs e)
