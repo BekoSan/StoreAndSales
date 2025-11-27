@@ -118,6 +118,7 @@ namespace StoreAndSalesUI.Forms
             addressTextBox.Clear();
             phoneTextBox.Clear();
             balanceTextBox.Clear();
+            BalanceFieldStatus();
         }
 
         private void ResetForm()
@@ -145,6 +146,10 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void BalanceFieldStatus() 
+        { 
+            balanceTextBox.Enabled = _customer.Id == 0 ? true : false;
+        }
 
         #endregion
 
@@ -156,7 +161,8 @@ namespace StoreAndSalesUI.Forms
         private void customersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             SelectCustomer();
-            LoadCustomerData(); 
+            LoadCustomerData();
+            BalanceFieldStatus();
         }
 
         private void newButton_Click(object sender, EventArgs e)
