@@ -36,6 +36,7 @@ namespace StoreAndSalesUI.Forms
             supplierNameTextBox.Text = _supplier.SupplierName;
             addressTextBox.Text = _supplier.Address;
             phoneTextBox.Text = _supplier.Phone;
+            balanceTextBox.Text = _supplier.Balance.ToString("#,0");
         }
 
         private void SelectSupplier()
@@ -46,6 +47,7 @@ namespace StoreAndSalesUI.Forms
             _supplier.SupplierName = currentRow.Cells[1].Value.ToString();
             _supplier.Address = currentRow.Cells[2].Value.ToString();
             _supplier.Phone  =  currentRow.Cells[3].Value.ToString();
+            _supplier.Balance = decimal.Parse(currentRow.Cells[4].Value.ToString());
         }
 
         private void CollectData()
