@@ -53,6 +53,8 @@ namespace StoreAndSalesUI.Forms
             _customer.CustomerName = customerNameTextBox.Text;
             _customer.Address = addressTextBox.Text;
             _customer.Phone = phoneTextBox.Text;
+            decimal balance;
+            _customer.Balance = decimal.TryParse(balanceTextBox.Text, out balance) ? balance : 0;
         }
 
         private bool IsValidData()
@@ -73,7 +75,12 @@ namespace StoreAndSalesUI.Forms
             // {
             //     output = false;
             // }
-
+            else if (_customer.Id == 0 && _customer.Balance == 0)
+            {
+                MessageBox.Show("يجب إدخال الرصيد الإفتتاحي للعميل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                balanceTextBox.Focus();
+            }
             return output;
         }
 
@@ -164,6 +171,11 @@ namespace StoreAndSalesUI.Forms
         private void deleteButton_Click(object sender, EventArgs e)
         {
             ArchiveCustomer(); 
+        }
+
+        private void balanceTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UsefulMethods.AcceptJustNumbers(e, balanceTextBox);
         }
     }
 }
