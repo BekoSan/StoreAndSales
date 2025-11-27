@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.titleLabel = new System.Windows.Forms.Label();
             this.customerDataGroupBox = new System.Windows.Forms.GroupBox();
             this.addressLabel = new System.Windows.Forms.Label();
@@ -42,13 +43,14 @@
             this.newButton = new System.Windows.Forms.Button();
             this.customersListGroupBox = new System.Windows.Forms.GroupBox();
             this.customersDataGridView = new System.Windows.Forms.DataGridView();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.balanceLabel = new System.Windows.Forms.Label();
+            this.balanceTextBox = new System.Windows.Forms.TextBox();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.balanceLabel = new System.Windows.Forms.Label();
-            this.balanceTextBox = new System.Windows.Forms.TextBox();
+            this.balanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGroupBox.SuspendLayout();
             this.customersListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).BeginInit();
@@ -193,21 +195,22 @@
             this.customersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.customersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.customersDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customersDataGridView.ColumnHeadersHeight = 29;
             this.customersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.customersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdColumn,
             this.unitNameColumn,
             this.addressColumn,
-            this.phoneColumn});
+            this.phoneColumn,
+            this.balanceColumn});
             this.customersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customersDataGridView.EnableHeadersVisualStyles = false;
             this.customersDataGridView.GridColor = System.Drawing.Color.Black;
@@ -217,49 +220,14 @@
             this.customersDataGridView.RowHeadersVisible = false;
             this.customersDataGridView.RowHeadersWidth = 51;
             this.customersDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.customersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.customersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.customersDataGridView.RowTemplate.Height = 24;
             this.customersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customersDataGridView.Size = new System.Drawing.Size(500, 188);
             this.customersDataGridView.TabIndex = 0;
             this.customersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customersDataGridView_CellContentClick);
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.DataPropertyName = "Id";
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.ReadOnly = true;
-            this.IdColumn.Visible = false;
-            // 
-            // unitNameColumn
-            // 
-            this.unitNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.unitNameColumn.DataPropertyName = "CustomerName";
-            this.unitNameColumn.HeaderText = "الإســم";
-            this.unitNameColumn.MinimumWidth = 6;
-            this.unitNameColumn.Name = "unitNameColumn";
-            this.unitNameColumn.ReadOnly = true;
-            this.unitNameColumn.Width = 175;
-            // 
-            // addressColumn
-            // 
-            this.addressColumn.DataPropertyName = "Address";
-            this.addressColumn.HeaderText = "العنوان";
-            this.addressColumn.MinimumWidth = 6;
-            this.addressColumn.Name = "addressColumn";
-            this.addressColumn.ReadOnly = true;
-            // 
-            // phoneColumn
-            // 
-            this.phoneColumn.DataPropertyName = "Phone";
-            this.phoneColumn.HeaderText = "رقم الجوال";
-            this.phoneColumn.MinimumWidth = 6;
-            this.phoneColumn.Name = "phoneColumn";
-            this.phoneColumn.ReadOnly = true;
             // 
             // deleteButton
             // 
@@ -297,6 +265,53 @@
             this.balanceTextBox.TabIndex = 10;
             this.balanceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.balanceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.balanceTextBox_KeyPress);
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.DataPropertyName = "Id";
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.ReadOnly = true;
+            this.IdColumn.Visible = false;
+            // 
+            // unitNameColumn
+            // 
+            this.unitNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.unitNameColumn.DataPropertyName = "CustomerName";
+            this.unitNameColumn.HeaderText = "الإســم";
+            this.unitNameColumn.MinimumWidth = 6;
+            this.unitNameColumn.Name = "unitNameColumn";
+            this.unitNameColumn.ReadOnly = true;
+            this.unitNameColumn.Width = 175;
+            // 
+            // addressColumn
+            // 
+            this.addressColumn.DataPropertyName = "Address";
+            this.addressColumn.HeaderText = "العنوان";
+            this.addressColumn.MinimumWidth = 6;
+            this.addressColumn.Name = "addressColumn";
+            this.addressColumn.ReadOnly = true;
+            // 
+            // phoneColumn
+            // 
+            this.phoneColumn.DataPropertyName = "Phone";
+            this.phoneColumn.HeaderText = "رقم الجوال";
+            this.phoneColumn.MinimumWidth = 6;
+            this.phoneColumn.Name = "phoneColumn";
+            this.phoneColumn.ReadOnly = true;
+            // 
+            // balanceColumn
+            // 
+            this.balanceColumn.DataPropertyName = "Balance";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.balanceColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.balanceColumn.HeaderText = "الرصيد";
+            this.balanceColumn.MinimumWidth = 6;
+            this.balanceColumn.Name = "balanceColumn";
+            this.balanceColumn.ReadOnly = true;
             // 
             // CustomersForm
             // 
@@ -345,11 +360,12 @@
         private System.Windows.Forms.Label phoneLabel;
         private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Label balanceLabel;
+        private System.Windows.Forms.TextBox balanceTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
-        private System.Windows.Forms.Label balanceLabel;
-        private System.Windows.Forms.TextBox balanceTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn balanceColumn;
     }
 }
