@@ -11,45 +11,49 @@ namespace StoreAndSalesUI.Forms
         {
             InitializeComponent();
             GetFormData();
-            LoadFormData();
+            LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
         }
 
         #region Private Members
 
         private readonly CustomerData  _customerData= new CustomerData();
         private List<Customer> _customers = new List<Customer>();
+        private readonly SupplierData  _supplierData  = new SupplierData();
+        private List<Supplier> _suppliers = new List<Supplier>();
 
         #endregion
 
         #region Private Methods
 
-        private void GetCustomers()
-        {
-            _customers = _customerData.GetAllCustomers(); 
-        }
 
-        private void LoadCustomers() 
+        private void LoadListData<T>(ComboBox comboBox,List<T>  list,string valueMember,string displayMember) 
         {
-            peopleComboBox.DataSource = _customers;
-            peopleComboBox.ValueMember = "Id";
-            peopleComboBox.DisplayMember = "CustomerName";
-            peopleComboBox.SelectedIndex = -1;
+            comboBox.DataSource = null;
+            comboBox.Items.Clear();
+            comboBox.DataSource = list;
+            comboBox.ValueMember = valueMember;
+            comboBox.DisplayMember = displayMember;
+            comboBox.SelectedIndex = -1;
         }
 
         private void GetFormData() 
         {
-            GetCustomers();
-        }
-
-        private void LoadFormData() 
-        {
-            if (customerVocuherRadioButton.Checked)
-            {
-                LoadCustomers();
-            }
+            _customers = _customerData.GetAllCustomers();
+            _suppliers = _supplierData.GetAllSuppliers(); 
         }
 
         #endregion
 
+        private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (customerVocuherRadioButton.Checked)
+            {
+                LoadListData(peopleComboBox,_customers, "Id", "CustomerName");
+            }
+            else
+            {
+                LoadListData(peopleComboBox, _suppliers, "Id", "SupplierName");
+            }
+        }
     }
 }
