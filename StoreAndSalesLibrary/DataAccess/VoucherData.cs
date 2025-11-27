@@ -57,7 +57,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@SupplierId", supplierId);
             p.Add("@VoucherType", voucherType);
 
-            return _sql.LoadData<decimal, dynamic>("spGetTotalPurchaseVoucher", p, _sql.GetConnectionName()).First();
+            return _sql.LoadData<decimal, dynamic>("spGetTotalPurchaseVoucher", p, _sql.GetConnectionName()).FirstOrDefault();
         }
 
 
