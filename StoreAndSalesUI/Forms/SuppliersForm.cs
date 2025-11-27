@@ -53,6 +53,8 @@ namespace StoreAndSalesUI.Forms
             _supplier.SupplierName = supplierNameTextBox.Text;
             _supplier.Address = addressTextBox.Text;
             _supplier.Phone = phoneTextBox.Text;
+            decimal balance;
+            _supplier.Balance = decimal.TryParse(balanceTextBox.Text, out balance) ? balance : 0;
         }
 
         private bool IsValidData()
@@ -65,14 +67,20 @@ namespace StoreAndSalesUI.Forms
                 output = false;
                 supplierNameTextBox.Focus();
             }
-           //else if (_supplier.Address.Length == 0)
-           // {
-           //     output = false;
-           // }
-           //else  if (_supplier.Phone.Length == 0)
-           // {
-           //     output = false;
-           // }
+            //else if (_supplier.Address.Length == 0)
+            // {
+            //     output = false;
+            // }
+            //else  if (_supplier.Phone.Length == 0)
+            // {
+            //     output = false;
+            // }
+            else if (_supplier.Id == 0 && _supplier.Balance == 0)
+            {
+                MessageBox.Show("يجب إدخال الرصيد الإفتتاحي للمورد", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                balanceTextBox.Focus();
+            }
 
             return output;
         }
@@ -166,5 +174,9 @@ namespace StoreAndSalesUI.Forms
             LoadSuppliers(); 
         }
 
+        private void balanceTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UsefulMethods.AcceptJustNumbers(e, balanceTextBox);
+        }
     }
 }
