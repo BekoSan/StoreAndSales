@@ -115,7 +115,8 @@ namespace StoreAndSalesUI.Forms
             _supplier = new Supplier(); 
             supplierNameTextBox.Clear();
             addressTextBox.Clear();
-            phoneTextBox.Clear(); 
+            phoneTextBox.Clear();
+            balanceTextBox.Clear();
         }
 
         private void ResetForm()
