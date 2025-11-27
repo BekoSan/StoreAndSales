@@ -145,6 +145,12 @@
     <Compile Include="Forms\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\VouchersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VouchersForm.Designer.cs">
+      <DependentUpon>VouchersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\UsefulMethods.cs" />
     <Compile Include="Interfaces\IItemRequester.cs" />
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VouchersForm.resx">
+      <DependentUpon>VouchersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
