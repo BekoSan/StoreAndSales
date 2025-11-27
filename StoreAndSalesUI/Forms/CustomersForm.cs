@@ -115,6 +115,7 @@ namespace StoreAndSalesUI.Forms
             customerNameTextBox.Clear();
             addressTextBox.Clear();
             phoneTextBox.Clear();
+            balanceTextBox.Clear();
         }
 
         private void ResetForm()
