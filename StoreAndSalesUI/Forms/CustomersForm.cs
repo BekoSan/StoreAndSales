@@ -36,6 +36,7 @@ namespace StoreAndSalesUI.Forms
             customerNameTextBox.Text = _customer.CustomerName;
             addressTextBox.Text = _customer.Address;
             phoneTextBox.Text = _customer.Phone;
+            balanceTextBox.Text = _customer.Balance.ToString("#,0");
         }
 
         private void SelectCustomer()
@@ -46,6 +47,7 @@ namespace StoreAndSalesUI.Forms
             _customer.CustomerName = currentRow.Cells[1].Value.ToString();
             _customer.Address = currentRow.Cells[2].Value.ToString();
             _customer.Phone = currentRow.Cells[3].Value.ToString();
+            _customer.Balance = decimal.Parse(currentRow.Cells[4].Value.ToString());
         }
 
         private void CollectData()
