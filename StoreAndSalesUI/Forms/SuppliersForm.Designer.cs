@@ -42,11 +42,13 @@
             this.newButton = new System.Windows.Forms.Button();
             this.suppliersListGroupBox = new System.Windows.Forms.GroupBox();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
-            this.deleteButton = new System.Windows.Forms.Button();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.balanceLabel = new System.Windows.Forms.Label();
+            this.balanceTextBox = new System.Windows.Forms.TextBox();
             this.supplierDataGroupBox.SuspendLayout();
             this.suppliersListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).BeginInit();
@@ -65,6 +67,8 @@
             // supplierDataGroupBox
             // 
             this.supplierDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.supplierDataGroupBox.Controls.Add(this.balanceLabel);
+            this.supplierDataGroupBox.Controls.Add(this.balanceTextBox);
             this.supplierDataGroupBox.Controls.Add(this.addressLabel);
             this.supplierDataGroupBox.Controls.Add(this.addressTextBox);
             this.supplierDataGroupBox.Controls.Add(this.phoneLabel);
@@ -74,7 +78,7 @@
             this.supplierDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.supplierDataGroupBox.Location = new System.Drawing.Point(14, 81);
             this.supplierDataGroupBox.Name = "supplierDataGroupBox";
-            this.supplierDataGroupBox.Size = new System.Drawing.Size(503, 213);
+            this.supplierDataGroupBox.Size = new System.Drawing.Size(503, 261);
             this.supplierDataGroupBox.TabIndex = 0;
             this.supplierDataGroupBox.TabStop = false;
             this.supplierDataGroupBox.Text = "بيانات المـــورد";
@@ -146,7 +150,7 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(205, 525);
+            this.saveButton.Location = new System.Drawing.Point(205, 573);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 2;
@@ -159,7 +163,7 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(80, 525);
+            this.newButton.Location = new System.Drawing.Point(80, 573);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 1;
@@ -172,7 +176,7 @@
             this.suppliersListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.suppliersListGroupBox.Controls.Add(this.suppliersDataGridView);
             this.suppliersListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.suppliersListGroupBox.Location = new System.Drawing.Point(14, 300);
+            this.suppliersListGroupBox.Location = new System.Drawing.Point(14, 348);
             this.suppliersListGroupBox.Name = "suppliersListGroupBox";
             this.suppliersListGroupBox.Size = new System.Drawing.Size(506, 216);
             this.suppliersListGroupBox.TabIndex = 12;
@@ -222,19 +226,6 @@
             this.suppliersDataGridView.TabIndex = 0;
             this.suppliersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.suppliersDataGridView_CellContentClick);
             // 
-            // deleteButton
-            // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.deleteButton.Location = new System.Drawing.Point(330, 525);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(118, 33);
-            this.deleteButton.TabIndex = 3;
-            this.deleteButton.Text = "حـــذف";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
             // IdColumn
             // 
             this.IdColumn.DataPropertyName = "Id";
@@ -270,13 +261,49 @@
             this.phoneColumn.Name = "phoneColumn";
             this.phoneColumn.ReadOnly = true;
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.deleteButton.Location = new System.Drawing.Point(330, 573);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(118, 33);
+            this.deleteButton.TabIndex = 3;
+            this.deleteButton.Text = "حـــذف";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // balanceLabel
+            // 
+            this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.balanceLabel.AutoSize = true;
+            this.balanceLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.balanceLabel.Location = new System.Drawing.Point(339, 200);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(48, 19);
+            this.balanceLabel.TabIndex = 11;
+            this.balanceLabel.Text = "الرصيد";
+            // 
+            // balanceTextBox
+            // 
+            this.balanceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.balanceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.balanceTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
+            this.balanceTextBox.Location = new System.Drawing.Point(102, 222);
+            this.balanceTextBox.MaxLength = 13;
+            this.balanceTextBox.Name = "balanceTextBox";
+            this.balanceTextBox.Size = new System.Drawing.Size(288, 29);
+            this.balanceTextBox.TabIndex = 10;
+            this.balanceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // SuppliersForm
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(529, 566);
+            this.ClientSize = new System.Drawing.Size(529, 617);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.supplierDataGroupBox);
             this.Controls.Add(this.saveButton);
@@ -322,5 +349,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
+        private System.Windows.Forms.Label balanceLabel;
+        private System.Windows.Forms.TextBox balanceTextBox;
     }
 }
