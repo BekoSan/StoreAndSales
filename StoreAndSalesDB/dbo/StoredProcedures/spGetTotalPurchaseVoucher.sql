@@ -1,16 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[spGetTotalPurchaseVoucher]
 	@PurchaseId int,
 	@SupplierId int,
-	@VoucherType nvarchar(1),
-	@Total money = 0 output
+	@VoucherType nvarchar(1)
 AS
 BEGIN
 
-Select @Total = (Select Sum(Amount) from Voucher Where
+Select Sum(Amount) as 'Total' from Voucher Where
 PurchaseId = @PurchaseId 
 and
 SupplierId = @SupplierId
 and 
-VoucherType = @VoucherType)
+VoucherType = @VoucherType
 
 END
