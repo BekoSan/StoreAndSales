@@ -19,6 +19,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@Amount", saleVoucher.Amount);
             p.Add("@SaleId", saleVoucher.SaleId);
             p.Add("@CustomerId", saleVoucher.CustomerId);
+            p.Add("@Notes", saleVoucher.Notes);
 
             _sql.SaveData("spCreateSaleVoucher", p, _sql.GetConnectionName());
         }
@@ -32,6 +33,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@Amount", purchaseVoucher.Amount);
             p.Add("@PurchaseId", purchaseVoucher.PurchaseId);
             p.Add("@SupplierId", purchaseVoucher.SupplierId);
+            p.Add("@Notes", purchaseVoucher.Notes);
 
             _sql.SaveData("spCreatePurchaseVoucher", p, _sql.GetConnectionName());
         }
