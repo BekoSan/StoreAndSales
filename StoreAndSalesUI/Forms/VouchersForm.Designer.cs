@@ -51,11 +51,11 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(2, 8);
+            this.titleLabel.Location = new System.Drawing.Point(87, 9);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(435, 66);
+            this.titleLabel.Size = new System.Drawing.Size(265, 66);
             this.titleLabel.TabIndex = 7;
-            this.titleLabel.Text = "سندات الدفع والإستلام";
+            this.titleLabel.Text = "سداد الــديون";
             // 
             // customerVocuherRadioButton
             // 
@@ -97,41 +97,43 @@
             this.voucherDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.voucherDataGroupBox.Location = new System.Drawing.Point(19, 117);
             this.voucherDataGroupBox.Name = "voucherDataGroupBox";
-            this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 355);
+            this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 230);
             this.voucherDataGroupBox.TabIndex = 10;
             this.voucherDataGroupBox.TabStop = false;
             this.voucherDataGroupBox.Text = "بيانات السند";
             // 
             // remainingTotalLabel
             // 
-            this.remainingTotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.remainingTotalLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.remainingTotalLabel.AutoSize = true;
             this.remainingTotalLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.remainingTotalLabel.Location = new System.Drawing.Point(282, 285);
+            this.remainingTotalLabel.Location = new System.Drawing.Point(282, 388);
             this.remainingTotalLabel.Name = "remainingTotalLabel";
             this.remainingTotalLabel.Size = new System.Drawing.Size(93, 19);
             this.remainingTotalLabel.TabIndex = 31;
             this.remainingTotalLabel.Text = "إجمالي المتبقي";
+            this.remainingTotalLabel.Visible = false;
             // 
             // remainingTotalTextBox
             // 
-            this.remainingTotalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.remainingTotalTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.remainingTotalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.remainingTotalTextBox.Enabled = false;
             this.remainingTotalTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
-            this.remainingTotalTextBox.Location = new System.Drawing.Point(19, 307);
+            this.remainingTotalTextBox.Location = new System.Drawing.Point(19, 410);
             this.remainingTotalTextBox.MaxLength = 13;
             this.remainingTotalTextBox.Name = "remainingTotalTextBox";
             this.remainingTotalTextBox.Size = new System.Drawing.Size(363, 29);
             this.remainingTotalTextBox.TabIndex = 30;
             this.remainingTotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.remainingTotalTextBox.Visible = false;
             // 
             // amountLabel
             // 
             this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.amountLabel.AutoSize = true;
             this.amountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.amountLabel.Location = new System.Drawing.Point(328, 225);
+            this.amountLabel.Location = new System.Drawing.Point(326, 164);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(47, 19);
             this.amountLabel.TabIndex = 29;
@@ -142,7 +144,7 @@
             this.amountTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.amountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.amountTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
-            this.amountTextBox.Location = new System.Drawing.Point(19, 248);
+            this.amountTextBox.Location = new System.Drawing.Point(17, 187);
             this.amountTextBox.MaxLength = 13;
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(363, 29);
@@ -153,25 +155,27 @@
             // 
             // invoicesComboBox
             // 
-            this.invoicesComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.invoicesComboBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.invoicesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.invoicesComboBox.FormattingEnabled = true;
-            this.invoicesComboBox.Location = new System.Drawing.Point(18, 189);
+            this.invoicesComboBox.Location = new System.Drawing.Point(17, 354);
             this.invoicesComboBox.Name = "invoicesComboBox";
             this.invoicesComboBox.Size = new System.Drawing.Size(365, 29);
             this.invoicesComboBox.TabIndex = 1;
+            this.invoicesComboBox.Visible = false;
             this.invoicesComboBox.SelectedIndexChanged += new System.EventHandler(this.invoicesComboBox_SelectedIndexChanged);
             // 
             // invoicesLabel
             // 
-            this.invoicesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.invoicesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.invoicesLabel.AutoSize = true;
             this.invoicesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.invoicesLabel.Location = new System.Drawing.Point(299, 166);
+            this.invoicesLabel.Location = new System.Drawing.Point(298, 331);
             this.invoicesLabel.Name = "invoicesLabel";
             this.invoicesLabel.Size = new System.Drawing.Size(76, 19);
             this.invoicesLabel.TabIndex = 26;
             this.invoicesLabel.Text = "الفاتورة رقم";
+            this.invoicesLabel.Visible = false;
             // 
             // peopleComboBox
             // 
@@ -222,7 +226,7 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(221, 483);
+            this.saveButton.Location = new System.Drawing.Point(221, 374);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 2;
@@ -234,7 +238,7 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(99, 482);
+            this.newButton.Location = new System.Drawing.Point(99, 373);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 3;
@@ -248,7 +252,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(439, 523);
+            this.ClientSize = new System.Drawing.Size(439, 414);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.voucherDataGroupBox);
@@ -264,7 +268,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "سندات الدفع والإستلام";
+            this.Text = "سداد الديون";
             this.Load += new System.EventHandler(this.VouchersForm_Load);
             this.voucherDataGroupBox.ResumeLayout(false);
             this.voucherDataGroupBox.PerformLayout();
