@@ -148,6 +148,7 @@
             this.amountTextBox.Size = new System.Drawing.Size(363, 29);
             this.amountTextBox.TabIndex = 2;
             this.amountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.amountTextBox.TextChanged += new System.EventHandler(this.amountTextBox_TextChanged);
             this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.amountTextBox_KeyPress);
             // 
             // invoicesComboBox

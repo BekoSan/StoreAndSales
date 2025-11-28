@@ -27,7 +27,8 @@ namespace StoreAndSalesUI.Forms
         private List<Purchase> _purchaseInvoices = new List<Purchase>();
         private decimal _remainingAmount = 0;
         private VoucherData _voucherData = new VoucherData();
-        
+        private decimal _remainAfterPaid = 0;
+
         #endregion
 
         #region Private Methods
@@ -89,9 +90,16 @@ namespace StoreAndSalesUI.Forms
 
         }
 
-        private void PreviewRemmainingAmount() 
+        private void PreviewRemainingAmount(decimal amount) 
         {
-            remainingTotalTextBox.Text = _remainingAmount.ToString("#,0");
+            remainingTotalTextBox.Text = amount.ToString("#,0");
+        }
+
+        private void CalculatePaid()
+        {
+            decimal paid;
+            decimal.TryParse(amountTextBox.Text,out paid);
+            _remainAfterPaid = _remainingAmount - paid;
         }
 
         #endregion
@@ -112,12 +120,18 @@ namespace StoreAndSalesUI.Forms
         {
             if (peopleComboBox.SelectedIndex == -1) return;
             CallculateRemainnigAmount();
-            PreviewRemmainingAmount();
+            PreviewRemainingAmount(_remainingAmount);
         }
 
         private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             UsefulMethods.AcceptJustNumbers(e, amountTextBox); 
+        }
+
+        private void amountTextBox_TextChanged(object sender, System.EventArgs e)
+        {
+            CalculatePaid();
+            PreviewRemainingAmount(_remainAfterPaid);
         }
     }
 }
