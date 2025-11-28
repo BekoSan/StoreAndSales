@@ -62,7 +62,6 @@ namespace StoreAndSalesUI.Forms
         {
 
             LoadListData(peopleComboBox, _suppliers, "Id", "SupplierName");
-            LoadListData(invoicesComboBox, _purchaseInvoices, "Id", "Id");
         }
 
         private void CallculateRemainnigAmount()
@@ -115,7 +114,9 @@ namespace StoreAndSalesUI.Forms
             }
             else
             {
-
+                List<Purchase> supplierInvoices = new List<Purchase>();
+                supplierInvoices = _purchaseInvoices.Where(purchase => purchase.SupplierId == personId).ToList();
+                LoadListData(invoicesComboBox, supplierInvoices, "Id", "Id");
             }
 
         }
