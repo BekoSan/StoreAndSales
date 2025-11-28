@@ -133,6 +133,7 @@
     <Build Include="dbo\StoredProcedures\spCreatePurchaseVoucher.sql" />
     <Build Include="dbo\StoredProcedures\spGetTotalSaleVoucher.sql" />
     <Build Include="dbo\StoredProcedures\spGetTotalPurchaseVoucher.sql" />
+    <Build Include="dbo\StoredProcedures\spGetLastVoucherId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
