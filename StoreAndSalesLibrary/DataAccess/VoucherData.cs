@@ -60,6 +60,19 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<decimal, dynamic>("spGetTotalPurchaseVoucher", p, _sql.GetConnectionName()).FirstOrDefault();
         }
 
+        public int GetLastVoucherId()
+        {
+            int output;
+
+            var list = _sql.LoadData<int, dynamic>("spGetLastVoucherId", null, _sql.GetConnectionName());
+
+            if (list.Count == 0)
+                output = 1;
+            else
+                output = list.First();
+
+            return output;
+        }
 
     }
 }
