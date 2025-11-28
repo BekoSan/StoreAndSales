@@ -1,6 +1,7 @@
 ﻿using StoreAndSalesLibrary.DataAccess;
 using StoreAndSalesLibrary.Models;
 using StoreAndSalesUI.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -178,6 +179,26 @@ namespace StoreAndSalesUI.Forms
                 peopleComboBox.Focus();
             }
             return output;
+        }
+
+        private void Save() 
+        {
+            try
+            {
+
+                if (customerVocuherRadioButton.Checked)
+                    _voucherData.CreateSaleVoucher(_voucher);
+                else
+                    _voucherData.CreatePurchaseVoucher(_voucher);
+
+                MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UsefulMethods.LogException(ex);
+            }
         }
 
         #endregion
