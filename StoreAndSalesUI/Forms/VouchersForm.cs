@@ -161,6 +161,25 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private bool IsValidData()
+        {
+            bool output = true;
+
+            if (peopleComboBox.SelectedIndex  == -1)
+            {
+                MessageBox.Show("يجب إختيار شخص من القائمة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                peopleComboBox.Focus();
+            }
+            else if (amountTextBox.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("يجب إدخال المبلغ المدفوع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                peopleComboBox.Focus();
+            }
+            return output;
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
