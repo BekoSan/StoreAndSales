@@ -2,6 +2,7 @@
 using StoreAndSalesLibrary.Models;
 using StoreAndSalesUI.Helpers;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
@@ -55,7 +56,6 @@ namespace StoreAndSalesUI.Forms
         private void LoadCustomerLists()
         {
             LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
-            LoadListData(invoicesComboBox, _saleInvoices, "Id", "Id");
         }
 
         private void LoadSupplierLists()
@@ -67,6 +67,8 @@ namespace StoreAndSalesUI.Forms
 
         private void CallculateRemainnigAmount()
         {
+            if (invoicesComboBox.SelectedIndex == -1) return;
+
             if (customerVocuherRadioButton.Checked)
             {
                 int saleInvoiceId;
@@ -102,6 +104,22 @@ namespace StoreAndSalesUI.Forms
             _remainAfterPaid = _remainingAmount - paid;
         }
 
+        private void LoadPersonInvoices(int personId) 
+        {
+
+            if (customerVocuherRadioButton.Checked) 
+            {
+                List<Sale> customerInvoices = new List<Sale>();
+                customerInvoices = _saleInvoices.Where(sale => sale.CustomerId == personId).ToList();
+                LoadListData(invoicesComboBox, customerInvoices, "Id", "Id");
+            }
+            else
+            {
+
+            }
+
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -132,6 +150,13 @@ namespace StoreAndSalesUI.Forms
         {
             CalculatePaid();
             PreviewRemainingAmount(_remainAfterPaid);
+        }
+
+        private void peopleComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+           if (peopleComboBox.SelectedIndex == -1) return;
+           int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
+           LoadPersonInvoices(personId);
         }
     }
 }
