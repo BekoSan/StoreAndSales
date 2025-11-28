@@ -126,6 +126,15 @@ namespace StoreAndSalesUI.Forms
             voucherIdTextBox.Text = (_voucherData.GetLastVoucherId() + 1).ToString();
         }
 
+        private void ClearForm() 
+        {
+            LoadNextVoucherId();
+            customerVocuherRadioButton.Checked = true;
+            peopleComboBox.SelectedIndex= -1;
+            invoicesComboBox.SelectedIndex = -1;
+            amountTextBox.Clear();
+            remainingTotalTextBox.Clear();
+        }
 
         #endregion
 
@@ -169,6 +178,11 @@ namespace StoreAndSalesUI.Forms
         private void VouchersForm_Load(object sender, System.EventArgs e)
         {
             LoadNextVoucherId();
+        }
+
+        private void newButton_Click(object sender, System.EventArgs e)
+        {
+            ClearForm();
         }
     }
 }

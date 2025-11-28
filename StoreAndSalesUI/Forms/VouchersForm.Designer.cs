@@ -240,6 +240,7 @@
             this.newButton.TabIndex = 3;
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // VouchersForm
             // 
