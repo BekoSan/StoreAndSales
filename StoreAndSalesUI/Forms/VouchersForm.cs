@@ -1,5 +1,6 @@
 ﻿using StoreAndSalesLibrary.DataAccess;
 using StoreAndSalesLibrary.Models;
+using StoreAndSalesUI.Helpers;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -112,6 +113,11 @@ namespace StoreAndSalesUI.Forms
             if (peopleComboBox.SelectedIndex == -1) return;
             CallculateRemainnigAmount();
             PreviewRemmainingAmount();
+        }
+
+        private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UsefulMethods.AcceptJustNumbers(e, amountTextBox); 
         }
     }
 }
