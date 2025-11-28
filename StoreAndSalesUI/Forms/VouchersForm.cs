@@ -49,8 +49,8 @@ namespace StoreAndSalesUI.Forms
         {
             _customers = _customerData.GetAllCustomers();
             _suppliers = _supplierData.GetAllSuppliers();
-            _saleInvoices = _saleData.GetAllSales();
-            _purchaseInvoices = _purchaseData.GetAllPurchases();
+            //_saleInvoices = _saleData.GetAllSales();
+            //_purchaseInvoices = _purchaseData.GetAllPurchases();
         }
 
         private void LoadCustomerLists()
@@ -130,31 +130,31 @@ namespace StoreAndSalesUI.Forms
         {
             LoadNextVoucherId();
             customerVocuherRadioButton.Checked = true;
-            peopleComboBox.SelectedIndex= -1;
-            invoicesComboBox.SelectedIndex = -1;
+            //peopleComboBox.SelectedIndex= -1;
+            //invoicesComboBox.SelectedIndex = -1;
             amountTextBox.Clear();
-            remainingTotalTextBox.Clear();
+            //remainingTotalTextBox.Clear();
         }
 
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
         {
-            if (customerVocuherRadioButton.Checked)
-            {
-                LoadCustomerLists();
-            }
-            else
-            {
-                LoadSupplierLists(); 
-            }
+            //if (customerVocuherRadioButton.Checked)
+            //{
+            //    LoadCustomerLists();
+            //}
+            //else
+            //{
+            //    LoadSupplierLists(); 
+            //}
         }
 
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (peopleComboBox.SelectedIndex == -1) return;
-            CallculateRemainnigAmount();
-            PreviewRemainingAmount(_remainingAmount);
+            //if (peopleComboBox.SelectedIndex == -1) return;
+            //CallculateRemainnigAmount();
+            //PreviewRemainingAmount(_remainingAmount);
         }
 
         private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -164,15 +164,15 @@ namespace StoreAndSalesUI.Forms
 
         private void amountTextBox_TextChanged(object sender, System.EventArgs e)
         {
-            CalculatePaid();
-            PreviewRemainingAmount(_remainAfterPaid);
+            //CalculatePaid();
+            //PreviewRemainingAmount(_remainAfterPaid);
         }
 
         private void peopleComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-           if (peopleComboBox.SelectedIndex == -1) return;
-           int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
-           LoadPersonInvoices(personId);
+           //if (peopleComboBox.SelectedIndex == -1) return;
+           //int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
+           //LoadPersonInvoices(personId);
         }
 
         private void VouchersForm_Load(object sender, System.EventArgs e)
