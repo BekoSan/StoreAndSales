@@ -29,7 +29,8 @@ namespace StoreAndSalesUI.Forms
         private decimal _remainingAmount = 0;
         private VoucherData _voucherData = new VoucherData();
         private decimal _remainAfterPaid = 0;
-
+        private Voucher _voucher = new Voucher();
+        
         #endregion
 
         #region Private Methods
@@ -134,6 +135,30 @@ namespace StoreAndSalesUI.Forms
             //invoicesComboBox.SelectedIndex = -1;
             amountTextBox.Clear();
             //remainingTotalTextBox.Clear();
+        }
+
+        private void CollectData() 
+        {
+            if (peopleComboBox.SelectedIndex == -1) return;
+
+            if (customerVocuherRadioButton.Checked)
+            {
+                _voucher = new Voucher()
+                {
+                    VoucherType = "P",
+                    CustomerId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
+                    Amount = amountTextBox.Text.ParseToDecimal() 
+                };
+            }
+            else
+            {
+                _voucher = new Voucher()
+                {
+                    VoucherType = "P",
+                    SupplierId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
+                    Amount = amountTextBox.Text.ParseToDecimal()
+                };
+            }
         }
 
         #endregion
