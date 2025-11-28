@@ -121,6 +121,12 @@ namespace StoreAndSalesUI.Forms
 
         }
 
+        private void LoadNextVoucherId()
+        {
+            voucherIdTextBox.Text = (_voucherData.GetLastVoucherId() + 1).ToString();
+        }
+
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -158,6 +164,11 @@ namespace StoreAndSalesUI.Forms
            if (peopleComboBox.SelectedIndex == -1) return;
            int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
            LoadPersonInvoices(personId);
+        }
+
+        private void VouchersForm_Load(object sender, System.EventArgs e)
+        {
+            LoadNextVoucherId();
         }
     }
 }

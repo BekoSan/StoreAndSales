@@ -264,6 +264,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "سندات الدفع والإستلام";
+            this.Load += new System.EventHandler(this.VouchersForm_Load);
             this.voucherDataGroupBox.ResumeLayout(false);
             this.voucherDataGroupBox.PerformLayout();
             this.ResumeLayout(false);
