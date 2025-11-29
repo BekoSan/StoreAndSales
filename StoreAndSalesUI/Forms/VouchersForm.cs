@@ -1,6 +1,7 @@
 ﻿using StoreAndSalesLibrary.DataAccess;
 using StoreAndSalesLibrary.Models;
 using StoreAndSalesUI.Helpers;
+using StoreAndSalesUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,14 @@ namespace StoreAndSalesUI.Forms
             LoadCustomerLists();
         }
 
+        public VouchersForm(IVouchersRequetser caller)
+        {
+            InitializeComponent();
+            GetFormData();
+            LoadCustomerLists();
+            CallingForm = caller;
+        }
+
         #region Private Members
 
         private readonly CustomerData  _customerData= new CustomerData();
@@ -31,7 +40,8 @@ namespace StoreAndSalesUI.Forms
         private VoucherData _voucherData = new VoucherData();
         private decimal _remainAfterPaid = 0;
         private Voucher _voucher = new Voucher();
-        
+        private IVouchersRequetser CallingForm;
+
         #endregion
 
         #region Private Methods
