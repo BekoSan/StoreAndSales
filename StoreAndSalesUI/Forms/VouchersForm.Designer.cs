@@ -97,10 +97,9 @@
             this.voucherDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.voucherDataGroupBox.Location = new System.Drawing.Point(19, 117);
             this.voucherDataGroupBox.Name = "voucherDataGroupBox";
-            this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 230);
+            this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 239);
             this.voucherDataGroupBox.TabIndex = 10;
             this.voucherDataGroupBox.TabStop = false;
-            this.voucherDataGroupBox.Text = "بيانات السند";
             // 
             // remainingTotalLabel
             // 
@@ -204,29 +203,31 @@
             this.voucherIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.voucherIdLabel.AutoSize = true;
             this.voucherIdLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.voucherIdLabel.Location = new System.Drawing.Point(305, 42);
+            this.voucherIdLabel.Location = new System.Drawing.Point(305, 273);
             this.voucherIdLabel.Name = "voucherIdLabel";
             this.voucherIdLabel.Size = new System.Drawing.Size(70, 19);
             this.voucherIdLabel.TabIndex = 7;
             this.voucherIdLabel.Text = "رقم السنـــد";
+            this.voucherIdLabel.Visible = false;
             // 
             // voucherIdTextBox
             // 
             this.voucherIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.voucherIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.voucherIdTextBox.Enabled = false;
-            this.voucherIdTextBox.Location = new System.Drawing.Point(210, 64);
+            this.voucherIdTextBox.Location = new System.Drawing.Point(210, 295);
             this.voucherIdTextBox.Name = "voucherIdTextBox";
             this.voucherIdTextBox.Size = new System.Drawing.Size(169, 29);
             this.voucherIdTextBox.TabIndex = 6;
             this.voucherIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.voucherIdTextBox.Visible = false;
             // 
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(221, 374);
+            this.saveButton.Location = new System.Drawing.Point(221, 366);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 2;
@@ -238,7 +239,7 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(99, 373);
+            this.newButton.Location = new System.Drawing.Point(99, 365);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 3;
@@ -252,7 +253,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(439, 414);
+            this.ClientSize = new System.Drawing.Size(439, 406);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.voucherDataGroupBox);
