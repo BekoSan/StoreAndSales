@@ -38,6 +38,9 @@ namespace StoreAndSalesLibrary.DataAccess
                 cmd.Parameters.Add("@Total", SqlDbType.Money).Value = purchase.Total;
                 cmd.Parameters.Add("@Disscount", SqlDbType.Money).Value = purchase.Disscount;
                 cmd.Parameters.Add("@Notes", SqlDbType.NVarChar).Value = purchase.Notes;
+                cmd.Parameters.Add("@PaymentType", SqlDbType.Bit).Value = purchase.PaymentType;
+                cmd.Parameters.Add("@IsDisscount", SqlDbType.Bit).Value = purchase.IsDisscount;
+                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = purchase.Status;
 
                 cmd.ExecuteNonQuery();
 
