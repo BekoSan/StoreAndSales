@@ -57,13 +57,16 @@ namespace StoreAndSalesUI.Forms
 
         private void LoadCustomerLists()
         {
+            peopleComboBox.SelectedIndexChanged-= peopleComboBox_SelectedIndexChanged;
             LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
+            peopleComboBox.SelectedIndexChanged += peopleComboBox_SelectedIndexChanged;
         }
 
         private void LoadSupplierLists()
         {
-
+            peopleComboBox.SelectedIndexChanged -= peopleComboBox_SelectedIndexChanged;
             LoadListData(peopleComboBox, _suppliers, "Id", "SupplierName");
+            peopleComboBox.SelectedIndexChanged += peopleComboBox_SelectedIndexChanged;
         }
 
         private void CallculateRemainnigAmount()
