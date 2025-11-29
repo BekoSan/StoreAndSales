@@ -251,9 +251,10 @@ namespace StoreAndSalesUI.Forms
 
         private void peopleComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-           //if (peopleComboBox.SelectedIndex == -1) return;
-           //int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
-           //LoadPersonInvoices(personId);
+            //if (peopleComboBox.SelectedIndex == -1) return;
+            //int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
+            //LoadPersonInvoices(personId);
+            ShowBalance(); 
         }
 
         private void VouchersForm_Load(object sender, System.EventArgs e)
