@@ -18,5 +18,11 @@ namespace StoreAndSalesLibrary.Models
         public List<PurchaseDetail> PurchaseDetails = new List<PurchaseDetail>();
         public string Notes { get; set; }
 
+        public bool PaymentType { get; set; }
+
+        public bool IsDisscount { get; set; }
+
+        public bool Status { get; set; }
+
     }
 }
