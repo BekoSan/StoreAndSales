@@ -284,5 +284,14 @@ namespace StoreAndSalesUI.Forms
         {
             ClearForm();
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (IsValidData())
+            {
+                Save();
+                ClearForm(); 
+            }
+        }
     }
 }
