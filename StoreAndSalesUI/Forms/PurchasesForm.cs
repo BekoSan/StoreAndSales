@@ -47,6 +47,9 @@ namespace StoreAndSalesUI.Forms
             _purchase.Total = totalTextBox.Text.ParseToDecimal();
             _purchase.Disscount = disscountTextBox.Text.ParseToDecimal();
             _purchase.Notes = notesTextBox.Text;
+            _purchase.PaymentType = paymentTypeCheckBox.Checked;
+            _purchase.IsDisscount = isDisscountCheckBox.Checked;
+            _purchase.Status = false;
 
             CollectPurchaseDetails();
         }
