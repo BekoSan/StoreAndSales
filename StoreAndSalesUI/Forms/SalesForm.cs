@@ -51,6 +51,9 @@ namespace StoreAndSalesUI.Forms
             _sale.Total = (_disscount == 0 ? _totalCost : _totalCost - _disscount); //totalTextBox.Text.ParseToDecimal();
             _sale.Disscount = _disscount;
             _sale.Notes = notesTextBox.Text;
+            _sale.PaymentType = paymentTypeCheckBox.Checked;
+            _sale.IsDisscount = isDisscountCheckBox.Checked;
+            _sale.Status = false;
 
             CollectSaleDetails();
         }
