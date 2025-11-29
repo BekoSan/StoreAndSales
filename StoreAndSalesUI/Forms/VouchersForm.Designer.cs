@@ -44,6 +44,7 @@
             this.voucherIdTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
+            this.balanceLabel = new System.Windows.Forms.Label();
             this.voucherDataGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             // 
             // voucherDataGroupBox
             // 
+            this.voucherDataGroupBox.Controls.Add(this.balanceLabel);
             this.voucherDataGroupBox.Controls.Add(this.remainingTotalLabel);
             this.voucherDataGroupBox.Controls.Add(this.remainingTotalTextBox);
             this.voucherDataGroupBox.Controls.Add(this.amountLabel);
@@ -247,6 +249,17 @@
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
+            // balanceLabel
+            // 
+            this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.balanceLabel.Font = new System.Drawing.Font("Consolas", 34.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceLabel.Location = new System.Drawing.Point(6, 18);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(388, 90);
+            this.balanceLabel.TabIndex = 33;
+            this.balanceLabel.Text = "0";
+            this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // VouchersForm
             // 
             this.AcceptButton = this.saveButton;
@@ -296,5 +309,6 @@
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Label remainingTotalLabel;
         private System.Windows.Forms.TextBox remainingTotalTextBox;
+        private System.Windows.Forms.Label balanceLabel;
     }
 }
