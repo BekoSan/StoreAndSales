@@ -224,14 +224,14 @@ namespace StoreAndSalesUI.Forms
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
         {
-            //if (customerVocuherRadioButton.Checked)
-            //{
-            //    LoadCustomerLists();
-            //}
-            //else
-            //{
-            //    LoadSupplierLists(); 
-            //}
+            if (customerVocuherRadioButton.Checked)
+            {
+                LoadCustomerLists();
+            }
+            else
+            {
+                LoadSupplierLists();
+            }
         }
 
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
