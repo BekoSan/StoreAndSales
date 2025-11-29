@@ -46,11 +46,11 @@
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(208, 33);
+            this.titleLabel.Location = new System.Drawing.Point(160, 33);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(384, 66);
+            this.titleLabel.Size = new System.Drawing.Size(480, 66);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "نظام إدارة المخازن";
+            this.titleLabel.Text = "المنقوري للمعدات الطبية";
             // 
             // salesButton
             // 
@@ -197,7 +197,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowIcon = false;
-            this.Text = "نظام إدارة المخـــازن";
+            this.Text = "المنقوري للمعدات الطبية";
             this.Load += new System.EventHandler(this.DashboardForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
