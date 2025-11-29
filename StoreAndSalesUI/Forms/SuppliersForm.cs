@@ -1,13 +1,15 @@
 ﻿using StoreAndSalesLibrary.DataAccess;
 using StoreAndSalesLibrary.Models;
 using StoreAndSalesUI.Helpers;
+using StoreAndSalesUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace StoreAndSalesUI.Forms
 {
-    public partial class SuppliersForm : Form
+    public partial class SuppliersForm : Form , IVouchersRequetser
     {
         public SuppliersForm()
         {
@@ -188,6 +190,22 @@ namespace StoreAndSalesUI.Forms
         private void balanceTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             UsefulMethods.AcceptJustNumbers(e, balanceTextBox);
+        }
+
+        public void UpdatePersonBalance(int personId, decimal balance)
+        {
+            Suppliers.Find(x => x.Id == personId).Balance = balance;
+            suppliersDataGridView.Refresh();
+            if (_supplier.Id == personId) 
+            {
+                _supplier.Balance = balance;
+                LoadSupplierData();
+            }   
+        }
+
+        private void payDebtButton_Click(object sender, EventArgs e)
+        {
+            new VouchersForm(this).ShowDialog();
         }
     }
 }
