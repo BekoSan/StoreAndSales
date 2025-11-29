@@ -68,5 +68,16 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<Supplier, dynamic>("spGetSupplierByName", p, _sql.GetConnectionName());
         }
 
+        public void UpdateBalance(int supplierId, decimal newBalance)
+        {
+            var p = new DynamicParameters();
+
+            p.Add("@SupplierId", supplierId);
+            p.Add("@NewBalance", newBalance);
+
+
+            _sql.SaveData("spEditSupplierBalance", p, _sql.GetConnectionName());
+        }
+
     }
 }
