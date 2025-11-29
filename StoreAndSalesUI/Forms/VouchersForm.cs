@@ -130,7 +130,7 @@ namespace StoreAndSalesUI.Forms
 
         private void ClearForm() 
         {
-            LoadNextVoucherId();
+            //LoadNextVoucherId();
             customerVocuherRadioButton.Checked = true;
             //peopleComboBox.SelectedIndex= -1;
             //invoicesComboBox.SelectedIndex = -1;
@@ -242,7 +242,7 @@ namespace StoreAndSalesUI.Forms
 
         private void VouchersForm_Load(object sender, System.EventArgs e)
         {
-            LoadNextVoucherId();
+            //LoadNextVoucherId();
         }
 
         private void newButton_Click(object sender, System.EventArgs e)
