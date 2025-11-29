@@ -180,6 +180,7 @@ namespace StoreAndSalesUI.Forms
             try
             {
                 _saleData.CreateSale(_sale);
+                UpdateCustomerBalance();
                 MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -254,6 +255,18 @@ namespace StoreAndSalesUI.Forms
                 MessageBoxDefaultButton.Button2) == DialogResult.No) return;
 
             saleDetailsDataGridView.Rows.RemoveAt(rowIndex);
+        }
+
+        private void UpdateCustomerBalance() 
+        {
+            if (customersComboBox.SelectedIndex == -1) return;
+
+            if (isDisscountCheckBox.Checked == false)
+            {
+                int customerId = customersComboBox.SelectedValue.ToString().ParseToInt();
+                decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance; 
+                _customerData.UpdateBalance(customerId,(currentBalance + _disscount)); 
+            }
         }
 
         #endregion
