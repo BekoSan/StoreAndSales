@@ -199,6 +199,7 @@ namespace StoreAndSalesUI.Forms
                     newBalance = currentBalance - amount;
 
                     _customerData.UpdateBalance(customerId, newBalance);
+                    _customers.Find(c => c.Id == customerId).Balance = newBalance;
                 }
                 else
                 {
@@ -207,6 +208,7 @@ namespace StoreAndSalesUI.Forms
                     newBalance = currentBalance - amount;
 
                     _supplierData.UpdateBalance(supplierId, newBalance);
+                    _suppliers.Find(c => c.Id == supplierId).Balance = newBalance;
                 }
 
                 MessageBox.Show("تمت تحديث الرصيد بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
