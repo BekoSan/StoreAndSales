@@ -139,6 +139,7 @@ namespace StoreAndSalesUI.Forms
             //invoicesComboBox.SelectedIndex = -1;
             amountTextBox.Clear();
             //remainingTotalTextBox.Clear();
+            balanceLabel.Text = string.Empty;
         }
 
         private void CollectData() 
