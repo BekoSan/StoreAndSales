@@ -158,6 +158,7 @@
     <Compile Include="Interfaces\IPurchaseRequester.cs" />
     <Compile Include="Interfaces\ISaleRequester.cs" />
     <Compile Include="Interfaces\IUnitRequester.cs" />
+    <Compile Include="Interfaces\IVouchersRequetser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ItemUnitView.cs" />
