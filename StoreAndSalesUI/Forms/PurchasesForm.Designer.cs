@@ -49,9 +49,6 @@
             this.purchaseDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.addItemButton = new System.Windows.Forms.Button();
             this.purchaseDetailsDataGridView = new System.Windows.Forms.DataGridView();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +56,11 @@
             this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
+            this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
+            this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
             this.purchaseDataGroupBox.SuspendLayout();
             this.purchaseDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDetailsDataGridView)).BeginInit();
@@ -66,6 +68,8 @@
             // 
             // purchaseDataGroupBox
             // 
+            this.purchaseDataGroupBox.Controls.Add(this.isDisscountCheckBox);
+            this.purchaseDataGroupBox.Controls.Add(this.paymentTypeCheckBox);
             this.purchaseDataGroupBox.Controls.Add(this.notesLabel);
             this.purchaseDataGroupBox.Controls.Add(this.notesTextBox);
             this.purchaseDataGroupBox.Controls.Add(this.supplierLabel);
@@ -81,7 +85,7 @@
             this.purchaseDataGroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.purchaseDataGroupBox.Name = "purchaseDataGroupBox";
             this.purchaseDataGroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.purchaseDataGroupBox.Size = new System.Drawing.Size(609, 165);
+            this.purchaseDataGroupBox.Size = new System.Drawing.Size(609, 172);
             this.purchaseDataGroupBox.TabIndex = 0;
             this.purchaseDataGroupBox.TabStop = false;
             this.purchaseDataGroupBox.Text = "البيانات الأساسية";
@@ -90,7 +94,7 @@
             // 
             this.notesLabel.AutoSize = true;
             this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.notesLabel.Location = new System.Drawing.Point(528, 83);
+            this.notesLabel.Location = new System.Drawing.Point(524, 88);
             this.notesLabel.Name = "notesLabel";
             this.notesLabel.Size = new System.Drawing.Size(66, 19);
             this.notesLabel.TabIndex = 15;
@@ -99,7 +103,7 @@
             // notesTextBox
             // 
             this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.notesTextBox.Location = new System.Drawing.Point(14, 105);
+            this.notesTextBox.Location = new System.Drawing.Point(14, 111);
             this.notesTextBox.MaxLength = 2000;
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
@@ -111,7 +115,7 @@
             this.supplierLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.supplierLabel.AutoSize = true;
             this.supplierLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.supplierLabel.Location = new System.Drawing.Point(445, 26);
+            this.supplierLabel.Location = new System.Drawing.Point(445, 33);
             this.supplierLabel.Name = "supplierLabel";
             this.supplierLabel.Size = new System.Drawing.Size(57, 19);
             this.supplierLabel.TabIndex = 13;
@@ -125,7 +129,7 @@
             this.suppliersComboBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.suppliersComboBox.FormattingEnabled = true;
             this.suppliersComboBox.ItemHeight = 19;
-            this.suppliersComboBox.Location = new System.Drawing.Point(247, 48);
+            this.suppliersComboBox.Location = new System.Drawing.Point(247, 55);
             this.suppliersComboBox.Name = "suppliersComboBox";
             this.suppliersComboBox.Size = new System.Drawing.Size(260, 27);
             this.suppliersComboBox.TabIndex = 12;
@@ -135,7 +139,7 @@
             this.disscountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.disscountLabel.AutoSize = true;
             this.disscountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.disscountLabel.Location = new System.Drawing.Point(54, 25);
+            this.disscountLabel.Location = new System.Drawing.Point(54, 32);
             this.disscountLabel.Name = "disscountLabel";
             this.disscountLabel.Size = new System.Drawing.Size(57, 19);
             this.disscountLabel.TabIndex = 11;
@@ -147,7 +151,7 @@
             this.disscountTextBox.BackColor = System.Drawing.Color.White;
             this.disscountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.disscountTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.disscountTextBox.Location = new System.Drawing.Point(14, 47);
+            this.disscountTextBox.Location = new System.Drawing.Point(14, 54);
             this.disscountTextBox.MaxLength = 6;
             this.disscountTextBox.Name = "disscountTextBox";
             this.disscountTextBox.Size = new System.Drawing.Size(96, 27);
@@ -160,7 +164,7 @@
             this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalLabel.AutoSize = true;
             this.totalLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.totalLabel.Location = new System.Drawing.Point(190, 26);
+            this.totalLabel.Location = new System.Drawing.Point(190, 33);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(55, 19);
             this.totalLabel.TabIndex = 9;
@@ -172,7 +176,7 @@
             this.totalTextBox.BackColor = System.Drawing.Color.White;
             this.totalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.totalTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.totalTextBox.Location = new System.Drawing.Point(116, 47);
+            this.totalTextBox.Location = new System.Drawing.Point(116, 54);
             this.totalTextBox.MaxLength = 6;
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
@@ -185,7 +189,7 @@
             this.purchaseIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseIdLabel.AutoSize = true;
             this.purchaseIdLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.purchaseIdLabel.Location = new System.Drawing.Point(516, 26);
+            this.purchaseIdLabel.Location = new System.Drawing.Point(516, 33);
             this.purchaseIdLabel.Name = "purchaseIdLabel";
             this.purchaseIdLabel.Size = new System.Drawing.Size(76, 19);
             this.purchaseIdLabel.TabIndex = 7;
@@ -197,7 +201,7 @@
             this.purchaseIdTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.purchaseIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.purchaseIdTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.purchaseIdTextBox.Location = new System.Drawing.Point(513, 48);
+            this.purchaseIdTextBox.Location = new System.Drawing.Point(513, 55);
             this.purchaseIdTextBox.MaxLength = 15;
             this.purchaseIdTextBox.Name = "purchaseIdTextBox";
             this.purchaseIdTextBox.ReadOnly = true;
@@ -220,9 +224,9 @@
             this.purchaseDetailsGroupBox.Controls.Add(this.addItemButton);
             this.purchaseDetailsGroupBox.Controls.Add(this.purchaseDetailsDataGridView);
             this.purchaseDetailsGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.purchaseDetailsGroupBox.Location = new System.Drawing.Point(8, 237);
+            this.purchaseDetailsGroupBox.Location = new System.Drawing.Point(8, 246);
             this.purchaseDetailsGroupBox.Name = "purchaseDetailsGroupBox";
-            this.purchaseDetailsGroupBox.Size = new System.Drawing.Size(609, 323);
+            this.purchaseDetailsGroupBox.Size = new System.Drawing.Size(609, 314);
             this.purchaseDetailsGroupBox.TabIndex = 2;
             this.purchaseDetailsGroupBox.TabStop = false;
             this.purchaseDetailsGroupBox.Text = "تفاصيل الفاتورة";
@@ -272,7 +276,7 @@
             this.purchaseDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.purchaseDetailsDataGridView.EnableHeadersVisualStyles = false;
             this.purchaseDetailsDataGridView.GridColor = System.Drawing.Color.Black;
-            this.purchaseDetailsDataGridView.Location = new System.Drawing.Point(3, 48);
+            this.purchaseDetailsDataGridView.Location = new System.Drawing.Point(3, 39);
             this.purchaseDetailsDataGridView.MultiSelect = false;
             this.purchaseDetailsDataGridView.Name = "purchaseDetailsDataGridView";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -297,45 +301,6 @@
             this.purchaseDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDetailsDataGridView_CellContentClick);
             this.purchaseDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDetailsDataGridView_CellValueChanged);
             this.purchaseDetailsDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.purchaseDetailsDataGridView_RowPostPaint);
-            // 
-            // searchButton
-            // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.searchButton.Location = new System.Drawing.Point(379, 565);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(118, 33);
-            this.searchButton.TabIndex = 7;
-            this.searchButton.Text = "بحـــث";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(255, 565);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(118, 33);
-            this.saveButton.TabIndex = 6;
-            this.saveButton.Text = "حفــــظ";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // newButton
-            // 
-            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(131, 565);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(118, 33);
-            this.newButton.TabIndex = 5;
-            this.newButton.Text = "جديد";
-            this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // IdColumn
             // 
@@ -404,6 +369,65 @@
             this.colDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colDelete.Width = 50;
             // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.searchButton.Location = new System.Drawing.Point(379, 565);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(118, 33);
+            this.searchButton.TabIndex = 7;
+            this.searchButton.Text = "بحـــث";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.saveButton.Location = new System.Drawing.Point(255, 565);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(118, 33);
+            this.saveButton.TabIndex = 6;
+            this.saveButton.Text = "حفــــظ";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // newButton
+            // 
+            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.newButton.Location = new System.Drawing.Point(131, 565);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(118, 33);
+            this.newButton.TabIndex = 5;
+            this.newButton.Text = "جديد";
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // isDisscountCheckBox
+            // 
+            this.isDisscountCheckBox.AutoSize = true;
+            this.isDisscountCheckBox.Location = new System.Drawing.Point(35, 84);
+            this.isDisscountCheckBox.Name = "isDisscountCheckBox";
+            this.isDisscountCheckBox.Size = new System.Drawing.Size(74, 26);
+            this.isDisscountCheckBox.TabIndex = 21;
+            this.isDisscountCheckBox.Text = "مجاملة";
+            this.isDisscountCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // paymentTypeCheckBox
+            // 
+            this.paymentTypeCheckBox.AutoSize = true;
+            this.paymentTypeCheckBox.Location = new System.Drawing.Point(178, 84);
+            this.paymentTypeCheckBox.Name = "paymentTypeCheckBox";
+            this.paymentTypeCheckBox.Size = new System.Drawing.Size(59, 26);
+            this.paymentTypeCheckBox.TabIndex = 20;
+            this.paymentTypeCheckBox.Text = "بنكك";
+            this.paymentTypeCheckBox.UseVisualStyleBackColor = true;
+            // 
             // PurchasesForm
             // 
             this.AcceptButton = this.saveButton;
@@ -465,5 +489,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
+        private System.Windows.Forms.CheckBox isDisscountCheckBox;
+        private System.Windows.Forms.CheckBox paymentTypeCheckBox;
     }
 }
