@@ -134,7 +134,7 @@
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(355, 22);
             this.copyrightLabel.TabIndex = 0;
-            this.copyrightLabel.Text = "جميع الحقوق محفوظة لهاتسومي للبرمجيات 2024";
+            this.copyrightLabel.Text = "جميع الحقوق محفوظة لهاتسومي للبرمجيات 2025";
             // 
             // storePreviewButton
             // 
