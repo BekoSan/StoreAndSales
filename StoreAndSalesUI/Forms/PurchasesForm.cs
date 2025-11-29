@@ -117,6 +117,8 @@ namespace StoreAndSalesUI.Forms
             purchaseDetailsDataGridView.Rows.Clear();
             suppliersComboBox.SelectedIndex = -1;
             notesTextBox.Clear();
+            paymentTypeCheckBox.Checked = false;
+            isDisscountCheckBox.Checked = false;
         }
 
         private void ResetForm()
