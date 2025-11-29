@@ -196,6 +196,8 @@ namespace StoreAndSalesUI.Forms
             disscountTextBox.Enabled = isEnabled;
             suppliersComboBox.Enabled = isEnabled;
             notesTextBox.Enabled = isEnabled;
+            isDisscountCheckBox.Enabled = isEnabled;
+            paymentTypeCheckBox.Enabled = isEnabled;
         }
 
         private void LoadItemNameAndUnitFromRow(DataGridViewRow dgvRow)
@@ -271,6 +273,8 @@ namespace StoreAndSalesUI.Forms
             totalTextBox.Text = purchase.Total.ToString("#,0");
             disscountTextBox.Text = purchase.Disscount.ToString("#,0");
             notesTextBox.Text = purchase.Notes;
+            isDisscountCheckBox.Checked = purchase.IsDisscount;
+            paymentTypeCheckBox.Checked = purchase.PaymentType;
             purchase.PurchaseDetails = _purchaseDetailData.GetPurchasesDetails(purchase.Id);
 
             purchaseDetailsDataGridView.Rows.Clear();
