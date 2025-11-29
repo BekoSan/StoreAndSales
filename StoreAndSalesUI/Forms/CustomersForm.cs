@@ -198,6 +198,11 @@ namespace StoreAndSalesUI.Forms
         {
             Customers.Find(c => c.Id == personId).Balance = balance;
             customersDataGridView.Refresh();
+            if (_customer.Id == personId)
+            {
+                _customer.Balance = balance;
+                LoadCustomerData();
+            }
         }
     }
 }
