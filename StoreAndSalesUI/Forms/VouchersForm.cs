@@ -201,6 +201,22 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void ShowBalance()
+        {
+            if (peopleComboBox.SelectedIndex == -1) return;
+
+            if (customerVocuherRadioButton.Checked)
+            {
+                int customerId = peopleComboBox.SelectedValue.ToString().ParseToInt();
+                balanceLabel.Text = _customers.Find(customer => customer.Id == customerId).Balance.ToString("#,0");
+            }
+            else
+            {
+                int supplierId = peopleComboBox.SelectedValue.ToString().ParseToInt();
+                balanceLabel.Text = _suppliers.Find(supplier => supplier.Id == supplierId).Balance.ToString("#,0");
+            }
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
