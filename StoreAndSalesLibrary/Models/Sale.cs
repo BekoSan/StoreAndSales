@@ -17,5 +17,9 @@ namespace StoreAndSalesLibrary.Models
 
         public List<SaleDetail> SaleDetails = new List<SaleDetail>();
         public string Notes { get; set; }
+
+        public bool PaymentType { get; set; }
+
+        public bool IsDisscount { get; set; }
     }
 }
