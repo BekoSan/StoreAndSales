@@ -135,7 +135,7 @@ namespace StoreAndSalesUI.Forms
         {
             //LoadNextVoucherId();
             customerVocuherRadioButton.Checked = true;
-            //peopleComboBox.SelectedIndex= -1;
+            peopleComboBox.SelectedIndex = -1;
             //invoicesComboBox.SelectedIndex = -1;
             amountTextBox.Clear();
             //remainingTotalTextBox.Clear();
