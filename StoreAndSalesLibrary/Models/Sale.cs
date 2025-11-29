@@ -21,5 +21,7 @@ namespace StoreAndSalesLibrary.Models
         public bool PaymentType { get; set; }
 
         public bool IsDisscount { get; set; }
+
+        public bool Status { get; set; }
     }
 }
