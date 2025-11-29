@@ -33,6 +33,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.titleLabel = new System.Windows.Forms.Label();
             this.supplierDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.balanceLabel = new System.Windows.Forms.Label();
+            this.balanceTextBox = new System.Windows.Forms.TextBox();
             this.addressLabel = new System.Windows.Forms.Label();
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.phoneLabel = new System.Windows.Forms.Label();
@@ -43,14 +45,13 @@
             this.newButton = new System.Windows.Forms.Button();
             this.suppliersListGroupBox = new System.Windows.Forms.GroupBox();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.balanceLabel = new System.Windows.Forms.Label();
-            this.balanceTextBox = new System.Windows.Forms.TextBox();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.payDebtButton = new System.Windows.Forms.Button();
             this.supplierDataGroupBox.SuspendLayout();
             this.suppliersListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).BeginInit();
@@ -69,6 +70,7 @@
             // supplierDataGroupBox
             // 
             this.supplierDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.supplierDataGroupBox.Controls.Add(this.payDebtButton);
             this.supplierDataGroupBox.Controls.Add(this.balanceLabel);
             this.supplierDataGroupBox.Controls.Add(this.balanceTextBox);
             this.supplierDataGroupBox.Controls.Add(this.addressLabel);
@@ -84,6 +86,30 @@
             this.supplierDataGroupBox.TabIndex = 0;
             this.supplierDataGroupBox.TabStop = false;
             this.supplierDataGroupBox.Text = "بيانات المـــورد";
+            // 
+            // balanceLabel
+            // 
+            this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.balanceLabel.AutoSize = true;
+            this.balanceLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.balanceLabel.Location = new System.Drawing.Point(339, 200);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(48, 19);
+            this.balanceLabel.TabIndex = 11;
+            this.balanceLabel.Text = "الرصيد";
+            // 
+            // balanceTextBox
+            // 
+            this.balanceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.balanceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.balanceTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
+            this.balanceTextBox.Location = new System.Drawing.Point(102, 222);
+            this.balanceTextBox.MaxLength = 13;
+            this.balanceTextBox.Name = "balanceTextBox";
+            this.balanceTextBox.Size = new System.Drawing.Size(288, 29);
+            this.balanceTextBox.TabIndex = 10;
+            this.balanceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.balanceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.balanceTextBox_KeyPress);
             // 
             // addressLabel
             // 
@@ -229,43 +255,6 @@
             this.suppliersDataGridView.TabIndex = 0;
             this.suppliersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.suppliersDataGridView_CellContentClick);
             // 
-            // deleteButton
-            // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.deleteButton.Location = new System.Drawing.Point(330, 573);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(118, 33);
-            this.deleteButton.TabIndex = 3;
-            this.deleteButton.Text = "حـــذف";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // balanceLabel
-            // 
-            this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.balanceLabel.AutoSize = true;
-            this.balanceLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.balanceLabel.Location = new System.Drawing.Point(339, 200);
-            this.balanceLabel.Name = "balanceLabel";
-            this.balanceLabel.Size = new System.Drawing.Size(48, 19);
-            this.balanceLabel.TabIndex = 11;
-            this.balanceLabel.Text = "الرصيد";
-            // 
-            // balanceTextBox
-            // 
-            this.balanceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.balanceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.balanceTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
-            this.balanceTextBox.Location = new System.Drawing.Point(102, 222);
-            this.balanceTextBox.MaxLength = 13;
-            this.balanceTextBox.Name = "balanceTextBox";
-            this.balanceTextBox.Size = new System.Drawing.Size(288, 29);
-            this.balanceTextBox.TabIndex = 10;
-            this.balanceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.balanceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.balanceTextBox_KeyPress);
-            // 
             // IdColumn
             // 
             this.IdColumn.DataPropertyName = "Id";
@@ -312,6 +301,31 @@
             this.balanceColumn.MinimumWidth = 6;
             this.balanceColumn.Name = "balanceColumn";
             this.balanceColumn.ReadOnly = true;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.deleteButton.Location = new System.Drawing.Point(330, 573);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(118, 33);
+            this.deleteButton.TabIndex = 3;
+            this.deleteButton.Text = "حـــذف";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // payDebtButton
+            // 
+            this.payDebtButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.payDebtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.payDebtButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.payDebtButton.Location = new System.Drawing.Point(11, 220);
+            this.payDebtButton.Name = "payDebtButton";
+            this.payDebtButton.Size = new System.Drawing.Size(87, 33);
+            this.payDebtButton.TabIndex = 13;
+            this.payDebtButton.Text = "تسديد دين";
+            this.payDebtButton.UseVisualStyleBackColor = true;
             // 
             // SuppliersForm
             // 
@@ -368,5 +382,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn balanceColumn;
+        private System.Windows.Forms.Button payDebtButton;
     }
 }
