@@ -158,6 +158,7 @@
             this.usersButton.TabIndex = 8;
             this.usersButton.Text = "إدارة المستخدمين";
             this.usersButton.UseVisualStyleBackColor = true;
+            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
             // 
             // signOutButton
             // 

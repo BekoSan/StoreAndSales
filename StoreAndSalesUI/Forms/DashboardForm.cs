@@ -83,5 +83,10 @@ namespace StoreAndSalesUI.Forms
         {
             _loginForm.Logout(this); 
         }
+
+        private void usersButton_Click(object sender, EventArgs e)
+        {
+            new UsersForm().ShowDialog();   
+        }
     }
 }
