@@ -188,13 +188,27 @@ namespace StoreAndSalesUI.Forms
         {
             try
             {
+                decimal newBalance;
+                decimal amount = amountTextBox.Text.ParseToDecimal();
 
                 if (customerVocuherRadioButton.Checked)
-                    _voucherData.CreateSaleVoucher(_voucher);
-                else
-                    _voucherData.CreatePurchaseVoucher(_voucher);
+                {
+                    int customerId = peopleComboBox.SelectedValue.ToString().ParseToInt();
+                    decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
+                    newBalance = currentBalance - amount;
 
-                MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _customerData.UpdateBalance(customerId, newBalance);
+                }
+                else
+                {
+                    int supplierId = peopleComboBox.SelectedValue.ToString().ParseToInt();
+                    decimal currentBalance = _suppliers.Find(c => c.Id == supplierId).Balance;
+                    newBalance = currentBalance - amount;
+
+                    _supplierData.UpdateBalance(supplierId, newBalance);
+                }
+
+                MessageBox.Show("تمت تحديث الرصيد بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
