@@ -35,6 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
+            this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
             this.notesLabel = new System.Windows.Forms.Label();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.customerLabel = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
-            this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
-            this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
             this.saleDataGroupBox.SuspendLayout();
             this.saleDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDataGridView)).BeginInit();
@@ -89,6 +89,26 @@
             this.saleDataGroupBox.TabIndex = 0;
             this.saleDataGroupBox.TabStop = false;
             this.saleDataGroupBox.Text = "البيانات الأساسية";
+            // 
+            // isDisscountCheckBox
+            // 
+            this.isDisscountCheckBox.AutoSize = true;
+            this.isDisscountCheckBox.Location = new System.Drawing.Point(36, 77);
+            this.isDisscountCheckBox.Name = "isDisscountCheckBox";
+            this.isDisscountCheckBox.Size = new System.Drawing.Size(74, 26);
+            this.isDisscountCheckBox.TabIndex = 19;
+            this.isDisscountCheckBox.Text = "مجاملة";
+            this.isDisscountCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // paymentTypeCheckBox
+            // 
+            this.paymentTypeCheckBox.AutoSize = true;
+            this.paymentTypeCheckBox.Location = new System.Drawing.Point(179, 77);
+            this.paymentTypeCheckBox.Name = "paymentTypeCheckBox";
+            this.paymentTypeCheckBox.Size = new System.Drawing.Size(59, 26);
+            this.paymentTypeCheckBox.TabIndex = 18;
+            this.paymentTypeCheckBox.Text = "بنكك";
+            this.paymentTypeCheckBox.UseVisualStyleBackColor = true;
             // 
             // notesLabel
             // 
@@ -153,7 +173,7 @@
             this.disscountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.disscountTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.disscountTextBox.Location = new System.Drawing.Point(14, 47);
-            this.disscountTextBox.MaxLength = 6;
+            this.disscountTextBox.MaxLength = 18;
             this.disscountTextBox.Name = "disscountTextBox";
             this.disscountTextBox.Size = new System.Drawing.Size(96, 27);
             this.disscountTextBox.TabIndex = 10;
@@ -178,7 +198,7 @@
             this.totalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.totalTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.totalTextBox.Location = new System.Drawing.Point(116, 47);
-            this.totalTextBox.MaxLength = 6;
+            this.totalTextBox.MaxLength = 18;
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
             this.totalTextBox.Size = new System.Drawing.Size(125, 27);
@@ -407,26 +427,6 @@
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
-            // paymentTypeCheckBox
-            // 
-            this.paymentTypeCheckBox.AutoSize = true;
-            this.paymentTypeCheckBox.Location = new System.Drawing.Point(179, 77);
-            this.paymentTypeCheckBox.Name = "paymentTypeCheckBox";
-            this.paymentTypeCheckBox.Size = new System.Drawing.Size(59, 26);
-            this.paymentTypeCheckBox.TabIndex = 18;
-            this.paymentTypeCheckBox.Text = "بنكك";
-            this.paymentTypeCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // isDisscountCheckBox
-            // 
-            this.isDisscountCheckBox.AutoSize = true;
-            this.isDisscountCheckBox.Location = new System.Drawing.Point(36, 77);
-            this.isDisscountCheckBox.Name = "isDisscountCheckBox";
-            this.isDisscountCheckBox.Size = new System.Drawing.Size(74, 26);
-            this.isDisscountCheckBox.TabIndex = 19;
-            this.isDisscountCheckBox.Text = "مجاملة";
-            this.isDisscountCheckBox.UseVisualStyleBackColor = true;
             // 
             // SalesForm
             // 
