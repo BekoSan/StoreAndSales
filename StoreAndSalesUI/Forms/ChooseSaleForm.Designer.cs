@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.salesListGroupBox = new System.Windows.Forms.GroupBox();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.salesDataGridView = new System.Windows.Forms.DataGridView();
             this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.customerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +54,6 @@
             this.periodTotalValueToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.customerNameLabel = new System.Windows.Forms.Label();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
-            this.loadingLabel = new System.Windows.Forms.Label();
             this.salesListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesDataGridView)).BeginInit();
             this.periodTotalCostStatusStrip.SuspendLayout();
@@ -70,6 +70,16 @@
             this.salesListGroupBox.TabIndex = 9;
             this.salesListGroupBox.TabStop = false;
             this.salesListGroupBox.Text = "فواتير المبيعات";
+            // 
+            // loadingLabel
+            // 
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Location = new System.Drawing.Point(302, 164);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(119, 22);
+            this.loadingLabel.TabIndex = 2;
+            this.loadingLabel.Text = " جاري التحميل ...";
+            this.loadingLabel.Visible = false;
             // 
             // salesDataGridView
             // 
@@ -202,7 +212,8 @@
             // 
             // dateFromDateTimePicker
             // 
-            this.dateFromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateFromDateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.dateFromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateFromDateTimePicker.Location = new System.Drawing.Point(375, 106);
             this.dateFromDateTimePicker.Name = "dateFromDateTimePicker";
             this.dateFromDateTimePicker.ShowUpDown = true;
@@ -232,7 +243,8 @@
             // 
             // dateToDateTimePicker
             // 
-            this.dateToDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateToDateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.dateToDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateToDateTimePicker.Location = new System.Drawing.Point(581, 106);
             this.dateToDateTimePicker.Name = "dateToDateTimePicker";
             this.dateToDateTimePicker.ShowUpDown = true;
@@ -287,16 +299,6 @@
             this.customerNameTextBox.Size = new System.Drawing.Size(205, 29);
             this.customerNameTextBox.TabIndex = 18;
             this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
-            // 
-            // loadingLabel
-            // 
-            this.loadingLabel.AutoSize = true;
-            this.loadingLabel.Location = new System.Drawing.Point(302, 164);
-            this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(119, 22);
-            this.loadingLabel.TabIndex = 2;
-            this.loadingLabel.Text = " جاري التحميل ...";
-            this.loadingLabel.Visible = false;
             // 
             // ChooseSaleForm
             // 
