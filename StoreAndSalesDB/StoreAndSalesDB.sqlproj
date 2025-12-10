@@ -143,5 +143,6 @@
   <ItemGroup>
     <None Include="PublishLocations\StoreAndSalesDB.publish.xml" />
     <None Include="PublishLocations\ProStoreAndSalesDB.publish.xml" />
+    <None Include="PublishLocations\StoreAndSalesDB2022.publish.xml" />
   </ItemGroup>
 </Project>
