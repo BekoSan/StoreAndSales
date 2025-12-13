@@ -151,7 +151,7 @@ namespace StoreAndSalesUI.Forms
         private void BalanceFieldStatus() 
         { 
             balanceTextBox.Enabled = _customer.Id == 0 ? true : false;
-            payDebtButton.Enabled = _customer.Id == 0 ? true : false;
+            payDebtButton.Enabled = _customer.Id == 0 ? false  : true;
         }
 
         #endregion
