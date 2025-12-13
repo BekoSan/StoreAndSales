@@ -153,6 +153,7 @@ namespace StoreAndSalesUI.Forms
         private void BalanceFieldStatus()
         {
             balanceTextBox.Enabled = _supplier.Id == 0 ? true : false;
+            payDebtButton.Enabled = _supplier.Id == 0 ? false  : true;
         }
 
         private void Search(string searchText)
