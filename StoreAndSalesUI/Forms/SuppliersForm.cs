@@ -155,6 +155,13 @@ namespace StoreAndSalesUI.Forms
             balanceTextBox.Enabled = _supplier.Id == 0 ? true : false;
         }
 
+        private void Search(string searchText)
+        {
+            var filter = Suppliers.Where(sup => sup.SupplierName.Contains(searchText)).ToList();
+            suppliersDataGridView.AutoGenerateColumns = false;
+            suppliersDataGridView.DataSource = filter;
+        }
+
         #endregion
 
         private void newButton_Click(object sender, EventArgs e)
@@ -206,6 +213,11 @@ namespace StoreAndSalesUI.Forms
         private void payDebtButton_Click(object sender, EventArgs e)
         {
             new VouchersForm(this).ShowDialog();
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Search(searchTextBox.Text);
         }
     }
 }
