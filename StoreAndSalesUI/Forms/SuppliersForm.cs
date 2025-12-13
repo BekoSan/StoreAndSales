@@ -123,6 +123,7 @@ namespace StoreAndSalesUI.Forms
             phoneTextBox.Clear();
             balanceTextBox.Clear();
             BalanceFieldStatus();
+            searchTextBox.Clear(); 
         }
 
         private void ResetForm()
