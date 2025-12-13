@@ -52,6 +52,8 @@
             this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchLabel = new System.Windows.Forms.Label();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.supplierDataGroupBox.SuspendLayout();
             this.suppliersListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).BeginInit();
@@ -229,6 +231,8 @@
             // suppliersListGroupBox
             // 
             this.suppliersListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.suppliersListGroupBox.Controls.Add(this.searchLabel);
+            this.suppliersListGroupBox.Controls.Add(this.searchTextBox);
             this.suppliersListGroupBox.Controls.Add(this.suppliersDataGridView);
             this.suppliersListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.suppliersListGroupBox.Location = new System.Drawing.Point(3, 356);
@@ -268,7 +272,7 @@
             this.balanceColumn});
             this.suppliersDataGridView.EnableHeadersVisualStyles = false;
             this.suppliersDataGridView.GridColor = System.Drawing.Color.Black;
-            this.suppliersDataGridView.Location = new System.Drawing.Point(2, 52);
+            this.suppliersDataGridView.Location = new System.Drawing.Point(2, 64);
             this.suppliersDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.suppliersDataGridView.MultiSelect = false;
             this.suppliersDataGridView.Name = "suppliersDataGridView";
@@ -281,7 +285,7 @@
             this.suppliersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.suppliersDataGridView.RowTemplate.Height = 24;
             this.suppliersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.suppliersDataGridView.Size = new System.Drawing.Size(630, 270);
+            this.suppliersDataGridView.Size = new System.Drawing.Size(630, 258);
             this.suppliersDataGridView.TabIndex = 0;
             this.suppliersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.suppliersDataGridView_CellContentClick);
             // 
@@ -346,6 +350,28 @@
             this.balanceColumn.Name = "balanceColumn";
             this.balanceColumn.ReadOnly = true;
             // 
+            // searchLabel
+            // 
+            this.searchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.searchLabel.Location = new System.Drawing.Point(580, 31);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(34, 19);
+            this.searchLabel.TabIndex = 14;
+            this.searchLabel.Text = "بحث";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchTextBox.Font = new System.Drawing.Font("Arial", 10F);
+            this.searchTextBox.Location = new System.Drawing.Point(49, 27);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(525, 27);
+            this.searchTextBox.TabIndex = 13;
+            this.searchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // SuppliersForm
             // 
             this.AcceptButton = this.saveButton;
@@ -373,6 +399,7 @@
             this.supplierDataGroupBox.ResumeLayout(false);
             this.supplierDataGroupBox.PerformLayout();
             this.suppliersListGroupBox.ResumeLayout(false);
+            this.suppliersListGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -402,5 +429,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn balanceColumn;
+        private System.Windows.Forms.Label searchLabel;
+        private System.Windows.Forms.TextBox searchTextBox;
     }
 }
