@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 
 namespace StoreAndSalesUI.Forms
 {
@@ -121,6 +122,7 @@ namespace StoreAndSalesUI.Forms
             phoneTextBox.Clear();
             balanceTextBox.Clear();
             BalanceFieldStatus();
+            searchTextBox.Clear();
         }
 
         private void ResetForm()
