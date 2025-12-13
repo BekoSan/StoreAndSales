@@ -154,6 +154,13 @@ namespace StoreAndSalesUI.Forms
             payDebtButton.Enabled = _customer.Id == 0 ? false  : true;
         }
 
+        private void Search(string searchText) 
+        {
+            var filter = Customers.Where(cus => cus.CustomerName.Contains(searchText)).ToList();
+            customersDataGridView.AutoGenerateColumns = false;
+            customersDataGridView.DataSource = filter;
+        }
+
         #endregion
 
         private void CustomersForm_Load(object sender, EventArgs e)
@@ -204,6 +211,11 @@ namespace StoreAndSalesUI.Forms
                 _customer.Balance = balance;
                 LoadCustomerData();
             }
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Search(searchTextBox.Text);
         }
     }
 }
