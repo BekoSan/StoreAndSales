@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleDataGroupBox = new System.Windows.Forms.GroupBox();
             this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
             this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
@@ -85,7 +85,7 @@
             this.saleDataGroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saleDataGroupBox.Name = "saleDataGroupBox";
             this.saleDataGroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.saleDataGroupBox.Size = new System.Drawing.Size(609, 162);
+            this.saleDataGroupBox.Size = new System.Drawing.Size(631, 162);
             this.saleDataGroupBox.TabIndex = 0;
             this.saleDataGroupBox.TabStop = false;
             this.saleDataGroupBox.Text = "البيانات الأساسية";
@@ -115,7 +115,7 @@
             this.notesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.notesLabel.AutoSize = true;
             this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.notesLabel.Location = new System.Drawing.Point(522, 79);
+            this.notesLabel.Location = new System.Drawing.Point(544, 79);
             this.notesLabel.Name = "notesLabel";
             this.notesLabel.Size = new System.Drawing.Size(66, 19);
             this.notesLabel.TabIndex = 17;
@@ -136,7 +136,7 @@
             this.customerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.customerLabel.AutoSize = true;
             this.customerLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.customerLabel.Location = new System.Drawing.Point(453, 25);
+            this.customerLabel.Location = new System.Drawing.Point(475, 25);
             this.customerLabel.Name = "customerLabel";
             this.customerLabel.Size = new System.Drawing.Size(49, 19);
             this.customerLabel.TabIndex = 13;
@@ -151,7 +151,7 @@
             this.customersComboBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.customersComboBox.FormattingEnabled = true;
             this.customersComboBox.ItemHeight = 19;
-            this.customersComboBox.Location = new System.Drawing.Point(247, 47);
+            this.customersComboBox.Location = new System.Drawing.Point(269, 47);
             this.customersComboBox.Name = "customersComboBox";
             this.customersComboBox.Size = new System.Drawing.Size(260, 27);
             this.customersComboBox.TabIndex = 12;
@@ -161,7 +161,7 @@
             this.disscountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.disscountLabel.AutoSize = true;
             this.disscountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.disscountLabel.Location = new System.Drawing.Point(54, 24);
+            this.disscountLabel.Location = new System.Drawing.Point(76, 24);
             this.disscountLabel.Name = "disscountLabel";
             this.disscountLabel.Size = new System.Drawing.Size(57, 19);
             this.disscountLabel.TabIndex = 11;
@@ -172,7 +172,7 @@
             this.disscountTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.disscountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.disscountTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.disscountTextBox.Location = new System.Drawing.Point(14, 47);
+            this.disscountTextBox.Location = new System.Drawing.Point(36, 47);
             this.disscountTextBox.MaxLength = 18;
             this.disscountTextBox.Name = "disscountTextBox";
             this.disscountTextBox.Size = new System.Drawing.Size(96, 27);
@@ -185,7 +185,7 @@
             this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalLabel.AutoSize = true;
             this.totalLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.totalLabel.Location = new System.Drawing.Point(190, 25);
+            this.totalLabel.Location = new System.Drawing.Point(212, 25);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(55, 19);
             this.totalLabel.TabIndex = 9;
@@ -197,7 +197,7 @@
             this.totalTextBox.BackColor = System.Drawing.Color.White;
             this.totalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.totalTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.totalTextBox.Location = new System.Drawing.Point(116, 47);
+            this.totalTextBox.Location = new System.Drawing.Point(138, 47);
             this.totalTextBox.MaxLength = 18;
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
@@ -210,7 +210,7 @@
             this.purchaseIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseIdLabel.AutoSize = true;
             this.purchaseIdLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.purchaseIdLabel.Location = new System.Drawing.Point(516, 25);
+            this.purchaseIdLabel.Location = new System.Drawing.Point(538, 25);
             this.purchaseIdLabel.Name = "purchaseIdLabel";
             this.purchaseIdLabel.Size = new System.Drawing.Size(76, 19);
             this.purchaseIdLabel.TabIndex = 7;
@@ -221,7 +221,7 @@
             this.saleIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saleIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.saleIdTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.saleIdTextBox.Location = new System.Drawing.Point(513, 47);
+            this.saleIdTextBox.Location = new System.Drawing.Point(535, 47);
             this.saleIdTextBox.MaxLength = 15;
             this.saleIdTextBox.Name = "saleIdTextBox";
             this.saleIdTextBox.ReadOnly = true;
@@ -233,7 +233,7 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(223, 11);
+            this.titleLabel.Location = new System.Drawing.Point(236, 11);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(182, 66);
             this.titleLabel.TabIndex = 1;
@@ -246,7 +246,7 @@
             this.saleDetailsGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.saleDetailsGroupBox.Location = new System.Drawing.Point(8, 243);
             this.saleDetailsGroupBox.Name = "saleDetailsGroupBox";
-            this.saleDetailsGroupBox.Size = new System.Drawing.Size(609, 323);
+            this.saleDetailsGroupBox.Size = new System.Drawing.Size(634, 323);
             this.saleDetailsGroupBox.TabIndex = 2;
             this.saleDetailsGroupBox.TabStop = false;
             this.saleDetailsGroupBox.Text = "تفاصيل الفاتورة";
@@ -257,7 +257,7 @@
             this.addItemButton.FlatAppearance.BorderSize = 0;
             this.addItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addItemButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.addItemButton.Location = new System.Drawing.Point(578, 21);
+            this.addItemButton.Location = new System.Drawing.Point(603, 21);
             this.addItemButton.Name = "addItemButton";
             this.addItemButton.Size = new System.Drawing.Size(25, 25);
             this.addItemButton.TabIndex = 4;
@@ -275,14 +275,14 @@
             this.saleDetailsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.saleDetailsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.saleDetailsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.saleDetailsDataGridView.ColumnHeadersHeight = 29;
             this.saleDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.saleDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -299,24 +299,24 @@
             this.saleDetailsDataGridView.Location = new System.Drawing.Point(3, 48);
             this.saleDetailsDataGridView.MultiSelect = false;
             this.saleDetailsDataGridView.Name = "saleDetailsDataGridView";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.saleDetailsDataGridView.RowHeadersVisible = false;
             this.saleDetailsDataGridView.RowHeadersWidth = 51;
             this.saleDetailsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.saleDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.saleDetailsDataGridView.RowTemplate.Height = 24;
             this.saleDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.saleDetailsDataGridView.Size = new System.Drawing.Size(603, 272);
+            this.saleDetailsDataGridView.Size = new System.Drawing.Size(628, 272);
             this.saleDetailsDataGridView.TabIndex = 3;
             this.saleDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDetailsDataGridView_CellContentClick);
             this.saleDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDetailsDataGridView_CellValueChanged);
@@ -351,9 +351,9 @@
             // quantityColumn
             // 
             this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = "N0";
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.NullValue = "N0";
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle26;
             this.quantityColumn.HeaderText = "الكمــية";
             this.quantityColumn.MinimumWidth = 6;
             this.quantityColumn.Name = "quantityColumn";
@@ -362,9 +362,9 @@
             // unitPriceColumn
             // 
             this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Format = "N0";
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.Format = "N0";
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle27;
             this.unitPriceColumn.HeaderText = "السعـــر";
             this.unitPriceColumn.MinimumWidth = 6;
             this.unitPriceColumn.Name = "unitPriceColumn";
@@ -381,9 +381,9 @@
             // colDelete
             // 
             this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.NullValue = "حذف";
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.NullValue = "حذف";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle28;
             this.colDelete.HeaderText = "...";
             this.colDelete.MinimumWidth = 6;
             this.colDelete.Name = "colDelete";
@@ -394,7 +394,7 @@
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.searchButton.Location = new System.Drawing.Point(379, 576);
+            this.searchButton.Location = new System.Drawing.Point(404, 576);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(118, 33);
             this.searchButton.TabIndex = 7;
@@ -407,7 +407,7 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(255, 576);
+            this.saveButton.Location = new System.Drawing.Point(280, 576);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 6;
@@ -420,7 +420,7 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(131, 576);
+            this.newButton.Location = new System.Drawing.Point(156, 576);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 5;
@@ -434,7 +434,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(629, 615);
+            this.ClientSize = new System.Drawing.Size(654, 615);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
