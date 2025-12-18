@@ -196,7 +196,8 @@ namespace StoreAndSalesUI.Forms
         {
             saveButton.Enabled = isEnabled;
             addItemButton.Enabled = isEnabled;
-            saleDetailsDataGridView.Enabled = isEnabled;
+            saleDetailsDataGridView.ReadOnly  = !isEnabled;
+            saleDetailsDataGridView.Columns[6].Visible = isEnabled;
             disscountTextBox.Enabled = isEnabled;
             customersComboBox.Enabled = isEnabled;
             notesTextBox.Enabled = isEnabled;
