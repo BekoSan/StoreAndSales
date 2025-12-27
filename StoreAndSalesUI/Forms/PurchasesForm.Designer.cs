@@ -61,6 +61,7 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
+            this.printButton = new System.Windows.Forms.Button();
             this.purchaseDataGroupBox.SuspendLayout();
             this.purchaseDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDetailsDataGridView)).BeginInit();
@@ -394,7 +395,7 @@
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.searchButton.Location = new System.Drawing.Point(404, 576);
+            this.searchButton.Location = new System.Drawing.Point(332, 570);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(118, 33);
             this.searchButton.TabIndex = 7;
@@ -407,7 +408,7 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(280, 576);
+            this.saveButton.Location = new System.Drawing.Point(208, 570);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 6;
@@ -420,13 +421,25 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(156, 576);
+            this.newButton.Location = new System.Drawing.Point(84, 570);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 5;
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // printButton
+            // 
+            this.printButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.printButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.printButton.Location = new System.Drawing.Point(455, 570);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(118, 33);
+            this.printButton.TabIndex = 8;
+            this.printButton.Text = "طباعة";
+            this.printButton.UseVisualStyleBackColor = true;
             // 
             // PurchasesForm
             // 
@@ -435,6 +448,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(654, 615);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
@@ -491,5 +505,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.CheckBox isDisscountCheckBox;
         private System.Windows.Forms.CheckBox paymentTypeCheckBox;
+        private System.Windows.Forms.Button printButton;
     }
 }
