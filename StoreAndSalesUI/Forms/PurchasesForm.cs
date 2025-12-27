@@ -241,6 +241,13 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void ViewPurchaseReport()
+        {
+            ShowReportForm reportViewerForm = new ShowReportForm();
+            reportViewerForm.GetPurshaseId(_purchase.Id);
+            reportViewerForm.ShowDialog();
+        }
+
         #endregion
 
         private void PurchasesForm_Load(object sender, EventArgs e)
@@ -368,5 +375,9 @@ namespace StoreAndSalesUI.Forms
             FindPurchaseToPreview();
         }
 
+        private void printButton_Click(object sender, EventArgs e)
+        {
+            ViewPurchaseReport();
+        }
     }
 }

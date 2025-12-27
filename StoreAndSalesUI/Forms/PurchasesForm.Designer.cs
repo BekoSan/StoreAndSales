@@ -440,6 +440,7 @@
             this.printButton.TabIndex = 8;
             this.printButton.Text = "طباعة";
             this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
             // PurchasesForm
             // 
