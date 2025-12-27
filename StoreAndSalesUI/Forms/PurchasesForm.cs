@@ -77,6 +77,7 @@ namespace StoreAndSalesUI.Forms
 
         private void ChangeUnit()
         {
+            if (_purchase.Id != 0) return;
             new ChooseUnitForm(this).ShowDialog();
         }
 
