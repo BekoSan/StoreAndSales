@@ -169,6 +169,7 @@
     <Compile Include="Interfaces\ILogout.cs" />
     <Compile Include="Interfaces\IPurchaseReportRequester.cs" />
     <Compile Include="Interfaces\IPurchaseRequester.cs" />
+    <Compile Include="Interfaces\ISaleReportRequster.cs" />
     <Compile Include="Interfaces\ISaleRequester.cs" />
     <Compile Include="Interfaces\IUnitRequester.cs" />
     <Compile Include="Interfaces\IVouchersRequetser.cs" />
