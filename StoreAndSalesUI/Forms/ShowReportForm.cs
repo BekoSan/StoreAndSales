@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
 {
-    public partial class ShowReportForm : Form , IPurchaseReportRequester
+    public partial class ShowReportForm : Form , IPurchaseReportRequester,ISaleReportRequster
     {
 
         #region Private Members
@@ -23,7 +23,10 @@ namespace StoreAndSalesUI.Forms
         
         private int _purchaseId = 0;
         
-        
+        private SaleReport _saleReport = new SaleReport();
+
+        private int _saleId = 0;
+
         #endregion
 
         #region Private Methods
@@ -57,7 +60,14 @@ namespace StoreAndSalesUI.Forms
 
         private void ShowReportForm_Load(object sender, EventArgs e)
         {
-            ViewReport(_purchaseReport, _purchaseId);
+            if (_purchaseId != 0) 
+            {
+                ViewReport(_purchaseReport, _purchaseId);
+            }
+            else
+            {
+                ViewReport(_saleReport, _saleId);
+            }
         }
 
         public void GetPurshaseId(int purchaseId)
@@ -65,5 +75,9 @@ namespace StoreAndSalesUI.Forms
             _purchaseId = purchaseId;
         }
 
+        public void GetSaleId(int saleId)
+        {
+           _saleId = saleId;
+        }
     }
 }
