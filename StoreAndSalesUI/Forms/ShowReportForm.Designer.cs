@@ -66,6 +66,7 @@
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إستعراض الفواتير";
+            this.Load += new System.EventHandler(this.ShowReportForm_Load);
             this.ResumeLayout(false);
 
         }
