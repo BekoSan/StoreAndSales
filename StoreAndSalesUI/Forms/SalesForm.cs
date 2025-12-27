@@ -275,6 +275,14 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+
+        private void ViewSaleReport()
+        {
+            ShowReportForm reportViewerForm = new ShowReportForm();
+            reportViewerForm.GetSaleId(_sale.Id);
+            reportViewerForm.ShowDialog();
+        }
+
         #endregion
 
         public void AddItem(Item item)
@@ -446,6 +454,11 @@ namespace StoreAndSalesUI.Forms
             //    saleDetailsDataGridView.Rows.Remove(saleDetailsDataGridView.Rows[e.RowIndex]);
             //    return;
             //}
+        }
+
+        private void printButton_Click(object sender, EventArgs e)
+        {
+            ViewSaleReport();
         }
     }
 }
