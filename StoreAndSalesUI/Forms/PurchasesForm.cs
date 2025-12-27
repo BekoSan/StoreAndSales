@@ -200,6 +200,7 @@ namespace StoreAndSalesUI.Forms
             notesTextBox.Enabled = isEnabled;
             isDisscountCheckBox.Enabled = isEnabled;
             paymentTypeCheckBox.Enabled = isEnabled;
+            printButton.Enabled = !isEnabled;
         }
 
         private void LoadItemNameAndUnitFromRow(DataGridViewRow dgvRow)
