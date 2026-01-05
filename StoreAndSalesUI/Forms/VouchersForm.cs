@@ -262,6 +262,7 @@ namespace StoreAndSalesUI.Forms
             {
                 LoadSupplierLists();
             }
+            balanceLabel.Text = string.Empty;
         }
 
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
