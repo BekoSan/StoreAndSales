@@ -1,4 +1,6 @@
-﻿namespace StoreAndSalesLibrary.Models
+﻿using System;
+
+namespace StoreAndSalesLibrary.Models
 {
     public class Voucher
     {
@@ -17,5 +19,7 @@
         public int SupplierId { get; set; } = 0;
 
         public string Notes { get; set; }
+
+        public DateTime VoucherDate { get; set; }
     }
 }
