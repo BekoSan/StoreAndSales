@@ -32,6 +32,7 @@
             this.customerVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.supplierVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.voucherDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.AccountDetailsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.remainingTotalLabel = new System.Windows.Forms.Label();
             this.remainingTotalTextBox = new System.Windows.Forms.TextBox();
@@ -45,7 +46,8 @@
             this.voucherIdTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
-            this.AccountDetailsLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.notesLabel = new System.Windows.Forms.Label();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
             this.voucherDataGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +88,8 @@
             // 
             // voucherDataGroupBox
             // 
+            this.voucherDataGroupBox.Controls.Add(this.notesLabel);
+            this.voucherDataGroupBox.Controls.Add(this.notesTextBox);
             this.voucherDataGroupBox.Controls.Add(this.AccountDetailsLinkLabel);
             this.voucherDataGroupBox.Controls.Add(this.balanceLabel);
             this.voucherDataGroupBox.Controls.Add(this.remainingTotalLabel);
@@ -101,9 +105,19 @@
             this.voucherDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.voucherDataGroupBox.Location = new System.Drawing.Point(19, 117);
             this.voucherDataGroupBox.Name = "voucherDataGroupBox";
-            this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 239);
+            this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 334);
             this.voucherDataGroupBox.TabIndex = 10;
             this.voucherDataGroupBox.TabStop = false;
+            // 
+            // AccountDetailsLinkLabel
+            // 
+            this.AccountDetailsLinkLabel.AutoSize = true;
+            this.AccountDetailsLinkLabel.Location = new System.Drawing.Point(23, 106);
+            this.AccountDetailsLinkLabel.Name = "AccountDetailsLinkLabel";
+            this.AccountDetailsLinkLabel.Size = new System.Drawing.Size(86, 22);
+            this.AccountDetailsLinkLabel.TabIndex = 34;
+            this.AccountDetailsLinkLabel.TabStop = true;
+            this.AccountDetailsLinkLabel.Text = "كشف حساب";
             // 
             // balanceLabel
             // 
@@ -184,7 +198,7 @@
             this.invoicesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.invoicesLabel.AutoSize = true;
             this.invoicesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.invoicesLabel.Location = new System.Drawing.Point(298, 331);
+            this.invoicesLabel.Location = new System.Drawing.Point(298, 341);
             this.invoicesLabel.Name = "invoicesLabel";
             this.invoicesLabel.Size = new System.Drawing.Size(76, 19);
             this.invoicesLabel.TabIndex = 26;
@@ -218,7 +232,7 @@
             this.voucherIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.voucherIdLabel.AutoSize = true;
             this.voucherIdLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.voucherIdLabel.Location = new System.Drawing.Point(305, 273);
+            this.voucherIdLabel.Location = new System.Drawing.Point(89, 341);
             this.voucherIdLabel.Name = "voucherIdLabel";
             this.voucherIdLabel.Size = new System.Drawing.Size(70, 19);
             this.voucherIdLabel.TabIndex = 7;
@@ -230,7 +244,7 @@
             this.voucherIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.voucherIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.voucherIdTextBox.Enabled = false;
-            this.voucherIdTextBox.Location = new System.Drawing.Point(210, 295);
+            this.voucherIdTextBox.Location = new System.Drawing.Point(-6, 363);
             this.voucherIdTextBox.Name = "voucherIdTextBox";
             this.voucherIdTextBox.Size = new System.Drawing.Size(169, 29);
             this.voucherIdTextBox.TabIndex = 6;
@@ -242,7 +256,7 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(221, 366);
+            this.saveButton.Location = new System.Drawing.Point(221, 458);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 2;
@@ -255,7 +269,7 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(99, 365);
+            this.newButton.Location = new System.Drawing.Point(99, 457);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 3;
@@ -263,15 +277,26 @@
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
-            // AccountDetailsLinkLabel
+            // notesLabel
             // 
-            this.AccountDetailsLinkLabel.AutoSize = true;
-            this.AccountDetailsLinkLabel.Location = new System.Drawing.Point(23, 106);
-            this.AccountDetailsLinkLabel.Name = "AccountDetailsLinkLabel";
-            this.AccountDetailsLinkLabel.Size = new System.Drawing.Size(86, 22);
-            this.AccountDetailsLinkLabel.TabIndex = 34;
-            this.AccountDetailsLinkLabel.TabStop = true;
-            this.AccountDetailsLinkLabel.Text = "كشف حساب";
+            this.notesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.notesLabel.AutoSize = true;
+            this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.notesLabel.Location = new System.Drawing.Point(329, 220);
+            this.notesLabel.Name = "notesLabel";
+            this.notesLabel.Size = new System.Drawing.Size(47, 19);
+            this.notesLabel.TabIndex = 36;
+            this.notesLabel.Text = "التعليق";
+            // 
+            // notesTextBox
+            // 
+            this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.notesTextBox.Location = new System.Drawing.Point(17, 243);
+            this.notesTextBox.MaxLength = 2000;
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(364, 82);
+            this.notesTextBox.TabIndex = 35;
             // 
             // VouchersForm
             // 
@@ -279,7 +304,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(439, 406);
+            this.ClientSize = new System.Drawing.Size(439, 498);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.voucherDataGroupBox);
@@ -324,5 +349,7 @@
         private System.Windows.Forms.TextBox remainingTotalTextBox;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.LinkLabel AccountDetailsLinkLabel;
+        private System.Windows.Forms.Label notesLabel;
+        private System.Windows.Forms.TextBox notesTextBox;
     }
 }
