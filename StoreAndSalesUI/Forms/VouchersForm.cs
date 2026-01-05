@@ -162,7 +162,8 @@ namespace StoreAndSalesUI.Forms
                 {
                     VoucherType = "P",
                     CustomerId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
-                    Amount = amountTextBox.Text.ParseToDecimal() 
+                    Amount = amountTextBox.Text.ParseToDecimal(),
+                    Notes = notesTextBox.Text 
                 };
             }
             else
@@ -171,7 +172,8 @@ namespace StoreAndSalesUI.Forms
                 {
                     VoucherType = "P",
                     SupplierId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
-                    Amount = amountTextBox.Text.ParseToDecimal()
+                    Amount = amountTextBox.Text.ParseToDecimal(),
+                    Notes = notesTextBox.Text
                 };
             }
         }
