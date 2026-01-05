@@ -17,7 +17,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@Id", 0, DbType.Int32, ParameterDirection.Output);
             p.Add("@VoucherType", saleVoucher.VoucherType);
             p.Add("@Amount", saleVoucher.Amount);
-            p.Add("@SaleId", saleVoucher.SaleId);
+            //p.Add("@SaleId", saleVoucher.SaleId);
             p.Add("@CustomerId", saleVoucher.CustomerId);
             p.Add("@Notes", saleVoucher.Notes);
 
