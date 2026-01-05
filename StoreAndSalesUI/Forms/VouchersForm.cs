@@ -150,6 +150,7 @@ namespace StoreAndSalesUI.Forms
             amountTextBox.Clear();
             //remainingTotalTextBox.Clear();
             balanceLabel.Text = string.Empty;
+            notesTextBox.Text = string.Empty;
         }
 
         private void CollectData() 
