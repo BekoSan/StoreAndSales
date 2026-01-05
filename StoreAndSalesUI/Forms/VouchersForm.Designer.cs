@@ -32,6 +32,7 @@
             this.customerVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.supplierVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.voucherDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.balanceLabel = new System.Windows.Forms.Label();
             this.remainingTotalLabel = new System.Windows.Forms.Label();
             this.remainingTotalTextBox = new System.Windows.Forms.TextBox();
             this.amountLabel = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             this.voucherIdTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
-            this.balanceLabel = new System.Windows.Forms.Label();
+            this.AccountDetailsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.voucherDataGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +86,7 @@
             // 
             // voucherDataGroupBox
             // 
+            this.voucherDataGroupBox.Controls.Add(this.AccountDetailsLinkLabel);
             this.voucherDataGroupBox.Controls.Add(this.balanceLabel);
             this.voucherDataGroupBox.Controls.Add(this.remainingTotalLabel);
             this.voucherDataGroupBox.Controls.Add(this.remainingTotalTextBox);
@@ -102,6 +104,17 @@
             this.voucherDataGroupBox.Size = new System.Drawing.Size(400, 239);
             this.voucherDataGroupBox.TabIndex = 10;
             this.voucherDataGroupBox.TabStop = false;
+            // 
+            // balanceLabel
+            // 
+            this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.balanceLabel.Font = new System.Drawing.Font("Consolas", 34.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceLabel.Location = new System.Drawing.Point(6, 18);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(388, 90);
+            this.balanceLabel.TabIndex = 33;
+            this.balanceLabel.Text = "0";
+            this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // remainingTotalLabel
             // 
@@ -250,16 +263,15 @@
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
-            // balanceLabel
+            // AccountDetailsLinkLabel
             // 
-            this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.balanceLabel.Font = new System.Drawing.Font("Consolas", 34.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLabel.Location = new System.Drawing.Point(6, 18);
-            this.balanceLabel.Name = "balanceLabel";
-            this.balanceLabel.Size = new System.Drawing.Size(388, 90);
-            this.balanceLabel.TabIndex = 33;
-            this.balanceLabel.Text = "0";
-            this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AccountDetailsLinkLabel.AutoSize = true;
+            this.AccountDetailsLinkLabel.Location = new System.Drawing.Point(23, 106);
+            this.AccountDetailsLinkLabel.Name = "AccountDetailsLinkLabel";
+            this.AccountDetailsLinkLabel.Size = new System.Drawing.Size(86, 22);
+            this.AccountDetailsLinkLabel.TabIndex = 34;
+            this.AccountDetailsLinkLabel.TabStop = true;
+            this.AccountDetailsLinkLabel.Text = "كشف حساب";
             // 
             // VouchersForm
             // 
@@ -311,5 +323,6 @@
         private System.Windows.Forms.Label remainingTotalLabel;
         private System.Windows.Forms.TextBox remainingTotalTextBox;
         private System.Windows.Forms.Label balanceLabel;
+        private System.Windows.Forms.LinkLabel AccountDetailsLinkLabel;
     }
 }
