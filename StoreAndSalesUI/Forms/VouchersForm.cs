@@ -207,8 +207,9 @@ namespace StoreAndSalesUI.Forms
                     int customerId = peopleComboBox.SelectedValue.ToString().ParseToInt();
                     decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
                     newBalance = currentBalance - amount;
-
+ 
                     _customerData.UpdateBalance(customerId, newBalance);
+                    _voucherData.CreateSaleVoucher(_voucher); 
                     _customers.Find(c => c.Id == customerId).Balance = newBalance;
                     if(CallingForm != null) CallingForm.UpdatePersonBalance(customerId, newBalance); 
                 }
@@ -303,6 +304,7 @@ namespace StoreAndSalesUI.Forms
         {
             if (IsValidData())
             {
+                CollectData();
                 Save();
                 ClearForm(); 
             }
