@@ -176,7 +176,7 @@
             this.amountTextBox.MaxLength = 13;
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(363, 29);
-            this.amountTextBox.TabIndex = 2;
+            this.amountTextBox.TabIndex = 1;
             this.amountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.amountTextBox.TextChanged += new System.EventHandler(this.amountTextBox_TextChanged);
             this.amountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.amountTextBox_KeyPress);
@@ -296,7 +296,7 @@
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
             this.notesTextBox.Size = new System.Drawing.Size(364, 82);
-            this.notesTextBox.TabIndex = 35;
+            this.notesTextBox.TabIndex = 2;
             // 
             // VouchersForm
             // 
