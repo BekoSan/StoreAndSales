@@ -223,6 +223,7 @@ namespace StoreAndSalesUI.Forms
                     newBalance = currentBalance - amount;
 
                     _supplierData.UpdateBalance(supplierId, newBalance);
+                    _voucherData.CreatePurchaseVoucher(_voucher);
                     _suppliers.Find(c => c.Id == supplierId).Balance = newBalance;
                     if (CallingForm != null) CallingForm.UpdatePersonBalance(supplierId, newBalance);
                 }
