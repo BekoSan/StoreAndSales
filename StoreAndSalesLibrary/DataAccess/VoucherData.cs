@@ -31,7 +31,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@Id", 0, DbType.Int32, ParameterDirection.Output);
             p.Add("@VoucherType", purchaseVoucher.VoucherType);
             p.Add("@Amount", purchaseVoucher.Amount);
-            p.Add("@PurchaseId", purchaseVoucher.PurchaseId);
+            //p.Add("@PurchaseId", purchaseVoucher.PurchaseId);
             p.Add("@SupplierId", purchaseVoucher.SupplierId);
             p.Add("@Notes", purchaseVoucher.Notes);
 
