@@ -176,6 +176,12 @@
     <Compile Include="Interfaces\IVouchersRequetser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\CustomerAccountDetails.cs">
+      <DependentUpon>CustomerAccountDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\SupplierAccountDetails.cs">
       <DependentUpon>SupplierAccountDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -254,6 +260,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\CustomerAccountDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CustomerAccountDetails.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\SupplierAccountDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SupplierAccountDetails.cs</LastGenOutput>
