@@ -151,6 +151,7 @@ namespace StoreAndSalesUI.Forms
             //remainingTotalTextBox.Clear();
             balanceLabel.Text = string.Empty;
             notesTextBox.Text = string.Empty;
+            ShowHideAccountDetailsLabel(); 
         }
 
         private void CollectData() 
@@ -268,6 +269,14 @@ namespace StoreAndSalesUI.Forms
             reportViewerForm.ShowDialog();
         }
 
+        private void ShowHideAccountDetailsLabel() 
+        {
+            if (peopleComboBox.SelectedValue != null)
+                AccountDetailsLinkLabel.Visible = true;
+            else
+                AccountDetailsLinkLabel.Visible = false;
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -281,6 +290,7 @@ namespace StoreAndSalesUI.Forms
                 LoadSupplierLists();
             }
             balanceLabel.Text = string.Empty;
+            ShowHideAccountDetailsLabel();
         }
 
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -306,7 +316,8 @@ namespace StoreAndSalesUI.Forms
             //if (peopleComboBox.SelectedIndex == -1) return;
             //int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
             //LoadPersonInvoices(personId);
-            ShowBalance(); 
+            ShowBalance();
+            ShowHideAccountDetailsLabel();
         }
 
         private void VouchersForm_Load(object sender, System.EventArgs e)

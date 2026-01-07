@@ -139,6 +139,7 @@
             this.AccountDetailsLinkLabel.TabIndex = 34;
             this.AccountDetailsLinkLabel.TabStop = true;
             this.AccountDetailsLinkLabel.Text = "كشف حساب";
+            this.AccountDetailsLinkLabel.Visible = false;
             this.AccountDetailsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AccountDetailsLinkLabel_LinkClicked);
             // 
             // balanceLabel
