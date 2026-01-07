@@ -32,6 +32,8 @@
             this.customerVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.supplierVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.voucherDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.notesLabel = new System.Windows.Forms.Label();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
             this.AccountDetailsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.remainingTotalLabel = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.voucherIdTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
-            this.notesLabel = new System.Windows.Forms.Label();
-            this.notesTextBox = new System.Windows.Forms.TextBox();
             this.voucherDataGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,6 +109,27 @@
             this.voucherDataGroupBox.TabIndex = 10;
             this.voucherDataGroupBox.TabStop = false;
             // 
+            // notesLabel
+            // 
+            this.notesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.notesLabel.AutoSize = true;
+            this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.notesLabel.Location = new System.Drawing.Point(329, 220);
+            this.notesLabel.Name = "notesLabel";
+            this.notesLabel.Size = new System.Drawing.Size(47, 19);
+            this.notesLabel.TabIndex = 36;
+            this.notesLabel.Text = "التعليق";
+            // 
+            // notesTextBox
+            // 
+            this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.notesTextBox.Location = new System.Drawing.Point(17, 243);
+            this.notesTextBox.MaxLength = 2000;
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(364, 82);
+            this.notesTextBox.TabIndex = 2;
+            // 
             // AccountDetailsLinkLabel
             // 
             this.AccountDetailsLinkLabel.AutoSize = true;
@@ -118,6 +139,7 @@
             this.AccountDetailsLinkLabel.TabIndex = 34;
             this.AccountDetailsLinkLabel.TabStop = true;
             this.AccountDetailsLinkLabel.Text = "كشف حساب";
+            this.AccountDetailsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AccountDetailsLinkLabel_LinkClicked);
             // 
             // balanceLabel
             // 
@@ -276,27 +298,6 @@
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
-            // notesLabel
-            // 
-            this.notesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.notesLabel.AutoSize = true;
-            this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.notesLabel.Location = new System.Drawing.Point(329, 220);
-            this.notesLabel.Name = "notesLabel";
-            this.notesLabel.Size = new System.Drawing.Size(47, 19);
-            this.notesLabel.TabIndex = 36;
-            this.notesLabel.Text = "التعليق";
-            // 
-            // notesTextBox
-            // 
-            this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.notesTextBox.Location = new System.Drawing.Point(17, 243);
-            this.notesTextBox.MaxLength = 2000;
-            this.notesTextBox.Multiline = true;
-            this.notesTextBox.Name = "notesTextBox";
-            this.notesTextBox.Size = new System.Drawing.Size(364, 82);
-            this.notesTextBox.TabIndex = 2;
             // 
             // VouchersForm
             // 

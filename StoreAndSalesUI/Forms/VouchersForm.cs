@@ -254,6 +254,16 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void ViewPersonAccountDetailsReport()
+        {
+            ShowReportForm reportViewerForm = new ShowReportForm();
+            if (!customerVocuherRadioButton.Checked)
+            {
+                reportViewerForm.GetSupplierId(peopleComboBox.SelectedValue.ToString().ParseToInt());
+            }
+            reportViewerForm.ShowDialog();
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -313,6 +323,11 @@ namespace StoreAndSalesUI.Forms
                 Save();
                 ClearForm(); 
             }
+        }
+
+        private void AccountDetailsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ViewPersonAccountDetailsReport();
         }
     }
 }
