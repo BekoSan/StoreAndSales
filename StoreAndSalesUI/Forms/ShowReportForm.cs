@@ -14,7 +14,8 @@ using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
 {
-    public partial class ShowReportForm : Form , IPurchaseReportRequester,ISaleReportRequster,ISupplierAccountReportRequester
+    public partial class ShowReportForm : Form , IPurchaseReportRequester,ISaleReportRequster,ISupplierAccountReportRequester,
+        ICustomerAccountReportRequester
     {
 
         #region Private Members
@@ -30,6 +31,10 @@ namespace StoreAndSalesUI.Forms
         private SupplierAccountDetails _supplierAccountDetailsReport = new SupplierAccountDetails();
         
         private int _supplierId = 0;
+
+        private CustomerAccountDetails _customerAccountDetailsReport = new CustomerAccountDetails();
+
+        private int _customerId = 0;
 
         #endregion
 
@@ -76,6 +81,10 @@ namespace StoreAndSalesUI.Forms
             {
                 ViewReport(_supplierAccountDetailsReport, _supplierId);
             }
+            else if (_customerId != 0)
+            {
+                ViewReport(_customerAccountDetailsReport, _customerId);
+            }
         }
 
         public void GetPurshaseId(int purchaseId)
@@ -91,6 +100,11 @@ namespace StoreAndSalesUI.Forms
         public void GetSupplierId(int supplierId)
         {
             _supplierId = supplierId;
+        }
+
+        public void GetCustomerId(int customerId)
+        {
+         _customerId = customerId;
         }
     }
 }

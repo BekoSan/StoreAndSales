@@ -261,6 +261,10 @@ namespace StoreAndSalesUI.Forms
             {
                 reportViewerForm.GetSupplierId(peopleComboBox.SelectedValue.ToString().ParseToInt());
             }
+            else
+            {
+                reportViewerForm.GetCustomerId(peopleComboBox.SelectedValue.ToString().ParseToInt());
+            }
             reportViewerForm.ShowDialog();
         }
 
