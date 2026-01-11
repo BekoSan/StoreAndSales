@@ -172,6 +172,11 @@
       <DependentUpon>VouchersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\StoreDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\UsefulMethods.cs" />
     <Compile Include="Interfaces\ICustomerAccountReportRequester.cs" />
     <Compile Include="Interfaces\IItemRequester.cs" />
@@ -288,6 +293,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SaleReport.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Helpers\StoreDataSet.xsc">
+      <DependentUpon>StoreDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Helpers\StoreDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Helpers\StoreDataSet.xss">
+      <DependentUpon>StoreDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
