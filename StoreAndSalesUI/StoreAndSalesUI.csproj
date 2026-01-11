@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -91,6 +92,12 @@
     </Compile>
     <Compile Include="Forms\ChoosePurchaseForm.Designer.cs">
       <DependentUpon>ChoosePurchaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DatabaseAdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DatabaseAdminForm.Designer.cs">
+      <DependentUpon>DatabaseAdminForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -216,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChoosePurchaseForm.resx">
       <DependentUpon>ChoosePurchaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DatabaseAdminForm.resx">
+      <DependentUpon>DatabaseAdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

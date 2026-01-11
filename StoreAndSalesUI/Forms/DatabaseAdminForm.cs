@@ -1,0 +1,92 @@
+﻿using System.Data.SqlClient;
+using System;
+using System.Windows.Forms;
+
+namespace StoreAndSalesUI.Forms
+{
+    public partial class DatabaseAdminForm : Form
+    {
+        public DatabaseAdminForm()
+        {
+            InitializeComponent();
+        }
+
+        #region Private Methods
+
+
+        public void BackupDatabase(string backupFilePath)
+        {
+          
+            string dbName = "ProStoreAndSalesDB";
+            string connectionString = @"Data Source=(LocalDB)\LocalDB2022;AttachDbFilename=|DataDirectory|\ProStoreAndSalesDB.mdf;Integrated Security=True";
+
+            string query = $@"BACKUP DATABASE [{dbName}] TO DISK = '{backupFilePath}' WITH FORMAT, MEDIANAME = 'Z_SQLServerBackups', NAME = 'Full Backup of {dbName}';";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("تمت عملية النسخ الاحتياطي بنجاح!", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("خطأ أثناء النسخ: " + ex.Message);
+                }
+            }
+        }
+
+        public void RestoreDatabase(string backupFilePath)
+        {
+            string dbName = "ProStoreAndSalesDB";
+          
+            string connectionString = @"Data Source=(LocalDB)\LocalDB2022;Initial Catalog=master;Integrated Security=True";
+
+            string query = $@"
+        ALTER DATABASE [{dbName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+        RESTORE DATABASE [{dbName}] FROM DISK = '{backupFilePath}' WITH REPLACE;
+        ALTER DATABASE [{dbName}] SET MULTI_USER;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("تم استعادة قاعدة البيانات بنجاح!", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("خطأ أثناء الاستعادة: " + ex.Message);
+                }
+            }
+        }
+
+        #endregion
+
+        private void backupButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "حدد مكان حفظ النسخة الإحتياطية";
+            sfd.Filter = "Backup Files (*.bak)|*.bak";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                BackupDatabase(sfd.FileName);
+            }
+        }
+
+        private void restoreButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "إختيار ملف قاعدة البيانات للإستراجاع";
+            ofd.Filter = "Backup Files (*.bak)|*.bak";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                RestoreDatabase(ofd.FileName);
+            }
+        }
+    }
+}
