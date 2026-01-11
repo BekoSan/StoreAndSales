@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System;
 using System.Windows.Forms;
+using System.IO;
 
 namespace StoreAndSalesUI.Forms
 {
@@ -38,15 +39,26 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
-        public void RestoreDatabase(string backupFilePath)
+        public void RestoreDatabase(string backupFilePath, string targetFolder)
         {
-            string dbName = "ProStoreAndSalesDB";
-          
-            string connectionString = @"Data Source=(LocalDB)\LocalDB2022;Initial Catalog=master;Integrated Security=True";
+            string dbName = "ProStoreAndSalesDB"; // اسم قاعدة البيانات داخل السيرفر
+            string logicalNameMdf = "ProStoreAndSalesDB"; // الاسم المنطقي لملف البيانات
+            string logicalNameLog = "ProStoreAndSalesDB_log"; // الاسم المنطقي لملف السجل
+
+            // إنشاء المسارات الكاملة للملفات الجديدة
+            string newMdfPath = Path.Combine(targetFolder, dbName + ".mdf");
+            string newLdfPath = Path.Combine(targetFolder, dbName + ".ldf");
+
+            // الاتصال بقاعدة master للقيام بالعملية
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True";
 
             string query = $@"
         ALTER DATABASE [{dbName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-        RESTORE DATABASE [{dbName}] FROM DISK = '{backupFilePath}' WITH REPLACE;
+        RESTORE DATABASE [{dbName}] 
+        FROM DISK = '{backupFilePath}' 
+        WITH REPLACE,
+        MOVE '{logicalNameMdf}' TO '{newMdfPath}', 
+        MOVE '{logicalNameLog}' TO '{newLdfPath}';
         ALTER DATABASE [{dbName}] SET MULTI_USER;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -56,7 +68,7 @@ namespace StoreAndSalesUI.Forms
                     SqlCommand cmd = new SqlCommand(query, conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("تم استعادة قاعدة البيانات بنجاح!", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"تم استعادة قاعدة البيانات ونقل الملفات إلى:\n{targetFolder}", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +97,7 @@ namespace StoreAndSalesUI.Forms
             ofd.Filter = "Backup Files (*.bak)|*.bak";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                RestoreDatabase(ofd.FileName);
+                RestoreDatabase(ofd.FileName,Application.StartupPath+@"\DB");
             }
         }
     }
