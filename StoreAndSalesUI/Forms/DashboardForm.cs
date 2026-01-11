@@ -88,5 +88,10 @@ namespace StoreAndSalesUI.Forms
         {
             new UsersForm().ShowDialog();   
         }
+
+        private void backupFormButton_Click(object sender, EventArgs e)
+        {
+            new DatabaseAdminForm().ShowDialog();
+        }
     }
 }
