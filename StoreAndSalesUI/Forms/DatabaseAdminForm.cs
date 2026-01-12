@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using System.IO;
+using StoreAndSalesUI.Helpers;
+using System.Configuration;
 
 namespace StoreAndSalesUI.Forms
 {
@@ -18,8 +20,8 @@ namespace StoreAndSalesUI.Forms
         public void BackupDatabase(string backupFilePath)
         {
           
-            string dbName = "ProStoreAndSalesDB";
-            string connectionString = @"Data Source=(LocalDB)\LocalDB2022;AttachDbFilename=|DataDirectory|\ProStoreAndSalesDB.mdf;Integrated Security=True";
+            string dbName = UsefulMethods.GetReportDBName();
+            string connectionString = ConfigurationManager.ConnectionStrings[UsefulMethods.ConnectionStringName()].ConnectionString;
 
             string query = $@"BACKUP DATABASE [{dbName}] TO DISK = '{backupFilePath}' WITH FORMAT, MEDIANAME = 'Z_SQLServerBackups', NAME = 'Full Backup of {dbName}';";
 
@@ -41,7 +43,7 @@ namespace StoreAndSalesUI.Forms
 
         public void RestoreDatabase(string backupFilePath, string targetFolder)
         {
-            string dbName = "ProStoreAndSalesDB"; // اسم قاعدة البيانات داخل السيرفر
+            string dbName = UsefulMethods.GetReportDBName(); // اسم قاعدة البيانات داخل السيرفر
             string logicalNameMdf = "ProStoreAndSalesDB"; // الاسم المنطقي لملف البيانات
             string logicalNameLog = "ProStoreAndSalesDB_log"; // الاسم المنطقي لملف السجل
 
@@ -50,7 +52,7 @@ namespace StoreAndSalesUI.Forms
             string newLdfPath = Path.Combine(targetFolder, dbName + ".ldf");
 
             // الاتصال بقاعدة master للقيام بالعملية
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True";
+            string connectionString = $@"Data Source={UsefulMethods.GetServerName()};Initial Catalog=master;Integrated Security=True";
 
             string query = $@"
         ALTER DATABASE [{dbName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
