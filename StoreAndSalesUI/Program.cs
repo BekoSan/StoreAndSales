@@ -4,6 +4,7 @@ using MicroVisionTrailMaker;
 using StoreAndSalesUI.Forms;
 using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace StoreAndSalesUI
@@ -11,17 +12,28 @@ namespace StoreAndSalesUI
     static class Program
     {
         private static TimeChange tmc = new TimeChange();
-
+        private static Mutex mutex = new Mutex(true, "{2852D432-AD18-45B4-A4CA-F57341E99F13}");
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            CheckActivation();
-            //Application.Run(new DashboardForm());
+            // التحقق مما إذا كان التطبيق يعمل بالفعل
+            if (mutex.WaitOne(TimeSpan.Zero, true))
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                CheckActivation();
+                //Application.Run(new DashboardForm());
+                // تحرير الـ Mutex عند إغلاق التطبيق
+                mutex.ReleaseMutex();
+            }
+            else
+            {
+                // رسالة اختيارية للمستخدم
+                MessageBox.Show("البرنامج يعمل بالفعل!", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private static void SystemDateChanged()
