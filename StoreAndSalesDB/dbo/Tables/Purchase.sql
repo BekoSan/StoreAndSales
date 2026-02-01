@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[SupplierId] INT NOT NULL,
-	[PurchaseDate] DATETIME2 NOT NULL DEFAULT Format(getutcdate(),'dd/MM/yyyy'), 
+	[PurchaseDate] DATETIME2 NOT NULL DEFAULT sysdatetime(), 
     [Total] MONEY NOT NULL, 
     [Disscount] MONEY NOT NULL, 
     [Notes] NVARCHAR(2000) NOT NULL DEFAULT '', 
