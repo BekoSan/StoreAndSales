@@ -124,7 +124,6 @@
             this.VoucherTypeComboBox.Name = "VoucherTypeComboBox";
             this.VoucherTypeComboBox.Size = new System.Drawing.Size(365, 29);
             this.VoucherTypeComboBox.TabIndex = 1;
-            this.VoucherTypeComboBox.Visible = false;
             // 
             // VoucherTypeLabel
             // 
@@ -135,7 +134,6 @@
             this.VoucherTypeLabel.Size = new System.Drawing.Size(77, 19);
             this.VoucherTypeLabel.TabIndex = 38;
             this.VoucherTypeLabel.Text = "نوع السنــــد";
-            this.VoucherTypeLabel.Visible = false;
             // 
             // notesLabel
             // 
@@ -189,7 +187,6 @@
             this.remainingTotalLabel.Size = new System.Drawing.Size(93, 19);
             this.remainingTotalLabel.TabIndex = 31;
             this.remainingTotalLabel.Text = "إجمالي المتبقي";
-            this.remainingTotalLabel.Visible = false;
             // 
             // remainingTotalTextBox
             // 
@@ -202,7 +199,6 @@
             this.remainingTotalTextBox.Size = new System.Drawing.Size(363, 29);
             this.remainingTotalTextBox.TabIndex = 5;
             this.remainingTotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.remainingTotalTextBox.Visible = false;
             // 
             // voucherIdLabel
             // 
@@ -213,7 +209,6 @@
             this.voucherIdLabel.Size = new System.Drawing.Size(70, 19);
             this.voucherIdLabel.TabIndex = 7;
             this.voucherIdLabel.Text = "رقم السنـــد";
-            this.voucherIdLabel.Visible = false;
             // 
             // voucherIdTextBox
             // 
@@ -224,7 +219,6 @@
             this.voucherIdTextBox.Size = new System.Drawing.Size(169, 29);
             this.voucherIdTextBox.TabIndex = 0;
             this.voucherIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.voucherIdTextBox.Visible = false;
             // 
             // amountLabel
             // 
@@ -257,7 +251,6 @@
             this.invoicesComboBox.Name = "invoicesComboBox";
             this.invoicesComboBox.Size = new System.Drawing.Size(365, 29);
             this.invoicesComboBox.TabIndex = 3;
-            this.invoicesComboBox.Visible = false;
             this.invoicesComboBox.SelectedIndexChanged += new System.EventHandler(this.invoicesComboBox_SelectedIndexChanged);
             // 
             // invoicesLabel
@@ -269,7 +262,6 @@
             this.invoicesLabel.Size = new System.Drawing.Size(76, 19);
             this.invoicesLabel.TabIndex = 26;
             this.invoicesLabel.Text = "الفاتورة رقم";
-            this.invoicesLabel.Visible = false;
             // 
             // peopleComboBox
             // 
