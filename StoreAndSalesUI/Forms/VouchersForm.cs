@@ -232,8 +232,12 @@ namespace StoreAndSalesUI.Forms
                 {
                     int customerId = peopleComboBox.SelectedValue.ToString().ParseToInt();
                     decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
-                    newBalance = currentBalance - amount;
- 
+
+                    if (_voucher.VoucherType.Equals("R"))
+                        newBalance = currentBalance - amount;
+                    else
+                        newBalance = currentBalance + amount;
+
                     _customerData.UpdateBalance(customerId, newBalance);
                     _voucherData.CreateSaleVoucher(_voucher);
                     UpdateInvoiceStauts();
@@ -244,7 +248,11 @@ namespace StoreAndSalesUI.Forms
                 {
                     int supplierId = peopleComboBox.SelectedValue.ToString().ParseToInt();
                     decimal currentBalance = _suppliers.Find(c => c.Id == supplierId).Balance;
-                    newBalance = currentBalance - amount;
+
+                    if (_voucher.VoucherType.Equals("R"))
+                        newBalance = currentBalance + amount;
+                    else
+                        newBalance = currentBalance - amount;
 
                     _supplierData.UpdateBalance(supplierId, newBalance);
                     _voucherData.CreatePurchaseVoucher(_voucher);
