@@ -61,8 +61,8 @@ namespace StoreAndSalesUI.Forms
         {
             _customers = _customerData.GetAllCustomers();
             _suppliers = _supplierData.GetAllSuppliers();
-            //_saleInvoices = _saleData.GetAllSales();
-            //_purchaseInvoices = _purchaseData.GetAllPurchases();
+            _saleInvoices = _saleData.GetAllSales();
+            _purchaseInvoices = _purchaseData.GetAllPurchases();
         }
 
         private void LoadCustomerLists()
@@ -70,6 +70,9 @@ namespace StoreAndSalesUI.Forms
             peopleComboBox.SelectedIndexChanged-= peopleComboBox_SelectedIndexChanged;
             LoadListData(peopleComboBox, _customers, "Id", "CustomerName");
             peopleComboBox.SelectedIndexChanged += peopleComboBox_SelectedIndexChanged;
+            invoicesComboBox.SelectedIndexChanged -= invoicesComboBox_SelectedIndexChanged;
+            LoadListData(invoicesComboBox, _saleInvoices , "Id", "Id");
+            invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
         }
 
         private void LoadSupplierLists()
@@ -77,6 +80,9 @@ namespace StoreAndSalesUI.Forms
             peopleComboBox.SelectedIndexChanged -= peopleComboBox_SelectedIndexChanged;
             LoadListData(peopleComboBox, _suppliers, "Id", "SupplierName");
             peopleComboBox.SelectedIndexChanged += peopleComboBox_SelectedIndexChanged;
+            invoicesComboBox.SelectedIndexChanged -= invoicesComboBox_SelectedIndexChanged;
+            LoadListData(invoicesComboBox, _purchaseInvoices, "Id", "Id");
+            invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
         }
 
         private void CallculateRemainnigAmount()
@@ -124,13 +130,13 @@ namespace StoreAndSalesUI.Forms
             if (customerVocuherRadioButton.Checked) 
             {
                 List<Sale> customerInvoices = new List<Sale>();
-                customerInvoices = _saleInvoices.Where(sale => sale.CustomerId == personId).ToList();
+                customerInvoices = _saleInvoices.Where(sale => sale.CustomerId == personId && sale.Status == false).ToList();
                 LoadListData(invoicesComboBox, customerInvoices, "Id", "Id");
             }
             else
             {
                 List<Purchase> supplierInvoices = new List<Purchase>();
-                supplierInvoices = _purchaseInvoices.Where(purchase => purchase.SupplierId == personId).ToList();
+                supplierInvoices = _purchaseInvoices.Where(purchase => purchase.SupplierId == personId && purchase.Status == false).ToList();
                 LoadListData(invoicesComboBox, supplierInvoices, "Id", "Id");
             }
 
@@ -143,15 +149,17 @@ namespace StoreAndSalesUI.Forms
 
         private void ClearForm() 
         {
-            //LoadNextVoucherId();
+            LoadNextVoucherId();
             customerVocuherRadioButton.Checked = true;
             peopleComboBox.SelectedIndex = -1;
-            //invoicesComboBox.SelectedIndex = -1;
+            invoicesComboBox.SelectedIndex = -1;
             amountTextBox.Clear();
-            //remainingTotalTextBox.Clear();
+            remainingTotalTextBox.Clear();
             balanceLabel.Text = string.Empty;
             notesTextBox.Text = string.Empty;
             ShowHideAccountDetailsLabel(); 
+            VoucherTypeComboBox.SelectedIndex = -1;
+            remainingTotalTextBox.Clear();
         }
 
         private void CollectData() 
@@ -162,18 +170,20 @@ namespace StoreAndSalesUI.Forms
             {
                 _voucher = new Voucher()
                 {
-                    VoucherType = "P",
+                    VoucherType = VoucherTypeComboBox.SelectedIndex  == 0 ? "R" : "P",
                     CustomerId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
+                    SaleId = invoicesComboBox.SelectedValue.ToString().ParseToInt(),
                     Amount = amountTextBox.Text.ParseToDecimal(),
-                    Notes = notesTextBox.Text 
+                    Notes = notesTextBox.Text
                 };
             }
             else
             {
                 _voucher = new Voucher()
                 {
-                    VoucherType = "P",
+                    VoucherType = VoucherTypeComboBox.SelectedIndex == 0 ? "R" : "P",
                     SupplierId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
+                    PurchaseId = invoicesComboBox.SelectedValue.ToString().ParseToInt(),
                     Amount = amountTextBox.Text.ParseToDecimal(),
                     Notes = notesTextBox.Text
                 };
@@ -196,6 +206,18 @@ namespace StoreAndSalesUI.Forms
                 output = false;
                 peopleComboBox.Focus();
             }
+            else if (VoucherTypeComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("يجب إختيار نوع السنــد", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                VoucherTypeComboBox.Focus();
+            }
+            else if (invoicesComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("يجب إختيار الفاتورة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                invoicesComboBox.Focus();
+            }
             return output;
         }
 
@@ -213,7 +235,8 @@ namespace StoreAndSalesUI.Forms
                     newBalance = currentBalance - amount;
  
                     _customerData.UpdateBalance(customerId, newBalance);
-                    _voucherData.CreateSaleVoucher(_voucher); 
+                    _voucherData.CreateSaleVoucher(_voucher);
+                    UpdateInvoiceStauts();
                     _customers.Find(c => c.Id == customerId).Balance = newBalance;
                     if(CallingForm != null) CallingForm.UpdatePersonBalance(customerId, newBalance); 
                 }
@@ -225,11 +248,12 @@ namespace StoreAndSalesUI.Forms
 
                     _supplierData.UpdateBalance(supplierId, newBalance);
                     _voucherData.CreatePurchaseVoucher(_voucher);
+                    UpdateInvoiceStauts();
                     _suppliers.Find(c => c.Id == supplierId).Balance = newBalance;
                     if (CallingForm != null) CallingForm.UpdatePersonBalance(supplierId, newBalance);
                 }
 
-                MessageBox.Show("تمت تحديث الرصيد بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم تحديث الرصيد بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
@@ -277,6 +301,20 @@ namespace StoreAndSalesUI.Forms
                 AccountDetailsLinkLabel.Visible = false;
         }
 
+        private void UpdateInvoiceStauts()
+        {
+            int invoiceId = invoicesComboBox.SelectedValue.ToString().ParseToInt();
+            bool status = remainingTotalTextBox.Text.ParseToDecimal() == 0 ? true : false;
+            if (customerVocuherRadioButton.Checked) 
+            {
+
+            }
+            else
+            {
+                _purchaseData.EditPurchaseStatus(invoiceId, status); 
+            }
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -290,14 +328,16 @@ namespace StoreAndSalesUI.Forms
                 LoadSupplierLists();
             }
             balanceLabel.Text = string.Empty;
+            remainingTotalTextBox.Text = string.Empty;
+            VoucherTypeComboBox.SelectedIndex = -1;
             ShowHideAccountDetailsLabel();
         }
 
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //if (peopleComboBox.SelectedIndex == -1) return;
-            //CallculateRemainnigAmount();
-            //PreviewRemainingAmount(_remainingAmount);
+            if (peopleComboBox.SelectedIndex == -1) return;
+            CallculateRemainnigAmount();
+            PreviewRemainingAmount(_remainingAmount);
         }
 
         private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -307,22 +347,24 @@ namespace StoreAndSalesUI.Forms
 
         private void amountTextBox_TextChanged(object sender, System.EventArgs e)
         {
-            //CalculatePaid();
-            //PreviewRemainingAmount(_remainAfterPaid);
+            CalculatePaid();
+            PreviewRemainingAmount(_remainAfterPaid);
         }
 
         private void peopleComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //if (peopleComboBox.SelectedIndex == -1) return;
-            //int personId =  peopleComboBox.SelectedValue.ToString().ParseToInt();
-            //LoadPersonInvoices(personId);
+            if (peopleComboBox.SelectedIndex == -1) return;
+            invoicesComboBox.SelectedIndexChanged -= invoicesComboBox_SelectedIndexChanged;
+            int personId = peopleComboBox.SelectedValue.ToString().ParseToInt();
+            LoadPersonInvoices(personId);
             ShowBalance();
             ShowHideAccountDetailsLabel();
+            invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
         }
 
         private void VouchersForm_Load(object sender, System.EventArgs e)
         {
-            //LoadNextVoucherId();
+            LoadNextVoucherId();
         }
 
         private void newButton_Click(object sender, System.EventArgs e)
