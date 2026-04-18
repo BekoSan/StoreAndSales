@@ -45,6 +45,7 @@ namespace StoreAndSalesLibrary.DataAccess
                 cmd.ExecuteNonQuery();
 
                 _saleId = int.Parse(cmd.Parameters["@Id"].Value.ToString());
+                sale.Id = _saleId;
             }
 
             CreateSaleDetails(sale.SaleDetails);
