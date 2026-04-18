@@ -139,6 +139,18 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<Purchase, dynamic>("spGetPurchaseById", p, _sql.GetConnectionName()).First();
         }
 
+        public void EditPurchaseStatus(int purchaseId, bool newStatus)
+        {
+            using (SqlCommand cmd = new SqlCommand("spEditPurchaseStatus", _connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@PurchaseId", SqlDbType.Int).Value = purchaseId;
+               
+                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = newStatus;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }
