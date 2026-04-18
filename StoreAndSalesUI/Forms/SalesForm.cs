@@ -31,6 +31,8 @@ namespace StoreAndSalesUI.Forms
         private decimal _disscount = 0;
         private bool isEdit = false;
         private bool isSalePreview = false;
+        private VoucherData _voucherData = new VoucherData();
+        private Voucher _voucher = new Voucher();
 
         #endregion
 
@@ -183,7 +185,7 @@ namespace StoreAndSalesUI.Forms
             try
             {
                 _saleData.CreateSale(_sale);
-                UpdateCustomerBalance();
+                SaveSaleVoucher(_sale.Id);
                 MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -282,6 +284,30 @@ namespace StoreAndSalesUI.Forms
             ShowReportForm reportViewerForm = new ShowReportForm();
             reportViewerForm.GetSaleId(_sale.Id);
             reportViewerForm.ShowDialog();
+        }
+
+        private void SaveSaleVoucher(int saleId)
+        {
+            if (customersComboBox.SelectedIndex == -1) return;
+
+            if (!isDisscountCheckBox.Checked)
+            {
+                int customerId = customersComboBox.SelectedValue.ToString().ParseToInt();
+                decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
+                decimal newBalance = currentBalance + disscountTextBox.Text.ParseToDecimal();
+
+                _voucher = new Voucher
+                {
+                    VoucherType = "R",
+                    Amount = disscountTextBox.Text.ParseToDecimal(),
+                    SaleId  = saleId,
+                    CustomerId = customerId,
+                    Notes = $"المتبقي من الفاتورة رقم {saleId}",
+                };
+
+                _voucherData.CreateSaleVoucher(_voucher);
+                _customerData.UpdateBalance(customerId, newBalance);
+            }
         }
 
         #endregion
