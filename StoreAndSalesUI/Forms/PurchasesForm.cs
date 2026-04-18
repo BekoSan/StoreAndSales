@@ -27,6 +27,8 @@ namespace StoreAndSalesUI.Forms
         private ItemData _itemData = new ItemData();
         private decimal _totalCost = 0;
         private decimal _disscount = 0;
+        private VoucherData _voucherData =  new VoucherData();
+        private Voucher  _voucher = new Voucher();
 
         #endregion
 
@@ -49,7 +51,7 @@ namespace StoreAndSalesUI.Forms
             _purchase.Notes = notesTextBox.Text;
             _purchase.PaymentType = paymentTypeCheckBox.Checked;
             _purchase.IsDisscount = isDisscountCheckBox.Checked;
-            _purchase.Status = false;
+            _purchase.Status = isDisscountCheckBox.Checked ? true : false;
 
             CollectPurchaseDetails();
         }
@@ -179,7 +181,7 @@ namespace StoreAndSalesUI.Forms
             try
             {
                 _purchaseData.CreatePurchase(_purchase);
-                UpdateSupplierBalance();
+                SavePurchaseVoucher(_purchase.Id); 
                 MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -247,6 +249,30 @@ namespace StoreAndSalesUI.Forms
             ShowReportForm reportViewerForm = new ShowReportForm();
             reportViewerForm.GetPurshaseId(_purchase.Id);
             reportViewerForm.ShowDialog();
+        }
+
+        private void SavePurchaseVoucher(int purchaseId) 
+        {
+            if (suppliersComboBox.SelectedIndex == -1) return;
+
+            if (!isDisscountCheckBox.Checked)
+            {
+                int supplierId = suppliersComboBox.SelectedValue.ToString().ParseToInt();
+                decimal currentBalance = _suppliers.Find(c => c.Id == supplierId).Balance;
+                decimal newBalance = currentBalance + disscountTextBox.Text.ParseToDecimal();
+
+                _voucher = new Voucher 
+                {
+                    VoucherType = "R",
+                    Amount = disscountTextBox.Text.ParseToDecimal(),
+                    PurchaseId = purchaseId,
+                    SupplierId = supplierId,
+                    Notes= $"المتبقي من الفاتورة رقم { purchaseId }",
+                };
+                
+                _voucherData.CreatePurchaseVoucher(_voucher);
+                _supplierData.UpdateBalance(supplierId, newBalance);
+            }
         }
 
         #endregion
