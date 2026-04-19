@@ -196,7 +196,7 @@ namespace StoreAndSalesUI.Forms
         {
             bool output = true;
 
-            if (peopleComboBox.SelectedIndex  == -1)
+            if (peopleComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("يجب إختيار شخص من القائمة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
@@ -219,6 +219,12 @@ namespace StoreAndSalesUI.Forms
                 MessageBox.Show("يجب إختيار الفاتورة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
                 invoicesComboBox.Focus();
+            }
+            else if (remainingTotalTextBox.Text.ParseToDecimal() < 0)
+            {
+                MessageBox.Show("المبلغ الذي تم إدخاله أكبر من إجمالي المتبقي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                amountTextBox.Focus();
             }
             return output;
         }
