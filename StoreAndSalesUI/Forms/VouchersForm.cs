@@ -386,6 +386,7 @@ namespace StoreAndSalesUI.Forms
             ShowBalance();
             ShowHideAccountDetailsLabel();
             invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
+            ShowHideViewInvoiceLabel();
         }
 
         private void VouchersForm_Load(object sender, System.EventArgs e)
