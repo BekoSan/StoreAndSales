@@ -309,6 +309,21 @@ namespace StoreAndSalesUI.Forms
             reportViewerForm.ShowDialog();
         }
 
+        private void ViewInvoice()
+        {
+            ShowReportForm reportViewerForm = new ShowReportForm();
+            if (!customerVocuherRadioButton.Checked)
+            {
+                reportViewerForm.GetPurshaseId(invoicesComboBox.SelectedValue.ToString().ParseToInt());
+            }
+            else
+            {
+                reportViewerForm.GetSaleId(invoicesComboBox.SelectedValue.ToString().ParseToInt());
+            }
+            reportViewerForm.ShowDialog();
+        }
+
+
         private void ShowHideAccountDetailsLabel() 
         {
             if (peopleComboBox.SelectedValue != null)
@@ -414,5 +429,11 @@ namespace StoreAndSalesUI.Forms
         {
             ViewPersonAccountDetailsReport();
         }
+
+        private void viewInvoiceLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ViewInvoice();
+        }
+
     }
 }

@@ -321,6 +321,7 @@
             this.viewInvoiceLinkLabel.TabStop = true;
             this.viewInvoiceLinkLabel.Text = "إستعراض الفاتورة";
             this.viewInvoiceLinkLabel.Visible = false;
+            this.viewInvoiceLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.viewInvoiceLinkLabel_LinkClicked);
             // 
             // VouchersForm
             // 
