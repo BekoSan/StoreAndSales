@@ -50,6 +50,7 @@
             this.peopleLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
+            this.viewInvoiceLinkLabel = new System.Windows.Forms.LinkLabel();
             this.voucherDataGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +91,7 @@
             // 
             // voucherDataGroupBox
             // 
+            this.voucherDataGroupBox.Controls.Add(this.viewInvoiceLinkLabel);
             this.voucherDataGroupBox.Controls.Add(this.VoucherTypeComboBox);
             this.voucherDataGroupBox.Controls.Add(this.VoucherTypeLabel);
             this.voucherDataGroupBox.Controls.Add(this.notesLabel);
@@ -139,7 +141,7 @@
             // 
             this.notesLabel.AutoSize = true;
             this.notesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.notesLabel.Location = new System.Drawing.Point(336, 460);
+            this.notesLabel.Location = new System.Drawing.Point(336, 469);
             this.notesLabel.Name = "notesLabel";
             this.notesLabel.Size = new System.Drawing.Size(47, 19);
             this.notesLabel.TabIndex = 36;
@@ -148,7 +150,7 @@
             // notesTextBox
             // 
             this.notesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.notesTextBox.Location = new System.Drawing.Point(21, 484);
+            this.notesTextBox.Location = new System.Drawing.Point(21, 493);
             this.notesTextBox.MaxLength = 2000;
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
@@ -182,7 +184,7 @@
             // 
             this.remainingTotalLabel.AutoSize = true;
             this.remainingTotalLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.remainingTotalLabel.Location = new System.Drawing.Point(290, 402);
+            this.remainingTotalLabel.Location = new System.Drawing.Point(290, 413);
             this.remainingTotalLabel.Name = "remainingTotalLabel";
             this.remainingTotalLabel.Size = new System.Drawing.Size(93, 19);
             this.remainingTotalLabel.TabIndex = 31;
@@ -193,7 +195,7 @@
             this.remainingTotalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.remainingTotalTextBox.Enabled = false;
             this.remainingTotalTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
-            this.remainingTotalTextBox.Location = new System.Drawing.Point(22, 424);
+            this.remainingTotalTextBox.Location = new System.Drawing.Point(22, 435);
             this.remainingTotalTextBox.MaxLength = 13;
             this.remainingTotalTextBox.Name = "remainingTotalTextBox";
             this.remainingTotalTextBox.Size = new System.Drawing.Size(363, 29);
@@ -224,7 +226,7 @@
             // 
             this.amountLabel.AutoSize = true;
             this.amountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.amountLabel.Location = new System.Drawing.Point(336, 347);
+            this.amountLabel.Location = new System.Drawing.Point(336, 356);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(47, 19);
             this.amountLabel.TabIndex = 29;
@@ -234,7 +236,7 @@
             // 
             this.amountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.amountTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
-            this.amountTextBox.Location = new System.Drawing.Point(22, 370);
+            this.amountTextBox.Location = new System.Drawing.Point(22, 379);
             this.amountTextBox.MaxLength = 13;
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(363, 29);
@@ -247,7 +249,7 @@
             // 
             this.invoicesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.invoicesComboBox.FormattingEnabled = true;
-            this.invoicesComboBox.Location = new System.Drawing.Point(20, 315);
+            this.invoicesComboBox.Location = new System.Drawing.Point(20, 322);
             this.invoicesComboBox.Name = "invoicesComboBox";
             this.invoicesComboBox.Size = new System.Drawing.Size(365, 29);
             this.invoicesComboBox.TabIndex = 3;
@@ -257,7 +259,7 @@
             // 
             this.invoicesLabel.AutoSize = true;
             this.invoicesLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.invoicesLabel.Location = new System.Drawing.Point(307, 292);
+            this.invoicesLabel.Location = new System.Drawing.Point(307, 299);
             this.invoicesLabel.Name = "invoicesLabel";
             this.invoicesLabel.Size = new System.Drawing.Size(76, 19);
             this.invoicesLabel.TabIndex = 26;
@@ -308,6 +310,17 @@
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // viewInvoiceLinkLabel
+            // 
+            this.viewInvoiceLinkLabel.AutoSize = true;
+            this.viewInvoiceLinkLabel.Location = new System.Drawing.Point(26, 295);
+            this.viewInvoiceLinkLabel.Name = "viewInvoiceLinkLabel";
+            this.viewInvoiceLinkLabel.Size = new System.Drawing.Size(122, 22);
+            this.viewInvoiceLinkLabel.TabIndex = 39;
+            this.viewInvoiceLinkLabel.TabStop = true;
+            this.viewInvoiceLinkLabel.Text = "إستعراض الفاتورة";
+            this.viewInvoiceLinkLabel.Visible = false;
             // 
             // VouchersForm
             // 
@@ -364,5 +377,6 @@
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.ComboBox VoucherTypeComboBox;
         private System.Windows.Forms.Label VoucherTypeLabel;
+        private System.Windows.Forms.LinkLabel viewInvoiceLinkLabel;
     }
 }
