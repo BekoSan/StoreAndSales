@@ -117,6 +117,7 @@ namespace StoreAndSalesUI.Forms
 
         private void LoadNextSaleId()
         {
+            if (isSalePreview) return;
             saleIdTextBox.Text = (_saleData.GetLastSaleId() + 1).ToString();
         }
 
