@@ -354,6 +354,12 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void ResetAmountAndRemaining() 
+        {
+            amountTextBox.Clear();
+            remainingTotalTextBox.Clear();
+        }
+
         #endregion
 
         private void customerVocuherRadioButton_CheckedChanged(object sender, System.EventArgs e)
@@ -377,6 +383,7 @@ namespace StoreAndSalesUI.Forms
         {
             if (peopleComboBox.SelectedIndex == -1) return;
             CallculateRemainnigAmount();
+            ResetAmountAndRemaining();
             PreviewRemainingAmount(_remainingAmount);
             ShowHideViewInvoiceLabel();
         }
@@ -402,6 +409,7 @@ namespace StoreAndSalesUI.Forms
             ShowHideAccountDetailsLabel();
             invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
             ShowHideViewInvoiceLabel();
+            ResetAmountAndRemaining();
         }
 
         private void VouchersForm_Load(object sender, System.EventArgs e)
