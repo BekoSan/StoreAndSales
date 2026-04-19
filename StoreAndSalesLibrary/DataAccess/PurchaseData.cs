@@ -141,28 +141,22 @@ namespace StoreAndSalesLibrary.DataAccess
 
         public void EditPurchaseStatus(int purchaseId, bool newStatus)
         {
-            using (SqlCommand cmd = new SqlCommand("spEditPurchaseStatus", _connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@PurchaseId", SqlDbType.Int).Value = purchaseId;
-               
-                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = newStatus;
+            var p = new DynamicParameters();
 
-                cmd.ExecuteNonQuery();
-            }
+            p.Add("@PurchaseId", purchaseId, DbType.Int32);
+            p.Add("@Status", newStatus, DbType.Boolean);
+
+            _sql.SaveData("spEditPurchaseStatus", p, _sql.GetConnectionName());
         }
 
         public void EditPurchaseDisscount(int purchaseId, decimal  disscount)
         {
-            using (SqlCommand cmd = new SqlCommand("spEditPurchaseDisscount", _connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@PurchaseId", SqlDbType.Int).Value = purchaseId;
+            var p = new DynamicParameters();
 
-                cmd.Parameters.Add("@Disscount", SqlDbType.Money).Value = disscount;
+            p.Add("@PurchaseId", purchaseId, DbType.Int32);
+            p.Add("@Disscount", disscount, DbType.Decimal);
 
-                cmd.ExecuteNonQuery();
-            }
+            _sql.SaveData("spEditPurchaseDisscount", p, _sql.GetConnectionName());
         }
 
     }

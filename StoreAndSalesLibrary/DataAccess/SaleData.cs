@@ -141,28 +141,22 @@ namespace StoreAndSalesLibrary.DataAccess
 
         public void EditSaleStatus(int saleId, bool newStatus)
         {
-            using (SqlCommand cmd = new SqlCommand("spEditSaleStatus", _connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@SaleId", SqlDbType.Int).Value = saleId;
+            var p = new DynamicParameters();
 
-                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = newStatus;
+            p.Add("@SaleId", saleId,DbType.Int32);
+            p.Add("@Status", newStatus,DbType.Boolean);
 
-                cmd.ExecuteNonQuery();
-            }
+            _sql.SaveData("spEditSaleStatus", p, _sql.GetConnectionName());
         }
 
         public void EditSaleDisscount(int saleId, decimal disscount)
         {
-            using (SqlCommand cmd = new SqlCommand("spEditSaleDisscount", _connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@SaleId", SqlDbType.Int).Value = saleId;
+            var p = new DynamicParameters();
 
-                cmd.Parameters.Add("@Disscount", SqlDbType.Money).Value = disscount;
+            p.Add("@SaleId", saleId, DbType.Int32);
+            p.Add("@Disscount", disscount, DbType.Decimal);
 
-                cmd.ExecuteNonQuery();
-            }
+            _sql.SaveData("spEditSaleDisscount", p, _sql.GetConnectionName());
         }
 
     }
