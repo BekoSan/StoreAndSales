@@ -137,6 +137,7 @@
     <Build Include="dbo\StoredProcedures\spEditCustomerBalance.sql" />
     <Build Include="dbo\StoredProcedures\spEditSupplierBalance.sql" />
     <Build Include="dbo\StoredProcedures\spEditPurchaseDisscount.sql" />
+    <Build Include="dbo\StoredProcedures\spEditSaleDisscount.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
