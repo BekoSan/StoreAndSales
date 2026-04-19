@@ -316,7 +316,7 @@ namespace StoreAndSalesUI.Forms
             bool status = remainingTotalTextBox.Text.ParseToDecimal() == 0 ? true : false;
             if (customerVocuherRadioButton.Checked) 
             {
-                
+                _saleData.EditSaleStatus(invoiceId, status);
             }
             else
             {
