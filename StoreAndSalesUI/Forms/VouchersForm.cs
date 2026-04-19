@@ -227,6 +227,8 @@ namespace StoreAndSalesUI.Forms
             {
                 decimal newBalance;
                 decimal amount = amountTextBox.Text.ParseToDecimal();
+                decimal newInvoiceDisscount = remainingTotalTextBox.Text.ParseToDecimal();
+                int personId = invoicesComboBox.SelectedValue.ToString().ParseToInt();
 
                 if (customerVocuherRadioButton.Checked)
                 {
@@ -248,13 +250,15 @@ namespace StoreAndSalesUI.Forms
                 {
                     int supplierId = peopleComboBox.SelectedValue.ToString().ParseToInt();
                     decimal currentBalance = _suppliers.Find(c => c.Id == supplierId).Balance;
-
+                        
+                    
                     if (_voucher.VoucherType.Equals("R"))
                         newBalance = currentBalance + amount;
                     else
                         newBalance = currentBalance - amount;
 
                     _supplierData.UpdateBalance(supplierId, newBalance);
+                    _purchaseData.EditPurchaseDisscount(personId, newInvoiceDisscount); 
                     _voucherData.CreatePurchaseVoucher(_voucher);
                     UpdateInvoiceStauts();
                     _suppliers.Find(c => c.Id == supplierId).Balance = newBalance;
