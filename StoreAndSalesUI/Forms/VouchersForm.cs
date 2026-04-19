@@ -157,7 +157,8 @@ namespace StoreAndSalesUI.Forms
             remainingTotalTextBox.Clear();
             balanceLabel.Text = string.Empty;
             notesTextBox.Text = string.Empty;
-            ShowHideAccountDetailsLabel(); 
+            ShowHideAccountDetailsLabel();
+            ShowHideViewInvoiceLabel();
             VoucherTypeComboBox.SelectedIndex = -1;
             remainingTotalTextBox.Clear();
             amountTextBox.Clear(); 
@@ -316,6 +317,14 @@ namespace StoreAndSalesUI.Forms
                 AccountDetailsLinkLabel.Visible = false;
         }
 
+        private void ShowHideViewInvoiceLabel()
+        {
+            if (invoicesComboBox.SelectedValue != null)
+                viewInvoiceLinkLabel.Visible = true;
+            else
+                viewInvoiceLinkLabel.Visible = false;
+        }
+
         private void UpdateInvoiceStauts()
         {
             int invoiceId = invoicesComboBox.SelectedValue.ToString().ParseToInt();
@@ -346,6 +355,7 @@ namespace StoreAndSalesUI.Forms
             remainingTotalTextBox.Text = string.Empty;
             VoucherTypeComboBox.SelectedIndex = -1;
             ShowHideAccountDetailsLabel();
+            ShowHideViewInvoiceLabel();
         }
 
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -353,6 +363,7 @@ namespace StoreAndSalesUI.Forms
             if (peopleComboBox.SelectedIndex == -1) return;
             CallculateRemainnigAmount();
             PreviewRemainingAmount(_remainingAmount);
+            ShowHideViewInvoiceLabel();
         }
 
         private void amountTextBox_KeyPress(object sender, KeyPressEventArgs e)
