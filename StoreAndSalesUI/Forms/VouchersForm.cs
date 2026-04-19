@@ -242,7 +242,7 @@ namespace StoreAndSalesUI.Forms
                     _voucherData.CreateSaleVoucher(_voucher);
                     UpdateInvoiceStauts();
                     _customers.Find(c => c.Id == customerId).Balance = newBalance;
-                    if (CallingForm != null && CallingForm.GetType().ToString().Contains("Supplier")) CallingForm.UpdatePersonBalance(customerId, newBalance);
+                    if (CallingForm != null && CallingForm.GetType().ToString().Contains("Customer")) CallingForm.UpdatePersonBalance(customerId, newBalance);
                 }
                 else
                 {
@@ -258,7 +258,7 @@ namespace StoreAndSalesUI.Forms
                     _voucherData.CreatePurchaseVoucher(_voucher);
                     UpdateInvoiceStauts();
                     _suppliers.Find(c => c.Id == supplierId).Balance = newBalance;
-                    if (CallingForm != null && CallingForm.GetType().ToString().Contains("Customer")) CallingForm.UpdatePersonBalance(supplierId, newBalance);
+                    if (CallingForm != null && CallingForm.GetType().ToString().Contains("Supplier")) CallingForm.UpdatePersonBalance(supplierId, newBalance);
 
                 }
 
