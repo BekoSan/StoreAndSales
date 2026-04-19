@@ -152,5 +152,18 @@ namespace StoreAndSalesLibrary.DataAccess
             }
         }
 
+        public void EditPurchaseDisscount(int purchaseId, decimal  disscount)
+        {
+            using (SqlCommand cmd = new SqlCommand("spEditPurchaseDisscount", _connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@PurchaseId", SqlDbType.Int).Value = purchaseId;
+
+                cmd.Parameters.Add("@Disscount", SqlDbType.Money).Value = disscount;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }
