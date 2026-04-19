@@ -392,7 +392,8 @@ namespace StoreAndSalesUI.Forms
             {
                 CollectData();
                 Save();
-                ClearForm(); 
+                ClearForm();
+                GetFormData();
             }
         }
 
