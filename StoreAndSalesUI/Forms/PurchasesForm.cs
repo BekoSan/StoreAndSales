@@ -29,6 +29,7 @@ namespace StoreAndSalesUI.Forms
         private decimal _disscount = 0;
         private VoucherData _voucherData =  new VoucherData();
         private Voucher  _voucher = new Voucher();
+        private bool isPurchasePreview = false;
 
         #endregion
 
@@ -112,6 +113,7 @@ namespace StoreAndSalesUI.Forms
 
         private void LoadNextPurchaseId()
         {
+            if (isPurchasePreview) return;
             purchaseIdTextBox.Text = (_purchaseData.GetLastPurchaseId() + 1).ToString();
         }
 
@@ -133,6 +135,7 @@ namespace StoreAndSalesUI.Forms
             PreviewTotalCost(0);
             disscountTextBox.Text = "0";
             EnableDissableEditing(true);
+            isPurchasePreview = false;
         }
 
         private bool IsValidPriceAndQuantity()
@@ -303,6 +306,8 @@ namespace StoreAndSalesUI.Forms
 
         public void PreviewPruchase(Purchase purchase)
         {
+            isPurchasePreview = true;
+
             _purchase.Id = purchase.Id;
             purchaseIdTextBox.Text = purchase.Id.ToString();
             suppliersComboBox.SelectedValue = purchase.SupplierId;
