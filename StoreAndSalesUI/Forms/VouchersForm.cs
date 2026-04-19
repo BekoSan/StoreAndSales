@@ -160,6 +160,7 @@ namespace StoreAndSalesUI.Forms
             ShowHideAccountDetailsLabel(); 
             VoucherTypeComboBox.SelectedIndex = -1;
             remainingTotalTextBox.Clear();
+            amountTextBox.Clear(); 
         }
 
         private void CollectData() 
