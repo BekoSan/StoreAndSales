@@ -139,5 +139,18 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<decimal, dynamic>("spGetTotalSalesByDate", p, _sql.GetConnectionName()).First();
         }
 
+        public void EditSaleStatus(int saleId, bool newStatus)
+        {
+            using (SqlCommand cmd = new SqlCommand("spEditSaleStatus", _connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@SaleId", SqlDbType.Int).Value = saleId;
+
+                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = newStatus;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }
