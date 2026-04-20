@@ -14,6 +14,7 @@ namespace StoreAndSalesUI.Forms
         public SalesForm()
         {
             InitializeComponent();
+            _chooseSaleForm = new ChooseSaleForm(this);
         }
 
 
@@ -33,6 +34,7 @@ namespace StoreAndSalesUI.Forms
         private bool isSalePreview = false;
         private VoucherData _voucherData = new VoucherData();
         private Voucher _voucher = new Voucher();
+        private ChooseSaleForm _chooseSaleForm;
 
         #endregion
 
@@ -224,7 +226,7 @@ namespace StoreAndSalesUI.Forms
 
         private void FindSaleToPreview()
         {
-            new ChooseSaleForm(this).ShowDialog();  
+            _chooseSaleForm.ShowDialog();
         }
 
         private bool isQuantityAvailable(int itemId, int unitId, int quantityToTake)

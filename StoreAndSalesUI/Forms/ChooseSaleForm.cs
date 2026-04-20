@@ -63,7 +63,7 @@ namespace StoreAndSalesUI.Forms
             if (CallingForm != null)
             {
                 CallingForm.PreviewSale(sale);
-                Close();
+                Hide();
             }
         }
 
@@ -97,7 +97,16 @@ namespace StoreAndSalesUI.Forms
 
         private async void ChooseSaleForm_Load(object sender, EventArgs e)
         {
-          await  LoadSalesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date); 
+          //await  LoadSalesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date);
+            if (customerNameTextBox.Text.Trim().Length != 0)
+            {
+                await LoadSalesByDate(dateFromDateTimePicker.Value ,dateToDateTimePicker.Value);
+                FilterByName();
+            }
+            else
+            {
+                await LoadSalesByDate(dateFromDateTimePicker.Value, dateToDateTimePicker.Value);
+            }
         }
 
         private async void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)

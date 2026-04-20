@@ -13,6 +13,7 @@ namespace StoreAndSalesUI.Forms
         public PurchasesForm()
         {
             InitializeComponent();
+            _choosePurchaseForm = new ChoosePurchaseForm(this);
         }
 
         #region Private Members
@@ -30,6 +31,7 @@ namespace StoreAndSalesUI.Forms
         private VoucherData _voucherData =  new VoucherData();
         private Voucher  _voucher = new Voucher();
         private bool isPurchasePreview = false;
+        private ChoosePurchaseForm _choosePurchaseForm;
 
         #endregion
 
@@ -222,7 +224,7 @@ namespace StoreAndSalesUI.Forms
 
         private void FindPurchaseToPreview()
         {
-            new ChoosePurchaseForm(this).ShowDialog();
+            _choosePurchaseForm.ShowDialog();
         }
 
         private void DeleteRow(int rowIndex)

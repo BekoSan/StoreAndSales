@@ -92,7 +92,16 @@ namespace StoreAndSalesUI.Forms
 
         private async void ChoosePurchaseForm_Load(object sender, EventArgs e)
         {
-           await LoadPurchasesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date);
+            //await LoadPurchasesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date);
+            if (supplierNameTextBox.Text.Trim().Length != 0)
+            {
+                await LoadPurchasesByDate(dateFromDateTimePicker.Value, dateToDateTimePicker.Value);
+                FilterByName();
+            }
+            else
+            {
+                await LoadPurchasesByDate(dateFromDateTimePicker.Value, dateToDateTimePicker.Value);
+            }
         }
 
         private async void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)
