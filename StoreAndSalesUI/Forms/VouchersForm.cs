@@ -246,10 +246,17 @@ namespace StoreAndSalesUI.Forms
             }
             else if (invoicesComboBox.SelectedIndex == -1)
             {
-                if (!_isInvoice) return true;
-                MessageBox.Show("يجب إختيار الفاتورة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                output = false;
-                invoicesComboBox.Focus();
+                if (!_isInvoice) 
+                {
+                    output = true;
+                }
+                else
+                {
+                    MessageBox.Show("يجب إختيار الفاتورة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    output = false;
+                    invoicesComboBox.Focus();
+                }
+               
             }
             else if (remainingTotalTextBox.Text.ParseToDecimal() < 0)
             {
