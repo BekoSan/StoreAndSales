@@ -32,6 +32,7 @@
             this.customerVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.supplierVocuherRadioButton = new System.Windows.Forms.RadioButton();
             this.voucherDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.viewInvoiceLinkLabel = new System.Windows.Forms.LinkLabel();
             this.VoucherTypeComboBox = new System.Windows.Forms.ComboBox();
             this.VoucherTypeLabel = new System.Windows.Forms.Label();
             this.notesLabel = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.peopleLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
-            this.viewInvoiceLinkLabel = new System.Windows.Forms.LinkLabel();
             this.voucherDataGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +58,7 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(1, 10);
+            this.titleLabel.Location = new System.Drawing.Point(8, 10);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(409, 66);
             this.titleLabel.TabIndex = 7;
@@ -111,9 +111,21 @@
             this.voucherDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.voucherDataGroupBox.Location = new System.Drawing.Point(4, 119);
             this.voucherDataGroupBox.Name = "voucherDataGroupBox";
-            this.voucherDataGroupBox.Size = new System.Drawing.Size(401, 586);
+            this.voucherDataGroupBox.Size = new System.Drawing.Size(414, 586);
             this.voucherDataGroupBox.TabIndex = 10;
             this.voucherDataGroupBox.TabStop = false;
+            // 
+            // viewInvoiceLinkLabel
+            // 
+            this.viewInvoiceLinkLabel.AutoSize = true;
+            this.viewInvoiceLinkLabel.Location = new System.Drawing.Point(26, 295);
+            this.viewInvoiceLinkLabel.Name = "viewInvoiceLinkLabel";
+            this.viewInvoiceLinkLabel.Size = new System.Drawing.Size(122, 22);
+            this.viewInvoiceLinkLabel.TabIndex = 39;
+            this.viewInvoiceLinkLabel.TabStop = true;
+            this.viewInvoiceLinkLabel.Text = "إستعراض الفاتورة";
+            this.viewInvoiceLinkLabel.Visible = false;
+            this.viewInvoiceLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.viewInvoiceLinkLabel_LinkClicked);
             // 
             // VoucherTypeComboBox
             // 
@@ -121,11 +133,13 @@
             this.VoucherTypeComboBox.FormattingEnabled = true;
             this.VoucherTypeComboBox.Items.AddRange(new object[] {
             "سند إستلام",
-            "سند دفع"});
+            "سند دفع",
+            "تصفية حساب"});
             this.VoucherTypeComboBox.Location = new System.Drawing.Point(20, 190);
             this.VoucherTypeComboBox.Name = "VoucherTypeComboBox";
             this.VoucherTypeComboBox.Size = new System.Drawing.Size(365, 29);
             this.VoucherTypeComboBox.TabIndex = 1;
+            this.VoucherTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.VoucherTypeComboBox_SelectedIndexChanged);
             // 
             // VoucherTypeLabel
             // 
@@ -173,7 +187,7 @@
             // 
             this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceLabel.Font = new System.Drawing.Font("Consolas", 34.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLabel.Location = new System.Drawing.Point(6, 18);
+            this.balanceLabel.Location = new System.Drawing.Point(19, 18);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(389, 90);
             this.balanceLabel.TabIndex = 33;
@@ -248,6 +262,7 @@
             // invoicesComboBox
             // 
             this.invoicesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.invoicesComboBox.Enabled = false;
             this.invoicesComboBox.FormattingEnabled = true;
             this.invoicesComboBox.Location = new System.Drawing.Point(20, 322);
             this.invoicesComboBox.Name = "invoicesComboBox";
@@ -311,25 +326,13 @@
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
-            // viewInvoiceLinkLabel
-            // 
-            this.viewInvoiceLinkLabel.AutoSize = true;
-            this.viewInvoiceLinkLabel.Location = new System.Drawing.Point(26, 295);
-            this.viewInvoiceLinkLabel.Name = "viewInvoiceLinkLabel";
-            this.viewInvoiceLinkLabel.Size = new System.Drawing.Size(122, 22);
-            this.viewInvoiceLinkLabel.TabIndex = 39;
-            this.viewInvoiceLinkLabel.TabStop = true;
-            this.viewInvoiceLinkLabel.Text = "إستعراض الفاتورة";
-            this.viewInvoiceLinkLabel.Visible = false;
-            this.viewInvoiceLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.viewInvoiceLinkLabel_LinkClicked);
-            // 
             // VouchersForm
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(411, 752);
+            this.ClientSize = new System.Drawing.Size(430, 752);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.voucherDataGroupBox);
