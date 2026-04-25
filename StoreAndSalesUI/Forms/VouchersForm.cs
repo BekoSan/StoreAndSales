@@ -260,6 +260,18 @@ namespace StoreAndSalesUI.Forms
             return output;
         }
 
+
+        private bool IsConfirm()
+        {
+            bool output = true;
+
+            if (MessageBox.Show("سيتم تعديل الرصيد ، هل أنت متأكد؟", "رسالة تأكيد",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.No) output =false;
+
+            return output;
+        }
+
         private void Save() 
         {
             try
@@ -481,9 +493,12 @@ namespace StoreAndSalesUI.Forms
             if (IsValidData())
             {
                 CollectData();
-                Save();
-                ClearForm();
-                GetFormData();
+                if (IsConfirm())
+                {
+                    Save();
+                    ClearForm();
+                    GetFormData();
+                }
             }
         }
 
