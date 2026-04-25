@@ -41,6 +41,7 @@ namespace StoreAndSalesUI.Forms
         private decimal _remainAfterPaid = 0;
         private Voucher _voucher = new Voucher();
         private IVouchersRequetser CallingForm;
+        private bool _isInvoice = false;
 
         #endregion
 
@@ -85,7 +86,7 @@ namespace StoreAndSalesUI.Forms
             invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
         }
 
-        private void CallculateRemainnigAmount()
+        private void CallculateInvoiceRemainnigAmount()
         {
             if (invoicesComboBox.SelectedIndex == -1) return;
 
@@ -109,7 +110,22 @@ namespace StoreAndSalesUI.Forms
                 decimal purchaseVouchersTotal = _voucherData.GetTotalPurchaseVoucher(purchaseInvoiceId, supplierId, "P");
                 _remainingAmount = totalDisscount - purchaseVouchersTotal;
             }
+        }
 
+        private void CalculateBalanceRemainingAmount() 
+        {
+            if (peopleComboBox.SelectedIndex == -1) return;
+
+            int personId = peopleComboBox.SelectedValue.ToString().ParseToInt();
+
+            if (customerVocuherRadioButton.Checked)
+            {
+                _remainingAmount = _customers.Where(customer => customer.Id == personId).First().Balance;
+            }
+            else
+            {
+                _remainingAmount = _suppliers.Where(supplier => supplier.Id == personId).First().Balance;
+            }
         }
 
         private void PreviewRemainingAmount(decimal amount) 
@@ -167,25 +183,39 @@ namespace StoreAndSalesUI.Forms
         private void CollectData() 
         {
             if (peopleComboBox.SelectedIndex == -1) return;
+            string vType = string.Empty;
+
+            switch (VoucherTypeComboBox.SelectedIndex)
+            {
+                case 0:
+                    vType = "R";
+                    break;
+                case 1:
+                    vType = "P";
+                    break;
+                case 2:
+                    vType = "C";
+                    break;
+            }
 
             if (customerVocuherRadioButton.Checked)
             {
                 _voucher = new Voucher()
                 {
-                    VoucherType = VoucherTypeComboBox.SelectedIndex  == 0 ? "R" : "P",
+                    VoucherType = vType,
                     CustomerId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
-                    SaleId = invoicesComboBox.SelectedValue.ToString().ParseToInt(),
                     Amount = amountTextBox.Text.ParseToDecimal(),
                     Notes = notesTextBox.Text
                 };
             }
             else
             {
+                
                 _voucher = new Voucher()
                 {
-                    VoucherType = VoucherTypeComboBox.SelectedIndex == 0 ? "R" : "P",
+                    
+                    VoucherType = vType,
                     SupplierId = peopleComboBox.SelectedValue.ToString().ParseToInt(),
-                    PurchaseId = invoicesComboBox.SelectedValue.ToString().ParseToInt(),
                     Amount = amountTextBox.Text.ParseToDecimal(),
                     Notes = notesTextBox.Text
                 };
@@ -216,6 +246,7 @@ namespace StoreAndSalesUI.Forms
             }
             else if (invoicesComboBox.SelectedIndex == -1)
             {
+                if (!_isInvoice) return true;
                 MessageBox.Show("يجب إختيار الفاتورة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
                 invoicesComboBox.Focus();
@@ -233,25 +264,29 @@ namespace StoreAndSalesUI.Forms
         {
             try
             {
-                decimal newBalance;
+                decimal newBalance = 0;
                 decimal amount = amountTextBox.Text.ParseToDecimal();
                 decimal newInvoiceDisscount = remainingTotalTextBox.Text.ParseToDecimal();
-                int invoiceId = invoicesComboBox.SelectedValue.ToString().ParseToInt();
+                int invoiceId = _isInvoice ? invoicesComboBox.SelectedValue.ToString().ParseToInt() : 0;
 
                 if (customerVocuherRadioButton.Checked)
                 {
                     int customerId = peopleComboBox.SelectedValue.ToString().ParseToInt();
                     decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
 
-                    if (_voucher.VoucherType.Equals("R"))
+                    if (_voucher.VoucherType.Equals("R") || _voucher.VoucherType.Equals("C"))
                         newBalance = currentBalance - amount;
-                    else
+                    else 
                         newBalance = currentBalance + amount;
 
                     _customerData.UpdateBalance(customerId, newBalance);
-                    _saleData.EditSaleDisscount(invoiceId, newInvoiceDisscount);
+                    if (_isInvoice)
+                    {
+                        _voucher.SaleId = invoiceId;
+                        _saleData.EditSaleDisscount(invoiceId, newInvoiceDisscount);
+                        UpdateInvoiceStauts();
+                    }
                     _voucherData.CreateSaleVoucher(_voucher);
-                    UpdateInvoiceStauts();
                     _customers.Find(c => c.Id == customerId).Balance = newBalance;
                     if (CallingForm != null && CallingForm.GetType().ToString().Contains("Customer")) CallingForm.UpdatePersonBalance(customerId, newBalance);
                 }
@@ -263,13 +298,17 @@ namespace StoreAndSalesUI.Forms
                     
                     if (_voucher.VoucherType.Equals("R"))
                         newBalance = currentBalance + amount;
-                    else
+                    else if (_voucher.VoucherType.Equals("P") || _voucher.VoucherType.Equals("C")) 
                         newBalance = currentBalance - amount;
 
                     _supplierData.UpdateBalance(supplierId, newBalance);
-                    _purchaseData.EditPurchaseDisscount(invoiceId, newInvoiceDisscount); 
+                    if (_isInvoice)
+                    {
+                        _voucher.PurchaseId = invoiceId;
+                        _purchaseData.EditPurchaseDisscount(invoiceId, newInvoiceDisscount);
+                        UpdateInvoiceStauts();
+                    }
                     _voucherData.CreatePurchaseVoucher(_voucher);
-                    UpdateInvoiceStauts();
                     _suppliers.Find(c => c.Id == supplierId).Balance = newBalance;
                     if (CallingForm != null && CallingForm.GetType().ToString().Contains("Supplier")) CallingForm.UpdatePersonBalance(supplierId, newBalance);
 
@@ -365,6 +404,14 @@ namespace StoreAndSalesUI.Forms
             amountTextBox.Clear();
             remainingTotalTextBox.Clear();
         }
+            
+        private void EnableDisableInvoices() 
+        {
+            if (VoucherTypeComboBox.SelectedIndex == -1) return;
+            _isInvoice = VoucherTypeComboBox.SelectedIndex != 2 ?  true : false ;
+            invoicesComboBox.Enabled = _isInvoice;
+            invoicesComboBox.SelectedIndex = -1;
+        }
 
         #endregion
 
@@ -388,7 +435,7 @@ namespace StoreAndSalesUI.Forms
         private void invoicesComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (peopleComboBox.SelectedIndex == -1) return;
-            CallculateRemainnigAmount();
+            CallculateInvoiceRemainnigAmount();
             ResetAmountAndRemaining();
             PreviewRemainingAmount(_remainingAmount);
             ShowHideViewInvoiceLabel();
@@ -413,6 +460,7 @@ namespace StoreAndSalesUI.Forms
             LoadPersonInvoices(personId);
             ShowBalance();
             ShowHideAccountDetailsLabel();
+            CalculateBalanceRemainingAmount();
             invoicesComboBox.SelectedIndexChanged += invoicesComboBox_SelectedIndexChanged;
             ShowHideViewInvoiceLabel();
             ResetAmountAndRemaining();
@@ -449,5 +497,10 @@ namespace StoreAndSalesUI.Forms
             ViewInvoice();
         }
 
+        private void VoucherTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnableDisableInvoices();
+            CalculateBalanceRemainingAmount();
+        }
     }
 }
