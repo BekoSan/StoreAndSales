@@ -337,6 +337,7 @@ namespace StoreAndSalesUI.Forms
             if (!isQuantityAvailable(item.Id, itemUnit.UnitId,1))
             {
                 MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                saleDetailsDataGridView.Rows.Remove(saleDetailsDataGridView.Rows[rowIndex]); //TODO: Remove this line
                 return;
             }
             List<ItemUnit> itemUnits = _itemUnitData.GetItemUnits(item.Id).Where(_itemUnit => _itemUnit.UnitId == UsefulMethods.GetDefaultUnitId()).ToList();
