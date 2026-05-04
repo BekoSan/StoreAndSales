@@ -9,30 +9,30 @@ Declare
 BEGIN
 
 --Get Purchase Quantity
-Select @PurchaseQuantity = Sum(Quantity) from PurchaseDetail pd
-inner join
-Purchase p 
-on p.Id = pd.PurchaseId
+Select @PurchaseQuantity = Sum(Quantity) from PurchaseDetail --pd
+--inner join
+--Purchase p 
+--on p.Id = pd.PurchaseId
 Where 
 ItemId = @ItemId
 and 
 UnitId = @UnitId
-and 
-p.PurchaseDate > '2026-05-03 00:00:00.0000000'
+--and 
+--p.PurchaseDate > '2026-05-03 00:00:00.0000000'
 
 Set @PurchaseQuantity = ISNULL(@PurchaseQuantity,0)
 
 --Get Sale Quantity
-Select @SaleQuantity = Sum(Quantity) from SaleDetail sd
-inner join 
-Sale s
-on s.Id = sd.SaleId
+Select @SaleQuantity = Sum(Quantity) from SaleDetail --sd
+--inner join 
+--Sale s
+--on s.Id = sd.SaleId
 Where 
 ItemId = @ItemId
 and 
 UnitId = @UnitId
-and 
-s.SaleDate > '2026-05-03 00:00:00.0000000'
+--and 
+--s.SaleDate > '2026-05-03 00:00:00.0000000'
 
 Set @SaleQuantity = ISNULL(@SaleQuantity,0)
 
