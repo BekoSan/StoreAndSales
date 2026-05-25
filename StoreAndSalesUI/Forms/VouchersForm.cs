@@ -115,6 +115,7 @@ namespace StoreAndSalesUI.Forms
         private void CalculateBalanceRemainingAmount() 
         {
             if (peopleComboBox.SelectedIndex == -1) return;
+            if (VoucherTypeComboBox.SelectedIndex == 3) return;
 
             int personId = peopleComboBox.SelectedValue.ToString().ParseToInt();
 
@@ -195,6 +196,9 @@ namespace StoreAndSalesUI.Forms
                     break;
                 case 2:
                     vType = "C";
+                    break;
+                case 3:
+                    vType = "A";
                     break;
             }
 
@@ -427,7 +431,9 @@ namespace StoreAndSalesUI.Forms
         private void EnableDisableInvoices() 
         {
             if (VoucherTypeComboBox.SelectedIndex == -1) return;
-            _isInvoice = VoucherTypeComboBox.SelectedIndex != 2 ?  true : false ;
+            _isInvoice = 
+                (VoucherTypeComboBox.SelectedIndex != 2 && VoucherTypeComboBox.SelectedIndex != 3)
+                ?  true : false;
             invoicesComboBox.Enabled = _isInvoice;
             invoicesComboBox.SelectedIndex = -1;
         }
@@ -467,6 +473,8 @@ namespace StoreAndSalesUI.Forms
 
         private void amountTextBox_TextChanged(object sender, System.EventArgs e)
         {
+            if (VoucherTypeComboBox.SelectedIndex == 3) return;
+
             CalculatePaid();
             PreviewRemainingAmount(_remainAfterPaid);
         }
