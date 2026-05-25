@@ -12,6 +12,9 @@ namespace StoreAndSalesUI.Forms
         public StoreViewForm()
         {
             InitializeComponent();
+            _items = _itemData.GetAllItems();
+            _units = _unitData.GetAllUnits();
+
             AddItemColumnsToQuantityGrid();
             AddUnitColumnsToQuantityGrid();
             AddQuantityRows();
@@ -78,7 +81,7 @@ namespace StoreAndSalesUI.Forms
 
         private void AddUnitColumnsToQuantityGrid()
         {
-            _units = _unitData.GetAllUnits();
+            
             int counter = 1;
 
             _units.ForEach(unit => 
@@ -101,7 +104,6 @@ namespace StoreAndSalesUI.Forms
 
         private void AddUnitColumnsToPriceGrid()
         {
-            _units = _unitData.GetAllUnits();
             int counter = 1;
 
             _units.ForEach(unit =>
@@ -124,7 +126,6 @@ namespace StoreAndSalesUI.Forms
 
         private void AddUnitColumnsToCalculationsGrid()
         {
-            _units = _unitData.GetAllUnits();
             int counter = 1;
 
             _units.ForEach(unit =>
@@ -160,7 +161,7 @@ namespace StoreAndSalesUI.Forms
 
         private void AddQuantityRows()
         {
-            _items = _itemData.GetAllItems();
+           
 
             _items.ForEach(item => 
             {
@@ -183,7 +184,6 @@ namespace StoreAndSalesUI.Forms
 
         private void AddPriceRows()
         {
-            _items = _itemData.GetAllItems();
 
             _items.ForEach(item =>
             {
@@ -206,7 +206,6 @@ namespace StoreAndSalesUI.Forms
 
         private void AddCalculationsRows()
         {
-            _items = _itemData.GetAllItems();
 
             _items.ForEach(item =>
             {
