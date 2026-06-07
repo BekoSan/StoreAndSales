@@ -183,6 +183,17 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<int, dynamic>("spGetItemQuantity", p, _sql.GetConnectionName()).First();
         }
 
+        public int GetItemQuantityFilter(int itemId, int unitId,DateTime filterDate)
+        {
+            var p = new DynamicParameters();
+
+            p.Add("@ItemId", itemId);
+            p.Add("@UnitId", unitId);
+            p.Add("@FilterDate", filterDate.ToString("yyyy-MM-dd hh:mm:ss"));
+
+            return _sql.LoadData<int, dynamic>("spFilterQuantitiesAfterDate", p, _sql.GetConnectionName()).First();
+        }
+
         ///Get the latest price of unit depend on latest purchase date
         public decimal  GetItemLatestPurchasePrice(int itemId, int unitId)
         {

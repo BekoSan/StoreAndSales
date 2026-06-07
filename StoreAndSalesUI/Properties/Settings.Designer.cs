@@ -33,5 +33,28 @@ namespace StoreAndSalesUI.Properties {
                 return ((string)(this["ProStoreAndSalesDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsQuantityFilter {
+            get {
+                return ((bool)(this["IsQuantityFilter"]));
+            }
+            set {
+                this["IsQuantityFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime FilterDate {
+            get {
+                return ((global::System.DateTime)(this["FilterDate"]));
+            }
+            set {
+                this["FilterDate"] = value;
+            }
+        }
     }
 }

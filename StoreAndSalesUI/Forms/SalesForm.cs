@@ -233,7 +233,9 @@ namespace StoreAndSalesUI.Forms
         {
             bool output = true;
             
-            int itemQuantity = _itemData.GetItemQuantity(itemId,unitId);
+            int itemQuantity = 
+                Properties.Settings.Default.IsQuantityFilter  ?
+               _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate) : _itemData.GetItemQuantity(itemId, unitId); 
 
             if (quantityToTake > itemQuantity) 
             {

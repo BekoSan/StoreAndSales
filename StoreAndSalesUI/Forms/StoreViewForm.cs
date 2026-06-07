@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using StoreAndSalesLibrary.Models;
 using StoreAndSalesUI.Helpers;
 using System.Drawing;
+using System;
 
 namespace StoreAndSalesUI.Forms
 {
@@ -12,6 +13,22 @@ namespace StoreAndSalesUI.Forms
         public StoreViewForm()
         {
             InitializeComponent();
+            FillGrids();
+        }
+
+        #region Private Members
+
+
+        private ItemData _itemData = new ItemData();
+        private List<Item> _items = new List<Item>();
+
+        private UnitData _unitData = new UnitData();
+        private List<Unit> _units = new List<Unit>();
+
+        #endregion
+
+        private void FillGrids() 
+        {
             _items = _itemData.GetAllItems();
             _units = _unitData.GetAllUnits();
 
@@ -28,17 +45,28 @@ namespace StoreAndSalesUI.Forms
             AddCalculationsRows();
         }
 
-        #region Private Members
+        private void ResetStoreQuantity() 
+        {
+            if (MessageBox.Show("هل أنت متأكد من تصفير جميع الكميات في المخزن؟!", "تأكيد تصفير المخزن", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                return;
+            Properties.Settings.Default.IsQuantityFilter = true;
+            Properties.Settings.Default.FilterDate = DateTime.Now;
+            Properties.Settings.Default.Save();
+            FillGrids();
+            MessageBox.Show("تم تصفير كميات المخزن بنجاح","تم",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
 
+        private int  GetItemQuantity(int itemId, int unitId)
+        {
+            int output;
 
-        private ItemData _itemData = new ItemData();
-        private List<Item> _items = new List<Item>();
+            if (Properties.Settings.Default.IsQuantityFilter == false)
+                output = _itemData.GetItemQuantity(itemId, unitId);
+            else
+                output = _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate);
 
-        private UnitData _unitData = new UnitData();
-        private List<Unit> _units = new List<Unit>();
-
-        #endregion
-
+            return output;
+        }
 
         private void AddItemColumnsToQuantityGrid()
         {
@@ -177,7 +205,7 @@ namespace StoreAndSalesUI.Forms
                     int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
                     int unitId = dgvCell.OwningColumn.Tag.ToString().ParseToInt();
 
-                    dgvCell.Value = _itemData.GetItemQuantity(itemId, unitId);
+                    dgvCell.Value = GetItemQuantity(itemId, unitId);
                 }
             }
         }
@@ -226,7 +254,7 @@ namespace StoreAndSalesUI.Forms
 
                     dgvCell.Value = _itemData.GetItemLatestPurchasePrice(itemId, unitId)
                         *
-                        _itemData.GetItemQuantity(itemId, unitId);
+                       GetItemQuantity(itemId, unitId);
                 }
             }
         }
@@ -246,6 +274,10 @@ namespace StoreAndSalesUI.Forms
             return output;
         }
 
+        private void resetQuantityButton_Click(object sender, EventArgs e)
+        {
+            ResetStoreQuantity();
+        }
     }
 
 }
