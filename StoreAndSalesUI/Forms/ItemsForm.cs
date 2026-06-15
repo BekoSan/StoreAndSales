@@ -24,7 +24,8 @@ namespace StoreAndSalesUI.Forms
         private List<ItemUnitView> _itemUnits = new List<ItemUnitView>();
         private List<Item> Items = new List<Item>();
         private UnitData _unitData = new UnitData();
-        
+        private UserLogData _userLogData = new UserLogData();
+
         #endregion
 
         #region Private Methods
@@ -141,11 +142,14 @@ namespace StoreAndSalesUI.Forms
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                   MessageBoxDefaultButton.Button2) == DialogResult.No) return;
                     _itemData.EditItem(_item);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تم تعديل الصنــف {_item.ItemName}");
+
                     MessageBox.Show("تم التعديل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     _itemData.CreateItem(_item);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تمت إضافة الصنـــف {_item.ItemName}");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -165,6 +169,7 @@ namespace StoreAndSalesUI.Forms
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2) == DialogResult.No) return;
                 _itemData.ArchiveItem(_item.Id);
+                _userLogData.AddLog(LoginDataHelper.UserId, $"تم حـــذف الصنــف {_item.ItemName}");
                 MessageBox.Show("تم الحذف بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
