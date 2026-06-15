@@ -19,6 +19,7 @@ namespace StoreAndSalesUI.Forms
         private UnitData _unitData = new UnitData();
         private Unit _unit = new Unit();
         private List<Unit> Units = new List<Unit>();
+        private UserLogData _userLogData = new UserLogData();
 
         #endregion
 
@@ -76,11 +77,13 @@ namespace StoreAndSalesUI.Forms
                  MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                  MessageBoxDefaultButton.Button2) == DialogResult.No) return;
                     _unitData.EditUnit(_unit);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تم تعديل الوحدة {_unit.UnitName}");
                     MessageBox.Show("تم التعديل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     _unitData.CreateUnit(_unit);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تمت إضافة الوحدة {_unit.UnitName}");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
