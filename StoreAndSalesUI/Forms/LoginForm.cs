@@ -97,6 +97,7 @@ namespace StoreAndSalesUI.Forms
                     {;
                         Hide();
                         _userLogData.AddLog(_user.Id, "تم تسجيل الدخول للنظام");
+                        LoginDataHelper.UserId = _user.Id;
                         LoadSession(_user.RoleId);
                         ClearForm();
                     }
