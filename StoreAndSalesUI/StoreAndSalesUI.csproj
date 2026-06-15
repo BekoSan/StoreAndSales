@@ -178,6 +178,7 @@
       <DependentUpon>VouchersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\LoginDataHelper.cs" />
     <Compile Include="Helpers\StoreDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
