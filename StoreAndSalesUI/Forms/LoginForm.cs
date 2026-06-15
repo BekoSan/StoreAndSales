@@ -25,6 +25,7 @@ namespace StoreAndSalesUI.Forms
 
         private UserData _userData = new UserData();
         private UserModel _user = new UserModel();
+        private UserLogData _userLogData= new UserLogData();
 
         #endregion
 
@@ -95,7 +96,8 @@ namespace StoreAndSalesUI.Forms
                     if (IsUserExsist())
                     {;
                         Hide();
-                        LoadSession(_user.RoleId); 
+                        _userLogData.AddLog(_user.Id, "تم تسجيل الدخول للنظام");
+                        LoadSession(_user.RoleId);
                         ClearForm();
                     }
                     else
