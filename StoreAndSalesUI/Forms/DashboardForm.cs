@@ -93,5 +93,10 @@ namespace StoreAndSalesUI.Forms
         {
             new DatabaseAdminForm().ShowDialog();
         }
+
+        private void userLogsButton_Click(object sender, EventArgs e)
+        {
+            new UserLogsForm().ShowDialog();
+        }
     }
 }

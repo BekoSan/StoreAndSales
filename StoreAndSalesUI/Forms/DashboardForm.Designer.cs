@@ -42,6 +42,7 @@
             this.signOutButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backupFormButton = new System.Windows.Forms.Button();
+            this.userLogsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,6 +242,22 @@
             this.backupFormButton.UseVisualStyleBackColor = false;
             this.backupFormButton.Click += new System.EventHandler(this.backupFormButton_Click);
             // 
+            // userLogsButton
+            // 
+            this.userLogsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.userLogsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.userLogsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
+            this.userLogsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.userLogsButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.userLogsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.userLogsButton.Location = new System.Drawing.Point(191, 314);
+            this.userLogsButton.Name = "userLogsButton";
+            this.userLogsButton.Size = new System.Drawing.Size(150, 33);
+            this.userLogsButton.TabIndex = 12;
+            this.userLogsButton.Text = "سجلات الإستخدام";
+            this.userLogsButton.UseVisualStyleBackColor = false;
+            this.userLogsButton.Click += new System.EventHandler(this.userLogsButton_Click);
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -248,6 +265,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.userLogsButton);
             this.Controls.Add(this.backupFormButton);
             this.Controls.Add(this.signOutButton);
             this.Controls.Add(this.usersButton);
@@ -293,6 +311,7 @@
         private System.Windows.Forms.Button signOutButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button backupFormButton;
+        private System.Windows.Forms.Button userLogsButton;
     }
 }
 
