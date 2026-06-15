@@ -139,6 +139,7 @@
     <Build Include="dbo\StoredProcedures\spEditPurchaseDisscount.sql" />
     <Build Include="dbo\StoredProcedures\spEditSaleDisscount.sql" />
     <Build Include="dbo\StoredProcedures\spFilterQuantitiesAfterDate.sql" />
+    <Build Include="dbo\Tables\UserLog.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
