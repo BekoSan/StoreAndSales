@@ -99,6 +99,12 @@
     <Compile Include="Forms\DatabaseAdminForm.Designer.cs">
       <DependentUpon>DatabaseAdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserLogsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserLogsForm.Designer.cs">
+      <DependentUpon>UserLogsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,7 @@
       <DependentUpon>StoreDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Helpers\UsefulMethods.cs" />
+    <Compile Include="Helpers\UserLogEntry.cs" />
     <Compile Include="Interfaces\ICustomerAccountReportRequester.cs" />
     <Compile Include="Interfaces\IItemRequester.cs" />
     <Compile Include="Interfaces\ILogout.cs" />
@@ -231,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DatabaseAdminForm.resx">
       <DependentUpon>DatabaseAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserLogsForm.resx">
+      <DependentUpon>UserLogsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
