@@ -31,6 +31,7 @@ namespace StoreAndSalesUI.Forms
         private List<UserModel> _users = new List<UserModel>();
         private List<UserRoleModel> _roles = new List<UserRoleModel>();
         private bool _isUserSelected = false;
+        private UserLogData _userLogData = new UserLogData();
 
         #endregion
 
@@ -166,10 +167,12 @@ namespace StoreAndSalesUI.Forms
                     if (_isUserSelected)
                     {
                         _userData.EditUser(_user);
+                        _userLogData.AddLog(LoginDataHelper.UserId, $"تم تعديل المستخدم {_user.UserName}");
                     }
                     else
                     {
                         _userData.CreateUser(_user);
+                        _userLogData.AddLog(LoginDataHelper.UserId, $"تمت إضافة المستخدم {_user.UserName}");
                     }
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearForm();
@@ -198,6 +201,7 @@ namespace StoreAndSalesUI.Forms
             try
             {
                 _userData.DeleteUser(_user.Id);
+                _userLogData.AddLog(LoginDataHelper.UserId, $"تم حـــذف المستخدم {_user.UserName}");
                 MessageBox.Show("تم الحــذف بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ClearForm();
