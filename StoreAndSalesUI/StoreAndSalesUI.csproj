@@ -184,7 +184,6 @@
       <DependentUpon>StoreDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Helpers\UsefulMethods.cs" />
-    <Compile Include="Helpers\UserLogEntry.cs" />
     <Compile Include="Interfaces\ICustomerAccountReportRequester.cs" />
     <Compile Include="Interfaces\IItemRequester.cs" />
     <Compile Include="Interfaces\ILogout.cs" />
