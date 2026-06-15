@@ -35,7 +35,8 @@ namespace StoreAndSalesUI.Forms
         private VoucherData _voucherData = new VoucherData();
         private Voucher _voucher = new Voucher();
         private ChooseSaleForm _chooseSaleForm;
-
+        private UserLogData _userLogData = new UserLogData();
+        
         #endregion
 
         #region Private Methods
@@ -189,6 +190,7 @@ namespace StoreAndSalesUI.Forms
             {
                 _saleData.CreateSale(_sale);
                 SaveSaleVoucher(_sale.Id);
+                _userLogData.AddLog(LoginDataHelper.UserId,$"عملية بيع أصناف للعميل { customersComboBox.Text }");
                 MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
