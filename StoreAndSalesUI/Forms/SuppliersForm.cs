@@ -21,6 +21,7 @@ namespace StoreAndSalesUI.Forms
         private SupplierData _supplierData = new SupplierData();
         private Supplier _supplier = new Supplier();
         private List<Supplier> Suppliers = new List<Supplier>();
+        private UserLogData _userLogData = new UserLogData();
 
         #endregion
 
@@ -100,11 +101,15 @@ namespace StoreAndSalesUI.Forms
               MessageBoxButtons.YesNo, MessageBoxIcon.Question,
               MessageBoxDefaultButton.Button2) == DialogResult.No) return;
                     _supplierData.EditSupplier(_supplier);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تم تعديل المورد {_supplier.SupplierName}");
+
                     MessageBox.Show("تم التعديل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     _supplierData.CreateSupplier(_supplier);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تمت إضافة المورد {_supplier.SupplierName}");
+
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -142,6 +147,7 @@ namespace StoreAndSalesUI.Forms
             try
             {
                 _supplierData.ArchiveSupplier(_supplier.Id);
+                _userLogData.AddLog(LoginDataHelper.UserId, $"تم حـــذف المورد {_supplier.SupplierName}");
                 MessageBox.Show("تم الحذف بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
