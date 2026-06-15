@@ -22,6 +22,7 @@ namespace StoreAndSalesUI.Forms
         private CustomerData _customerData = new CustomerData();
         private Customer _customer = new Customer();
         private List<Customer> Customers = new List<Customer>();
+        private UserLogData _userLogData = new UserLogData();
 
         #endregion
 
@@ -99,11 +100,13 @@ namespace StoreAndSalesUI.Forms
               MessageBoxButtons.YesNo, MessageBoxIcon.Question,
               MessageBoxDefaultButton.Button2) == DialogResult.No) return;
                     _customerData.EditCustomer(_customer);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تم تعديل بانات العميل {_customer.CustomerName}");
                     MessageBox.Show("تم التعديل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     _customerData.CreateCustomer(_customer);
+                    _userLogData.AddLog(LoginDataHelper.UserId,$"تمت إضافة العميل { _customer.CustomerName }");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -141,6 +144,7 @@ namespace StoreAndSalesUI.Forms
             try
             {
                 _customerData.ArchiveCustomer(_customer.Id);
+                _userLogData.AddLog(LoginDataHelper.UserId, $"تم حـــذف العميل {_customer.CustomerName}");
                 MessageBox.Show("تم الحذف بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
