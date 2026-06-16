@@ -188,10 +188,11 @@ namespace StoreAndSalesUI.Forms
         {
             try
             {
-                _saleData.CreateSale(_sale);
-                SaveSaleVoucher(_sale.Id);
-                _userLogData.AddLog(LoginDataHelper.UserId,$"عملية بيع أصناف للعميل { customersComboBox.Text }");
-                MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (_saleData.CreateSale(_sale)){
+                    SaveSaleVoucher(_sale.Id);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"عملية بيع أصناف للعميل {customersComboBox.Text}");
+                    MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {

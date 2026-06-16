@@ -25,7 +25,7 @@ namespace StoreAndSalesLibrary.DataAccess
             }
         }
 
-        public void CreateSale(Sale sale)
+        public bool CreateSale(Sale sale)
         {
             _transaction = _connection.BeginTransaction();
             
@@ -48,13 +48,15 @@ namespace StoreAndSalesLibrary.DataAccess
                 sale.Id = _saleId;
             }
 
-            CreateSaleDetails(sale.SaleDetails);
+           return CreateSaleDetails(sale.SaleDetails);
         }
 
-        public void CreateSaleDetails(List<SaleDetail> SaleDetails)
+        public bool CreateSaleDetails(List<SaleDetail> SaleDetails)
         {
+            bool output = true;
             try
             {
+                
                 SaleDetails.ForEach(SaleDetail =>
                 {
 
@@ -77,8 +79,10 @@ namespace StoreAndSalesLibrary.DataAccess
             catch
             {
                 _transaction.Rollback();
+                output=false;
                 //TODO: Log the Exception
             }
+            return output;
 
         }
         public List<Sale> GetAllSales()
