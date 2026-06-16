@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
             this.itemsDataGridView = new System.Windows.Forms.DataGridView();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchLabel = new System.Windows.Forms.Label();
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
             this.itemsListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // itemsListGroupBox
             // 
+            this.itemsListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsListGroupBox.Controls.Add(this.itemsDataGridView);
-            this.itemsListGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.itemsListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.itemsListGroupBox.Location = new System.Drawing.Point(0, 109);
             this.itemsListGroupBox.Name = "itemsListGroupBox";
@@ -82,6 +84,39 @@
             this.itemsDataGridView.TabIndex = 0;
             this.itemsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itemsDataGridView_CellContentClick);
             // 
+            // idColumn
+            // 
+            this.idColumn.DataPropertyName = "Id";
+            this.idColumn.HeaderText = "ID";
+            this.idColumn.MinimumWidth = 6;
+            this.idColumn.Name = "idColumn";
+            this.idColumn.ReadOnly = true;
+            this.idColumn.Visible = false;
+            // 
+            // selectColumn
+            // 
+            this.selectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle13.NullValue = "إختيار";
+            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            this.selectColumn.HeaderText = "...";
+            this.selectColumn.MinimumWidth = 6;
+            this.selectColumn.Name = "selectColumn";
+            this.selectColumn.ReadOnly = true;
+            this.selectColumn.Width = 70;
+            // 
+            // itemNameColumn
+            // 
+            this.itemNameColumn.DataPropertyName = "ItemName";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.itemNameColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            this.itemNameColumn.HeaderText = "إسم الصنف";
+            this.itemNameColumn.MinimumWidth = 6;
+            this.itemNameColumn.Name = "itemNameColumn";
+            this.itemNameColumn.ReadOnly = true;
+            // 
             // titleLabel
             // 
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,6 +130,7 @@
             // 
             // searchTextBox
             // 
+            this.searchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchTextBox.Location = new System.Drawing.Point(53, 74);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(313, 29);
@@ -103,6 +139,7 @@
             // 
             // searchLabel
             // 
+            this.searchLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchLabel.AutoSize = true;
             this.searchLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.searchLabel.Location = new System.Drawing.Point(5, 78);
@@ -110,39 +147,6 @@
             this.searchLabel.Size = new System.Drawing.Size(45, 22);
             this.searchLabel.TabIndex = 11;
             this.searchLabel.Text = "بحــث";
-            // 
-            // idColumn
-            // 
-            this.idColumn.DataPropertyName = "Id";
-            this.idColumn.HeaderText = "ID";
-            this.idColumn.MinimumWidth = 6;
-            this.idColumn.Name = "idColumn";
-            this.idColumn.ReadOnly = true;
-            this.idColumn.Visible = false;
-            // 
-            // selectColumn
-            // 
-            this.selectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle1.NullValue = "إختيار";
-            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.selectColumn.HeaderText = "...";
-            this.selectColumn.MinimumWidth = 6;
-            this.selectColumn.Name = "selectColumn";
-            this.selectColumn.ReadOnly = true;
-            this.selectColumn.Width = 70;
-            // 
-            // itemNameColumn
-            // 
-            this.itemNameColumn.DataPropertyName = "ItemName";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.itemNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.itemNameColumn.HeaderText = "إسم الصنف";
-            this.itemNameColumn.MinimumWidth = 6;
-            this.itemNameColumn.Name = "itemNameColumn";
-            this.itemNameColumn.ReadOnly = true;
             // 
             // ChooseItemForm
             // 

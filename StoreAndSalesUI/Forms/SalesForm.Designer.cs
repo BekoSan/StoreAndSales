@@ -28,12 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
+            this.printButton = new System.Windows.Forms.Button();
+            this.saleDetailsGroupBox = new System.Windows.Forms.GroupBox();
+            this.addItemButton = new System.Windows.Forms.Button();
+            this.saleDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.saleDataGroupBox = new System.Windows.Forms.GroupBox();
             this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
             this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
@@ -47,25 +62,220 @@
             this.totalTextBox = new System.Windows.Forms.TextBox();
             this.purchaseIdLabel = new System.Windows.Forms.Label();
             this.saleIdTextBox = new System.Windows.Forms.TextBox();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.saleDetailsGroupBox = new System.Windows.Forms.GroupBox();
-            this.addItemButton = new System.Windows.Forms.Button();
-            this.saleDetailsDataGridView = new System.Windows.Forms.DataGridView();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
-            this.printButton = new System.Windows.Forms.Button();
-            this.saleDataGroupBox.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.saleDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDataGridView)).BeginInit();
+            this.saleDataGroupBox.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
+            this.titleLabel.Location = new System.Drawing.Point(664, 6);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(182, 66);
+            this.titleLabel.TabIndex = 1;
+            this.titleLabel.Text = "المبيعات";
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.searchButton.Location = new System.Drawing.Point(588, 570);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(118, 33);
+            this.searchButton.TabIndex = 7;
+            this.searchButton.Text = "بحـــث";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.saveButton.Location = new System.Drawing.Point(464, 570);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(118, 33);
+            this.saveButton.TabIndex = 6;
+            this.saveButton.Text = "حفــــظ";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // newButton
+            // 
+            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.newButton.Location = new System.Drawing.Point(340, 570);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(118, 33);
+            this.newButton.TabIndex = 5;
+            this.newButton.Text = "جديد";
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // printButton
+            // 
+            this.printButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.printButton.Enabled = false;
+            this.printButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.printButton.Location = new System.Drawing.Point(710, 570);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(118, 33);
+            this.printButton.TabIndex = 9;
+            this.printButton.Text = "طباعة";
+            this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
+            // 
+            // saleDetailsGroupBox
+            // 
+            this.saleDetailsGroupBox.Controls.Add(this.addItemButton);
+            this.saleDetailsGroupBox.Controls.Add(this.saleDetailsDataGridView);
+            this.saleDetailsGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.saleDetailsGroupBox.Location = new System.Drawing.Point(452, 232);
+            this.saleDetailsGroupBox.Name = "saleDetailsGroupBox";
+            this.saleDetailsGroupBox.Size = new System.Drawing.Size(634, 323);
+            this.saleDetailsGroupBox.TabIndex = 11;
+            this.saleDetailsGroupBox.TabStop = false;
+            this.saleDetailsGroupBox.Text = "تفاصيل الفاتورة";
+            // 
+            // addItemButton
+            // 
+            this.addItemButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addItemButton.FlatAppearance.BorderSize = 0;
+            this.addItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addItemButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.addItemButton.Location = new System.Drawing.Point(603, 21);
+            this.addItemButton.Name = "addItemButton";
+            this.addItemButton.Size = new System.Drawing.Size(25, 25);
+            this.addItemButton.TabIndex = 4;
+            this.addItemButton.Text = "+";
+            this.addItemButton.UseVisualStyleBackColor = true;
+            this.addItemButton.Visible = false;
+            // 
+            // saleDetailsDataGridView
+            // 
+            this.saleDetailsDataGridView.AllowUserToAddRows = false;
+            this.saleDetailsDataGridView.AllowUserToDeleteRows = false;
+            this.saleDetailsDataGridView.AllowUserToResizeColumns = false;
+            this.saleDetailsDataGridView.AllowUserToResizeRows = false;
+            this.saleDetailsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.saleDetailsDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.saleDetailsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.saleDetailsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.saleDetailsDataGridView.ColumnHeadersHeight = 29;
+            this.saleDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.saleDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdColumn,
+            this.itemNameColumn,
+            this.unitColumn,
+            this.quantityColumn,
+            this.unitPriceColumn,
+            this.unitIdColumn,
+            this.colDelete});
+            this.saleDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.saleDetailsDataGridView.EnableHeadersVisualStyles = false;
+            this.saleDetailsDataGridView.GridColor = System.Drawing.Color.Black;
+            this.saleDetailsDataGridView.Location = new System.Drawing.Point(3, 48);
+            this.saleDetailsDataGridView.MultiSelect = false;
+            this.saleDetailsDataGridView.Name = "saleDetailsDataGridView";
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            this.saleDetailsDataGridView.RowHeadersVisible = false;
+            this.saleDetailsDataGridView.RowHeadersWidth = 51;
+            this.saleDetailsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            this.saleDetailsDataGridView.RowTemplate.Height = 24;
+            this.saleDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.saleDetailsDataGridView.Size = new System.Drawing.Size(628, 272);
+            this.saleDetailsDataGridView.TabIndex = 3;
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Visible = false;
+            // 
+            // itemNameColumn
+            // 
+            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.itemNameColumn.HeaderText = "الصـــنف";
+            this.itemNameColumn.MinimumWidth = 6;
+            this.itemNameColumn.Name = "itemNameColumn";
+            this.itemNameColumn.ReadOnly = true;
+            this.itemNameColumn.Width = 290;
+            // 
+            // unitColumn
+            // 
+            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.unitColumn.HeaderText = "الوحــدة";
+            this.unitColumn.MinimumWidth = 6;
+            this.unitColumn.Name = "unitColumn";
+            this.unitColumn.ReadOnly = true;
+            this.unitColumn.Width = 125;
+            // 
+            // quantityColumn
+            // 
+            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.NullValue = "N0";
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            this.quantityColumn.HeaderText = "الكمــية";
+            this.quantityColumn.MinimumWidth = 6;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.Width = 60;
+            // 
+            // unitPriceColumn
+            // 
+            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.Format = "N0";
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle21;
+            this.unitPriceColumn.HeaderText = "السعـــر";
+            this.unitPriceColumn.MinimumWidth = 6;
+            this.unitPriceColumn.Name = "unitPriceColumn";
+            this.unitPriceColumn.ReadOnly = true;
+            this.unitPriceColumn.Width = 90;
+            // 
+            // unitIdColumn
+            // 
+            this.unitIdColumn.HeaderText = "unitId";
+            this.unitIdColumn.MinimumWidth = 6;
+            this.unitIdColumn.Name = "unitIdColumn";
+            this.unitIdColumn.Visible = false;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.NullValue = "حذف";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle22;
+            this.colDelete.HeaderText = "...";
+            this.colDelete.MinimumWidth = 6;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Width = 50;
             // 
             // saleDataGroupBox
             // 
@@ -82,12 +292,12 @@
             this.saleDataGroupBox.Controls.Add(this.purchaseIdLabel);
             this.saleDataGroupBox.Controls.Add(this.saleIdTextBox);
             this.saleDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.saleDataGroupBox.Location = new System.Drawing.Point(11, 74);
+            this.saleDataGroupBox.Location = new System.Drawing.Point(455, 63);
             this.saleDataGroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saleDataGroupBox.Name = "saleDataGroupBox";
             this.saleDataGroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saleDataGroupBox.Size = new System.Drawing.Size(631, 162);
-            this.saleDataGroupBox.TabIndex = 0;
+            this.saleDataGroupBox.TabIndex = 10;
             this.saleDataGroupBox.TabStop = false;
             this.saleDataGroupBox.Text = "البيانات الأساسية";
             // 
@@ -179,7 +389,6 @@
             this.disscountTextBox.Size = new System.Drawing.Size(96, 27);
             this.disscountTextBox.TabIndex = 10;
             this.disscountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.disscountTextBox.TextChanged += new System.EventHandler(this.disscountTextBox_TextChanged);
             // 
             // totalLabel
             // 
@@ -230,218 +439,12 @@
             this.saleIdTextBox.TabIndex = 6;
             this.saleIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // titleLabel
+            // panel1
             // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(236, 11);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(182, 66);
-            this.titleLabel.TabIndex = 1;
-            this.titleLabel.Text = "المبيعات";
-            // 
-            // saleDetailsGroupBox
-            // 
-            this.saleDetailsGroupBox.Controls.Add(this.addItemButton);
-            this.saleDetailsGroupBox.Controls.Add(this.saleDetailsDataGridView);
-            this.saleDetailsGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.saleDetailsGroupBox.Location = new System.Drawing.Point(8, 243);
-            this.saleDetailsGroupBox.Name = "saleDetailsGroupBox";
-            this.saleDetailsGroupBox.Size = new System.Drawing.Size(634, 323);
-            this.saleDetailsGroupBox.TabIndex = 2;
-            this.saleDetailsGroupBox.TabStop = false;
-            this.saleDetailsGroupBox.Text = "تفاصيل الفاتورة";
-            // 
-            // addItemButton
-            // 
-            this.addItemButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addItemButton.FlatAppearance.BorderSize = 0;
-            this.addItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addItemButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.addItemButton.Location = new System.Drawing.Point(603, 21);
-            this.addItemButton.Name = "addItemButton";
-            this.addItemButton.Size = new System.Drawing.Size(25, 25);
-            this.addItemButton.TabIndex = 4;
-            this.addItemButton.Text = "+";
-            this.addItemButton.UseVisualStyleBackColor = true;
-            this.addItemButton.Click += new System.EventHandler(this.addItemButton_Click);
-            // 
-            // saleDetailsDataGridView
-            // 
-            this.saleDetailsDataGridView.AllowUserToAddRows = false;
-            this.saleDetailsDataGridView.AllowUserToDeleteRows = false;
-            this.saleDetailsDataGridView.AllowUserToResizeColumns = false;
-            this.saleDetailsDataGridView.AllowUserToResizeRows = false;
-            this.saleDetailsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.saleDetailsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.saleDetailsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.saleDetailsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.saleDetailsDataGridView.ColumnHeadersHeight = 29;
-            this.saleDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.saleDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdColumn,
-            this.itemNameColumn,
-            this.unitColumn,
-            this.quantityColumn,
-            this.unitPriceColumn,
-            this.unitIdColumn,
-            this.colDelete});
-            this.saleDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.saleDetailsDataGridView.EnableHeadersVisualStyles = false;
-            this.saleDetailsDataGridView.GridColor = System.Drawing.Color.Black;
-            this.saleDetailsDataGridView.Location = new System.Drawing.Point(3, 48);
-            this.saleDetailsDataGridView.MultiSelect = false;
-            this.saleDetailsDataGridView.Name = "saleDetailsDataGridView";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.saleDetailsDataGridView.RowHeadersVisible = false;
-            this.saleDetailsDataGridView.RowHeadersWidth = 51;
-            this.saleDetailsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.saleDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.saleDetailsDataGridView.RowTemplate.Height = 24;
-            this.saleDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.saleDetailsDataGridView.Size = new System.Drawing.Size(628, 272);
-            this.saleDetailsDataGridView.TabIndex = 3;
-            this.saleDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDetailsDataGridView_CellContentClick);
-            this.saleDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDetailsDataGridView_CellValueChanged);
-            this.saleDetailsDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.saleDetailsDataGridView_RowPostPaint);
-            this.saleDetailsDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.saleDetailsDataGridView_RowsAdded);
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Visible = false;
-            // 
-            // itemNameColumn
-            // 
-            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.itemNameColumn.HeaderText = "الصـــنف";
-            this.itemNameColumn.MinimumWidth = 6;
-            this.itemNameColumn.Name = "itemNameColumn";
-            this.itemNameColumn.ReadOnly = true;
-            this.itemNameColumn.Width = 290;
-            // 
-            // unitColumn
-            // 
-            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.unitColumn.HeaderText = "الوحــدة";
-            this.unitColumn.MinimumWidth = 6;
-            this.unitColumn.Name = "unitColumn";
-            this.unitColumn.ReadOnly = true;
-            this.unitColumn.Width = 125;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "N0";
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.quantityColumn.HeaderText = "الكمــية";
-            this.quantityColumn.MinimumWidth = 6;
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.Width = 60;
-            // 
-            // unitPriceColumn
-            // 
-            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "N0";
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.unitPriceColumn.HeaderText = "السعـــر";
-            this.unitPriceColumn.MinimumWidth = 6;
-            this.unitPriceColumn.Name = "unitPriceColumn";
-            this.unitPriceColumn.ReadOnly = true;
-            this.unitPriceColumn.Width = 90;
-            // 
-            // unitIdColumn
-            // 
-            this.unitIdColumn.HeaderText = "unitId";
-            this.unitIdColumn.MinimumWidth = 6;
-            this.unitIdColumn.Name = "unitIdColumn";
-            this.unitIdColumn.Visible = false;
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = "حذف";
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colDelete.HeaderText = "...";
-            this.colDelete.MinimumWidth = 6;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.Width = 50;
-            // 
-            // searchButton
-            // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.searchButton.Location = new System.Drawing.Point(331, 576);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(118, 33);
-            this.searchButton.TabIndex = 7;
-            this.searchButton.Text = "بحـــث";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(207, 576);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(118, 33);
-            this.saveButton.TabIndex = 6;
-            this.saveButton.Text = "حفــــظ";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // newButton
-            // 
-            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(83, 576);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(118, 33);
-            this.newButton.TabIndex = 5;
-            this.newButton.Text = "جديد";
-            this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
-            // printButton
-            // 
-            this.printButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.printButton.Enabled = false;
-            this.printButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.printButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.printButton.Location = new System.Drawing.Point(453, 576);
-            this.printButton.Name = "printButton";
-            this.printButton.Size = new System.Drawing.Size(118, 33);
-            this.printButton.TabIndex = 9;
-            this.printButton.Text = "طباعة";
-            this.printButton.UseVisualStyleBackColor = true;
-            this.printButton.Click += new System.EventHandler(this.printButton_Click);
+            this.panel1.Location = new System.Drawing.Point(12, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(434, 541);
+            this.panel1.TabIndex = 12;
             // 
             // SalesForm
             // 
@@ -449,14 +452,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(654, 615);
+            this.ClientSize = new System.Drawing.Size(1105, 615);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.saleDetailsGroupBox);
+            this.Controls.Add(this.saleDataGroupBox);
             this.Controls.Add(this.printButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
-            this.Controls.Add(this.saleDetailsGroupBox);
             this.Controls.Add(this.titleLabel);
-            this.Controls.Add(this.saleDataGroupBox);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -469,37 +473,24 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "المبيعات";
             this.Load += new System.EventHandler(this.SalesForm_Load);
-            this.saleDataGroupBox.ResumeLayout(false);
-            this.saleDataGroupBox.PerformLayout();
             this.saleDetailsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDataGridView)).EndInit();
+            this.saleDataGroupBox.ResumeLayout(false);
+            this.saleDataGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox saleDataGroupBox;
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Label purchaseIdLabel;
-        private System.Windows.Forms.TextBox saleIdTextBox;
-        private System.Windows.Forms.Label disscountLabel;
-        private System.Windows.Forms.TextBox disscountTextBox;
-        private System.Windows.Forms.Label totalLabel;
-        private System.Windows.Forms.TextBox totalTextBox;
-        private System.Windows.Forms.ComboBox customersComboBox;
-        private System.Windows.Forms.Label customerLabel;
-        private System.Windows.Forms.GroupBox saleDetailsGroupBox;
-        private System.Windows.Forms.DataGridView saleDetailsDataGridView;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.Button printButton;
+        private System.Windows.Forms.GroupBox saleDetailsGroupBox;
         private System.Windows.Forms.Button addItemButton;
-        private System.Windows.Forms.Label notesLabel;
-        private System.Windows.Forms.TextBox notesTextBox;
-        private System.Windows.Forms.CheckBox paymentTypeCheckBox;
-        private System.Windows.Forms.CheckBox isDisscountCheckBox;
+        private System.Windows.Forms.DataGridView saleDetailsDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitColumn;
@@ -507,6 +498,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
-        private System.Windows.Forms.Button printButton;
+        private System.Windows.Forms.GroupBox saleDataGroupBox;
+        private System.Windows.Forms.CheckBox isDisscountCheckBox;
+        private System.Windows.Forms.CheckBox paymentTypeCheckBox;
+        private System.Windows.Forms.Label notesLabel;
+        private System.Windows.Forms.TextBox notesTextBox;
+        private System.Windows.Forms.Label customerLabel;
+        private System.Windows.Forms.ComboBox customersComboBox;
+        private System.Windows.Forms.Label disscountLabel;
+        private System.Windows.Forms.TextBox disscountTextBox;
+        private System.Windows.Forms.Label totalLabel;
+        private System.Windows.Forms.TextBox totalTextBox;
+        private System.Windows.Forms.Label purchaseIdLabel;
+        private System.Windows.Forms.TextBox saleIdTextBox;
+        private System.Windows.Forms.Panel panel1;
     }
 }

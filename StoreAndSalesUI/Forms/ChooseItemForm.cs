@@ -60,7 +60,7 @@ namespace StoreAndSalesUI.Forms
         {
             if (e.ColumnIndex != 1) return;
             SelectItem();
-            Close();
+            //Close();
         }
 
         private void ChooseItemForm_Load(object sender, System.EventArgs e)
