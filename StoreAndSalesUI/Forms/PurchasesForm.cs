@@ -186,10 +186,11 @@ namespace StoreAndSalesUI.Forms
         {
             try
             {
-                _purchaseData.CreatePurchase(_purchase);
-                SavePurchaseVoucher(_purchase.Id);
-                _userLogData.AddLog(LoginDataHelper.UserId, $"تم تسجيل عملية شراء أصناف من المورد {suppliersComboBox.Text} بقيمة {string.Format(totalTextBox.Text,"#,0") } ");
-                MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (_purchaseData.CreatePurchase(_purchase)){
+                    SavePurchaseVoucher(_purchase.Id);
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تم تسجيل عملية شراء أصناف من المورد {suppliersComboBox.Text} بقيمة {string.Format(totalTextBox.Text, "#,0")} ");
+                    MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
