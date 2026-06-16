@@ -5,6 +5,7 @@ using StoreAndSalesUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
@@ -42,6 +43,7 @@ namespace StoreAndSalesUI.Forms
         private Voucher _voucher = new Voucher();
         private IVouchersRequetser CallingForm;
         private bool _isInvoice = false;
+        private UserLogData _userLogData = new UserLogData();
 
         #endregion
 
@@ -336,7 +338,7 @@ namespace StoreAndSalesUI.Forms
                     if (CallingForm != null && CallingForm.GetType().ToString().Contains("Supplier")) CallingForm.UpdatePersonBalance(supplierId, newBalance);
 
                 }
-
+                LogVoucher(_voucher, newBalance);
                 MessageBox.Show("تم تحديث الرصيد بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -436,6 +438,34 @@ namespace StoreAndSalesUI.Forms
                 ?  true : false;
             invoicesComboBox.Enabled = _isInvoice;
             invoicesComboBox.SelectedIndex = -1;
+        }
+
+        private void LogVoucher(Voucher voucher,decimal newBalance) 
+        {
+            string vouhcerLog = string.Empty;
+
+            string personText;
+            if (customerVocuherRadioButton.Checked)
+                personText = "عميل";
+            else
+                personText = "مورد";
+
+            switch (voucher.VoucherType)
+            {
+                case "R":
+                    vouhcerLog = $"تم إستلام مبلغ {string.Format(amountTextBox.Text, "#,0")} من ال{personText} {peopleComboBox.Text} ، الرصيد بعد العملية {newBalance.ToString("#,0")} ";
+                    break;
+                case "P":
+                    vouhcerLog = $"تم سداد مبلغ {string.Format(amountTextBox.Text.ToString() , "#,0")} لل{personText} {peopleComboBox.Text} ، الرصيد بعد العملية {newBalance.ToString("#,0")} ";
+                    break;
+                case "C":
+                    vouhcerLog = $"تمت عملية خصم نقدي بمبلغ {string.Format(amountTextBox.Text, "#,0")}  من ال{personText}  {peopleComboBox.Text}  ، الرصيد بعد العملية  {newBalance.ToString("#,0")} ";
+                    break;
+                case "A":
+                    vouhcerLog = $"تمت عملية إضافة نقدية بمبلغ {string.Format(amountTextBox.Text, "#,0")}  لل{personText}  {peopleComboBox.Text}  ، الرصيد بعد العملية  {newBalance.ToString("#,0")} ";
+                    break;
+            }
+            _userLogData.AddLog(LoginDataHelper.UserId,vouhcerLog);
         }
 
         #endregion
