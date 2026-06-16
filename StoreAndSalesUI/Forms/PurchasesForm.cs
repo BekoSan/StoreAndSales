@@ -78,7 +78,14 @@ namespace StoreAndSalesUI.Forms
 
         private void AddItemToPurchase()
         {
-            new ChooseItemForm(this).ShowDialog();
+            //new ChooseItemForm(this).ShowDialog();
+            ChooseItemForm chooseItemForm = new ChooseItemForm(this);
+            chooseItemForm.TopLevel = false;
+            chooseItemForm.Visible = true;
+            chooseItemForm.ControlBox = false;
+            chooseItemForm.Dock = DockStyle.Fill;
+            chooseItemForm.FormBorderStyle = FormBorderStyle.None;
+            panel1.Controls.Add(chooseItemForm);
         }
 
         private void ChangeUnit()
@@ -289,6 +296,7 @@ namespace StoreAndSalesUI.Forms
         {
             LoadSuppliers();
             LoadNextPurchaseId();
+            AddItemToPurchase(); 
         }
 
         public void AddItem(Item item)
