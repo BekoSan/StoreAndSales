@@ -24,5 +24,7 @@ namespace StoreAndSalesLibrary.Models
 
         public bool Status { get; set; }
 
+        public int UserId { get; set; }
+
     }
 }

@@ -9,5 +9,7 @@
     [PaymentType] BIT NOT NULL DEFAULT 0, 
     [IsDisscount] BIT NOT NULL DEFAULT 0, 
     [Status] BIT NOT NULL DEFAULT 1, 
-    CONSTRAINT [FK_Purchase_Supplier] FOREIGN KEY (SupplierId) REFERENCES [Supplier]([Id])
+    [UserId] INT NULL, 
+    CONSTRAINT [FK_Purchase_Supplier] FOREIGN KEY (SupplierId) REFERENCES [Supplier]([Id]), 
+    CONSTRAINT [FK_Purchase_Users] FOREIGN KEY (UserId) REFERENCES [Users]([Id])
 )
