@@ -5,6 +5,7 @@ using StoreAndSalesUI.Interfaces;
 using StoreAndSalesUI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
@@ -82,6 +83,7 @@ namespace StoreAndSalesUI.Forms
         {
             itemNameTextBox.Clear();
             itemUnitsDataGridView.Rows.Clear();
+            searchTextBox.Clear();
             _item = new Item();
         }
 
@@ -186,6 +188,13 @@ namespace StoreAndSalesUI.Forms
             LoadDefaultUnit();
         }
 
+        private void Search(string searchText)
+        {
+            var filter = Items.Where(item => item.ItemName.Contains(searchText)).ToList();
+            itemsDataGridView.AutoGenerateColumns = false;
+            itemsDataGridView.DataSource = filter;
+        }
+
         #endregion
 
         #region Public Methods
@@ -242,5 +251,9 @@ namespace StoreAndSalesUI.Forms
             ResetForm(); 
         }
 
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Search(searchTextBox.Text);
+        }
     }
 }
