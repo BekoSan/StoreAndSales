@@ -104,6 +104,7 @@
             this.customersButton.Name = "customersButton";
             this.customersButton.Size = new System.Drawing.Size(118, 33);
             this.customersButton.TabIndex = 3;
+            this.customersButton.Tag = "2";
             this.customersButton.Text = "العمـــلاء";
             this.customersButton.UseVisualStyleBackColor = false;
             this.customersButton.Click += new System.EventHandler(this.customersButton_Click);
@@ -136,6 +137,7 @@
             this.itemsButton.Name = "itemsButton";
             this.itemsButton.Size = new System.Drawing.Size(148, 33);
             this.itemsButton.TabIndex = 5;
+            this.itemsButton.Tag = "2";
             this.itemsButton.Text = "الأصنــاف";
             this.itemsButton.UseVisualStyleBackColor = false;
             this.itemsButton.Click += new System.EventHandler(this.itemsButton_Click);
