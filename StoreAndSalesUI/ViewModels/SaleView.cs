@@ -9,5 +9,6 @@ namespace StoreAndSalesUI.ViewModels
         public DateTime SaleDate { get; set; }
         public decimal Total { get; set; }
         public decimal Disscount { get; set; }
+        public string UserName { get; set; }
     }
 }

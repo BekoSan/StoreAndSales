@@ -59,6 +59,7 @@ namespace StoreAndSalesUI.Forms
             _sale.PaymentType = paymentTypeCheckBox.Checked;
             _sale.IsDisscount = isDisscountCheckBox.Checked;
             _sale.Status = false;
+            _sale.UserId = LoginDataHelper.UserId;
 
             CollectSaleDetails();
         }

@@ -38,12 +38,6 @@
             this.salesListGroupBox = new System.Windows.Forms.GroupBox();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.salesDataGridView = new System.Windows.Forms.DataGridView();
-            this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.customerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purchaseDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.disscountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleLabel = new System.Windows.Forms.Label();
             this.dateFromDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.dateFromLabel = new System.Windows.Forms.Label();
@@ -54,6 +48,13 @@
             this.periodTotalValueToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.customerNameLabel = new System.Windows.Forms.Label();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
+            this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.customerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purchaseDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.disscountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coluserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salesListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesDataGridView)).BeginInit();
             this.periodTotalCostStatusStrip.SuspendLayout();
@@ -107,7 +108,8 @@
             this.purchaseDateColumn,
             this.totalColumn,
             this.disscountColumn,
-            this.saleIdColumn});
+            this.saleIdColumn,
+            this.coluserName});
             this.salesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.salesDataGridView.EnableHeadersVisualStyles = false;
             this.salesDataGridView.GridColor = System.Drawing.Color.Black;
@@ -129,76 +131,6 @@
             this.salesDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.salesDataGridView_RowPostPaint);
             this.salesDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.salesDataGridView_RowPrePaint);
             this.salesDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.salesDataGridView_RowsAdded);
-            // 
-            // selectColumn
-            // 
-            this.selectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle2.NullValue = "إختيار";
-            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.selectColumn.HeaderText = "";
-            this.selectColumn.MinimumWidth = 6;
-            this.selectColumn.Name = "selectColumn";
-            this.selectColumn.ReadOnly = true;
-            this.selectColumn.Width = 70;
-            // 
-            // customerNameColumn
-            // 
-            this.customerNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.customerNameColumn.DataPropertyName = "CustomerName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.customerNameColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.customerNameColumn.HeaderText = "إسم العميــل";
-            this.customerNameColumn.MinimumWidth = 6;
-            this.customerNameColumn.Name = "customerNameColumn";
-            this.customerNameColumn.ReadOnly = true;
-            this.customerNameColumn.Width = 250;
-            // 
-            // purchaseDateColumn
-            // 
-            this.purchaseDateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.purchaseDateColumn.DataPropertyName = "SaleDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "d";
-            this.purchaseDateColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.purchaseDateColumn.HeaderText = "التاريخ";
-            this.purchaseDateColumn.MinimumWidth = 6;
-            this.purchaseDateColumn.Name = "purchaseDateColumn";
-            this.purchaseDateColumn.ReadOnly = true;
-            this.purchaseDateColumn.Width = 149;
-            // 
-            // totalColumn
-            // 
-            this.totalColumn.DataPropertyName = "Total";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "N";
-            this.totalColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.totalColumn.HeaderText = "الإجمالي";
-            this.totalColumn.MinimumWidth = 6;
-            this.totalColumn.Name = "totalColumn";
-            this.totalColumn.ReadOnly = true;
-            // 
-            // disscountColumn
-            // 
-            this.disscountColumn.DataPropertyName = "Disscount";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Format = "N";
-            this.disscountColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.disscountColumn.HeaderText = "الخصم";
-            this.disscountColumn.MinimumWidth = 6;
-            this.disscountColumn.Name = "disscountColumn";
-            this.disscountColumn.ReadOnly = true;
-            // 
-            // saleIdColumn
-            // 
-            this.saleIdColumn.DataPropertyName = "SaleId";
-            this.saleIdColumn.HeaderText = "SaleId";
-            this.saleIdColumn.MinimumWidth = 6;
-            this.saleIdColumn.Name = "saleIdColumn";
-            this.saleIdColumn.ReadOnly = true;
-            this.saleIdColumn.Visible = false;
             // 
             // titleLabel
             // 
@@ -300,6 +232,86 @@
             this.customerNameTextBox.TabIndex = 18;
             this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
             // 
+            // selectColumn
+            // 
+            this.selectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle2.NullValue = "إختيار";
+            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.selectColumn.HeaderText = "";
+            this.selectColumn.MinimumWidth = 6;
+            this.selectColumn.Name = "selectColumn";
+            this.selectColumn.ReadOnly = true;
+            this.selectColumn.Width = 70;
+            // 
+            // customerNameColumn
+            // 
+            this.customerNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.customerNameColumn.DataPropertyName = "CustomerName";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.customerNameColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.customerNameColumn.HeaderText = "إسم العميــل";
+            this.customerNameColumn.MinimumWidth = 6;
+            this.customerNameColumn.Name = "customerNameColumn";
+            this.customerNameColumn.ReadOnly = true;
+            this.customerNameColumn.Width = 250;
+            // 
+            // purchaseDateColumn
+            // 
+            this.purchaseDateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.purchaseDateColumn.DataPropertyName = "SaleDate";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "d";
+            this.purchaseDateColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.purchaseDateColumn.HeaderText = "التاريخ";
+            this.purchaseDateColumn.MinimumWidth = 6;
+            this.purchaseDateColumn.Name = "purchaseDateColumn";
+            this.purchaseDateColumn.ReadOnly = true;
+            this.purchaseDateColumn.Width = 149;
+            // 
+            // totalColumn
+            // 
+            this.totalColumn.DataPropertyName = "Total";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "N";
+            this.totalColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.totalColumn.HeaderText = "الإجمالي";
+            this.totalColumn.MinimumWidth = 6;
+            this.totalColumn.Name = "totalColumn";
+            this.totalColumn.ReadOnly = true;
+            // 
+            // disscountColumn
+            // 
+            this.disscountColumn.DataPropertyName = "Disscount";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "N";
+            this.disscountColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.disscountColumn.HeaderText = "الخصم";
+            this.disscountColumn.MinimumWidth = 6;
+            this.disscountColumn.Name = "disscountColumn";
+            this.disscountColumn.ReadOnly = true;
+            // 
+            // saleIdColumn
+            // 
+            this.saleIdColumn.DataPropertyName = "SaleId";
+            this.saleIdColumn.HeaderText = "SaleId";
+            this.saleIdColumn.MinimumWidth = 6;
+            this.saleIdColumn.Name = "saleIdColumn";
+            this.saleIdColumn.ReadOnly = true;
+            this.saleIdColumn.Visible = false;
+            // 
+            // coluserName
+            // 
+            this.coluserName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.coluserName.DataPropertyName = "UserName";
+            this.coluserName.HeaderText = "المستخدم";
+            this.coluserName.MinimumWidth = 6;
+            this.coluserName.Name = "coluserName";
+            this.coluserName.ReadOnly = true;
+            this.coluserName.Width = 70;
+            // 
             // ChooseSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -346,17 +358,18 @@
         private System.Windows.Forms.Label dateFromLabel;
         private System.Windows.Forms.Label dateToLabel;
         private System.Windows.Forms.DateTimePicker dateToDateTimePicker;
-        private System.Windows.Forms.DataGridViewButtonColumn selectColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn purchaseDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn disscountColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn saleIdColumn;
         private System.Windows.Forms.StatusStrip periodTotalCostStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel periodTotalTextToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel periodTotalValueToolStripStatusLabel;
         private System.Windows.Forms.Label customerNameLabel;
         private System.Windows.Forms.TextBox customerNameTextBox;
         private System.Windows.Forms.Label loadingLabel;
+        private System.Windows.Forms.DataGridViewButtonColumn selectColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn purchaseDateColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn disscountColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn saleIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn coluserName;
     }
 }

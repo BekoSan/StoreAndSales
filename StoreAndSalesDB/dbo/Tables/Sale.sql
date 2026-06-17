@@ -9,5 +9,7 @@
     [PaymentType] BIT NOT NULL DEFAULT 0, 
     [IsDisscount] BIT NOT NULL DEFAULT 0, 
     [Status] BIT NOT NULL DEFAULT 1, 
-    CONSTRAINT [FK_Sale_Customer] FOREIGN KEY (CustomerId) REFERENCES [Customer]([Id])
+    [UserId] INT NULL , 
+    CONSTRAINT [FK_Sale_Customer] FOREIGN KEY (CustomerId) REFERENCES [Customer]([Id]), 
+    CONSTRAINT [FK_Sale_Users] FOREIGN KEY (UserId) REFERENCES [Users]([Id])
 )

@@ -23,5 +23,7 @@ namespace StoreAndSalesLibrary.Models
         public bool IsDisscount { get; set; }
 
         public bool Status { get; set; }
+
+        public int UserId { get; set; }
     }
 }

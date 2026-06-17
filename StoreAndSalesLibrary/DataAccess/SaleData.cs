@@ -41,7 +41,8 @@ namespace StoreAndSalesLibrary.DataAccess
                 cmd.Parameters.Add("@PaymentType", SqlDbType.Bit).Value = sale.PaymentType;
                 cmd.Parameters.Add("@IsDisscount", SqlDbType.Bit).Value = sale.IsDisscount;
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = sale.Status;
- 
+                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = sale.UserId;
+
                 cmd.ExecuteNonQuery();
 
                 _saleId = int.Parse(cmd.Parameters["@Id"].Value.ToString());
