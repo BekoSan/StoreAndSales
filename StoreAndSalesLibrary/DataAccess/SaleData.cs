@@ -42,6 +42,8 @@ namespace StoreAndSalesLibrary.DataAccess
                 cmd.Parameters.Add("@IsDisscount", SqlDbType.Bit).Value = sale.IsDisscount;
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = sale.Status;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = sale.UserId;
+                cmd.Parameters.Add("@OriginalSaleId", SqlDbType.Int).Value = sale.OriginalSaleId;
+                cmd.Parameters.Add("@IsReturn", SqlDbType.Bit).Value = sale.IsReturn;
 
                 cmd.ExecuteNonQuery();
 
@@ -162,6 +164,15 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@Disscount", disscount, DbType.Decimal);
 
             _sql.SaveData("spEditSaleDisscount", p, _sql.GetConnectionName());
+        }
+
+        public List<ReturnableSaleDetail> GetReturnableSaleDetails(int saleId)
+        {
+            var p = new DynamicParameters();
+            p.Add("@SaleId", saleId);
+
+            return _sql.LoadData<ReturnableSaleDetail,dynamic>(
+                "spGetReturnableSaleDetails", p, _sql.GetConnectionName());
         }
 
     }

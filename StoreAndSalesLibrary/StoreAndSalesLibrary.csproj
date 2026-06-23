@@ -63,6 +63,7 @@
     <Compile Include="Models\ItemUnit.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\PurchaseDetail.cs" />
+    <Compile Include="Models\ReturnableSaleDetail.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\SaleDetail.cs" />
     <Compile Include="Models\Supplier.cs" />
