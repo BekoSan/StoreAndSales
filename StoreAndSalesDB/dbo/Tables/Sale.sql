@@ -10,6 +10,8 @@
     [IsDisscount] BIT NOT NULL DEFAULT 0, 
     [Status] BIT NOT NULL DEFAULT 1, 
     [UserId] INT NULL , 
+    [OriginalSaleId] INT NULL,   -- يربط المرتجع بالفاتورة الأصلية
+    [IsReturn] BIT NOT NULL DEFAULT 0
     CONSTRAINT [FK_Sale_Customer] FOREIGN KEY (CustomerId) REFERENCES [Customer]([Id]), 
     CONSTRAINT [FK_Sale_Users] FOREIGN KEY (UserId) REFERENCES [Users]([Id])
 )

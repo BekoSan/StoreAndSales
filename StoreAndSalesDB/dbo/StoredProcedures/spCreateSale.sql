@@ -7,13 +7,15 @@
 @PaymentType bit,
 @IsDisscount bit,
 @Status bit,
-@UserId int
+@UserId int,
+@OriginalSaleId int,
+@IsReturn bit
 
 AS
 BEGIN
 
-Insert Into Sale(CustomerId,Total,Disscount,Notes,PaymentType,IsDisscount,[Status],UserId) Values(@CustomerId,@Total,@Disscount,@Notes,
-@PaymentType,@IsDisscount,@Status,@UserId)
+Insert Into Sale(CustomerId,Total,Disscount,Notes,PaymentType,IsDisscount,[Status],UserId,OriginalSaleId,IsReturn) Values(@CustomerId,@Total,@Disscount,@Notes,
+@PaymentType,@IsDisscount,@Status,@UserId,@OriginalSaleId,@IsReturn)
 
 Select @Id = SCOPE_IDENTITY()
 END
