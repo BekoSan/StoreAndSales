@@ -140,6 +140,7 @@ namespace StoreAndSalesUI.Forms
             notesTextBox.Clear();
             isDisscountCheckBox .Checked = false;
             paymentTypeCheckBox.Checked = false;
+            isSalePreview = false;
         }
 
         private void ResetForm()
@@ -151,7 +152,6 @@ namespace StoreAndSalesUI.Forms
             PreviewTotalCost(0);
             disscountTextBox.Text = "0";
             EnableDissableEditing(true);
-            isSalePreview = false;
         }
 
         private bool IsValidQuantity()
@@ -222,6 +222,7 @@ namespace StoreAndSalesUI.Forms
             isDisscountCheckBox.Enabled = isEnabled;
             paymentTypeCheckBox.Enabled = isEnabled;
             printButton.Enabled = !isEnabled;
+            returnButton.Enabled = !isEnabled;
         }
 
         private void LoadItemNameAndUnitFromRow(DataGridViewRow dgvRow)
@@ -307,7 +308,7 @@ namespace StoreAndSalesUI.Forms
         {
             if (customersComboBox.SelectedIndex == -1) return;
 
-            if (!isDisscountCheckBox.Checked)
+            if (!isDisscountCheckBox.Checked && disscountTextBox.Text.ParseToDecimal() != 0)
             {
                 int customerId = customersComboBox.SelectedValue.ToString().ParseToInt();
                 decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
@@ -505,6 +506,14 @@ namespace StoreAndSalesUI.Forms
         private void printButton_Click(object sender, EventArgs e)
         {
             ViewSaleReport();
+        }
+
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+
+        new SaleReturnForm(_sale.Id, customersComboBox.SelectedValue.ToString().ParseToInt(),
+        customersComboBox.Text, LoginDataHelper.UserId).ShowDialog();
+            
         }
     }
 }
