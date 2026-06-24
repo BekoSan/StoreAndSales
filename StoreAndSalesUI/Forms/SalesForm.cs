@@ -353,6 +353,7 @@ namespace StoreAndSalesUI.Forms
             {
                 MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 saleDetailsDataGridView.Rows.Remove(saleDetailsDataGridView.Rows[rowIndex]); //TODO: Remove this line
+                CalculateTotalCost();
                 return;
             }
             List<ItemUnit> itemUnits = _itemUnitData.GetItemUnits(item.Id).Where(_itemUnit => _itemUnit.UnitId == UsefulMethods.GetDefaultUnitId()).ToList();
