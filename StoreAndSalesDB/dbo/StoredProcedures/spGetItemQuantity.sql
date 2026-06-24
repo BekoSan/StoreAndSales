@@ -38,6 +38,8 @@ Set @SaleQuantity = ISNULL(@SaleQuantity,0)
 
 Set @Output = (@PurchaseQuantity - @SaleQuantity)
 
+if (@Output < 0) Set @Output = 0
+
 Select @Output as 'ItemQuantity'
 
 END
