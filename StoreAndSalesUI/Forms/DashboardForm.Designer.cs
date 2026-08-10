@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
-            this.titleLabel = new System.Windows.Forms.Label();
             this.salesButton = new System.Windows.Forms.Button();
             this.purchasesButton = new System.Windows.Forms.Button();
             this.customersButton = new System.Windows.Forms.Button();
@@ -40,32 +39,19 @@
             this.storePreviewButton = new System.Windows.Forms.Button();
             this.usersButton = new System.Windows.Forms.Button();
             this.signOutButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backupFormButton = new System.Windows.Forms.Button();
             this.userLogsButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(160, 33);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(480, 66);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "المنقوري للمعدات الطبية";
-            this.titleLabel.Visible = false;
             // 
             // salesButton
             // 
-            this.salesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.salesButton.BackColor = System.Drawing.Color.White;
             this.salesButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.salesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.salesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.salesButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.salesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.salesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.salesButton.Location = new System.Drawing.Point(191, 236);
             this.salesButton.Name = "salesButton";
             this.salesButton.Size = new System.Drawing.Size(144, 33);
@@ -77,12 +63,12 @@
             // 
             // purchasesButton
             // 
-            this.purchasesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.purchasesButton.BackColor = System.Drawing.Color.White;
             this.purchasesButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.purchasesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.purchasesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.purchasesButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.purchasesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.purchasesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.purchasesButton.Location = new System.Drawing.Point(191, 197);
             this.purchasesButton.Name = "purchasesButton";
             this.purchasesButton.Size = new System.Drawing.Size(144, 33);
@@ -94,12 +80,12 @@
             // 
             // customersButton
             // 
-            this.customersButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.customersButton.BackColor = System.Drawing.Color.White;
             this.customersButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.customersButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.customersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.customersButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.customersButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.customersButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.customersButton.Location = new System.Drawing.Point(341, 236);
             this.customersButton.Name = "customersButton";
             this.customersButton.Size = new System.Drawing.Size(118, 33);
@@ -111,12 +97,12 @@
             // 
             // suppliersButton
             // 
-            this.suppliersButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.suppliersButton.BackColor = System.Drawing.Color.White;
             this.suppliersButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.suppliersButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.suppliersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.suppliersButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.suppliersButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.suppliersButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.suppliersButton.Location = new System.Drawing.Point(341, 197);
             this.suppliersButton.Name = "suppliersButton";
             this.suppliersButton.Size = new System.Drawing.Size(118, 33);
@@ -127,12 +113,12 @@
             // 
             // itemsButton
             // 
-            this.itemsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.itemsButton.BackColor = System.Drawing.Color.White;
             this.itemsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.itemsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.itemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.itemsButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.itemsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.itemsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.itemsButton.Location = new System.Drawing.Point(465, 197);
             this.itemsButton.Name = "itemsButton";
             this.itemsButton.Size = new System.Drawing.Size(148, 33);
@@ -144,12 +130,12 @@
             // 
             // unitsButton
             // 
-            this.unitsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.unitsButton.BackColor = System.Drawing.Color.White;
             this.unitsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.unitsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.unitsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unitsButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.unitsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.unitsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.unitsButton.Location = new System.Drawing.Point(465, 236);
             this.unitsButton.Name = "unitsButton";
             this.unitsButton.Size = new System.Drawing.Size(148, 33);
@@ -162,22 +148,22 @@
             // 
             this.copyrightLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.copyrightLabel.BackColor = System.Drawing.Color.Transparent;
-            this.copyrightLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.copyrightLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
-            this.copyrightLabel.Location = new System.Drawing.Point(1, 449);
+            this.copyrightLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.copyrightLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.copyrightLabel.Location = new System.Drawing.Point(1, 450);
             this.copyrightLabel.Name = "copyrightLabel";
-            this.copyrightLabel.Size = new System.Drawing.Size(355, 22);
+            this.copyrightLabel.Size = new System.Drawing.Size(267, 21);
             this.copyrightLabel.TabIndex = 0;
-            this.copyrightLabel.Text = "جميع الحقوق محفوظة لهاتسومي للبرمجيات 2025";
+            this.copyrightLabel.Text = "جميع الحقوق محفوظة لهاتسومي للبرمجيات 2026";
             // 
             // storePreviewButton
             // 
-            this.storePreviewButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.storePreviewButton.BackColor = System.Drawing.Color.White;
             this.storePreviewButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.storePreviewButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.storePreviewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.storePreviewButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.storePreviewButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.storePreviewButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.storePreviewButton.Location = new System.Drawing.Point(191, 275);
             this.storePreviewButton.Name = "storePreviewButton";
             this.storePreviewButton.Size = new System.Drawing.Size(144, 33);
@@ -188,12 +174,12 @@
             // 
             // usersButton
             // 
-            this.usersButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.usersButton.BackColor = System.Drawing.Color.White;
             this.usersButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.usersButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.usersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.usersButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.usersButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.usersButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.usersButton.Location = new System.Drawing.Point(463, 275);
             this.usersButton.Name = "usersButton";
             this.usersButton.Size = new System.Drawing.Size(150, 33);
@@ -204,12 +190,12 @@
             // 
             // signOutButton
             // 
-            this.signOutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.signOutButton.BackColor = System.Drawing.Color.White;
             this.signOutButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.signOutButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.signOutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signOutButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.signOutButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.signOutButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.signOutButton.Location = new System.Drawing.Point(678, 3);
             this.signOutButton.Name = "signOutButton";
             this.signOutButton.Size = new System.Drawing.Size(118, 33);
@@ -218,47 +204,49 @@
             this.signOutButton.UseVisualStyleBackColor = false;
             this.signOutButton.Click += new System.EventHandler(this.signOutButton_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(795, 471);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            // 
             // backupFormButton
             // 
-            this.backupFormButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.backupFormButton.BackColor = System.Drawing.Color.White;
             this.backupFormButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.backupFormButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.backupFormButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backupFormButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.backupFormButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.backupFormButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.backupFormButton.Location = new System.Drawing.Point(341, 275);
             this.backupFormButton.Name = "backupFormButton";
             this.backupFormButton.Size = new System.Drawing.Size(118, 33);
             this.backupFormButton.TabIndex = 11;
             this.backupFormButton.Text = "نسخ إحتياطي";
             this.backupFormButton.UseVisualStyleBackColor = false;
+            this.backupFormButton.Visible = false;
             this.backupFormButton.Click += new System.EventHandler(this.backupFormButton_Click);
             // 
             // userLogsButton
             // 
-            this.userLogsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(219)))), ((int)(((byte)(106)))));
+            this.userLogsButton.BackColor = System.Drawing.Color.White;
             this.userLogsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
             this.userLogsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
             this.userLogsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.userLogsButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.userLogsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.userLogsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.userLogsButton.Location = new System.Drawing.Point(191, 314);
             this.userLogsButton.Name = "userLogsButton";
-            this.userLogsButton.Size = new System.Drawing.Size(150, 33);
+            this.userLogsButton.Size = new System.Drawing.Size(144, 33);
             this.userLogsButton.TabIndex = 12;
             this.userLogsButton.Text = "سجلات الإستخدام";
             this.userLogsButton.UseVisualStyleBackColor = false;
             this.userLogsButton.Click += new System.EventHandler(this.userLogsButton_Click);
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("PT Bold Heading", 23F);
+            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.titleLabel.Location = new System.Drawing.Point(199, 67);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(423, 69);
+            this.titleLabel.TabIndex = 13;
+            this.titleLabel.Text = "نظــام هاتسومي للمبيعات";
             // 
             // DashboardForm
             // 
@@ -267,6 +255,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.userLogsButton);
             this.Controls.Add(this.backupFormButton);
             this.Controls.Add(this.signOutButton);
@@ -279,8 +268,6 @@
             this.Controls.Add(this.customersButton);
             this.Controls.Add(this.purchasesButton);
             this.Controls.Add(this.salesButton);
-            this.Controls.Add(this.titleLabel);
-            this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Arial", 11F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -290,17 +277,14 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowIcon = false;
-            this.Text = "المنقوري للمعدات الطبية";
+            this.Text = "نظام هاتسومي للمبيعات";
             this.Load += new System.EventHandler(this.DashboardForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Button salesButton;
         private System.Windows.Forms.Button purchasesButton;
         private System.Windows.Forms.Button customersButton;
@@ -311,9 +295,9 @@
         private System.Windows.Forms.Button storePreviewButton;
         private System.Windows.Forms.Button usersButton;
         private System.Windows.Forms.Button signOutButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button backupFormButton;
         private System.Windows.Forms.Button userLogsButton;
+        private System.Windows.Forms.Label titleLabel;
     }
 }
 
