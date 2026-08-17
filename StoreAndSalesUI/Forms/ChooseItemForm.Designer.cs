@@ -35,7 +35,9 @@
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleLabel = new System.Windows.Forms.Label();
+
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchLabel = new System.Windows.Forms.Label();
             this.itemsListGroupBox.SuspendLayout();
@@ -66,13 +68,23 @@
             this.itemsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.itemsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.itemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.itemsDataGridView.ColumnHeadersVisible = false;
+            this.itemsDataGridView.ColumnHeadersVisible = true;
+            this.itemsDataGridView.ColumnHeadersHeight = 29;
+            this.itemsDataGridView.EnableHeadersVisualStyles = false;
             this.itemsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idColumn,
             this.selectColumn,
-            this.itemNameColumn});
+            this.itemNameColumn,
+            this.quantityColumn});
+
             this.itemsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemsDataGridView.GridColor = System.Drawing.Color.Black;
+            this.itemsDataGridView.GridColor = System.Drawing.Color.FromArgb(225, 230, 235);
+            this.itemsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(47, 84, 120);
+            this.itemsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            this.itemsDataGridView.ColumnHeadersDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.itemsDataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            this.itemsDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+
             this.itemsDataGridView.Location = new System.Drawing.Point(3, 25);
             this.itemsDataGridView.Name = "itemsDataGridView";
             this.itemsDataGridView.ReadOnly = true;
@@ -83,6 +95,9 @@
             this.itemsDataGridView.Size = new System.Drawing.Size(372, 255);
             this.itemsDataGridView.TabIndex = 0;
             this.itemsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itemsDataGridView_CellContentClick);
+            this.itemsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.itemsDataGridView_CellFormatting);
+            this.itemsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.itemsDataGridView_DataError);
+
             // 
             // idColumn
             // 
@@ -116,8 +131,19 @@
             this.itemNameColumn.MinimumWidth = 6;
             this.itemNameColumn.Name = "itemNameColumn";
             this.itemNameColumn.ReadOnly = true;
-            // 
+            //
+            // quantityColumn
+            //
+            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.quantityColumn.HeaderText = "الكمية";
+            this.quantityColumn.MinimumWidth = 6;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.ValueType = typeof(string);
+            this.quantityColumn.ReadOnly = true;
+            this.quantityColumn.Width = 80;
+            //
             // titleLabel
+
             // 
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.titleLabel.AutoSize = true;
@@ -186,5 +212,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
         private System.Windows.Forms.DataGridViewButtonColumn selectColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
+
     }
 }

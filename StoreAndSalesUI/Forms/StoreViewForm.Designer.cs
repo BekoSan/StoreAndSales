@@ -45,6 +45,8 @@
             this.calculationsDataGridView = new System.Windows.Forms.DataGridView();
             this.calculationLabel = new System.Windows.Forms.Label();
             this.resetQuantityButton = new System.Windows.Forms.Button();
+            this.inventoryTotalLabel = new System.Windows.Forms.Label();
+
             ((System.ComponentModel.ISupportInitialize)(this.storeViewDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pricesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calculationsDataGridView)).BeginInit();
@@ -99,8 +101,10 @@
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Font = new System.Drawing.Font("Arial", 23F);
+            this.quantityLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.quantityLabel.ForeColor = System.Drawing.Color.FromArgb(47, 84, 120);
             this.quantityLabel.Location = new System.Drawing.Point(31, 88);
+
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(219, 44);
             this.quantityLabel.TabIndex = 5;
@@ -109,8 +113,10 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
+            this.titleLabel.Font = new System.Drawing.Font("Arial", 32F, System.Drawing.FontStyle.Bold);
+            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(47, 84, 120);
             this.titleLabel.Location = new System.Drawing.Point(189, 9);
+
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(368, 66);
             this.titleLabel.TabIndex = 6;
@@ -119,8 +125,10 @@
             // pricesLabel
             // 
             this.pricesLabel.AutoSize = true;
-            this.pricesLabel.Font = new System.Drawing.Font("Arial", 23F);
+            this.pricesLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.pricesLabel.ForeColor = System.Drawing.Color.FromArgb(47, 84, 120);
             this.pricesLabel.Location = new System.Drawing.Point(42, 442);
+
             this.pricesLabel.Name = "pricesLabel";
             this.pricesLabel.Size = new System.Drawing.Size(241, 44);
             this.pricesLabel.TabIndex = 8;
@@ -215,14 +223,17 @@
             this.calculationsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.calculationsDataGridView.RowTemplate.Height = 24;
             this.calculationsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.calculationsDataGridView.Size = new System.Drawing.Size(619, 248);
+            this.calculationsDataGridView.Size = new System.Drawing.Size(619, 200);
             this.calculationsDataGridView.TabIndex = 9;
             // 
             // calculationLabel
+
             // 
             this.calculationLabel.AutoSize = true;
-            this.calculationLabel.Font = new System.Drawing.Font("Arial", 23F);
+            this.calculationLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.calculationLabel.ForeColor = System.Drawing.Color.FromArgb(47, 84, 120);
             this.calculationLabel.Location = new System.Drawing.Point(42, 735);
+
             this.calculationLabel.Name = "calculationLabel";
             this.calculationLabel.Size = new System.Drawing.Size(211, 44);
             this.calculationLabel.TabIndex = 10;
@@ -236,17 +247,36 @@
             this.resetQuantityButton.TabIndex = 11;
             this.resetQuantityButton.Text = "تصفير المخزن";
             this.resetQuantityButton.UseVisualStyleBackColor = true;
+            this.resetQuantityButton.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            this.resetQuantityButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetQuantityButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(47, 84, 120);
             this.resetQuantityButton.Click += new System.EventHandler(this.resetQuantityButton_Click);
             // 
+            // inventoryTotalLabel
+            // 
+            this.inventoryTotalLabel.BackColor = System.Drawing.Color.FromArgb(235, 244, 252);
+            this.inventoryTotalLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.inventoryTotalLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.inventoryTotalLabel.ForeColor = System.Drawing.Color.FromArgb(47, 84, 120);
+            this.inventoryTotalLabel.Location = new System.Drawing.Point(38, 1002);
+            this.inventoryTotalLabel.Name = "inventoryTotalLabel";
+            this.inventoryTotalLabel.Size = new System.Drawing.Size(619, 38);
+            this.inventoryTotalLabel.TabIndex = 12;
+            this.inventoryTotalLabel.Text = "إجمالي جرد المخزن: 0";
+            this.inventoryTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // StoreViewForm
+
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(700, 1055);
+            this.Controls.Add(this.inventoryTotalLabel);
             this.Controls.Add(this.resetQuantityButton);
             this.Controls.Add(this.calculationLabel);
+
             this.Controls.Add(this.calculationsDataGridView);
             this.Controls.Add(this.pricesLabel);
             this.Controls.Add(this.pricesDataGridView);
@@ -280,5 +310,7 @@
         private System.Windows.Forms.DataGridView calculationsDataGridView;
         private System.Windows.Forms.Label calculationLabel;
         private System.Windows.Forms.Button resetQuantityButton;
+        private System.Windows.Forms.Label inventoryTotalLabel;
+
     }
 }

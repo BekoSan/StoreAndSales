@@ -2,5 +2,6 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [ItemName] NVARCHAR(250) NOT NULL, 
-    [Status] BIT NOT NULL DEFAULT 1
+    [Status] BIT NOT NULL DEFAULT 1,
+    [ReorderLevel] INT NOT NULL DEFAULT 0
 )

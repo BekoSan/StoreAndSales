@@ -4,6 +4,8 @@ using StoreAndSalesUI.Helpers;
 using StoreAndSalesUI.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,7 +35,9 @@ namespace StoreAndSalesUI.Forms
         private readonly Item _item = new Item();
         private readonly Timer _searchTimer = new Timer();
         private List<Item> _items = new List<Item>();
+        private readonly Dictionary<int, int> _itemQuantities = new Dictionary<int, int>();
         private IItemRequester CallingForm;
+
         private bool _isLoading;
 
         #endregion
@@ -62,8 +66,15 @@ namespace StoreAndSalesUI.Forms
 
             try
             {
-                // تنفيذ الاستعلام خارج خيط واجهة المستخدم حتى لا تتجمد الشاشة.
-                List<Item> loadedItems = await Task.Run(() => _itemData.GetAllItems());
+                // تنفيذ جلب الأصناف والكميات خارج خيط واجهة المستخدم.
+                List<Item> loadedItems = null;
+                Dictionary<int, int> loadedQuantities = null;
+
+                await Task.Run(() =>
+                {
+                    loadedItems = _itemData.GetAllItems() ?? new List<Item>();
+                    loadedQuantities = BuildItemQuantities(loadedItems);
+                });
 
                 if (IsDisposed)
                 {
@@ -71,8 +82,15 @@ namespace StoreAndSalesUI.Forms
                 }
 
                 _items = loadedItems ?? new List<Item>();
+                _itemQuantities.Clear();
+                foreach (KeyValuePair<int, int> itemQuantity in loadedQuantities
+                    ?? new Dictionary<int, int>())
+                {
+                    _itemQuantities[itemQuantity.Key] = itemQuantity.Value;
+                }
+
                 itemsDataGridView.DataSource = _items;
-                //CallingForm?.GetCount(_items.Count);
+
             }
             catch (Exception ex)
             {
@@ -87,19 +105,94 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private Dictionary<int, int> BuildItemQuantities(List<Item> items)
+        {
+            Dictionary<int, int> quantities = new Dictionary<int, int>();
+            int defaultUnitId = UsefulMethods.GetDefaultUnitId();
+            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
+                ?? new List<ItemUnitValue>();
+
+            // استخدم الوحدة الافتراضية فقط؛ فهي نفس الوحدة المعتمدة
+            // في فرق كميات فواتير المبيعات والمشتريات.
+            foreach (ItemUnitValue itemQuantity in allQuantities)
+            {
+                if (itemQuantity.UnitId == defaultUnitId)
+                {
+                    quantities[itemQuantity.ItemId] = Math.Max(0, itemQuantity.ItemQuantity);
+                }
+            }
+
+            foreach (Item item in items ?? new List<Item>())
+            {
+                if (!quantities.ContainsKey(item.Id))
+                {
+                    quantities[item.Id] = 0;
+                }
+            }
+
+            return quantities;
+        }
+
+        private bool IsLowStock(Item item)
+        {
+            int quantity;
+            return item != null
+                && item.ReorderLevel > 0
+                && _itemQuantities.TryGetValue(item.Id, out quantity)
+                && quantity <= item.ReorderLevel;
+        }
+
+        private void itemsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // منع ظهور نافذة DataGridView الافتراضية عند فشل تحويل قيمة عرضية.
+            e.ThrowException = false;
+        }
+
+        private void itemsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            Item item = itemsDataGridView.Rows[e.RowIndex].DataBoundItem as Item;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == quantityColumn.Index)
+            {
+                int quantity;
+                int displayQuantity = _itemQuantities.TryGetValue(item.Id, out quantity) ? quantity : 0;
+                e.Value = displayQuantity.ToString("N0");
+                e.FormattingApplied = true;
+            }
+
+            if (!IsLowStock(item))
+            {
+                return;
+            }
+
+            bool isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
+            e.CellStyle.BackColor = isSelected ? Color.IndianRed : Color.MistyRose;
+            e.CellStyle.ForeColor = isSelected ? Color.White : Color.DarkRed;
+            e.CellStyle.SelectionBackColor = Color.IndianRed;
+            e.CellStyle.SelectionForeColor = Color.White;
+        }
+
         private void FilterByName(string itemName)
+
         {
             if (_items.Count == 0)
             {
                 itemsDataGridView.DataSource = _items;
-                //CallingForm?.GetCount(0);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(itemName))
             {
                 itemsDataGridView.DataSource = _items;
-                //CallingForm?.GetCount(_items.Count);
                 return;
             }
 
@@ -110,7 +203,6 @@ namespace StoreAndSalesUI.Forms
                 .ToList();
 
             itemsDataGridView.DataSource = filteredItems;
-            //CallingForm?.GetCount(filteredItems.Count);
         }
 
         private void SelectItem()

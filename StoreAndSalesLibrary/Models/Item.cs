@@ -11,7 +11,9 @@ namespace StoreAndSalesLibrary.Models
 
         public bool Status { get; set; }
 
-        public List<ItemUnit> ItemUnits = new List<ItemUnit>(); 
+        public int ReorderLevel { get; set; }
+
+        public List<ItemUnit> ItemUnits = new List<ItemUnit>();
 
     }
 }

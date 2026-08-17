@@ -61,6 +61,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemUnit.cs" />
+    <Compile Include="Models\ItemUnitValue.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\PurchaseDetail.cs" />
     <Compile Include="Models\ReturnableSaleDetail.cs" />

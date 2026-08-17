@@ -33,9 +33,10 @@ namespace StoreAndSalesLibrary.DataAccess
             {
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                
+
                 cmd.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ItemName", SqlDbType.NVarChar).Value = item.ItemName;
+                cmd.Parameters.Add("@ReorderLevel", SqlDbType.Int).Value = item.ReorderLevel;
 
                 cmd.ExecuteNonQuery();
 
@@ -43,7 +44,7 @@ namespace StoreAndSalesLibrary.DataAccess
 
             }
 
-            CreateItemUnits(item.ItemUnits); 
+            CreateItemUnits(item.ItemUnits);
         }
 
         public void EditItem(Item item)
@@ -57,6 +58,7 @@ namespace StoreAndSalesLibrary.DataAccess
 
                 cmd.Parameters.Add("@ItemId", SqlDbType.Int).Value = item.Id;
                 cmd.Parameters.Add("@ItemName", SqlDbType.NVarChar).Value = item.ItemName;
+                cmd.Parameters.Add("@ReorderLevel", SqlDbType.Int).Value = item.ReorderLevel;
 
                 cmd.ExecuteNonQuery();
 
@@ -85,7 +87,7 @@ namespace StoreAndSalesLibrary.DataAccess
                     }
                 });
                 _transaction.Commit();
-        }
+            }
             catch
             {
                 _transaction.Rollback();
@@ -93,7 +95,7 @@ namespace StoreAndSalesLibrary.DataAccess
             }
         }
 
-        public void CreateItemUnit(ItemUnit itemUnit) 
+        public void CreateItemUnit(ItemUnit itemUnit)
         {
             using (SqlCommand cmd = new SqlCommand("spCreateItemUnit", _connection, _transaction))
             {
@@ -154,6 +156,24 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<Item, dynamic>("spGetAllItems", null, _sql.GetConnectionName());
         }
 
+        public List<ItemUnitValue> GetAllItemQuantities()
+        {
+            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemQuantities", null, _sql.GetConnectionName());
+        }
+
+        public List<ItemUnitValue> GetAllItemQuantitiesAfterDate(DateTime filterDate)
+        {
+            var p = new DynamicParameters();
+            p.Add("@FilterDate", filterDate);
+
+            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemQuantitiesAfterDate", p, _sql.GetConnectionName());
+        }
+
+        public List<ItemUnitValue> GetAllItemLatestPurchasePrices()
+        {
+            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemLatestPurchasePrices", null, _sql.GetConnectionName());
+        }
+
         public Item GetItem(int itemId)
         {
             var p = new DynamicParameters();
@@ -173,7 +193,7 @@ namespace StoreAndSalesLibrary.DataAccess
         }
 
         ///Get the quantity of items depend on sales and purchaces
-        public int GetItemQuantity(int itemId,int unitId)
+        public int GetItemQuantity(int itemId, int unitId)
         {
             var p = new DynamicParameters();
 
@@ -183,7 +203,7 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<int, dynamic>("spGetItemQuantity", p, _sql.GetConnectionName()).First();
         }
 
-        public int GetItemQuantityFilter(int itemId, int unitId,DateTime filterDate)
+        public int GetItemQuantityFilter(int itemId, int unitId, DateTime filterDate)
         {
             var p = new DynamicParameters();
 
@@ -195,7 +215,7 @@ namespace StoreAndSalesLibrary.DataAccess
         }
 
         ///Get the latest price of unit depend on latest purchase date
-        public decimal  GetItemLatestPurchasePrice(int itemId, int unitId)
+        public decimal GetItemLatestPurchasePrice(int itemId, int unitId)
         {
             var p = new DynamicParameters();
 

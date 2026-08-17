@@ -4,6 +4,8 @@ using StoreAndSalesUI.Helpers;
 using StoreAndSalesUI.Interfaces;
 using StoreAndSalesUI.ViewModels;
 using System;
+using System.Drawing;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -26,6 +28,7 @@ namespace StoreAndSalesUI.Forms
         private List<Item> Items = new List<Item>();
         private UnitData _unitData = new UnitData();
         private UserLogData _userLogData = new UserLogData();
+        private readonly Dictionary<int, int> _itemQuantities = new Dictionary<int, int>();
 
         #endregion
 
@@ -34,8 +37,10 @@ namespace StoreAndSalesUI.Forms
         private void CollectData()
         {
             _item.ItemName = itemNameTextBox.Text;
+            _item.ReorderLevel = reorderLevelTextBox.Text.ParseToInt();
             _item.ItemUnits.Clear();
-            if (itemUnitsDataGridView.Rows.Count != 0) 
+
+            if (itemUnitsDataGridView.Rows.Count != 0)
             {
                 foreach (DataGridViewRow dgvRow in itemUnitsDataGridView.Rows)
                 {
@@ -45,44 +50,134 @@ namespace StoreAndSalesUI.Forms
                         ItemId = _item.Id,
                         UnitId = dgvRow.Cells[0].Value.ToString().ParseToInt(),
                         UnitPrice = dgvRow.Cells[3].Value.ToString().ParseToDecimal()
-                    }); 
+                    });
                 }
             }
         }
 
         private void LoadItems()
         {
-            Items = _itemData.GetAllItems();
+            Items = _itemData.GetAllItems() ?? new List<Item>();
+            LoadItemQuantities();
             itemsDataGridView.AutoGenerateColumns = false;
             itemsDataGridView.DataSource = Items;
+
         }
 
         private void SelectItem()
         {
-            _item.Id = itemsDataGridView.CurrentRow.Cells[0].Value.ToString().ParseToInt();
-            _item.ItemName = itemsDataGridView.CurrentRow.Cells[1].Value.ToString();
+            Item selectedItem = itemsDataGridView.CurrentRow == null
+                ? null
+                : itemsDataGridView.CurrentRow.DataBoundItem as Item;
+
+            if (selectedItem == null)
+            {
+                return;
+            }
+
+            _item.Id = selectedItem.Id;
+            _item.ItemName = selectedItem.ItemName;
+            _item.ReorderLevel = selectedItem.ReorderLevel;
             _itemUnits = _itemUnitData.GetItemUnits<ItemUnitView>(_item.Id);
         }
 
         private void LoadItemData()
         {
             itemNameTextBox.Text = _item.ItemName;
+            reorderLevelTextBox.Text = _item.ReorderLevel.ToString();
+        }
+
+        private void LoadItemQuantities()
+        {
+            _itemQuantities.Clear();
+
+            int defaultUnitId = UsefulMethods.GetDefaultUnitId();
+            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
+                ?? new List<ItemUnitValue>();
+
+            // تحميل الكميات باستعلام واحد ثم استخدام الوحدة الافتراضية فقط.
+            foreach (ItemUnitValue itemQuantity in allQuantities)
+            {
+                if (itemQuantity.UnitId == defaultUnitId)
+                {
+                    _itemQuantities[itemQuantity.ItemId] = Math.Max(0, itemQuantity.ItemQuantity);
+                }
+            }
+
+            // الأصناف التي لا يوجد لها سجل كمية تعرض صفراً بدلاً من تنفيذ استعلام إضافي.
+            foreach (Item item in Items)
+            {
+                if (!_itemQuantities.ContainsKey(item.Id))
+                {
+                    _itemQuantities[item.Id] = 0;
+                }
+            }
+        }
+
+        private bool IsLowStock(Item item)
+        {
+            int quantity;
+            return item != null
+                && item.ReorderLevel > 0
+                && _itemQuantities.TryGetValue(item.Id, out quantity)
+                && quantity <= item.ReorderLevel;
+        }
+
+        private void itemsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // منع ظهور نافذة DataGridView الافتراضية عند فشل تحويل قيمة عرضية.
+            e.ThrowException = false;
+        }
+
+        private void itemsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            Item item = itemsDataGridView.Rows[e.RowIndex].DataBoundItem as Item;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == quantityColumn.Index)
+            {
+                int quantity;
+                int displayQuantity = _itemQuantities.TryGetValue(item.Id, out quantity) ? quantity : 0;
+                e.Value = displayQuantity.ToString("N0");
+                e.FormattingApplied = true;
+            }
+
+            if (!IsLowStock(item))
+            {
+                return;
+            }
+
+            bool isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
+            e.CellStyle.BackColor = isSelected ? Color.IndianRed : Color.MistyRose;
+            e.CellStyle.ForeColor = isSelected ? Color.White : Color.DarkRed;
+            e.CellStyle.SelectionBackColor = Color.IndianRed;
+            e.CellStyle.SelectionForeColor = Color.White;
         }
 
         private void LoadItemUnits()
         {
-            itemUnitsDataGridView.Rows.Clear(); 
-           
+            itemUnitsDataGridView.Rows.Clear();
+
             _itemUnits.ForEach(itemUnit =>
             {
-                itemUnitsDataGridView.Rows.Add(itemUnit.Id,itemUnit.ItemUnitId, itemUnit.UnitName, itemUnit.UnitPrice);
+                itemUnitsDataGridView.Rows.Add(itemUnit.Id, itemUnit.ItemUnitId, itemUnit.UnitName, itemUnit.UnitPrice);
             });
         }
 
         private void ClearForm()
         {
             itemNameTextBox.Clear();
+            reorderLevelTextBox.Clear();
             itemUnitsDataGridView.Rows.Clear();
+
             searchTextBox.Clear();
             _item = new Item();
         }
@@ -92,9 +187,9 @@ namespace StoreAndSalesUI.Forms
             new ChooseUnitForm(this).ShowDialog();
         }
 
-        private void LoadDefaultUnit() 
+        private void LoadDefaultUnit()
         {
-            var unit = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()); 
+            var unit = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId());
             itemUnitsDataGridView.Rows.Add(unit.Id, 0, unit.UnitName, 0);
         }
 
@@ -108,8 +203,15 @@ namespace StoreAndSalesUI.Forms
                 output = false;
                 itemNameTextBox.Focus();
             }
+            else if (_item.ReorderLevel < 0)
+            {
+                MessageBox.Show("يجب أن يكون حد إعادة الطلب صفرًا أو أكبر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                reorderLevelTextBox.Focus();
+            }
             else if (_item.ItemUnits.Count == 0)
             {
+
                 MessageBox.Show("يجب إضافة وحدة على الأقل للصنف", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
                 addUnitButton.Focus();
@@ -157,7 +259,7 @@ namespace StoreAndSalesUI.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UsefulMethods.LogException(ex);
             }
         }
@@ -176,7 +278,7 @@ namespace StoreAndSalesUI.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"خطأ",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UsefulMethods.LogException(ex);
             }
         }
@@ -205,11 +307,11 @@ namespace StoreAndSalesUI.Forms
             if (itemUnitsDataGridView.Rows.Count > 0)
             {
                 if (IsUnitDublicated(unit.Id) == false)
-                    itemUnitsDataGridView.Rows.Add(unit.Id,0, unit.UnitName, 0);
+                    itemUnitsDataGridView.Rows.Add(unit.Id, 0, unit.UnitName, 0);
             }
             else
             {
-                itemUnitsDataGridView.Rows.Add(unit.Id,0, unit.UnitName, 0);
+                itemUnitsDataGridView.Rows.Add(unit.Id, 0, unit.UnitName, 0);
             }
         }
 
@@ -218,8 +320,21 @@ namespace StoreAndSalesUI.Forms
         private void saveButton_Click(object sender, EventArgs e)
         {
             CollectData();
-            if (IsValidData()) Save();
-                ResetForm(); 
+            if (!IsValidData())
+            {
+                return;
+            }
+
+            Save();
+            ResetForm();
+        }
+
+        private void reorderLevelTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void ItemsForm_Load(object sender, EventArgs e)
@@ -248,7 +363,7 @@ namespace StoreAndSalesUI.Forms
         private void deleteButton_Click(object sender, EventArgs e)
         {
             ArchiveItem();
-            ResetForm(); 
+            ResetForm();
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
