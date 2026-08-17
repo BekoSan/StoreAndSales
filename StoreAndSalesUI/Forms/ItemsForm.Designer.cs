@@ -32,11 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.titleLabel = new System.Windows.Forms.Label();
             this.itemNameTextBox = new System.Windows.Forms.TextBox();
             this.reorderLevelTextBox = new System.Windows.Forms.TextBox();
             this.itemUnitsDataGridView = new System.Windows.Forms.DataGridView();
-
             this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemUnitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,13 +45,11 @@
             this.itemNameLabel = new System.Windows.Forms.Label();
             this.reorderLevelLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-
             this.itemsDataGridView = new System.Windows.Forms.DataGridView();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemDataGroupBox = new System.Windows.Forms.GroupBox();
-
             this.addUnitButton = new System.Windows.Forms.Button();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
             this.searchLabel = new System.Windows.Forms.Label();
@@ -83,9 +82,9 @@
             this.itemNameTextBox.Name = "itemNameTextBox";
             this.itemNameTextBox.Size = new System.Drawing.Size(433, 29);
             this.itemNameTextBox.TabIndex = 0;
-            //
+            // 
             // reorderLevelTextBox
-            //
+            // 
             this.reorderLevelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.reorderLevelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.reorderLevelTextBox.Location = new System.Drawing.Point(6, 88);
@@ -94,9 +93,8 @@
             this.reorderLevelTextBox.TabIndex = 1;
             this.reorderLevelTextBox.Text = "0";
             this.reorderLevelTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.reorderLevelTextBox_KeyPress);
-            //
+            // 
             // itemUnitsDataGridView
-
             // 
             this.itemUnitsDataGridView.AllowUserToAddRows = false;
             this.itemUnitsDataGridView.AllowUserToDeleteRows = false;
@@ -180,6 +178,17 @@
             this.itemNameLabel.TabIndex = 5;
             this.itemNameLabel.Text = "إسم الصنف";
             // 
+            // reorderLevelLabel
+            // 
+            this.reorderLevelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.reorderLevelLabel.AutoSize = true;
+            this.reorderLevelLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.reorderLevelLabel.Location = new System.Drawing.Point(145, 95);
+            this.reorderLevelLabel.Name = "reorderLevelLabel";
+            this.reorderLevelLabel.Size = new System.Drawing.Size(95, 19);
+            this.reorderLevelLabel.TabIndex = 10;
+            this.reorderLevelLabel.Text = "حد إعادة الطلب";
+            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -197,45 +206,45 @@
             this.itemsDataGridView.AllowUserToDeleteRows = false;
             this.itemsDataGridView.AllowUserToResizeColumns = false;
             this.itemsDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.itemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.itemsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.itemsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.itemsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.itemsDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(84)))), ((int)(((byte)(120)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.itemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.itemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.itemsDataGridView.ColumnHeadersVisible = true;
-            this.itemsDataGridView.ColumnHeadersHeight = 29;
-            this.itemsDataGridView.EnableHeadersVisualStyles = false;
-
             this.itemsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdColumn,
             this.itemNameColumn,
             this.quantityColumn});
-
             this.itemsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.itemsDataGridView.GridColor = System.Drawing.Color.FromArgb(225, 230, 235);
-            this.itemsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(47, 84, 120);
-            this.itemsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this.itemsDataGridView.ColumnHeadersDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.itemsDataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.itemsDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-
+            this.itemsDataGridView.EnableHeadersVisualStyles = false;
+            this.itemsDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
             this.itemsDataGridView.Location = new System.Drawing.Point(3, 82);
             this.itemsDataGridView.Name = "itemsDataGridView";
             this.itemsDataGridView.ReadOnly = true;
             this.itemsDataGridView.RowHeadersVisible = false;
             this.itemsDataGridView.RowHeadersWidth = 51;
             this.itemsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.itemsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.itemsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.itemsDataGridView.RowTemplate.Height = 24;
+            this.itemsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itemsDataGridView.Size = new System.Drawing.Size(444, 157);
             this.itemsDataGridView.TabIndex = 0;
             this.itemsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itemsDataGridView_CellContentClick);
             this.itemsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.itemsDataGridView_CellFormatting);
             this.itemsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.itemsDataGridView_DataError);
-
             // 
             // IdColumn
             // 
@@ -253,39 +262,25 @@
             this.itemNameColumn.MinimumWidth = 6;
             this.itemNameColumn.Name = "itemNameColumn";
             this.itemNameColumn.ReadOnly = true;
-            //
+            // 
             // quantityColumn
-            //
+            // 
             this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.quantityColumn.HeaderText = "الكمية";
             this.quantityColumn.MinimumWidth = 6;
             this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.ValueType = typeof(string);
             this.quantityColumn.ReadOnly = true;
             this.quantityColumn.Width = 95;
-            //
-            // reorderLevelLabel
-            //
-            this.reorderLevelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.reorderLevelLabel.AutoSize = true;
-            this.reorderLevelLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.reorderLevelLabel.Location = new System.Drawing.Point(145, 95);
-            this.reorderLevelLabel.Name = "reorderLevelLabel";
-            this.reorderLevelLabel.Size = new System.Drawing.Size(198, 19);
-            this.reorderLevelLabel.TabIndex = 10;
-            this.reorderLevelLabel.Text = "حد إعادة الطلب";
-            //
-            // itemDataGroupBox
-
             // 
-            this.itemDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // itemDataGroupBox
+            // 
+            this.itemDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemDataGroupBox.Controls.Add(this.addUnitButton);
             this.itemDataGroupBox.Controls.Add(this.reorderLevelLabel);
             this.itemDataGroupBox.Controls.Add(this.reorderLevelTextBox);
             this.itemDataGroupBox.Controls.Add(this.itemNameLabel);
             this.itemDataGroupBox.Controls.Add(this.itemNameTextBox);
-
             this.itemDataGroupBox.Controls.Add(this.label3);
             this.itemDataGroupBox.Controls.Add(this.itemUnitsDataGridView);
             this.itemDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
@@ -312,7 +307,7 @@
             // 
             // itemsListGroupBox
             // 
-            this.itemsListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemsListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsListGroupBox.Controls.Add(this.searchLabel);
             this.itemsListGroupBox.Controls.Add(this.searchTextBox);
