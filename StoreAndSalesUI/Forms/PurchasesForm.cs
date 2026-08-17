@@ -55,7 +55,8 @@ namespace StoreAndSalesUI.Forms
             _purchase.Notes = notesTextBox.Text;
             _purchase.PaymentType = paymentTypeCheckBox.Checked;
             _purchase.IsDisscount = isDisscountCheckBox.Checked;
-            _purchase.Status = isDisscountCheckBox.Checked ? true : false;
+            _purchase.Status = (disscountTextBox.Text.ParseToDecimal() != 0
+               && !isDisscountCheckBox.Checked ? false : true);
             _purchase.UserId = LoginDataHelper.UserId;
 
             CollectPurchaseDetails();

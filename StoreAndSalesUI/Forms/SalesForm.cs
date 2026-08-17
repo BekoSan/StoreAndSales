@@ -63,7 +63,8 @@ namespace StoreAndSalesUI.Forms
             _sale.Notes = notesTextBox.Text;
             _sale.PaymentType = paymentTypeCheckBox.Checked;
             _sale.IsDisscount = isDisscountCheckBox.Checked;
-            _sale.Status = false;
+            _sale.Status = (disscountTextBox.Text.ParseToDecimal() != 0 
+                && !isDisscountCheckBox.Checked  ? false : true);
             _sale.UserId = LoginDataHelper.UserId;
 
             CollectSaleDetails();
