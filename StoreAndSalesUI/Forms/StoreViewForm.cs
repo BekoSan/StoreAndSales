@@ -1,10 +1,11 @@
-﻿using StoreAndSalesLibrary.DataAccess;
+﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
+using StoreAndSalesLibrary.DataAccess;
 using StoreAndSalesLibrary.Models;
 using StoreAndSalesUI.Helpers;
-using System.Drawing;
-using System;
 
 namespace StoreAndSalesUI.Forms
 {
@@ -13,265 +14,298 @@ namespace StoreAndSalesUI.Forms
         public StoreViewForm()
         {
             InitializeComponent();
+            ConfigureGrid(storeViewDataGridView);
+            ConfigureGrid(pricesDataGridView);
+            ConfigureGrid(calculationsDataGridView);
             FillGrids();
         }
 
         #region Private Members
 
-
-        private ItemData _itemData = new ItemData();
+        private readonly ItemData _itemData = new ItemData();
         private List<Item> _items = new List<Item>();
-
-        private UnitData _unitData = new UnitData();
+        private readonly UnitData _unitData = new UnitData();
         private List<Unit> _units = new List<Unit>();
+        private decimal _totalInventoryValue;
 
         #endregion
 
-        private void FillGrids() 
+        private static string BuildKey(int itemId, int unitId)
         {
-            _items = _itemData.GetAllItems();
-            _units = _unitData.GetAllUnits();
-
-            AddItemColumnsToQuantityGrid();
-            AddUnitColumnsToQuantityGrid();
-            AddQuantityRows();
-
-            AddItemColumnsToPricesGrid();
-            AddUnitColumnsToPriceGrid();
-            AddPriceRows();
-
-            AddItemColumnsToCalculationsGrid();
-            AddUnitColumnsToCalculationsGrid();
-            AddCalculationsRows();
+            return itemId + ":" + unitId;
         }
 
-        private void ResetStoreQuantity() 
+        private static void AddValue(Dictionary<string, int> values, ItemUnitValue value)
+        {
+            values[BuildKey(value.ItemId, value.UnitId)] = value.ItemQuantity;
+        }
+
+        private static void AddValue(Dictionary<string, decimal> values, ItemUnitValue value)
+        {
+            values[BuildKey(value.ItemId, value.UnitId)] = value.ItemPrice;
+        }
+
+        private void ConfigureGrid(DataGridView grid)
+        {
+            grid.AllowUserToAddRows = false;
+            grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            grid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            grid.BackgroundColor = Color.White;
+            grid.BorderStyle = BorderStyle.FixedSingle;
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            grid.GridColor = Color.FromArgb(225, 230, 235);
+            grid.EnableHeadersVisualStyles = false;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(47, 84, 120);
+            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(47, 84, 120);
+            grid.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            grid.ColumnHeadersHeight = 34;
+            grid.RowTemplate.Height = 28;
+            grid.RowsDefaultCellStyle.BackColor = Color.White;
+            grid.RowsDefaultCellStyle.ForeColor = Color.FromArgb(35, 35, 35);
+            grid.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(221, 235, 247);
+            grid.RowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 20, 20);
+            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            grid.SuspendLayout();
+
+            try
+            {
+                typeof(DataGridView)
+                    .GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
+                    ?.SetValue(grid, true, null);
+            }
+            catch (Exception)
+            {
+                // Double buffering is an optional UI optimization; ignore unsupported runtimes.
+            }
+        }
+
+        private void ClearGrid(DataGridView grid)
+        {
+            grid.Rows.Clear();
+            grid.Columns.Clear();
+        }
+
+        private void FillGrids()
+        {
+            SuspendLayout();
+            try
+            {
+                _items = _itemData.GetAllItems();
+                _units = _unitData.GetAllUnits();
+
+                List<ItemUnitValue> quantityRows = Properties.Settings.Default.IsQuantityFilter
+                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate)
+                    : _itemData.GetAllItemQuantities();
+                List<ItemUnitValue> priceRows = _itemData.GetAllItemLatestPurchasePrices();
+
+                var quantitiesByKey = new Dictionary<string, int>();
+                foreach (ItemUnitValue value in quantityRows)
+                {
+                    AddValue(quantitiesByKey, value);
+                }
+
+                var pricesByKey = new Dictionary<string, decimal>();
+                foreach (ItemUnitValue value in priceRows)
+                {
+                    AddValue(pricesByKey, value);
+                }
+
+                ClearGrid(storeViewDataGridView);
+                ClearGrid(pricesDataGridView);
+                ClearGrid(calculationsDataGridView);
+
+                AddItemColumnsToQuantityGrid();
+                AddUnitColumnsToQuantityGrid();
+                AddQuantityRows(quantitiesByKey);
+
+                AddItemColumnsToPricesGrid();
+                AddUnitColumnsToPriceGrid();
+                AddPriceRows(pricesByKey);
+
+                AddItemColumnsToCalculationsGrid();
+                AddUnitColumnsToCalculationsGrid();
+                AddCalculationsRows(quantitiesByKey, pricesByKey);
+                UpdateTotalInventoryLabel();
+            }
+            finally
+            {
+                storeViewDataGridView.ResumeLayout();
+                pricesDataGridView.ResumeLayout();
+                calculationsDataGridView.ResumeLayout();
+                ResumeLayout();
+            }
+        }
+
+        private void ResetStoreQuantity()
         {
             if (MessageBox.Show("هل أنت متأكد من تصفير جميع الكميات في المخزن؟!", "تأكيد تصفير المخزن", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 return;
+
             Properties.Settings.Default.IsQuantityFilter = true;
             Properties.Settings.Default.FilterDate = DateTime.Now;
             Properties.Settings.Default.Save();
             FillGrids();
-            MessageBox.Show("تم تصفير كميات المخزن بنجاح","تم",MessageBoxButtons.OK,MessageBoxIcon.Information);
-        }
-
-        private int  GetItemQuantity(int itemId, int unitId)
-        {
-            int output;
-
-            if (Properties.Settings.Default.IsQuantityFilter == false)
-                output = _itemData.GetItemQuantity(itemId, unitId);
-            else
-                output = _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate);
-
-            return output;
+            MessageBox.Show("تم تصفير كميات المخزن بنجاح", "تم", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void AddItemColumnsToQuantityGrid()
         {
-            // Id Invisible column
-            DataGridViewColumn itemIdColumn = new DataGridViewColumn();
-            itemIdColumn.Visible = false;
-            itemIdColumn.HeaderText = "Id";
-            itemIdColumn.CellTemplate = new DataGridViewTextBoxCell();  
-
+            DataGridViewColumn itemIdColumn = new DataGridViewColumn
+            {
+                Visible = false,
+                HeaderText = "Id",
+                CellTemplate = new DataGridViewTextBoxCell()
+            };
             storeViewDataGridView.Columns.Add(itemIdColumn);
-            // item name column
-            storeViewDataGridView.Columns.Add("itemNameColumn","إسم الصنف");
+            storeViewDataGridView.Columns.Add("itemNameColumn", "إسم الصنف");
         }
 
         private void AddItemColumnsToPricesGrid()
         {
-            // Id Invisible column
-            DataGridViewColumn itemIdColumn = new DataGridViewColumn();
-            itemIdColumn.Visible = false;
-            itemIdColumn.HeaderText = "Id";
-            itemIdColumn.CellTemplate = new DataGridViewTextBoxCell();
-
+            DataGridViewColumn itemIdColumn = new DataGridViewColumn
+            {
+                Visible = false,
+                HeaderText = "Id",
+                CellTemplate = new DataGridViewTextBoxCell()
+            };
             pricesDataGridView.Columns.Add(itemIdColumn);
-            // item name column
             pricesDataGridView.Columns.Add("itemNameColumn", "إسم الصنف");
         }
 
         private void AddItemColumnsToCalculationsGrid()
         {
-            // Id Invisible column
-            DataGridViewColumn itemIdColumn = new DataGridViewColumn();
-            itemIdColumn.Visible = false;
-            itemIdColumn.HeaderText = "Id";
-            itemIdColumn.CellTemplate = new DataGridViewTextBoxCell();
-
+            DataGridViewColumn itemIdColumn = new DataGridViewColumn
+            {
+                Visible = false,
+                HeaderText = "Id",
+                CellTemplate = new DataGridViewTextBoxCell()
+            };
             calculationsDataGridView.Columns.Add(itemIdColumn);
-            // item name column
             calculationsDataGridView.Columns.Add("itemNameColumn", "إسم الصنف");
+        }
+
+        private DataGridViewColumn CreateUnitColumn(Unit unit, int counter, bool isPriceColumn)
+        {
+            var unitColumn = new DataGridViewColumn
+            {
+                Name = "U" + counter,
+                HeaderText = unit.UnitName,
+                Tag = unit.Id,
+                CellTemplate = new DataGridViewTextBoxCell(),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                Width = 100
+            };
+            unitColumn.DefaultCellStyle.Font = new Font("Consolas", 9);
+            unitColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (isPriceColumn)
+            {
+                unitColumn.DefaultCellStyle.Format = "N0";
+            }
+            return unitColumn;
         }
 
         private void AddUnitColumnsToQuantityGrid()
         {
-            
-            int counter = 1;
-
-            _units.ForEach(unit => 
+            for (int index = 0; index < _units.Count; index++)
             {
-                DataGridViewColumn unitColumn = new DataGridViewColumn();
-                unitColumn.Name = $"U{counter}";
-                unitColumn.DefaultCellStyle.Font = new Font("Consolas", 9);
-                unitColumn.HeaderText = unit.UnitName;
-                unitColumn.Tag = unit.Id;
-                unitColumn.CellTemplate = new DataGridViewTextBoxCell();
-                unitColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                unitColumn.Width = 100;
-                unitColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-               
-
-                storeViewDataGridView.Columns.Add(unitColumn);
-                counter++;
-            }); 
+                storeViewDataGridView.Columns.Add(CreateUnitColumn(_units[index], index + 1, false));
+            }
         }
 
         private void AddUnitColumnsToPriceGrid()
         {
-            int counter = 1;
-
-            _units.ForEach(unit =>
+            for (int index = 0; index < _units.Count; index++)
             {
-                DataGridViewColumn unitColumn = new DataGridViewColumn();
-                unitColumn.Name = $"U{counter}";
-                unitColumn.DefaultCellStyle.Font = new Font("Consolas", 9);
-                unitColumn.HeaderText = unit.UnitName;
-                unitColumn.Tag = unit.Id;
-                unitColumn.CellTemplate = new DataGridViewTextBoxCell();
-                unitColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                unitColumn.Width = 100;
-                unitColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                unitColumn.DefaultCellStyle.Format = "N0";
-
-                pricesDataGridView.Columns.Add(unitColumn);
-                counter++;
-            });
+                pricesDataGridView.Columns.Add(CreateUnitColumn(_units[index], index + 1, true));
+            }
         }
 
         private void AddUnitColumnsToCalculationsGrid()
         {
-            int counter = 1;
-
-            _units.ForEach(unit =>
+            for (int index = 0; index < _units.Count; index++)
             {
-                DataGridViewColumn unitColumn = new DataGridViewColumn();
-                unitColumn.Name = $"U{counter}";
-                unitColumn.DefaultCellStyle.Font = new Font("Consolas", 9);
-                unitColumn.HeaderText = unit.UnitName;
-                unitColumn.Tag = unit.Id;
-                unitColumn.CellTemplate = new DataGridViewTextBoxCell();
-                unitColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                unitColumn.Width = 100;
-                unitColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                unitColumn.DefaultCellStyle.Format = "N0";
+                calculationsDataGridView.Columns.Add(CreateUnitColumn(_units[index], index + 1, true));
+            }
 
-                calculationsDataGridView.Columns.Add(unitColumn);
-                counter++;
-            });
-
-            DataGridViewColumn calculationColumn = new DataGridViewColumn();
-            calculationColumn.Name = "calculationColumn";
+            var calculationColumn = new DataGridViewColumn
+            {
+                Name = "calculationColumn",
+                HeaderText = "الإجمالي",
+                CellTemplate = new DataGridViewTextBoxCell(),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                Width = 100
+            };
             calculationColumn.DefaultCellStyle.Font = new Font("Consolas", 9);
-            calculationColumn.HeaderText = "الإجمالي"; 
-            calculationColumn.CellTemplate = new DataGridViewTextBoxCell();
-            calculationColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            calculationColumn.Width = 100;
             calculationColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             calculationColumn.DefaultCellStyle.Format = "N0";
-
             calculationsDataGridView.Columns.Add(calculationColumn);
         }
 
-
-        private void AddQuantityRows()
+        private void AddQuantityRows(Dictionary<string, int> quantitiesByKey)
         {
-           
-
-            _items.ForEach(item => 
+            foreach (Item item in _items)
             {
-                storeViewDataGridView.Rows.Add(item.Id,item.ItemName);
-            });
+                int rowIndex = storeViewDataGridView.Rows.Add(item.Id, item.ItemName);
+                DataGridViewRow row = storeViewDataGridView.Rows[rowIndex];
 
-            foreach (DataGridViewRow dgvRow in storeViewDataGridView.Rows)
-            {
-                foreach (DataGridViewCell dgvCell in dgvRow.Cells)
+                for (int unitIndex = 0; unitIndex < _units.Count; unitIndex++)
                 {
-                    if (dgvCell.OwningColumn.Tag == null) continue;
-
-                    int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
-                    int unitId = dgvCell.OwningColumn.Tag.ToString().ParseToInt();
-
-                    dgvCell.Value = GetItemQuantity(itemId, unitId);
+                    int quantity;
+                    quantitiesByKey.TryGetValue(BuildKey(item.Id, _units[unitIndex].Id), out quantity);
+                    row.Cells[unitIndex + 2].Value = quantity;
                 }
             }
         }
 
-        private void AddPriceRows()
+        private void AddPriceRows(Dictionary<string, decimal> pricesByKey)
         {
-
-            _items.ForEach(item =>
+            foreach (Item item in _items)
             {
-                pricesDataGridView.Rows.Add(item.Id, item.ItemName);
-            });
+                int rowIndex = pricesDataGridView.Rows.Add(item.Id, item.ItemName);
+                DataGridViewRow row = pricesDataGridView.Rows[rowIndex];
 
-            foreach (DataGridViewRow dgvRow in pricesDataGridView.Rows)
-            {
-                foreach (DataGridViewCell dgvCell in dgvRow.Cells)
+                for (int unitIndex = 0; unitIndex < _units.Count; unitIndex++)
                 {
-                    if (dgvCell.OwningColumn.Tag == null) continue;
-
-                    int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
-                    int unitId = dgvCell.OwningColumn.Tag.ToString().ParseToInt();
-
-                    dgvCell.Value = _itemData.GetItemLatestPurchasePrice(itemId, unitId);
+                    decimal price;
+                    pricesByKey.TryGetValue(BuildKey(item.Id, _units[unitIndex].Id), out price);
+                    row.Cells[unitIndex + 2].Value = price;
                 }
             }
         }
 
-        private void AddCalculationsRows()
+        private void AddCalculationsRows(Dictionary<string, int> quantitiesByKey, Dictionary<string, decimal> pricesByKey)
         {
+            _totalInventoryValue = 0;
 
-            _items.ForEach(item =>
+            foreach (Item item in _items)
             {
-                calculationsDataGridView.Rows.Add(item.Id, item.ItemName);
-            });
+                int rowIndex = calculationsDataGridView.Rows.Add(item.Id, item.ItemName);
+                DataGridViewRow row = calculationsDataGridView.Rows[rowIndex];
+                decimal total = 0;
 
-            foreach (DataGridViewRow dgvRow in calculationsDataGridView.Rows)
-            {
-                foreach (DataGridViewCell dgvCell in dgvRow.Cells)
+                for (int unitIndex = 0; unitIndex < _units.Count; unitIndex++)
                 {
-                    if (dgvCell.OwningColumn.Name.Equals("calculationColumn"))
-                        dgvCell.Value = CalculateItemUnitPrices(dgvRow);
+                    string key = BuildKey(item.Id, _units[unitIndex].Id);
+                    int quantity;
+                    decimal price;
+                    quantitiesByKey.TryGetValue(key, out quantity);
+                    pricesByKey.TryGetValue(key, out price);
 
-                    if (dgvCell.OwningColumn.Tag == null) continue;
-
-                    int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
-                    int unitId = dgvCell.OwningColumn.Tag.ToString().ParseToInt();
-
-                    dgvCell.Value = _itemData.GetItemLatestPurchasePrice(itemId, unitId)
-                        *
-                       GetItemQuantity(itemId, unitId);
+                    decimal value = price * quantity;
+                    row.Cells[unitIndex + 2].Value = value;
+                    total += value;
                 }
+
+                row.Cells[_units.Count + 2].Value = total;
+                _totalInventoryValue += total;
             }
         }
 
-        private decimal CalculateItemUnitPrices(DataGridViewRow dgvRow)
+        private void UpdateTotalInventoryLabel()
         {
-            decimal output = 0;
-
-            foreach (DataGridViewCell dgvCell in dgvRow.Cells)
-            {
-                if (dgvCell.OwningColumn.Tag == null) continue;
-                output += dgvCell.Value == null ? 0
-                    :
-                    dgvCell.Value.ToString().ParseToDecimal();
-            }
-
-            return output;
+            inventoryTotalLabel.Text = "إجمالي جرد المخزن: " + _totalInventoryValue.ToString("N0");
         }
 
         private void resetQuantityButton_Click(object sender, EventArgs e)
@@ -279,5 +313,4 @@ namespace StoreAndSalesUI.Forms
             ResetStoreQuantity();
         }
     }
-
 }
