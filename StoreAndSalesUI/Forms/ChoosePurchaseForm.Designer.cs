@@ -62,7 +62,7 @@
             // 
             // purchasesListGroupBox
             // 
-            this.purchasesListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.purchasesListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.purchasesListGroupBox.Controls.Add(this.loadingLabel);
             this.purchasesListGroupBox.Controls.Add(this.purchasesDataGridView);
@@ -131,6 +131,8 @@
             this.purchasesDataGridView.Size = new System.Drawing.Size(717, 331);
             this.purchasesDataGridView.TabIndex = 0;
             this.purchasesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchasesDataGridView_CellContentClick);
+            this.purchasesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.purchasesDataGridView_CellFormatting);
+
             // 
             // titleLabel
             // 

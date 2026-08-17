@@ -32,26 +32,33 @@ namespace StoreAndSalesUI.Forms
 
         private SaleData _saleData = new SaleData();
         private List<SaleView> _sales = new List<SaleView>();
+        private Dictionary<int, bool> _saleStatuses = new Dictionary<int, bool>();
         private ISaleRequester CallingForm;
+
         private decimal _currentPeriodTotalCost = 0;
 
         #endregion
 
         #region Private Methods
 
-        private async Task LoadSalesByDate(DateTime dateFrom,DateTime dateTo)
+        private async Task LoadSalesByDate(DateTime dateFrom, DateTime dateTo)
         {
             loadingLabel.Visible = true;
             await Task.Run(() =>
             {
                 _sales = _saleData.GetSalesByDate<SaleView>(dateFrom.Date,
-                dateTo.Date);
+dateTo.Date);
+                _saleStatuses = _saleData.GetSalesByDate(dateFrom.Date, dateTo.Date)
+                    .ToDictionary(sale => sale.Id, sale => sale.Status);
+
             });
             loadingLabel.Visible = false;
 
             salesDataGridView.AutoGenerateColumns = false;
             salesDataGridView.DataSource = _sales;
+            ApplySaleRowColors();
             CalculatePeriodTotalCost(_sales);
+
             ViewCurrentPeroidTotalCost();
         }
 
@@ -71,7 +78,7 @@ namespace StoreAndSalesUI.Forms
         {
             _currentPeriodTotalCost = 0;
 
-            foreach (SaleView  saleView in currentSales)
+            foreach (SaleView saleView in currentSales)
             {
                 _currentPeriodTotalCost += saleView.Total;
             }
@@ -82,13 +89,57 @@ namespace StoreAndSalesUI.Forms
             periodTotalValueToolStripStatusLabel.Text = _currentPeriodTotalCost.ToString("#,0");
         }
 
+        private void ApplySaleRowColors()
+        {
+            foreach (DataGridViewRow row in salesDataGridView.Rows)
+            {
+                ApplySaleRowColor(row);
+            }
+        }
+
+        private void ApplySaleRowColor(DataGridViewRow row)
+        {
+            if (row == null || row.IsNewRow) return;
+
+            SaleView sale = row.DataBoundItem as SaleView;
+            bool isUnpaid = sale != null
+                && _saleStatuses.TryGetValue(sale.SaleId, out bool status)
+                && !status;
+
+            if (isUnpaid)
+            {
+                row.DefaultCellStyle.BackColor = Color.MistyRose;
+                row.DefaultCellStyle.ForeColor = Color.DarkRed;
+                row.DefaultCellStyle.SelectionBackColor = Color.IndianRed;
+                row.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+            else
+            {
+                row.DefaultCellStyle.BackColor = Color.White;
+                row.DefaultCellStyle.ForeColor = Color.Black;
+                row.DefaultCellStyle.SelectionBackColor = SystemColors.Control;
+                row.DefaultCellStyle.SelectionForeColor = Color.Black;
+            }
+        }
+
+        private void salesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                ApplySaleRowColor(salesDataGridView.Rows[e.RowIndex]);
+            }
+        }
+
         private void FilterByName()
+
         {
             var filter = _sales.Where(sale => sale.CustomerName.Contains(customerNameTextBox.Text)).ToList();
             salesDataGridView.AutoGenerateColumns = false;
             salesDataGridView.DataSource = filter;
+            ApplySaleRowColors();
 
             CalculatePeriodTotalCost(filter);
+
             ViewCurrentPeroidTotalCost();
         }
 
@@ -97,10 +148,10 @@ namespace StoreAndSalesUI.Forms
 
         private async void ChooseSaleForm_Load(object sender, EventArgs e)
         {
-          //await  LoadSalesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date);
+            //await  LoadSalesByDate(DateTime.Parse($"{DateTime.Now.Year}-{DateTime.Now.Month}-01").Date, DateTime.Today.Date);
             if (customerNameTextBox.Text.Trim().Length != 0)
             {
-                await LoadSalesByDate(dateFromDateTimePicker.Value ,dateToDateTimePicker.Value);
+                await LoadSalesByDate(dateFromDateTimePicker.Value, dateToDateTimePicker.Value);
                 FilterByName();
             }
             else
@@ -111,12 +162,12 @@ namespace StoreAndSalesUI.Forms
 
         private async void dateFromDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-           await LoadSalesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
+            await LoadSalesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
         }
 
         private async void dateToDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-           await LoadSalesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
+            await LoadSalesByDate(dateFromDateTimePicker.Value.Date, dateToDateTimePicker.Value.Date);
         }
 
         private void salesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -132,7 +183,7 @@ namespace StoreAndSalesUI.Forms
 
         private void salesDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-           
+
         }
 
         private void salesDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)

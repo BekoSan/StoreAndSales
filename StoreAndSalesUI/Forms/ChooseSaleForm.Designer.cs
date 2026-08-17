@@ -128,6 +128,8 @@
             this.salesDataGridView.Size = new System.Drawing.Size(717, 323);
             this.salesDataGridView.TabIndex = 0;
             this.salesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesDataGridView_CellContentClick);
+            this.salesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.salesDataGridView_CellFormatting);
+
             this.salesDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.salesDataGridView_RowPostPaint);
             this.salesDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.salesDataGridView_RowPrePaint);
             this.salesDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.salesDataGridView_RowsAdded);
