@@ -271,7 +271,7 @@ namespace StoreAndSalesUI.Forms
         {
             if (suppliersComboBox.SelectedIndex == -1) return;
 
-            if (!isDisscountCheckBox.Checked)
+            if (!isDisscountCheckBox.Checked && disscountTextBox.Text.ParseToDecimal() != 0)
             {
                 int supplierId = suppliersComboBox.SelectedValue.ToString().ParseToInt();
                 decimal currentBalance = _suppliers.Find(c => c.Id == supplierId).Balance;
