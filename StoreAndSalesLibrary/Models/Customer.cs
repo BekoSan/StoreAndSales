@@ -14,5 +14,6 @@
 
         public decimal Balance { get; set; }
 
+        public decimal CreditLimit { get; set; }
     }
 }

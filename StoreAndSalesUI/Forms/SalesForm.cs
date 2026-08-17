@@ -9,12 +9,14 @@ using System.Windows.Forms;
 
 namespace StoreAndSalesUI.Forms
 {
-    public partial class SalesForm : Form, IItemRequester, IUnitRequester,ISaleRequester
+    public partial class SalesForm : Form, IItemRequester, IUnitRequester, ISaleRequester
     {
         public SalesForm()
         {
             InitializeComponent();
+            EnableGridDoubleBuffering(saleDetailsDataGridView);
             _chooseSaleForm = new ChooseSaleForm(this);
+
         }
 
 
@@ -35,8 +37,11 @@ namespace StoreAndSalesUI.Forms
         private VoucherData _voucherData = new VoucherData();
         private Voucher _voucher = new Voucher();
         private ChooseSaleForm _chooseSaleForm;
+        private ChooseItemForm _chooseItemForm;
+        private readonly Dictionary<int, string> _itemNameCache = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _unitNameCache = new Dictionary<int, string>();
         private UserLogData _userLogData = new UserLogData();
-        
+
         #endregion
 
         #region Private Methods
@@ -82,15 +87,25 @@ namespace StoreAndSalesUI.Forms
 
         private void AddItemToSale()
         {
-            //new ChooseItemForm(this).ShowDialog();
-            ChooseItemForm chooseItemForm = new ChooseItemForm(this);
-            chooseItemForm.TopLevel = false;
-            chooseItemForm.Visible = true;
-            chooseItemForm.ControlBox = false;
-            chooseItemForm.Dock = DockStyle.Fill;
-            chooseItemForm.FormBorderStyle = FormBorderStyle.None;
-            panel1.Controls.Add(chooseItemForm);
-            
+            // إنشاء الشاشة مرة واحدة فقط؛ إعادة إنشائها كانت تعيد استدعاء GetAllItems في كل مرة.
+            if (_chooseItemForm == null || _chooseItemForm.IsDisposed)
+            {
+                _chooseItemForm = new ChooseItemForm(this)
+                {
+                    TopLevel = false,
+                    ControlBox = false,
+                    Dock = DockStyle.Fill,
+                    FormBorderStyle = FormBorderStyle.None
+                };
+
+                panel1.Controls.Add(_chooseItemForm);
+                _chooseItemForm.Show();
+            }
+            else
+            {
+                _chooseItemForm.Visible = true;
+                _chooseItemForm.BringToFront();
+            }
         }
 
         private void ChangeUnit()
@@ -138,7 +153,7 @@ namespace StoreAndSalesUI.Forms
             saleDetailsDataGridView.Rows.Clear();
             customersComboBox.SelectedIndex = -1;
             notesTextBox.Clear();
-            isDisscountCheckBox .Checked = false;
+            isDisscountCheckBox.Checked = false;
             paymentTypeCheckBox.Checked = false;
             isSalePreview = false;
         }
@@ -189,15 +204,64 @@ namespace StoreAndSalesUI.Forms
                 MessageBox.Show("يجب إدخال جميع الكميات  بصورة صحيحة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
             }
+            else if (!IsCustomerDebtWithinLimit(true))
+            {
+                return output;
+            }
 
             return output;
+        }
+
+        private Customer GetSelectedCustomer()
+        {
+            int customerId = customersComboBox.SelectedValue == null ? 0 : customersComboBox.SelectedValue.ToString().ParseToInt();
+            return _customers.FirstOrDefault(customer => customer.Id == customerId);
+        }
+
+        private bool IsCustomerDebtWithinLimit(bool showMessage)
+        {
+            if (isDisscountCheckBox.Checked)
+            {
+                return true;
+            }
+
+            Customer customer = GetSelectedCustomer();
+            if (customer == null || customer.CreditLimit <= 0)
+            {
+                return true;
+            }
+
+            decimal currentBalance = customer.Balance;
+            decimal additionalDebt = Math.Max(0, _disscount);
+            decimal projectedBalance = currentBalance + additionalDebt;
+
+            if (currentBalance >= customer.CreditLimit || projectedBalance > customer.CreditLimit)
+            {
+                if (showMessage)
+                {
+                    decimal availableCredit = Math.Max(0, customer.CreditLimit - currentBalance);
+                    MessageBox.Show(
+                        $"لقد تم تجاوز الحد للعميل {customer.CustomerName}.\n" +
+                        $"الرصيد الحالي: {currentBalance:#,0}\n" +
+                        $"حد الدين: {customer.CreditLimit:#,0}\n" +
+                        $"المتاح للدين: {availableCredit:#,0}",
+                        "تجاوز حد الدين",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         private void Save()
         {
             try
             {
-                if (_saleData.CreateSale(_sale)){
+                if (_saleData.CreateSale(_sale))
+                {
                     SaveSaleVoucher(_sale.Id);
                     _userLogData.AddLog(LoginDataHelper.UserId, $"عملية بيع أصناف للعميل {customersComboBox.Text}");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -214,7 +278,7 @@ namespace StoreAndSalesUI.Forms
         {
             saveButton.Enabled = isEnabled;
             addItemButton.Enabled = isEnabled;
-            saleDetailsDataGridView.ReadOnly  = !isEnabled;
+            saleDetailsDataGridView.ReadOnly = !isEnabled;
             saleDetailsDataGridView.Columns[6].Visible = isEnabled;
             disscountTextBox.Enabled = isEnabled;
             customersComboBox.Enabled = isEnabled;
@@ -225,13 +289,50 @@ namespace StoreAndSalesUI.Forms
             returnButton.Enabled = !isEnabled;
         }
 
-        private void LoadItemNameAndUnitFromRow(DataGridViewRow dgvRow)
+        private static void EnableGridDoubleBuffering(DataGridView grid)
         {
+            try
+            {
+                typeof(DataGridView)
+                    .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                    ?.SetValue(grid, true, null);
+            }
+            catch (Exception)
+            {
+                // Double buffering is an optional UI optimization.
+            }
+        }
+
+        private void LoadItemNameAndUnitFromRow(DataGridViewRow dgvRow)
+
+        {
+            if (dgvRow == null || dgvRow.IsNewRow)
+            {
+                return;
+            }
+
+            // RowPostPaint يستدعى عدة مرات؛ لا تعِد الاتصال بقاعدة البيانات إذا كانت القيم محمّلة.
+            bool hasItemName = !string.IsNullOrWhiteSpace(Convert.ToString(dgvRow.Cells[1].Value));
+            bool hasUnitName = !string.IsNullOrWhiteSpace(Convert.ToString(dgvRow.Cells[2].Value));
+            if (hasItemName && hasUnitName)
+            {
+                return;
+            }
+
             int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
             int unitId = dgvRow.Cells[5].Value.ToString().ParseToInt();
 
-            string unitName = _unitData.GetUnitById(unitId).UnitName;
-            string itemName = _itemData.GetItem(itemId).ItemName;
+            if (!_itemNameCache.TryGetValue(itemId, out string itemName))
+            {
+                itemName = _itemData.GetItem(itemId).ItemName;
+                _itemNameCache[itemId] = itemName;
+            }
+
+            if (!_unitNameCache.TryGetValue(unitId, out string unitName))
+            {
+                unitName = _unitData.GetUnitById(unitId).UnitName;
+                _unitNameCache[unitId] = unitName;
+            }
 
             dgvRow.Cells[1].Value = itemName;
             dgvRow.Cells[2].Value = unitName;
@@ -245,16 +346,16 @@ namespace StoreAndSalesUI.Forms
         private bool isQuantityAvailable(int itemId, int unitId, int quantityToTake)
         {
             bool output = true;
-            
-            int itemQuantity = 
-                Properties.Settings.Default.IsQuantityFilter  ?
-               _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate) : _itemData.GetItemQuantity(itemId, unitId); 
 
-            if (quantityToTake > itemQuantity) 
+            int itemQuantity =
+                Properties.Settings.Default.IsQuantityFilter ?
+               _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate) : _itemData.GetItemQuantity(itemId, unitId);
+
+            if (quantityToTake > itemQuantity)
             {
                 output = false;
             }
-                
+
             return output;
         }
 
@@ -277,22 +378,22 @@ namespace StoreAndSalesUI.Forms
         private void DeleteRow(int rowIndex)
         {
             if (MessageBox.Show("سيتم حذف الصنف من الفاتورة ، تأكيد؟",
-                "حذف الصنف", 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
+                "حذف الصنف",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2) == DialogResult.No) return;
 
             saleDetailsDataGridView.Rows.RemoveAt(rowIndex);
         }
 
-        private void UpdateCustomerBalance() 
+        private void UpdateCustomerBalance()
         {
             if (customersComboBox.SelectedIndex == -1) return;
 
             if (isDisscountCheckBox.Checked == false)
             {
                 int customerId = customersComboBox.SelectedValue.ToString().ParseToInt();
-                decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance; 
-                _customerData.UpdateBalance(customerId,(currentBalance + _disscount)); 
+                decimal currentBalance = _customers.Find(c => c.Id == customerId).Balance;
+                _customerData.UpdateBalance(customerId, (currentBalance + _disscount));
             }
         }
 
@@ -318,7 +419,7 @@ namespace StoreAndSalesUI.Forms
                 {
                     VoucherType = "R",
                     Amount = disscountTextBox.Text.ParseToDecimal(),
-                    SaleId  = saleId,
+                    SaleId = saleId,
                     CustomerId = customerId,
                     Notes = $"المتبقي من الفاتورة رقم {saleId}",
                 };
@@ -332,37 +433,51 @@ namespace StoreAndSalesUI.Forms
 
         public void AddItem(Item item)
         {
-            if (IsItemAdded(item.Id)) return;
-            //Get Default Unit Name
-            ItemUnit itemUnit = _itemUnitData.GetItemUnits(item.Id).First();
-            decimal defaultUnitPrice = itemUnit.UnitPrice;
-            string defaultUnitName = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()).UnitName;
-            
-            // Get Default Unit Price
-           int rowIndex = saleDetailsDataGridView.Rows.Add
-                (
-                item.Id,
-                item.ItemName,
-                defaultUnitName,
-                1,
-                defaultUnitPrice,
-                UsefulMethods.GetDefaultUnitId());
+            if (item == null || IsItemAdded(item.Id) || isSalePreview)
 
-            string unitName = saleDetailsDataGridView.Rows[rowIndex].Cells[2].Value.ToString();
-            if (!isQuantityAvailable(item.Id, itemUnit.UnitId,1))
             {
-                MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                saleDetailsDataGridView.Rows.Remove(saleDetailsDataGridView.Rows[rowIndex]); //TODO: Remove this line
-                CalculateTotalCost();
                 return;
             }
-            List<ItemUnit> itemUnits = _itemUnitData.GetItemUnits(item.Id).Where(_itemUnit => _itemUnit.UnitId == UsefulMethods.GetDefaultUnitId()).ToList();
 
-            if (itemUnits.Count == 0)
+            //if (!IsCustomerDebtWithinLimit(true))
+            //{
+            //    return;
+            //}
+
+            int defaultUnitId = UsefulMethods.GetDefaultUnitId();
+
+            List<ItemUnit> itemUnits = _itemUnitData.GetItemUnits(item.Id);
+            ItemUnit defaultItemUnit = itemUnits.FirstOrDefault(itemUnit => itemUnit.UnitId == defaultUnitId);
+
+            if (defaultItemUnit == null)
             {
+                string defaultUnitName = _unitData.GetUnitById(defaultUnitId).UnitName;
                 MessageBox.Show($"الوحدة {defaultUnitName} لا تنتمي لهذا الصـنف", "وحدة الصنف", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (!_unitNameCache.TryGetValue(defaultUnitId, out string defaultUnitNameFromCache))
+            {
+                defaultUnitNameFromCache = _unitData.GetUnitById(defaultUnitId).UnitName;
+                _unitNameCache[defaultUnitId] = defaultUnitNameFromCache;
+            }
+
+            int rowIndex = saleDetailsDataGridView.Rows.Add(
+                item.Id,
+                item.ItemName,
+                defaultUnitNameFromCache,
+                1,
+                defaultItemUnit.UnitPrice,
+                defaultUnitId);
+
+            if (!isQuantityAvailable(item.Id, defaultUnitId, 1))
+            {
+                MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {defaultUnitNameFromCache} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                saleDetailsDataGridView.Rows.RemoveAt(rowIndex);
+                CalculateTotalCost();
+            }
+            CalculateTotalCost();
+            PreviewTotalCost(_totalCost);
         }
 
         public void AddUnit(Unit unit)
@@ -370,13 +485,13 @@ namespace StoreAndSalesUI.Forms
             DataGridViewRow currentRow = saleDetailsDataGridView.CurrentRow;
             int itemId = currentRow.Cells[0].Value.ToString().ParseToInt();
             List<ItemUnit> itemUnits = _itemUnitData.GetItemUnits(itemId).Where(itemUnit => itemUnit.UnitId == unit.Id).ToList();
-           
-            if (itemUnits.Count == 0) 
+
+            if (itemUnits.Count == 0)
             {
-                MessageBox.Show($"الوحدة {unit.UnitName} لا تنتمي لهذا الصـنف","وحدة الصنف",MessageBoxButtons.OK ,MessageBoxIcon.Warning); 
+                MessageBox.Show($"الوحدة {unit.UnitName} لا تنتمي لهذا الصـنف", "وحدة الصنف", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!isQuantityAvailable(itemId,unit.Id,1))
+            if (!isQuantityAvailable(itemId, unit.Id, 1))
             {
                 MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unit.UnitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -407,14 +522,14 @@ namespace StoreAndSalesUI.Forms
                 saleDetailsDataGridView.Rows.Add(saleDetail.ItemId, "", "", saleDetail.Quantity, saleDetail.Price, saleDetail.UnitId);
             });
 
-            saleDetailsDataGridView.ClearSelection(); 
+            saleDetailsDataGridView.ClearSelection();
 
             EnableDissableEditing(false);
         }
 
         private void addItemButton_Click(object sender, EventArgs e)
         {
-            AddItemToSale(); 
+            AddItemToSale();
         }
 
         private void saleDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -445,7 +560,7 @@ namespace StoreAndSalesUI.Forms
                 if (_sale.Id == 0)
                 {
                     isEdit = true;
-                    if (!isQuantityAvailable(itemId,unitId, quantity))
+                    if (!isQuantityAvailable(itemId, unitId, quantity))
                     {
                         MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {unitName} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -476,11 +591,6 @@ namespace StoreAndSalesUI.Forms
         private void saleDetailsDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             LoadItemNameAndUnitFromRow(saleDetailsDataGridView.Rows[e.RowIndex]);
-            
-            if (_sale.Id != 0) return;
-           
-            CalculateTotalCost();
-            PreviewTotalCost(_totalCost); 
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -512,9 +622,9 @@ namespace StoreAndSalesUI.Forms
         private void returnButton_Click(object sender, EventArgs e)
         {
 
-        new SaleReturnForm(_sale.Id, customersComboBox.SelectedValue.ToString().ParseToInt(),
-        customersComboBox.Text, LoginDataHelper.UserId).ShowDialog();
-            
+            new SaleReturnForm(_sale.Id, customersComboBox.SelectedValue.ToString().ParseToInt(),
+            customersComboBox.Text, LoginDataHelper.UserId).ShowDialog();
+
         }
     }
 }

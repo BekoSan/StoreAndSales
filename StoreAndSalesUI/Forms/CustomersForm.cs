@@ -4,13 +4,15 @@ using StoreAndSalesUI.Helpers;
 using StoreAndSalesUI.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 
 namespace StoreAndSalesUI.Forms
 {
-    public partial class CustomersForm : Form,IVouchersRequetser
+    public partial class CustomersForm : Form, IVouchersRequetser
     {
         public CustomersForm()
         {
@@ -33,6 +35,8 @@ namespace StoreAndSalesUI.Forms
             Customers = _customerData.GetAllCustomers();
             customersDataGridView.AutoGenerateColumns = false;
             customersDataGridView.DataSource = Customers;
+            ApplyCustomerRowColors();
+
         }
 
         private void LoadCustomerData()
@@ -41,6 +45,8 @@ namespace StoreAndSalesUI.Forms
             addressTextBox.Text = _customer.Address;
             phoneTextBox.Text = _customer.Phone;
             balanceTextBox.Text = _customer.Balance.ToString("#,0");
+            creditLimitTextBox.Text = _customer.CreditLimit.ToString("#,0");
+
         }
 
         private void SelectCustomer()
@@ -52,6 +58,8 @@ namespace StoreAndSalesUI.Forms
             _customer.Address = currentRow.Cells[2].Value.ToString();
             _customer.Phone = currentRow.Cells[3].Value.ToString();
             _customer.Balance = decimal.Parse(currentRow.Cells[4].Value.ToString());
+            _customer.CreditLimit = decimal.Parse(currentRow.Cells[5].Value.ToString());
+
         }
 
         private void CollectData()
@@ -61,6 +69,10 @@ namespace StoreAndSalesUI.Forms
             _customer.Phone = phoneTextBox.Text;
             decimal balance;
             _customer.Balance = decimal.TryParse(balanceTextBox.Text, out balance) ? balance : 0;
+
+            decimal creditLimit;
+            _customer.CreditLimit = decimal.TryParse(creditLimitTextBox.Text, out creditLimit) ? creditLimit : 0;
+
         }
 
         private bool IsValidData()
@@ -81,7 +93,14 @@ namespace StoreAndSalesUI.Forms
             // {
             //     output = false;
             // }
+            else if (_customer.CreditLimit < 0)
+            {
+                MessageBox.Show("يجب أن يكون حد الدين صفرًا أو قيمة موجبة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                output = false;
+                creditLimitTextBox.Focus();
+            }
             else if (_customer.Id == 0 && _customer.Balance == 0)
+
             {
                 MessageBox.Show("يجب إدخال الرصيد الإفتتاحي للعميل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
@@ -106,7 +125,7 @@ namespace StoreAndSalesUI.Forms
                 else
                 {
                     _customerData.CreateCustomer(_customer);
-                    _userLogData.AddLog(LoginDataHelper.UserId,$"تمت إضافة العميل { _customer.CustomerName }");
+                    _userLogData.AddLog(LoginDataHelper.UserId, $"تمت إضافة العميل {_customer.CustomerName}");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -124,7 +143,9 @@ namespace StoreAndSalesUI.Forms
             addressTextBox.Clear();
             phoneTextBox.Clear();
             balanceTextBox.Clear();
+            creditLimitTextBox.Clear();
             BalanceFieldStatus();
+
             searchTextBox.Clear();
         }
 
@@ -154,24 +175,69 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
-        private void BalanceFieldStatus() 
-        { 
+        private void BalanceFieldStatus()
+        {
             balanceTextBox.Enabled = _customer.Id == 0 ? true : false;
-            payDebtButton.Enabled = _customer.Id == 0 ? false  : true;
+            creditLimitTextBox.Enabled = true;
+            payDebtButton.Enabled = _customer.Id == 0 ? false : true;
+
         }
 
-        private void Search(string searchText) 
+        private void Search(string searchText)
         {
             var filter = Customers.Where(cus => cus.CustomerName.Contains(searchText)).ToList();
             customersDataGridView.AutoGenerateColumns = false;
             customersDataGridView.DataSource = filter;
+            ApplyCustomerRowColors();
+        }
+
+        private void ApplyCustomerRowColors()
+        {
+            foreach (DataGridViewRow row in customersDataGridView.Rows)
+            {
+                ApplyCustomerRowColor(row);
+            }
+        }
+
+        private void ApplyCustomerRowColor(DataGridViewRow row)
+        {
+            if (row == null || row.IsNewRow) return;
+
+            Customer customer = row.DataBoundItem as Customer;
+            bool isOverCreditLimit = customer != null
+                && customer.CreditLimit > 0
+                && customer.Balance > customer.CreditLimit;
+
+            if (isOverCreditLimit)
+            {
+                row.DefaultCellStyle.BackColor = Color.MistyRose;
+                row.DefaultCellStyle.ForeColor = Color.DarkRed;
+                row.DefaultCellStyle.SelectionBackColor = Color.IndianRed;
+                row.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+            else
+            {
+                row.DefaultCellStyle.BackColor = Color.White;
+                row.DefaultCellStyle.ForeColor = Color.Black;
+                row.DefaultCellStyle.SelectionBackColor = SystemColors.Control;
+                row.DefaultCellStyle.SelectionForeColor = Color.Black;
+            }
+        }
+
+        private void customersDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                ApplyCustomerRowColor(customersDataGridView.Rows[e.RowIndex]);
+            }
         }
 
         #endregion
 
+
         private void CustomersForm_Load(object sender, EventArgs e)
         {
-            LoadCustomers(); 
+            LoadCustomers();
         }
 
         private void customersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -190,12 +256,12 @@ namespace StoreAndSalesUI.Forms
         {
             CollectData();
             if (IsValidData()) Save();
-            ResetForm(); 
+            ResetForm();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            ArchiveCustomer(); 
+            ArchiveCustomer();
         }
 
         private void balanceTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -203,15 +269,22 @@ namespace StoreAndSalesUI.Forms
             UsefulMethods.AcceptJustNumbers(e, balanceTextBox);
         }
 
+        private void creditLimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UsefulMethods.AcceptJustNumbers(e, creditLimitTextBox);
+        }
+
         private void payDebtButton_Click(object sender, EventArgs e)
         {
-            new VouchersForm(this).ShowDialog();  
+            new VouchersForm(this).ShowDialog();
         }
 
         public void UpdatePersonBalance(int personId, decimal balance)
         {
             Customers.Find(c => c.Id == personId).Balance = balance;
             customersDataGridView.Refresh();
+            ApplyCustomerRowColors();
+
             if (_customer.Id == personId)
             {
                 _customer.Balance = balance;

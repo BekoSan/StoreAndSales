@@ -5,5 +5,6 @@
     [Address] NVARCHAR(150) NOT NULL, 
     [Phone] NVARCHAR(13) NOT NULL, 
     [Balance] MONEY DEFAULT 0 NOT NULL,
+    [CreditLimit] MONEY DEFAULT 0 NOT NULL,
     [Status] BIT NOT NULL DEFAULT 1
 )

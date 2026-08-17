@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.titleLabel = new System.Windows.Forms.Label();
             this.customerDataGroupBox = new System.Windows.Forms.GroupBox();
             this.payDebtButton = new System.Windows.Forms.Button();
+            this.creditLimitLabel = new System.Windows.Forms.Label();
+            this.creditLimitTextBox = new System.Windows.Forms.TextBox();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.balanceTextBox = new System.Windows.Forms.TextBox();
             this.addressLabel = new System.Windows.Forms.Label();
@@ -45,15 +48,16 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
             this.customersListGroupBox = new System.Windows.Forms.GroupBox();
+            this.searchLabel = new System.Windows.Forms.Label();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.customersDataGridView = new System.Windows.Forms.DataGridView();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchLabel = new System.Windows.Forms.Label();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.creditLimitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGroupBox.SuspendLayout();
             this.customersListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).BeginInit();
@@ -63,7 +67,7 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(231, 12);
+            this.titleLabel.Location = new System.Drawing.Point(202, 12);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(181, 66);
             this.titleLabel.TabIndex = 1;
@@ -73,6 +77,8 @@
             // 
             this.customerDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerDataGroupBox.Controls.Add(this.payDebtButton);
+            this.customerDataGroupBox.Controls.Add(this.creditLimitLabel);
+            this.customerDataGroupBox.Controls.Add(this.creditLimitTextBox);
             this.customerDataGroupBox.Controls.Add(this.balanceLabel);
             this.customerDataGroupBox.Controls.Add(this.balanceTextBox);
             this.customerDataGroupBox.Controls.Add(this.addressLabel);
@@ -82,9 +88,9 @@
             this.customerDataGroupBox.Controls.Add(this.customerNameLabel);
             this.customerDataGroupBox.Controls.Add(this.customerNameTextBox);
             this.customerDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.customerDataGroupBox.Location = new System.Drawing.Point(15, 81);
+            this.customerDataGroupBox.Location = new System.Drawing.Point(73, 81);
             this.customerDataGroupBox.Name = "customerDataGroupBox";
-            this.customerDataGroupBox.Size = new System.Drawing.Size(615, 268);
+            this.customerDataGroupBox.Size = new System.Drawing.Size(596, 322);
             this.customerDataGroupBox.TabIndex = 0;
             this.customerDataGroupBox.TabStop = false;
             this.customerDataGroupBox.Text = "بيانات العميل";
@@ -95,20 +101,44 @@
             this.payDebtButton.Enabled = false;
             this.payDebtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.payDebtButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.payDebtButton.Location = new System.Drawing.Point(6, 222);
+            this.payDebtButton.Location = new System.Drawing.Point(63, 276);
             this.payDebtButton.Name = "payDebtButton";
-            this.payDebtButton.Size = new System.Drawing.Size(94, 33);
+            this.payDebtButton.Size = new System.Drawing.Size(82, 33);
             this.payDebtButton.TabIndex = 12;
             this.payDebtButton.Text = "تسديد دين";
             this.payDebtButton.UseVisualStyleBackColor = true;
             this.payDebtButton.Click += new System.EventHandler(this.payDebtButton_Click);
+            // 
+            // creditLimitLabel
+            // 
+            this.creditLimitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.creditLimitLabel.AutoSize = true;
+            this.creditLimitLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.creditLimitLabel.Location = new System.Drawing.Point(508, 202);
+            this.creditLimitLabel.Name = "creditLimitLabel";
+            this.creditLimitLabel.Size = new System.Drawing.Size(57, 19);
+            this.creditLimitLabel.TabIndex = 13;
+            this.creditLimitLabel.Text = "حد الدين";
+            // 
+            // creditLimitTextBox
+            // 
+            this.creditLimitTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.creditLimitTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.creditLimitTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
+            this.creditLimitTextBox.Location = new System.Drawing.Point(63, 225);
+            this.creditLimitTextBox.MaxLength = 18;
+            this.creditLimitTextBox.Name = "creditLimitTextBox";
+            this.creditLimitTextBox.Size = new System.Drawing.Size(512, 29);
+            this.creditLimitTextBox.TabIndex = 12;
+            this.creditLimitTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.creditLimitTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.creditLimitTextBox_KeyPress);
             // 
             // balanceLabel
             // 
             this.balanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceLabel.AutoSize = true;
             this.balanceLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.balanceLabel.Location = new System.Drawing.Point(538, 202);
+            this.balanceLabel.Location = new System.Drawing.Point(529, 256);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(48, 19);
             this.balanceLabel.TabIndex = 11;
@@ -119,10 +149,10 @@
             this.balanceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.balanceTextBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
-            this.balanceTextBox.Location = new System.Drawing.Point(106, 225);
+            this.balanceTextBox.Location = new System.Drawing.Point(151, 279);
             this.balanceTextBox.MaxLength = 18;
             this.balanceTextBox.Name = "balanceTextBox";
-            this.balanceTextBox.Size = new System.Drawing.Size(484, 29);
+            this.balanceTextBox.Size = new System.Drawing.Size(424, 29);
             this.balanceTextBox.TabIndex = 10;
             this.balanceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.balanceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.balanceTextBox_KeyPress);
@@ -132,7 +162,7 @@
             this.addressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addressLabel.AutoSize = true;
             this.addressLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.addressLabel.Location = new System.Drawing.Point(537, 79);
+            this.addressLabel.Location = new System.Drawing.Point(528, 79);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(49, 19);
             this.addressLabel.TabIndex = 9;
@@ -142,9 +172,9 @@
             // 
             this.addressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addressTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.addressTextBox.Location = new System.Drawing.Point(6, 104);
+            this.addressTextBox.Location = new System.Drawing.Point(63, 104);
             this.addressTextBox.Name = "addressTextBox";
-            this.addressTextBox.Size = new System.Drawing.Size(584, 29);
+            this.addressTextBox.Size = new System.Drawing.Size(511, 29);
             this.addressTextBox.TabIndex = 1;
             // 
             // phoneLabel
@@ -152,7 +182,7 @@
             this.phoneLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.phoneLabel.Location = new System.Drawing.Point(517, 146);
+            this.phoneLabel.Location = new System.Drawing.Point(510, 146);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(69, 19);
             this.phoneLabel.TabIndex = 7;
@@ -162,10 +192,10 @@
             // 
             this.phoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.phoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.phoneTextBox.Location = new System.Drawing.Point(6, 168);
+            this.phoneTextBox.Location = new System.Drawing.Point(63, 168);
             this.phoneTextBox.MaxLength = 13;
             this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.Size = new System.Drawing.Size(584, 29);
+            this.phoneTextBox.Size = new System.Drawing.Size(511, 29);
             this.phoneTextBox.TabIndex = 2;
             this.phoneTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -174,7 +204,7 @@
             this.customerNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerNameLabel.AutoSize = true;
             this.customerNameLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.customerNameLabel.Location = new System.Drawing.Point(518, 25);
+            this.customerNameLabel.Location = new System.Drawing.Point(511, 25);
             this.customerNameLabel.Name = "customerNameLabel";
             this.customerNameLabel.Size = new System.Drawing.Size(68, 19);
             this.customerNameLabel.TabIndex = 5;
@@ -184,9 +214,9 @@
             // 
             this.customerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customerNameTextBox.Location = new System.Drawing.Point(6, 47);
+            this.customerNameTextBox.Location = new System.Drawing.Point(63, 47);
             this.customerNameTextBox.Name = "customerNameTextBox";
-            this.customerNameTextBox.Size = new System.Drawing.Size(584, 29);
+            this.customerNameTextBox.Size = new System.Drawing.Size(511, 29);
             this.customerNameTextBox.TabIndex = 0;
             // 
             // saveButton
@@ -194,9 +224,9 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(262, 680);
+            this.saveButton.Location = new System.Drawing.Point(289, 680);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(118, 33);
+            this.saveButton.Size = new System.Drawing.Size(103, 33);
             this.saveButton.TabIndex = 2;
             this.saveButton.Text = "حفــــظ";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -207,9 +237,9 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(140, 680);
+            this.newButton.Location = new System.Drawing.Point(182, 680);
             this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(118, 33);
+            this.newButton.Size = new System.Drawing.Size(103, 33);
             this.newButton.TabIndex = 1;
             this.newButton.Text = "جديد";
             this.newButton.UseVisualStyleBackColor = true;
@@ -222,12 +252,35 @@
             this.customersListGroupBox.Controls.Add(this.searchTextBox);
             this.customersListGroupBox.Controls.Add(this.customersDataGridView);
             this.customersListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.customersListGroupBox.Location = new System.Drawing.Point(12, 355);
+            this.customersListGroupBox.Location = new System.Drawing.Point(12, 409);
             this.customersListGroupBox.Name = "customersListGroupBox";
-            this.customersListGroupBox.Size = new System.Drawing.Size(621, 319);
+            this.customersListGroupBox.Size = new System.Drawing.Size(659, 265);
             this.customersListGroupBox.TabIndex = 12;
             this.customersListGroupBox.TabStop = false;
             this.customersListGroupBox.Text = "قائمة العملاء";
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.searchLabel.Location = new System.Drawing.Point(602, 32);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(34, 19);
+            this.searchLabel.TabIndex = 12;
+            this.searchLabel.Text = "بحث";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchTextBox.Font = new System.Drawing.Font("Arial", 10F);
+            this.searchTextBox.Location = new System.Drawing.Point(88, 28);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(509, 27);
+            this.searchTextBox.TabIndex = 11;
+            this.searchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // customersDataGridView
             // 
@@ -239,14 +292,14 @@
             this.customersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.customersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.customersDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customersDataGridView.ColumnHeadersHeight = 29;
             this.customersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.customersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -254,10 +307,12 @@
             this.unitNameColumn,
             this.addressColumn,
             this.phoneColumn,
-            this.balanceColumn});
+            this.balanceColumn,
+            this.creditLimitColumn});
+            this.customersDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.customersDataGridView.EnableHeadersVisualStyles = false;
             this.customersDataGridView.GridColor = System.Drawing.Color.Black;
-            this.customersDataGridView.Location = new System.Drawing.Point(3, 71);
+            this.customersDataGridView.Location = new System.Drawing.Point(3, 74);
             this.customersDataGridView.MultiSelect = false;
             this.customersDataGridView.Name = "customersDataGridView";
             this.customersDataGridView.ReadOnly = true;
@@ -265,50 +320,28 @@
             this.customersDataGridView.RowHeadersVisible = false;
             this.customersDataGridView.RowHeadersWidth = 51;
             this.customersDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.customersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.customersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.customersDataGridView.RowTemplate.Height = 24;
             this.customersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customersDataGridView.Size = new System.Drawing.Size(615, 242);
+            this.customersDataGridView.Size = new System.Drawing.Size(653, 188);
             this.customersDataGridView.TabIndex = 0;
             this.customersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customersDataGridView_CellContentClick);
+            this.customersDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.customersDataGridView_CellFormatting);
             // 
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.deleteButton.Location = new System.Drawing.Point(384, 680);
+            this.deleteButton.Location = new System.Drawing.Point(396, 680);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(118, 33);
+            this.deleteButton.Size = new System.Drawing.Size(103, 33);
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "حـــذف";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchTextBox.Font = new System.Drawing.Font("Arial", 10F);
-            this.searchTextBox.Location = new System.Drawing.Point(24, 28);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(525, 27);
-            this.searchTextBox.TabIndex = 11;
-            this.searchTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchLabel.AutoSize = true;
-            this.searchLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.searchLabel.Location = new System.Drawing.Point(555, 32);
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(34, 19);
-            this.searchLabel.TabIndex = 12;
-            this.searchLabel.Text = "بحث";
             // 
             // IdColumn
             // 
@@ -331,39 +364,59 @@
             // 
             // addressColumn
             // 
+            this.addressColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.addressColumn.DataPropertyName = "Address";
             this.addressColumn.HeaderText = "العنوان";
             this.addressColumn.MinimumWidth = 6;
             this.addressColumn.Name = "addressColumn";
             this.addressColumn.ReadOnly = true;
+            this.addressColumn.Width = 60;
             // 
             // phoneColumn
             // 
+            this.phoneColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.phoneColumn.DataPropertyName = "Phone";
             this.phoneColumn.HeaderText = "رقم الجوال";
             this.phoneColumn.MinimumWidth = 6;
             this.phoneColumn.Name = "phoneColumn";
             this.phoneColumn.ReadOnly = true;
+            this.phoneColumn.Width = 85;
             // 
             // balanceColumn
             // 
+            this.balanceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.balanceColumn.DataPropertyName = "Balance";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.balanceColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.balanceColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.balanceColumn.HeaderText = "الرصيد";
             this.balanceColumn.MinimumWidth = 6;
             this.balanceColumn.Name = "balanceColumn";
             this.balanceColumn.ReadOnly = true;
+            this.balanceColumn.Width = 125;
+            // 
+            // creditLimitColumn
+            // 
+            this.creditLimitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.creditLimitColumn.DataPropertyName = "CreditLimit";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.creditLimitColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.creditLimitColumn.HeaderText = "حد الدين";
+            this.creditLimitColumn.MinimumWidth = 6;
+            this.creditLimitColumn.Name = "creditLimitColumn";
+            this.creditLimitColumn.ReadOnly = true;
+            this.creditLimitColumn.Width = 125;
             // 
             // CustomersForm
             // 
             this.AcceptButton = this.saveButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(642, 725);
+            this.ClientSize = new System.Drawing.Size(680, 725);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.customerDataGroupBox);
             this.Controls.Add(this.saveButton);
@@ -407,7 +460,10 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.TextBox balanceTextBox;
+        private System.Windows.Forms.Label creditLimitLabel;
+        private System.Windows.Forms.TextBox creditLimitTextBox;
         private System.Windows.Forms.Button payDebtButton;
+
         private System.Windows.Forms.Label searchLabel;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
@@ -415,5 +471,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn balanceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn creditLimitColumn;
     }
 }

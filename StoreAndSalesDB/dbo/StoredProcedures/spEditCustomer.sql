@@ -3,7 +3,8 @@
 @CustomerId int,
 @CustomerName nvarchar(250),
 @Address nvarchar(150),
-@Phone nvarchar(13)
+@Phone nvarchar(13),
+@CreditLimit money
 
 AS
 BEGIN
@@ -11,7 +12,8 @@ BEGIN
 Update  Customer Set 
 CustomerName  = @CustomerName,
 [Address] = @Address,
-Phone = @Phone
+Phone = @Phone,
+CreditLimit = @CreditLimit
 
 Where Id = @CustomerId
 

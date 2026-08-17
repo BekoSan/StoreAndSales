@@ -20,6 +20,7 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@Address", customer.Address);
             p.Add("@Phone", customer.Phone);
             p.Add("@Balance", customer.Balance);
+            p.Add("@CreditLimit", customer.CreditLimit);
 
             _sql.SaveData("spCreateCustomer", p, _sql.GetConnectionName());
         }
@@ -32,8 +33,10 @@ namespace StoreAndSalesLibrary.DataAccess
             p.Add("@CustomerName", customer.CustomerName);
             p.Add("@Address", customer.Address);
             p.Add("@Phone", customer.Phone);
+            p.Add("@CreditLimit", customer.CreditLimit);
 
             _sql.SaveData("spEditCustomer", p, _sql.GetConnectionName());
+
         }
 
         public void ArchiveCustomer(int customerId)
@@ -68,13 +71,13 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<Customer, dynamic>("spGetCustomerByName", p, _sql.GetConnectionName());
         }
 
-        public void UpdateBalance(int customerId,decimal newBalance)
+        public void UpdateBalance(int customerId, decimal newBalance)
         {
             var p = new DynamicParameters();
 
             p.Add("@CustomerId", customerId);
             p.Add("@NewBalance", newBalance);
-           
+
 
             _sql.SaveData("spEditCustomerBalance", p, _sql.GetConnectionName());
         }
