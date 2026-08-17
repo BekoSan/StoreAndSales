@@ -141,6 +141,7 @@
     <Build Include="dbo\StoredProcedures\spFilterQuantitiesAfterDate.sql" />
     <Build Include="dbo\Tables\UserLog.sql" />
     <Build Include="dbo\StoredProcedures\spGetReturnableSaleDetails.sql" />
+    <Build Include="dbo\StoredProcedures\spGetAllItemQuantities.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
