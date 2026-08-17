@@ -29,6 +29,7 @@ namespace StoreAndSalesUI.Forms
         private UnitData _unitData = new UnitData();
         private UserLogData _userLogData = new UserLogData();
         private readonly Dictionary<int, int> _itemQuantities = new Dictionary<int, int>();
+        private int _lastEditedItemId;
 
         #endregion
 
@@ -235,32 +236,40 @@ namespace StoreAndSalesUI.Forms
             return output;
         }
 
-        private void Save()
+        private bool Save()
         {
-
             try
             {
                 if (_item.Id != 0)
                 {
                     if (MessageBox.Show("سيتم تعديل البيانات ، هل أنت متأكد؟", "تأكيد التعديل",
-                  MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                  MessageBoxDefaultButton.Button2) == DialogResult.No) return;
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2) == DialogResult.No)
+                    {
+                        return false;
+                    }
+
                     _itemData.EditItem(_item);
+                    _lastEditedItemId = _item.Id;
                     _userLogData.AddLog(LoginDataHelper.UserId, $"تم تعديل الصنــف {_item.ItemName}");
 
                     MessageBox.Show("تم التعديل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    _lastEditedItemId = 0;
                     _itemData.CreateItem(_item);
                     _userLogData.AddLog(LoginDataHelper.UserId, $"تمت إضافة الصنـــف {_item.ItemName}");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UsefulMethods.LogException(ex);
+                return false;
             }
         }
 
@@ -287,7 +296,32 @@ namespace StoreAndSalesUI.Forms
         {
             ClearForm();
             LoadItems();
+            FocusItem(_lastEditedItemId);
+            _lastEditedItemId = 0;
             LoadDefaultUnit();
+        }
+
+        private void FocusItem(int itemId)
+        {
+            if (itemId == 0 || itemsDataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+
+            for (int rowIndex = 0; rowIndex < itemsDataGridView.Rows.Count; rowIndex++)
+            {
+                Item item = itemsDataGridView.Rows[rowIndex].DataBoundItem as Item;
+                if (item == null || item.Id != itemId)
+                {
+                    continue;
+                }
+
+                itemsDataGridView.ClearSelection();
+                itemsDataGridView.Rows[rowIndex].Selected = true;
+                itemsDataGridView.CurrentCell = itemsDataGridView.Rows[rowIndex].Cells[itemNameColumn.Index];
+                itemsDataGridView.FirstDisplayedScrollingRowIndex = rowIndex;
+                return;
+            }
         }
 
         private void Search(string searchText)
@@ -325,8 +359,10 @@ namespace StoreAndSalesUI.Forms
                 return;
             }
 
-            Save();
-            ResetForm();
+            if (Save())
+            {
+                ResetForm();
+            }
         }
 
         private void reorderLevelTextBox_KeyPress(object sender, KeyPressEventArgs e)
