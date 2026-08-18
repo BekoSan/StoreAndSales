@@ -292,6 +292,22 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private bool IsItemAdded(int itemId)
+        {
+            bool output = false;
+
+            foreach (DataGridViewRow dgvRow in purchaseDetailsDataGridView.Rows)
+            {
+                if (dgvRow.Cells[0].Value.ToString().ParseToInt() == itemId)
+                {
+                    output = true;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
         #endregion
 
         private void PurchasesForm_Load(object sender, EventArgs e)
@@ -304,7 +320,10 @@ namespace StoreAndSalesUI.Forms
         public void AddItem(Item item)
         {
             //Get Default Unit Name            
-
+            if (item == null || IsItemAdded(item.Id) || isPurchasePreview)
+            {
+                return;
+            }
             //decimal defaultUnitPrice = itemUnit.UnitPrice;
             string defaultUnitName = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()).UnitName;
             // Get Default Unit Price
