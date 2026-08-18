@@ -93,7 +93,9 @@ namespace StoreAndSalesUI.Forms
             _itemQuantities.Clear();
 
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
-            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
+            List<ItemUnitValue> allQuantities = Properties.Settings.Default.IsQuantityFilter
+                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate)
+                    : _itemData.GetAllItemQuantities()
                 ?? new List<ItemUnitValue>();
 
             // تحميل الكميات باستعلام واحد ثم استخدام الوحدة الافتراضية فقط.

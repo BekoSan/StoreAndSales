@@ -143,6 +143,7 @@
     <Build Include="dbo\StoredProcedures\spGetReturnableSaleDetails.sql" />
     <Build Include="dbo\StoredProcedures\spGetAllItemQuantities.sql" />
     <Build Include="dbo\StoredProcedures\spGetAllItemQuantitiesAfterDate.sql" />
+    <Build Include="dbo\StoredProcedures\spGetAllItemLatestPurchasePrices.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />
