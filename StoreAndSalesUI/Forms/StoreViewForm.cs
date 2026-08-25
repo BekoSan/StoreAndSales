@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using StoreAndSalesLibrary.DataAccess;
@@ -17,6 +19,7 @@ namespace StoreAndSalesUI.Forms
             ConfigureGrid(storeViewDataGridView);
             ConfigureGrid(pricesDataGridView);
             ConfigureGrid(calculationsDataGridView);
+            UpdateSortItemsButtonText();
             FillGrids();
         }
 
@@ -27,6 +30,9 @@ namespace StoreAndSalesUI.Forms
         private readonly UnitData _unitData = new UnitData();
         private List<Unit> _units = new List<Unit>();
         private decimal _totalInventoryValue;
+        private bool _isItemNameSortAscending = true;
+        private static readonly StringComparer ItemNameComparer = StringComparer.Create(
+            CultureInfo.GetCultureInfo("ar-SA"), true);
 
         #endregion
 
@@ -95,7 +101,7 @@ namespace StoreAndSalesUI.Forms
             SuspendLayout();
             try
             {
-                _items = _itemData.GetAllItems();
+                _items = SortItems(_itemData.GetAllItems());
                 _units = _unitData.GetAllUnits();
 
                 List<ItemUnitValue> quantityRows = Properties.Settings.Default.IsQuantityFilter
@@ -140,6 +146,23 @@ namespace StoreAndSalesUI.Forms
                 calculationsDataGridView.ResumeLayout();
                 ResumeLayout();
             }
+        }
+
+        private List<Item> SortItems(IEnumerable<Item> source)
+        {
+            IOrderedEnumerable<Item> orderedItems = (source ?? Enumerable.Empty<Item>())
+                .OrderBy(item => item.ItemName ?? string.Empty, ItemNameComparer);
+
+            return _isItemNameSortAscending
+                ? orderedItems.ToList()
+                : orderedItems.Reverse().ToList();
+        }
+
+        private void UpdateSortItemsButtonText()
+        {
+            sortItemsButton.Text = _isItemNameSortAscending
+                ? "ترتيب: أ → ي / A → Z"
+                : "ترتيب: ي → أ / Z → A";
         }
 
         private void ResetStoreQuantity()
@@ -363,6 +386,13 @@ namespace StoreAndSalesUI.Forms
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             ApplySearchFilter();
+        }
+
+        private void sortItemsButton_Click(object sender, EventArgs e)
+        {
+            _isItemNameSortAscending = !_isItemNameSortAscending;
+            UpdateSortItemsButtonText();
+            FillGrids();
         }
     }
 }
