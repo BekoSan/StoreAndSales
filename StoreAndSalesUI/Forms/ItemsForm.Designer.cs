@@ -60,6 +60,7 @@
             this.itemSerialColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sortItemsButton = new System.Windows.Forms.Button();
             this.itemDataGroupBox = new System.Windows.Forms.GroupBox();
             this.addUnitButton = new System.Windows.Forms.Button();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
@@ -354,6 +355,18 @@
             this.quantityColumn.ReadOnly = true;
             this.quantityColumn.Width = 95;
             // 
+            // sortItemsButton
+            // 
+            this.sortItemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortItemsButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.sortItemsButton.Location = new System.Drawing.Point(46, 14);
+            this.sortItemsButton.Name = "sortItemsButton";
+            this.sortItemsButton.Size = new System.Drawing.Size(95, 29);
+            this.sortItemsButton.TabIndex = 8;
+            this.sortItemsButton.Text = "ترتيب";
+            this.sortItemsButton.UseVisualStyleBackColor = true;
+            this.sortItemsButton.Click += new System.EventHandler(this.sortItemsButton_Click);
+            // 
             // itemDataGroupBox
             // 
             this.itemDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -391,6 +404,7 @@
             // 
             this.itemsListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemsListGroupBox.Controls.Add(this.sortItemsButton);
             this.itemsListGroupBox.Controls.Add(this.searchLabel);
             this.itemsListGroupBox.Controls.Add(this.searchTextBox);
             this.itemsListGroupBox.Controls.Add(this.itemsDataGridView);
@@ -417,7 +431,7 @@
             // 
             this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchTextBox.Location = new System.Drawing.Point(25, 47);
+            this.searchTextBox.Location = new System.Drawing.Point(45, 47);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(361, 29);
             this.searchTextBox.TabIndex = 7;
@@ -522,6 +536,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.Label searchLabel;
         private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Button sortItemsButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemSerialColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;

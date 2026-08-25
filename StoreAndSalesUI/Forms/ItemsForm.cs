@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace StoreAndSalesUI.Forms
 {
@@ -30,6 +31,9 @@ namespace StoreAndSalesUI.Forms
         private UserLogData _userLogData = new UserLogData();
         private readonly Dictionary<int, int> _itemQuantities = new Dictionary<int, int>();
         private int _lastEditedItemId;
+        private bool _isItemNameSortAscending = true;
+        private static readonly StringComparer ItemNameComparer = StringComparer.Create(
+            CultureInfo.GetCultureInfo("ar-SA"), true);
 
         #endregion
 
@@ -61,8 +65,25 @@ namespace StoreAndSalesUI.Forms
             Items = _itemData.GetAllItems() ?? new List<Item>();
             LoadItemQuantities();
             itemsDataGridView.AutoGenerateColumns = false;
-            itemsDataGridView.DataSource = Items;
+            itemsDataGridView.DataSource = SortItems(Items);
 
+        }
+
+        private List<Item> SortItems(IEnumerable<Item> source)
+        {
+            IOrderedEnumerable<Item> orderedItems = (source ?? Enumerable.Empty<Item>())
+                .OrderBy(item => item.ItemName ?? string.Empty, ItemNameComparer);
+
+            return _isItemNameSortAscending
+                ? orderedItems.ToList()
+                : orderedItems.Reverse().ToList();
+        }
+
+        private void UpdateSortButtonText()
+        {
+            sortItemsButton.Text = _isItemNameSortAscending
+                ? "ترتيب: أ → ي / A → Z"
+                : "ترتيب: ي → أ / Z → A";
         }
 
         private void SelectItem()
@@ -344,7 +365,7 @@ namespace StoreAndSalesUI.Forms
         {
             var filter = Items.Where(item => item.ItemName.Contains(searchText)).ToList();
             itemsDataGridView.AutoGenerateColumns = false;
-            itemsDataGridView.DataSource = filter;
+            itemsDataGridView.DataSource = SortItems(filter);
         }
 
         #endregion
@@ -420,6 +441,13 @@ namespace StoreAndSalesUI.Forms
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
+            Search(searchTextBox.Text);
+        }
+
+        private void sortItemsButton_Click(object sender, EventArgs e)
+        {
+            _isItemNameSortAscending = !_isItemNameSortAscending;
+            UpdateSortButtonText();
             Search(searchTextBox.Text);
         }
     }

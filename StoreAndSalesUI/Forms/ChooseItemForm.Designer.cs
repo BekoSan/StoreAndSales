@@ -42,6 +42,7 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchLabel = new System.Windows.Forms.Label();
+            this.sortItemsButton = new System.Windows.Forms.Button();
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.itemSerialColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,9 +139,9 @@
             // searchTextBox
             // 
             this.searchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchTextBox.Location = new System.Drawing.Point(53, 74);
+            this.searchTextBox.Location = new System.Drawing.Point(56, 74);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(313, 29);
+            this.searchTextBox.Size = new System.Drawing.Size(224, 29);
             this.searchTextBox.TabIndex = 10;
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
@@ -154,6 +155,19 @@
             this.searchLabel.Size = new System.Drawing.Size(45, 22);
             this.searchLabel.TabIndex = 11;
             this.searchLabel.Text = "بحــث";
+            // 
+            // sortItemsButton
+            // 
+            this.sortItemsButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.sortItemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortItemsButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.sortItemsButton.Location = new System.Drawing.Point(286, 73);
+            this.sortItemsButton.Name = "sortItemsButton";
+            this.sortItemsButton.Size = new System.Drawing.Size(84, 29);
+            this.sortItemsButton.TabIndex = 12;
+            this.sortItemsButton.Text = "ترتيب";
+            this.sortItemsButton.UseVisualStyleBackColor = true;
+            this.sortItemsButton.Click += new System.EventHandler(this.sortItemsButton_Click);
             // 
             // idColumn
             // 
@@ -235,6 +249,7 @@
             this.ClientSize = new System.Drawing.Size(378, 392);
             this.Controls.Add(this.searchLabel);
             this.Controls.Add(this.searchTextBox);
+            this.Controls.Add(this.sortItemsButton);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.itemsListGroupBox);
             this.Font = new System.Drawing.Font("Arial", 11F);
@@ -262,6 +277,7 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Label searchLabel;
+        private System.Windows.Forms.Button sortItemsButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
         private System.Windows.Forms.DataGridViewButtonColumn selectColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemSerialColumn;

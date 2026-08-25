@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,9 @@ namespace StoreAndSalesUI.Forms
         private IItemRequester CallingForm;
 
         private bool _isLoading;
+        private bool _isItemNameSortAscending = true;
+        private static readonly StringComparer ItemNameComparer = StringComparer.Create(
+            CultureInfo.GetCultureInfo("ar-SA"), true);
 
         #endregion
 
@@ -48,6 +52,7 @@ namespace StoreAndSalesUI.Forms
         {
             itemsDataGridView.AutoGenerateColumns = false;
             itemsDataGridView.DataSource = _items;
+            UpdateSortButtonText();
 
             _searchTimer.Interval = SearchDelayMilliseconds;
             _searchTimer.Tick += SearchTimer_Tick;
@@ -89,9 +94,8 @@ namespace StoreAndSalesUI.Forms
                     _itemQuantities[itemQuantity.Key] = itemQuantity.Value;
                 }
 
-                itemsDataGridView.DataSource = _items;
+                itemsDataGridView.DataSource = SortItems(_items);
 
-                //CallingForm?.GetCount(_items.Count);
             }
             catch (Exception ex)
             {
@@ -132,6 +136,23 @@ namespace StoreAndSalesUI.Forms
             }
 
             return quantities;
+        }
+
+        private List<Item> SortItems(IEnumerable<Item> source)
+        {
+            IOrderedEnumerable<Item> orderedItems = (source ?? Enumerable.Empty<Item>())
+                .OrderBy(item => item.ItemName ?? string.Empty, ItemNameComparer);
+
+            return _isItemNameSortAscending
+                ? orderedItems.ToList()
+                : orderedItems.Reverse().ToList();
+        }
+
+        private void UpdateSortButtonText()
+        {
+            sortItemsButton.Text = _isItemNameSortAscending
+                ? "أ → ي / A → Z"
+                : "ي → أ / Z → A";
         }
 
         private bool IsLowStock(Item item)
@@ -203,15 +224,13 @@ namespace StoreAndSalesUI.Forms
         {
             if (_items.Count == 0)
             {
-                itemsDataGridView.DataSource = _items;
-                //CallingForm?.GetCount(0);
+                itemsDataGridView.DataSource = SortItems(_items);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(itemName))
             {
-                itemsDataGridView.DataSource = _items;
-                //CallingForm?.GetCount(_items.Count);
+                itemsDataGridView.DataSource = SortItems(_items);
                 return;
             }
 
@@ -221,8 +240,7 @@ namespace StoreAndSalesUI.Forms
                     && item.ItemName.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
                 .ToList();
 
-            itemsDataGridView.DataSource = filteredItems;
-            //CallingForm?.GetCount(filteredItems.Count);
+            itemsDataGridView.DataSource = SortItems(filteredItems);
         }
 
         private void SelectItem()
@@ -269,6 +287,14 @@ namespace StoreAndSalesUI.Forms
 
             _searchTimer.Stop();
             _searchTimer.Start();
+        }
+
+        private void sortItemsButton_Click(object sender, EventArgs e)
+        {
+            _isItemNameSortAscending = !_isItemNameSortAscending;
+            UpdateSortButtonText();
+            _searchTimer.Stop();
+            FilterByName(searchTextBox.Text);
         }
 
     }
