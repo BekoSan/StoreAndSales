@@ -63,8 +63,8 @@ namespace StoreAndSalesUI.Forms
             _sale.Notes = notesTextBox.Text;
             _sale.PaymentType = paymentTypeCheckBox.Checked;
             _sale.IsDisscount = isDisscountCheckBox.Checked;
-            _sale.Status = (disscountTextBox.Text.ParseToDecimal() != 0 
-                && !isDisscountCheckBox.Checked  ? false : true);
+            _sale.Status = (disscountTextBox.Text.ParseToDecimal() != 0
+               && !isDisscountCheckBox.Checked ? false : true);
             _sale.UserId = LoginDataHelper.UserId;
 
             CollectSaleDetails();
@@ -128,9 +128,35 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void UpdateLineTotal(DataGridViewRow row)
+        {
+            if (row == null || row.IsNewRow)
+            {
+                return;
+            }
+
+            int quantity = Convert.ToString(row.Cells[3].Value).ParseToInt();
+            decimal price = Convert.ToString(row.Cells[4].Value).ParseToDecimal();
+            row.Cells["lineTotalColumn"].Value = quantity * price;
+        }
+
+        private void UpdateAllLineTotals()
+        {
+            foreach (DataGridViewRow row in saleDetailsDataGridView.Rows)
+            {
+                UpdateLineTotal(row);
+            }
+        }
+
         private void PreviewTotalCost(decimal totalCost)
         {
             totalTextBox.Text = totalCost.ToString("#,0");
+        }
+
+        private void UpdateUnpaidFlag(bool isUnpaid)
+        {
+            unpaidFlagLabel.Visible = isUnpaid;
+            unpaidFlagLabel.Text = isUnpaid ? "غير خالصة - عليها متبقي" : string.Empty;
         }
 
         private void CalculateDisscount()
@@ -152,6 +178,8 @@ namespace StoreAndSalesUI.Forms
         private void ClearForm()
         {
             saleDetailsDataGridView.Rows.Clear();
+            unpaidFlagLabel.Visible = false;
+
             customersComboBox.SelectedIndex = -1;
             notesTextBox.Clear();
             isDisscountCheckBox.Checked = false;
@@ -207,7 +235,7 @@ namespace StoreAndSalesUI.Forms
             }
             else if (!IsCustomerDebtWithinLimit(true))
             {
-                return output;
+                output = false;
             }
 
             return output;
@@ -242,7 +270,7 @@ namespace StoreAndSalesUI.Forms
                 {
                     decimal availableCredit = Math.Max(0, customer.CreditLimit - currentBalance);
                     MessageBox.Show(
-                        $"لقد تم تجاوز الحد للعميل {customer.CustomerName}.\n" +
+                        $"لا يمكن تسجيل دين جديد للعميل {customer.CustomerName}.\n" +
                         $"الرصيد الحالي: {currentBalance:#,0}\n" +
                         $"حد الدين: {customer.CreditLimit:#,0}\n" +
                         $"المتاح للدين: {availableCredit:#,0}",
@@ -255,6 +283,74 @@ namespace StoreAndSalesUI.Forms
             }
 
             return true;
+        }
+
+        private bool ConfirmSaleBelowLatestPurchasePrice()
+        {
+            var latestPurchasePrices = new Dictionary<string, decimal>();
+            var warnings = new List<string>();
+
+            foreach (DataGridViewRow row in saleDetailsDataGridView.Rows)
+            {
+                if (row == null || row.IsNewRow)
+                {
+                    continue;
+                }
+
+                int itemId = row.Cells[0].Value.ToString().ParseToInt();
+                int unitId = row.Cells[5].Value.ToString().ParseToInt();
+                decimal salePrice = row.Cells[4].Value.ToString().ParseToDecimal();
+                string priceKey = itemId + ":" + unitId;
+
+                decimal latestPurchasePrice;
+                if (!latestPurchasePrices.TryGetValue(priceKey, out latestPurchasePrice))
+                {
+                    latestPurchasePrice = _itemData.GetItemLatestPurchasePrice(itemId, unitId);
+                    latestPurchasePrices[priceKey] = latestPurchasePrice;
+                }
+
+                // لا يوجد تنبيه إن لم يكن للصنف والوحدة سعر شراء مسجل بعد.
+                if (latestPurchasePrice <= 0 || salePrice >= latestPurchasePrice)
+                {
+                    continue;
+                }
+
+                string itemName = Convert.ToString(row.Cells[1].Value);
+                if (string.IsNullOrWhiteSpace(itemName))
+                {
+                    itemName = "الصنف رقم " + itemId;
+                }
+
+                string unitName = Convert.ToString(row.Cells[2].Value);
+                if (string.IsNullOrWhiteSpace(unitName))
+                {
+                    unitName = "الوحدة رقم " + unitId;
+                }
+
+                warnings.Add(string.Format(
+                    "• {0} ({1}): سعر البيع {2:#,0.##} أقل من آخر سعر شراء {3:#,0.##}",
+                    itemName,
+                    unitName,
+                    salePrice,
+                    latestPurchasePrice));
+            }
+
+            if (warnings.Count == 0)
+            {
+                return true;
+            }
+
+            string message = "تنبيه: توجد أصناف سيباع بعضها بأقل من رأس المال.\n\n"
+                + string.Join("\n", warnings)
+                + "\n\nرأس المال المستخدم هو آخر سعر شراء مسجل للصنف والوحدة نفسها."
+                + "\nهل تريد متابعة حفظ الفاتورة؟";
+
+            return MessageBox.Show(
+                message,
+                "تنبيه البيع أقل من رأس المال",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
 
         private void Save()
@@ -280,7 +376,7 @@ namespace StoreAndSalesUI.Forms
             saveButton.Enabled = isEnabled;
             addItemButton.Enabled = isEnabled;
             saleDetailsDataGridView.ReadOnly = !isEnabled;
-            saleDetailsDataGridView.Columns[6].Visible = isEnabled;
+            saleDetailsDataGridView.Columns["colDelete"].Visible = isEnabled;
             disscountTextBox.Enabled = isEnabled;
             customersComboBox.Enabled = isEnabled;
             notesTextBox.Enabled = isEnabled;
@@ -440,10 +536,10 @@ namespace StoreAndSalesUI.Forms
                 return;
             }
 
-            //if (!IsCustomerDebtWithinLimit(true))
-            //{
-            //    return;
-            //}
+            if (!IsCustomerDebtWithinLimit(true))
+            {
+                return;
+            }
 
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
 
@@ -470,6 +566,7 @@ namespace StoreAndSalesUI.Forms
                 1,
                 defaultItemUnit.UnitPrice,
                 defaultUnitId);
+            UpdateLineTotal(saleDetailsDataGridView.Rows[rowIndex]);
 
             if (!isQuantityAvailable(item.Id, defaultUnitId, 1))
             {
@@ -477,8 +574,6 @@ namespace StoreAndSalesUI.Forms
                 saleDetailsDataGridView.Rows.RemoveAt(rowIndex);
                 CalculateTotalCost();
             }
-            CalculateTotalCost();
-            PreviewTotalCost(_totalCost);
         }
 
         public void AddUnit(Unit unit)
@@ -500,6 +595,7 @@ namespace StoreAndSalesUI.Forms
             currentRow.Cells[2].Value = unit.UnitName;
             currentRow.Cells[5].Value = unit.Id;
             currentRow.Cells[4].Value = itemUnits.First().UnitPrice;
+            UpdateLineTotal(currentRow);
         }
 
         public void PreviewSale(Sale sale)
@@ -514,6 +610,8 @@ namespace StoreAndSalesUI.Forms
             notesTextBox.Text = sale.Notes;
             isDisscountCheckBox.Checked = sale.IsDisscount;
             paymentTypeCheckBox.Checked = sale.PaymentType;
+            UpdateUnpaidFlag(!sale.Status);
+
             sale.SaleDetails = _saleDetailData.GetSaleDetails(sale.Id);
 
             saleDetailsDataGridView.Rows.Clear();
@@ -522,6 +620,7 @@ namespace StoreAndSalesUI.Forms
             {
                 saleDetailsDataGridView.Rows.Add(saleDetail.ItemId, "", "", saleDetail.Quantity, saleDetail.Price, saleDetail.UnitId);
             });
+            UpdateAllLineTotals();
 
             saleDetailsDataGridView.ClearSelection();
 
@@ -540,7 +639,7 @@ namespace StoreAndSalesUI.Forms
                 case 2:
                     ChangeUnit();
                     break;
-                case 6:
+                case 7:
                     DeleteRow(e.RowIndex);
                     CalculateTotalCost();
                     PreviewTotalCost(_totalCost);
@@ -558,6 +657,7 @@ namespace StoreAndSalesUI.Forms
 
             if (e.ColumnIndex == 4 || e.ColumnIndex == 3)
             {
+                UpdateLineTotal(saleDetailsDataGridView.Rows[e.RowIndex]);
                 if (_sale.Id == 0)
                 {
                     isEdit = true;
@@ -586,7 +686,18 @@ namespace StoreAndSalesUI.Forms
         private void saveButton_Click(object sender, EventArgs e)
         {
             CollectData();
-            if (IsValidData()) { Save(); ResetForm(); }
+            if (!IsValidData())
+            {
+                return;
+            }
+
+            if (!ConfirmSaleBelowLatestPurchasePrice())
+            {
+                return;
+            }
+
+            Save();
+            ResetForm();
         }
 
         private void saleDetailsDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -601,7 +712,9 @@ namespace StoreAndSalesUI.Forms
 
         private void SalesForm_Load(object sender, EventArgs e)
         {
+            UpdateUnpaidFlag(false);
             LoadCustomers();
+
             LoadNextSaleId();
             AddItemToSale();
         }
@@ -627,5 +740,6 @@ namespace StoreAndSalesUI.Forms
             customersComboBox.Text, LoginDataHelper.UserId).ShowDialog();
 
         }
+
     }
 }
