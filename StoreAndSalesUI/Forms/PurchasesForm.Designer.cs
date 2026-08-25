@@ -57,6 +57,7 @@
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lineTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.searchButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -295,6 +296,7 @@
             this.quantityColumn,
             this.unitPriceColumn,
             this.unitIdColumn,
+            this.lineTotalColumn,
             this.colDelete});
             this.purchaseDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.purchaseDetailsDataGridView.EnableHeadersVisualStyles = false;
@@ -378,6 +380,18 @@
             this.unitIdColumn.MinimumWidth = 6;
             this.unitIdColumn.Name = "unitIdColumn";
             this.unitIdColumn.Visible = false;
+
+            // lineTotalColumn
+            this.lineTotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.lineTotalColumn.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.lineTotalColumn.DefaultCellStyle.Format = "N2";
+            this.lineTotalColumn.HeaderText = "الإجمالي";
+            this.lineTotalColumn.MinimumWidth = 95;
+            this.lineTotalColumn.Name = "lineTotalColumn";
+            this.lineTotalColumn.ReadOnly = true;
+            this.lineTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.lineTotalColumn.Width = 115;
+
             // 
             // colDelete
             // 
@@ -514,6 +528,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lineTotalColumn;
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.CheckBox isDisscountCheckBox;
         private System.Windows.Forms.CheckBox paymentTypeCheckBox;

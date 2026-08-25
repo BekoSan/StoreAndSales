@@ -109,6 +109,26 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private void UpdateLineTotal(DataGridViewRow row)
+        {
+            if (row == null || row.IsNewRow)
+            {
+                return;
+            }
+
+            int quantity = Convert.ToString(row.Cells[3].Value).ParseToInt();
+            decimal price = Convert.ToString(row.Cells[4].Value).ParseToDecimal();
+            row.Cells["lineTotalColumn"].Value = quantity * price;
+        }
+
+        private void UpdateAllLineTotals()
+        {
+            foreach (DataGridViewRow row in purchaseDetailsDataGridView.Rows)
+            {
+                UpdateLineTotal(row);
+            }
+        }
+
         private void PreviewTotalCost(decimal totalCost)
         {
             totalTextBox.Text = totalCost.ToString("#,0");
@@ -327,7 +347,7 @@ namespace StoreAndSalesUI.Forms
             //decimal defaultUnitPrice = itemUnit.UnitPrice;
             string defaultUnitName = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()).UnitName;
             // Get Default Unit Price
-            purchaseDetailsDataGridView.Rows.Add
+            int rowIndex = purchaseDetailsDataGridView.Rows.Add
                 (
                 item.Id,
                 item.ItemName,
@@ -336,6 +356,7 @@ namespace StoreAndSalesUI.Forms
                 0,
                 UsefulMethods.GetDefaultUnitId()
                 );
+            UpdateLineTotal(purchaseDetailsDataGridView.Rows[rowIndex]);
         }
 
         public void PreviewPruchase(Purchase purchase)
@@ -386,6 +407,7 @@ namespace StoreAndSalesUI.Forms
             //currentRow.Cells[4].Value = _itemUnitData.GetItemUnits(itemId)
             //    .Where(itemUnit => itemUnit.UnitId == unit.Id)
             //    .First().UnitPrice;   
+            UpdateLineTotal(currentRow);
         }
 
         private void purchaseDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -405,10 +427,12 @@ namespace StoreAndSalesUI.Forms
 
         private void purchaseDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (_purchase.Id != 0) return;
+            
+            if (_purchase.Id != 0 || purchaseDetailsDataGridView.Rows.Count == 0) return;
 
             if (e.ColumnIndex == 4 || e.ColumnIndex == 3)
             {
+                UpdateLineTotal(purchaseDetailsDataGridView.Rows[e.RowIndex]);
                 CalculateTotalCost();
                 PreviewTotalCost(_totalCost);
             }
