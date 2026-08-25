@@ -63,10 +63,13 @@ namespace StoreAndSalesUI.Forms
             grid.ColumnHeadersHeight = 34;
             grid.RowTemplate.Height = 28;
             grid.RowsDefaultCellStyle.BackColor = Color.White;
-            grid.RowsDefaultCellStyle.ForeColor = Color.FromArgb(35, 35, 35);
-            grid.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(221, 235, 247);
-            grid.RowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 20, 20);
+            grid.RowsDefaultCellStyle.ForeColor = Color.FromArgb(48, 58, 70);
+            grid.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 150, 136);
+            grid.RowsDefaultCellStyle.SelectionForeColor = Color.White;
             grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            grid.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(48, 58, 70);
+            grid.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 150, 136);
+            grid.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
             grid.SuspendLayout();
 
             try
@@ -128,6 +131,7 @@ namespace StoreAndSalesUI.Forms
                 AddUnitColumnsToCalculationsGrid();
                 AddCalculationsRows(quantitiesByKey, pricesByKey);
                 UpdateTotalInventoryLabel();
+                ApplySearchFilter();
             }
             finally
             {
@@ -152,29 +156,20 @@ namespace StoreAndSalesUI.Forms
 
         private void AddItemColumnsToQuantityGrid()
         {
-            DataGridViewColumn itemIdColumn = new DataGridViewColumn
-            {
-                Visible = false,
-                HeaderText = "Id",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
-            storeViewDataGridView.Columns.Add(itemIdColumn);
-            storeViewDataGridView.Columns.Add("itemNameColumn", "إسم الصنف");
+            AddItemColumns(storeViewDataGridView);
         }
 
         private void AddItemColumnsToPricesGrid()
         {
-            DataGridViewColumn itemIdColumn = new DataGridViewColumn
-            {
-                Visible = false,
-                HeaderText = "Id",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
-            pricesDataGridView.Columns.Add(itemIdColumn);
-            pricesDataGridView.Columns.Add("itemNameColumn", "إسم الصنف");
+            AddItemColumns(pricesDataGridView);
         }
 
         private void AddItemColumnsToCalculationsGrid()
+        {
+            AddItemColumns(calculationsDataGridView);
+        }
+
+        private static void AddItemColumns(DataGridView grid)
         {
             DataGridViewColumn itemIdColumn = new DataGridViewColumn
             {
@@ -182,8 +177,20 @@ namespace StoreAndSalesUI.Forms
                 HeaderText = "Id",
                 CellTemplate = new DataGridViewTextBoxCell()
             };
-            calculationsDataGridView.Columns.Add(itemIdColumn);
-            calculationsDataGridView.Columns.Add("itemNameColumn", "إسم الصنف");
+            grid.Columns.Add(itemIdColumn);
+
+            var itemSerialColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "itemSerialColumn",
+                HeaderText = "م",
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                Width = 45
+            };
+            itemSerialColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            grid.Columns.Add(itemSerialColumn);
+            grid.Columns.Add("itemNameColumn", "إسم الصنف");
         }
 
         private DataGridViewColumn CreateUnitColumn(Unit unit, int counter, bool isPriceColumn)
@@ -245,32 +252,34 @@ namespace StoreAndSalesUI.Forms
 
         private void AddQuantityRows(Dictionary<string, int> quantitiesByKey)
         {
-            foreach (Item item in _items)
+            for (int itemIndex = 0; itemIndex < _items.Count; itemIndex++)
             {
-                int rowIndex = storeViewDataGridView.Rows.Add(item.Id, item.ItemName);
+                Item item = _items[itemIndex];
+                int rowIndex = storeViewDataGridView.Rows.Add(item.Id, itemIndex + 1, item.ItemName);
                 DataGridViewRow row = storeViewDataGridView.Rows[rowIndex];
 
                 for (int unitIndex = 0; unitIndex < _units.Count; unitIndex++)
                 {
                     int quantity;
                     quantitiesByKey.TryGetValue(BuildKey(item.Id, _units[unitIndex].Id), out quantity);
-                    row.Cells[unitIndex + 2].Value = quantity;
+                    row.Cells[unitIndex + 3].Value = quantity;
                 }
             }
         }
 
         private void AddPriceRows(Dictionary<string, decimal> pricesByKey)
         {
-            foreach (Item item in _items)
+            for (int itemIndex = 0; itemIndex < _items.Count; itemIndex++)
             {
-                int rowIndex = pricesDataGridView.Rows.Add(item.Id, item.ItemName);
+                Item item = _items[itemIndex];
+                int rowIndex = pricesDataGridView.Rows.Add(item.Id, itemIndex + 1, item.ItemName);
                 DataGridViewRow row = pricesDataGridView.Rows[rowIndex];
 
                 for (int unitIndex = 0; unitIndex < _units.Count; unitIndex++)
                 {
                     decimal price;
                     pricesByKey.TryGetValue(BuildKey(item.Id, _units[unitIndex].Id), out price);
-                    row.Cells[unitIndex + 2].Value = price;
+                    row.Cells[unitIndex + 3].Value = price;
                 }
             }
         }
@@ -279,9 +288,10 @@ namespace StoreAndSalesUI.Forms
         {
             _totalInventoryValue = 0;
 
-            foreach (Item item in _items)
+            for (int itemIndex = 0; itemIndex < _items.Count; itemIndex++)
             {
-                int rowIndex = calculationsDataGridView.Rows.Add(item.Id, item.ItemName);
+                Item item = _items[itemIndex];
+                int rowIndex = calculationsDataGridView.Rows.Add(item.Id, itemIndex + 1, item.ItemName);
                 DataGridViewRow row = calculationsDataGridView.Rows[rowIndex];
                 decimal total = 0;
 
@@ -294,11 +304,11 @@ namespace StoreAndSalesUI.Forms
                     pricesByKey.TryGetValue(key, out price);
 
                     decimal value = price * quantity;
-                    row.Cells[unitIndex + 2].Value = value;
+                    row.Cells[unitIndex + 3].Value = value;
                     total += value;
                 }
 
-                row.Cells[_units.Count + 2].Value = total;
+                row.Cells[_units.Count + 3].Value = total;
                 _totalInventoryValue += total;
             }
         }
@@ -308,9 +318,51 @@ namespace StoreAndSalesUI.Forms
             inventoryTotalLabel.Text = "إجمالي جرد المخزن: " + _totalInventoryValue.ToString("N0");
         }
 
+        private void ApplySearchFilter()
+        {
+            string searchText = searchTextBox.Text == null ? string.Empty : searchTextBox.Text.Trim();
+            ApplySearchFilter(storeViewDataGridView, searchText);
+            ApplySearchFilter(pricesDataGridView, searchText);
+            ApplySearchFilter(calculationsDataGridView, searchText);
+        }
+
+        private static void ApplySearchFilter(DataGridView grid, string searchText)
+        {
+            if (grid == null || !grid.Columns.Contains("itemNameColumn"))
+            {
+                return;
+            }
+
+            grid.SuspendLayout();
+            try
+            {
+                grid.ClearSelection();
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    string itemName = Convert.ToString(row.Cells["itemNameColumn"].Value) ?? string.Empty;
+                    row.Visible = string.IsNullOrWhiteSpace(searchText)
+                        || itemName.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+            }
+            finally
+            {
+                grid.ResumeLayout();
+            }
+        }
+
         private void resetQuantityButton_Click(object sender, EventArgs e)
         {
             ResetStoreQuantity();
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ApplySearchFilter();
         }
     }
 }
