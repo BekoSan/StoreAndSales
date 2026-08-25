@@ -91,6 +91,7 @@ namespace StoreAndSalesUI.Forms
 
                 itemsDataGridView.DataSource = _items;
 
+                //CallingForm?.GetCount(_items.Count);
             }
             catch (Exception ex)
             {
@@ -109,9 +110,7 @@ namespace StoreAndSalesUI.Forms
         {
             Dictionary<int, int> quantities = new Dictionary<int, int>();
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
-            List<ItemUnitValue> allQuantities = Properties.Settings.Default.IsQuantityFilter
-                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate)
-                    : _itemData.GetAllItemQuantities()
+            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
                 ?? new List<ItemUnitValue>();
 
             // استخدم الوحدة الافتراضية فقط؛ فهي نفس الوحدة المعتمدة
@@ -163,6 +162,22 @@ namespace StoreAndSalesUI.Forms
                 return;
             }
 
+            bool isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
+            e.CellStyle.BackColor = isSelected
+                ? Color.FromArgb(0, 150, 136)
+                : Color.White;
+            e.CellStyle.ForeColor = isSelected
+                ? Color.White
+                : Color.FromArgb(48, 58, 70);
+            e.CellStyle.SelectionBackColor = Color.FromArgb(0, 150, 136);
+            e.CellStyle.SelectionForeColor = Color.White;
+
+            if (e.ColumnIndex == itemSerialColumn.Index)
+            {
+                e.Value = (e.RowIndex + 1).ToString();
+                e.FormattingApplied = true;
+            }
+
             if (e.ColumnIndex == quantityColumn.Index)
             {
                 int quantity;
@@ -176,7 +191,7 @@ namespace StoreAndSalesUI.Forms
                 return;
             }
 
-            bool isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
+            isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
             e.CellStyle.BackColor = isSelected ? Color.IndianRed : Color.MistyRose;
             e.CellStyle.ForeColor = isSelected ? Color.White : Color.DarkRed;
             e.CellStyle.SelectionBackColor = Color.IndianRed;
@@ -189,12 +204,14 @@ namespace StoreAndSalesUI.Forms
             if (_items.Count == 0)
             {
                 itemsDataGridView.DataSource = _items;
+                //CallingForm?.GetCount(0);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(itemName))
             {
                 itemsDataGridView.DataSource = _items;
+                //CallingForm?.GetCount(_items.Count);
                 return;
             }
 
@@ -205,6 +222,7 @@ namespace StoreAndSalesUI.Forms
                 .ToList();
 
             itemsDataGridView.DataSource = filteredItems;
+            //CallingForm?.GetCount(filteredItems.Count);
         }
 
         private void SelectItem()
