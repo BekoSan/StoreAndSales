@@ -201,7 +201,7 @@ namespace StoreAndSalesUI.Forms
             }
 
             returnSale.Total = -grandTotal;
-
+            returnSale.IsReturn = true;
             try
             {
                 bool created = _saleDal.CreateSale(returnSale);
