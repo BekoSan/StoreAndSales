@@ -6,7 +6,7 @@ namespace StoreAndSalesUI.Forms
 {
     public partial class DashboardForm : Form
     {
-        private  int _userRoleId = -1;
+        private int _userRoleId = -1;
         private ILogout _loginForm;
 
         public DashboardForm(int userRoleId = -1, ILogout logout = null)
@@ -33,7 +33,7 @@ namespace StoreAndSalesUI.Forms
                 }
 
                 if (control.Tag.ToString().Equals(_userRoleId.ToString()))
-                    control.Enabled = true; 
+                    control.Enabled = true;
                 else
                     control.Enabled = false;
             }
@@ -81,12 +81,12 @@ namespace StoreAndSalesUI.Forms
 
         private void signOutButton_Click(object sender, EventArgs e)
         {
-            _loginForm.Logout(this); 
+            _loginForm.Logout(this);
         }
 
         private void usersButton_Click(object sender, EventArgs e)
         {
-            new UsersForm().ShowDialog();   
+            new UsersForm().ShowDialog();
         }
 
         private void backupFormButton_Click(object sender, EventArgs e)
@@ -97,6 +97,11 @@ namespace StoreAndSalesUI.Forms
         private void userLogsButton_Click(object sender, EventArgs e)
         {
             new UserLogsForm().ShowDialog();
+        }
+
+        private void storesButton_Click(object sender, EventArgs e)
+        {
+            new StoresForm().ShowDialog();
         }
     }
 }

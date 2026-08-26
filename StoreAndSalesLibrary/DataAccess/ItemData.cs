@@ -156,22 +156,27 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<Item, dynamic>("spGetAllItems", null, _sql.GetConnectionName());
         }
 
-        public List<ItemUnitValue> GetAllItemQuantities()
+        public List<ItemUnitValue> GetAllItemQuantities(int storeId = 0)
         {
-            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemQuantities", null, _sql.GetConnectionName());
+            var p = new DynamicParameters();
+            p.Add("@StoreId", storeId);
+            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemQuantitiesByStore", p, _sql.GetConnectionName());
         }
 
-        public List<ItemUnitValue> GetAllItemQuantitiesAfterDate(DateTime filterDate)
+        public List<ItemUnitValue> GetAllItemQuantitiesAfterDate(DateTime filterDate, int storeId = 0)
         {
             var p = new DynamicParameters();
             p.Add("@FilterDate", filterDate);
+            p.Add("@StoreId", storeId);
 
-            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemQuantitiesAfterDate", p, _sql.GetConnectionName());
+            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemQuantitiesAfterDateByStore", p, _sql.GetConnectionName());
         }
 
-        public List<ItemUnitValue> GetAllItemLatestPurchasePrices()
+        public List<ItemUnitValue> GetAllItemLatestPurchasePrices(int storeId = 0)
         {
-            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemLatestPurchasePrices", null, _sql.GetConnectionName());
+            var p = new DynamicParameters();
+            p.Add("@StoreId", storeId);
+            return _sql.LoadData<ItemUnitValue, dynamic>("spGetAllItemLatestPurchasePricesByStore", p, _sql.GetConnectionName());
         }
 
         public Item GetItem(int itemId)
@@ -193,34 +198,37 @@ namespace StoreAndSalesLibrary.DataAccess
         }
 
         ///Get the quantity of items depend on sales and purchaces
-        public int GetItemQuantity(int itemId, int unitId)
+        public int GetItemQuantity(int itemId, int unitId, int storeId = 0)
         {
             var p = new DynamicParameters();
 
             p.Add("@ItemId", itemId);
             p.Add("@UnitId", unitId);
+            p.Add("@StoreId", storeId);
 
-            return _sql.LoadData<int, dynamic>("spGetItemQuantity", p, _sql.GetConnectionName()).First();
+            return _sql.LoadData<int, dynamic>("spGetItemQuantityByStore", p, _sql.GetConnectionName()).First();
         }
 
-        public int GetItemQuantityFilter(int itemId, int unitId, DateTime filterDate)
+        public int GetItemQuantityFilter(int itemId, int unitId, DateTime filterDate, int storeId = 0)
         {
             var p = new DynamicParameters();
 
             p.Add("@ItemId", itemId);
             p.Add("@UnitId", unitId);
             p.Add("@FilterDate", filterDate.ToString("yyyy-MM-dd hh:mm:ss"));
+            p.Add("@StoreId", storeId);
 
-            return _sql.LoadData<int, dynamic>("spFilterQuantitiesAfterDate", p, _sql.GetConnectionName()).First();
+            return _sql.LoadData<int, dynamic>("spFilterQuantitiesAfterDateByStore", p, _sql.GetConnectionName()).First();
         }
 
         ///Get the latest price of unit depend on latest purchase date
-        public decimal GetItemLatestPurchasePrice(int itemId, int unitId)
+        public decimal GetItemLatestPurchasePrice(int itemId, int unitId, int storeId = 0)
         {
             var p = new DynamicParameters();
 
             p.Add("@ItemId", itemId);
             p.Add("@UnitId", unitId);
+            p.Add("@StoreId", storeId);
 
             return _sql.LoadData<decimal, dynamic>("spGetItemLatestPrice", p, _sql.GetConnectionName()).First();
         }

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.purchaseDataGroupBox = new System.Windows.Forms.GroupBox();
             this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
             this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
@@ -41,6 +42,8 @@
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.supplierLabel = new System.Windows.Forms.Label();
             this.suppliersComboBox = new System.Windows.Forms.ComboBox();
+            this.storeLabel = new System.Windows.Forms.Label();
+            this.storesComboBox = new System.Windows.Forms.ComboBox();
             this.disscountLabel = new System.Windows.Forms.Label();
             this.disscountTextBox = new System.Windows.Forms.TextBox();
             this.totalLabel = new System.Windows.Forms.Label();
@@ -77,6 +80,8 @@
             this.purchaseDataGroupBox.Controls.Add(this.notesTextBox);
             this.purchaseDataGroupBox.Controls.Add(this.supplierLabel);
             this.purchaseDataGroupBox.Controls.Add(this.suppliersComboBox);
+            this.purchaseDataGroupBox.Controls.Add(this.storeLabel);
+            this.purchaseDataGroupBox.Controls.Add(this.storesComboBox);
             this.purchaseDataGroupBox.Controls.Add(this.disscountLabel);
             this.purchaseDataGroupBox.Controls.Add(this.disscountTextBox);
             this.purchaseDataGroupBox.Controls.Add(this.totalLabel);
@@ -106,7 +111,7 @@
             // paymentTypeCheckBox
             // 
             this.paymentTypeCheckBox.AutoSize = true;
-            this.paymentTypeCheckBox.Location = new System.Drawing.Point(178, 84);
+            this.paymentTypeCheckBox.Location = new System.Drawing.Point(135, 84);
             this.paymentTypeCheckBox.Name = "paymentTypeCheckBox";
             this.paymentTypeCheckBox.Size = new System.Drawing.Size(59, 26);
             this.paymentTypeCheckBox.TabIndex = 20;
@@ -138,7 +143,7 @@
             this.supplierLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.supplierLabel.AutoSize = true;
             this.supplierLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.supplierLabel.Location = new System.Drawing.Point(467, 33);
+            this.supplierLabel.Location = new System.Drawing.Point(467, 19);
             this.supplierLabel.Name = "supplierLabel";
             this.supplierLabel.Size = new System.Drawing.Size(57, 19);
             this.supplierLabel.TabIndex = 13;
@@ -152,17 +157,38 @@
             this.suppliersComboBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.suppliersComboBox.FormattingEnabled = true;
             this.suppliersComboBox.ItemHeight = 19;
-            this.suppliersComboBox.Location = new System.Drawing.Point(269, 55);
+            this.suppliersComboBox.Location = new System.Drawing.Point(269, 41);
             this.suppliersComboBox.Name = "suppliersComboBox";
             this.suppliersComboBox.Size = new System.Drawing.Size(260, 27);
             this.suppliersComboBox.TabIndex = 12;
+            // 
+            // storeLabel
+            // 
+            this.storeLabel.AutoSize = true;
+            this.storeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.storeLabel.Location = new System.Drawing.Point(462, 76);
+            this.storeLabel.Name = "storeLabel";
+            this.storeLabel.Size = new System.Drawing.Size(49, 19);
+            this.storeLabel.TabIndex = 22;
+            this.storeLabel.Text = "المخزن";
+            // 
+            // storesComboBox
+            // 
+            this.storesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.storesComboBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.storesComboBox.FormattingEnabled = true;
+            this.storesComboBox.Location = new System.Drawing.Point(212, 73);
+            this.storesComboBox.Name = "storesComboBox";
+            this.storesComboBox.Size = new System.Drawing.Size(245, 27);
+            this.storesComboBox.TabIndex = 23;
+            this.storesComboBox.SelectionChangeCommitted += new System.EventHandler(this.storesComboBox_SelectionChangeCommitted);
             // 
             // disscountLabel
             // 
             this.disscountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.disscountLabel.AutoSize = true;
             this.disscountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.disscountLabel.Location = new System.Drawing.Point(76, 32);
+            this.disscountLabel.Location = new System.Drawing.Point(76, 18);
             this.disscountLabel.Name = "disscountLabel";
             this.disscountLabel.Size = new System.Drawing.Size(57, 19);
             this.disscountLabel.TabIndex = 11;
@@ -174,7 +200,7 @@
             this.disscountTextBox.BackColor = System.Drawing.Color.White;
             this.disscountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.disscountTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.disscountTextBox.Location = new System.Drawing.Point(36, 54);
+            this.disscountTextBox.Location = new System.Drawing.Point(36, 40);
             this.disscountTextBox.MaxLength = 18;
             this.disscountTextBox.Name = "disscountTextBox";
             this.disscountTextBox.Size = new System.Drawing.Size(96, 27);
@@ -187,7 +213,7 @@
             this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalLabel.AutoSize = true;
             this.totalLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.totalLabel.Location = new System.Drawing.Point(212, 33);
+            this.totalLabel.Location = new System.Drawing.Point(212, 19);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(55, 19);
             this.totalLabel.TabIndex = 9;
@@ -199,7 +225,7 @@
             this.totalTextBox.BackColor = System.Drawing.Color.White;
             this.totalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.totalTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.totalTextBox.Location = new System.Drawing.Point(138, 54);
+            this.totalTextBox.Location = new System.Drawing.Point(138, 40);
             this.totalTextBox.MaxLength = 18;
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
@@ -212,7 +238,7 @@
             this.purchaseIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseIdLabel.AutoSize = true;
             this.purchaseIdLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.purchaseIdLabel.Location = new System.Drawing.Point(538, 33);
+            this.purchaseIdLabel.Location = new System.Drawing.Point(538, 19);
             this.purchaseIdLabel.Name = "purchaseIdLabel";
             this.purchaseIdLabel.Size = new System.Drawing.Size(76, 19);
             this.purchaseIdLabel.TabIndex = 7;
@@ -224,7 +250,7 @@
             this.purchaseIdTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.purchaseIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.purchaseIdTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.purchaseIdTextBox.Location = new System.Drawing.Point(535, 55);
+            this.purchaseIdTextBox.Location = new System.Drawing.Point(535, 41);
             this.purchaseIdTextBox.MaxLength = 15;
             this.purchaseIdTextBox.Name = "purchaseIdTextBox";
             this.purchaseIdTextBox.ReadOnly = true;
@@ -279,14 +305,14 @@
             this.purchaseDetailsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.purchaseDetailsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.purchaseDetailsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchaseDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchaseDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.purchaseDetailsDataGridView.ColumnHeadersHeight = 29;
             this.purchaseDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.purchaseDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -304,21 +330,21 @@
             this.purchaseDetailsDataGridView.Location = new System.Drawing.Point(3, 52);
             this.purchaseDetailsDataGridView.MultiSelect = false;
             this.purchaseDetailsDataGridView.Name = "purchaseDetailsDataGridView";
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchaseDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchaseDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.purchaseDetailsDataGridView.RowHeadersVisible = false;
             this.purchaseDetailsDataGridView.RowHeadersWidth = 51;
             this.purchaseDetailsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
-            this.purchaseDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.purchaseDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.purchaseDetailsDataGridView.RowTemplate.Height = 24;
             this.purchaseDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.purchaseDetailsDataGridView.Size = new System.Drawing.Size(628, 259);
@@ -355,9 +381,9 @@
             // quantityColumn
             // 
             this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.NullValue = "N0";
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.NullValue = "N0";
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.quantityColumn.HeaderText = "الكمــية";
             this.quantityColumn.MinimumWidth = 6;
             this.quantityColumn.Name = "quantityColumn";
@@ -366,9 +392,9 @@
             // unitPriceColumn
             // 
             this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.Format = "N0";
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.Format = "N0";
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle10;
             this.unitPriceColumn.HeaderText = "السعـــر";
             this.unitPriceColumn.MinimumWidth = 6;
             this.unitPriceColumn.Name = "unitPriceColumn";
@@ -380,25 +406,26 @@
             this.unitIdColumn.MinimumWidth = 6;
             this.unitIdColumn.Name = "unitIdColumn";
             this.unitIdColumn.Visible = false;
-
+            // 
             // lineTotalColumn
+            // 
             this.lineTotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.lineTotalColumn.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.lineTotalColumn.DefaultCellStyle.Format = "N2";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.Format = "N2";
+            this.lineTotalColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.lineTotalColumn.HeaderText = "الإجمالي";
             this.lineTotalColumn.MinimumWidth = 95;
             this.lineTotalColumn.Name = "lineTotalColumn";
             this.lineTotalColumn.ReadOnly = true;
             this.lineTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.lineTotalColumn.Width = 115;
-
             // 
             // colDelete
             // 
             this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.NullValue = "حذف";
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.NullValue = "حذف";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle12;
             this.colDelete.HeaderText = "حذف";
             this.colDelete.MinimumWidth = 6;
             this.colDelete.Name = "colDelete";
@@ -514,6 +541,8 @@
         private System.Windows.Forms.TextBox totalTextBox;
         private System.Windows.Forms.ComboBox suppliersComboBox;
         private System.Windows.Forms.Label supplierLabel;
+        private System.Windows.Forms.Label storeLabel;
+        private System.Windows.Forms.ComboBox storesComboBox;
         private System.Windows.Forms.GroupBox purchaseDetailsGroupBox;
         private System.Windows.Forms.DataGridView purchaseDetailsDataGridView;
         private System.Windows.Forms.Button searchButton;

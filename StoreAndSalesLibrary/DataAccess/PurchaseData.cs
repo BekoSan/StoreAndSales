@@ -28,13 +28,14 @@ namespace StoreAndSalesLibrary.DataAccess
         public bool CreatePurchase(Purchase purchase)
         {
             _transaction = _connection.BeginTransaction();
-            
+
             using (SqlCommand cmd = new SqlCommand("spCreatePurchase", _connection, _transaction))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@SupplierId", SqlDbType.Int).Value = purchase.SupplierId;
+                cmd.Parameters.Add("@StoreId", SqlDbType.Int).Value = purchase.StoreId;
                 cmd.Parameters.Add("@Total", SqlDbType.Money).Value = purchase.Total;
                 cmd.Parameters.Add("@Disscount", SqlDbType.Money).Value = purchase.Disscount;
                 cmd.Parameters.Add("@Notes", SqlDbType.NVarChar).Value = purchase.Notes;
@@ -49,7 +50,7 @@ namespace StoreAndSalesLibrary.DataAccess
                 purchase.Id = _purchaseId;
             }
 
-           return CreatePurchaseDetails(purchase.PurchaseDetails);
+            return CreatePurchaseDetails(purchase.PurchaseDetails);
         }
 
         public bool CreatePurchaseDetails(List<PurchaseDetail> purchaseDetails)
@@ -80,7 +81,7 @@ namespace StoreAndSalesLibrary.DataAccess
             catch
             {
                 _transaction.Rollback();
-                output= false;
+                output = false;
                 //TODO: Log the Exception
             }
             return output;
@@ -120,7 +121,7 @@ namespace StoreAndSalesLibrary.DataAccess
             return _sql.LoadData<decimal, dynamic>("spGetTotalPurchasesByDate", p, _sql.GetConnectionName()).First();
         }
 
-        public int  GetLastPurchaseId()
+        public int GetLastPurchaseId()
         {
             int output;
 
@@ -153,7 +154,7 @@ namespace StoreAndSalesLibrary.DataAccess
             _sql.SaveData("spEditPurchaseStatus", p, _sql.GetConnectionName());
         }
 
-        public void EditPurchaseDisscount(int purchaseId, decimal  disscount)
+        public void EditPurchaseDisscount(int purchaseId, decimal disscount)
         {
             var p = new DynamicParameters();
 

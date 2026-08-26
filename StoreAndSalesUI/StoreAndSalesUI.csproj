@@ -105,6 +105,9 @@
     <Compile Include="Forms\SaleReturnForm.designer.cs">
       <DependentUpon>SaleReturnForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\StoresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\UserLogsForm.cs">
       <SubType>Form</SubType>
     </Compile>

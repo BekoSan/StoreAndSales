@@ -24,6 +24,8 @@ namespace StoreAndSalesUI.Forms
 
         private CustomerData _customerData = new CustomerData();
         private List<Customer> _customers = new List<Customer>();
+        private StoreData _storeData = new StoreData();
+        private List<Store> _stores = new List<Store>();
         private SaleData _saleData = new SaleData(UsefulMethods.ConnectionStringName());
         private Sale _sale = new Sale();
         private SaleDetailData _saleDetailData = new SaleDetailData();
@@ -55,16 +57,34 @@ namespace StoreAndSalesUI.Forms
             customersComboBox.SelectedIndex = -1;
         }
 
+        private void LoadStores()
+        {
+            _stores = _storeData.GetAllStores() ?? new List<Store>();
+            storesComboBox.DataSource = _stores;
+            storesComboBox.ValueMember = "Id";
+            storesComboBox.DisplayMember = "StoreName";
+            storesComboBox.SelectedValue = _storeData.GetDefaultStoreId();
+        }
+
+        private int GetSelectedStoreId()
+        {
+            int selectedStoreId;
+            return storesComboBox.SelectedValue != null
+                && int.TryParse(storesComboBox.SelectedValue.ToString(), out selectedStoreId)
+                ? selectedStoreId
+                : _storeData.GetDefaultStoreId();
+        }
+
         private void CollectData()
         {
             _sale.CustomerId = (customersComboBox.SelectedValue == null) ? 0 : customersComboBox.SelectedValue.ToString().ParseToInt();
+            _sale.StoreId = GetSelectedStoreId();
             _sale.Total = (_disscount == 0 ? _totalCost : _totalCost - _disscount); //totalTextBox.Text.ParseToDecimal();
             _sale.Disscount = _disscount;
             _sale.Notes = notesTextBox.Text;
             _sale.PaymentType = paymentTypeCheckBox.Checked;
             _sale.IsDisscount = isDisscountCheckBox.Checked;
-            _sale.Status = (disscountTextBox.Text.ParseToDecimal() != 0
-               && !isDisscountCheckBox.Checked ? false : true);
+            _sale.Status = false;
             _sale.UserId = LoginDataHelper.UserId;
 
             CollectSaleDetails();
@@ -91,7 +111,7 @@ namespace StoreAndSalesUI.Forms
             // إنشاء الشاشة مرة واحدة فقط؛ إعادة إنشائها كانت تعيد استدعاء GetAllItems في كل مرة.
             if (_chooseItemForm == null || _chooseItemForm.IsDisposed)
             {
-                _chooseItemForm = new ChooseItemForm(this)
+                _chooseItemForm = new ChooseItemForm(this, GetSelectedStoreId())
                 {
                     TopLevel = false,
                     ControlBox = false,
@@ -305,7 +325,7 @@ namespace StoreAndSalesUI.Forms
                 decimal latestPurchasePrice;
                 if (!latestPurchasePrices.TryGetValue(priceKey, out latestPurchasePrice))
                 {
-                    latestPurchasePrice = _itemData.GetItemLatestPurchasePrice(itemId, unitId);
+                    latestPurchasePrice = _itemData.GetItemLatestPurchasePrice(itemId, unitId, GetSelectedStoreId());
                     latestPurchasePrices[priceKey] = latestPurchasePrice;
                 }
 
@@ -446,7 +466,7 @@ namespace StoreAndSalesUI.Forms
 
             int itemQuantity =
                 Properties.Settings.Default.IsQuantityFilter ?
-               _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate) : _itemData.GetItemQuantity(itemId, unitId);
+               _itemData.GetItemQuantityFilter(itemId, unitId, Properties.Settings.Default.FilterDate, GetSelectedStoreId()) : _itemData.GetItemQuantity(itemId, unitId, GetSelectedStoreId());
 
             if (quantityToTake > itemQuantity)
             {
@@ -605,6 +625,7 @@ namespace StoreAndSalesUI.Forms
             _sale.Id = sale.Id;
             saleIdTextBox.Text = sale.Id.ToString();
             customersComboBox.SelectedValue = sale.CustomerId;
+            storesComboBox.SelectedValue = sale.StoreId;
             totalTextBox.Text = sale.Total.ToString("#,0");
             disscountTextBox.Text = sale.Disscount.ToString("#,0");
             notesTextBox.Text = sale.Notes;
@@ -713,6 +734,7 @@ namespace StoreAndSalesUI.Forms
         private void SalesForm_Load(object sender, EventArgs e)
         {
             UpdateUnpaidFlag(false);
+            LoadStores();
             LoadCustomers();
 
             LoadNextSaleId();
@@ -741,5 +763,10 @@ namespace StoreAndSalesUI.Forms
 
         }
 
+        private void storesComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _chooseItemForm.Dispose();
+            AddItemToSale();
+        }
     }
 }

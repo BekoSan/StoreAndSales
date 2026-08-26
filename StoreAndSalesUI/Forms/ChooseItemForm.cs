@@ -30,6 +30,14 @@ namespace StoreAndSalesUI.Forms
             InitializeItemList();
         }
 
+        public ChooseItemForm(IItemRequester caller, int storeId)
+        {
+            InitializeComponent();
+            CallingForm = caller;
+            _storeId = storeId;
+            InitializeItemList();
+        }
+
         #region Private Members
 
         private readonly ItemData _itemData = new ItemData();
@@ -38,6 +46,7 @@ namespace StoreAndSalesUI.Forms
         private List<Item> _items = new List<Item>();
         private readonly Dictionary<int, int> _itemQuantities = new Dictionary<int, int>();
         private IItemRequester CallingForm;
+        private int _storeId;
 
         private bool _isLoading;
         private bool _isItemNameSortAscending = true;
@@ -114,7 +123,7 @@ namespace StoreAndSalesUI.Forms
         {
             Dictionary<int, int> quantities = new Dictionary<int, int>();
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
-            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
+            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities(_storeId)
                 ?? new List<ItemUnitValue>();
 
             // استخدم الوحدة الافتراضية فقط؛ فهي نفس الوحدة المعتمدة

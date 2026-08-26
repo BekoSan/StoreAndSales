@@ -9,6 +9,8 @@ namespace StoreAndSalesLibrary.Models
 
         public int SupplierId { get; set; }
 
+        public int StoreId { get; set; }
+
         public DateTime PurchaseDate { get; set; }
 
         public decimal Total { get; set; }

@@ -13,13 +13,17 @@ namespace StoreAndSalesUI.Forms
         public PurchasesForm()
         {
             InitializeComponent();
+            EnableGridDoubleBuffering(purchaseDetailsDataGridView);
             _choosePurchaseForm = new ChoosePurchaseForm(this);
+
         }
 
         #region Private Members
 
         private SupplierData _supplierData = new SupplierData();
         private List<Supplier> _suppliers = new List<Supplier>();
+        private StoreData _storeData = new StoreData();
+        private List<Store> _stores = new List<Store>();
         private PurchaseData _purchaseData = new PurchaseData(UsefulMethods.ConnectionStringName());
         private Purchase _purchase = new Purchase();
         private PurchaseDetailData _purchaseDetailData = new PurchaseDetailData();
@@ -28,11 +32,14 @@ namespace StoreAndSalesUI.Forms
         private ItemData _itemData = new ItemData();
         private decimal _totalCost = 0;
         private decimal _disscount = 0;
-        private VoucherData _voucherData =  new VoucherData();
-        private Voucher  _voucher = new Voucher();
+        private VoucherData _voucherData = new VoucherData();
+        private Voucher _voucher = new Voucher();
         private bool isPurchasePreview = false;
         private ChoosePurchaseForm _choosePurchaseForm;
         private UserLogData _userLogData = new UserLogData();
+        private ChooseItemForm _chooseItemForm;
+        private readonly Dictionary<int, string> _itemNameCache = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _unitNameCache = new Dictionary<int, string>();
 
         #endregion
 
@@ -47,16 +54,34 @@ namespace StoreAndSalesUI.Forms
             suppliersComboBox.SelectedIndex = -1;
         }
 
+        private void LoadStores()
+        {
+            _stores = _storeData.GetAllStores() ?? new List<Store>();
+            storesComboBox.DataSource = _stores;
+            storesComboBox.ValueMember = "Id";
+            storesComboBox.DisplayMember = "StoreName";
+            storesComboBox.SelectedValue = _storeData.GetDefaultStoreId();
+        }
+
+        private int GetSelectedStoreId()
+        {
+            int selectedStoreId;
+            return storesComboBox.SelectedValue != null
+                && int.TryParse(storesComboBox.SelectedValue.ToString(), out selectedStoreId)
+                ? selectedStoreId
+                : _storeData.GetDefaultStoreId();
+        }
+
         private void CollectData()
         {
             _purchase.SupplierId = (suppliersComboBox.SelectedValue == null) ? 0 : suppliersComboBox.SelectedValue.ToString().ParseToInt();
+            _purchase.StoreId = GetSelectedStoreId();
             _purchase.Total = totalTextBox.Text.ParseToDecimal();
             _purchase.Disscount = disscountTextBox.Text.ParseToDecimal();
             _purchase.Notes = notesTextBox.Text;
             _purchase.PaymentType = paymentTypeCheckBox.Checked;
             _purchase.IsDisscount = isDisscountCheckBox.Checked;
-            _purchase.Status = (disscountTextBox.Text.ParseToDecimal() != 0
-               && !isDisscountCheckBox.Checked ? false : true);
+            _purchase.Status = isDisscountCheckBox.Checked ? true : false;
             _purchase.UserId = LoginDataHelper.UserId;
 
             CollectPurchaseDetails();
@@ -80,14 +105,38 @@ namespace StoreAndSalesUI.Forms
 
         private void AddItemToPurchase()
         {
-            //new ChooseItemForm(this).ShowDialog();
-            ChooseItemForm chooseItemForm = new ChooseItemForm(this);
-            chooseItemForm.TopLevel = false;
-            chooseItemForm.Visible = true;
-            chooseItemForm.ControlBox = false;
-            chooseItemForm.Dock = DockStyle.Fill;
-            chooseItemForm.FormBorderStyle = FormBorderStyle.None;
-            panel1.Controls.Add(chooseItemForm);
+            if (_chooseItemForm == null || _chooseItemForm.IsDisposed)
+            {
+                _chooseItemForm = new ChooseItemForm(this, GetSelectedStoreId())
+                {
+                    TopLevel = false,
+                    ControlBox = false,
+                    Dock = DockStyle.Fill,
+                    FormBorderStyle = FormBorderStyle.None
+                };
+
+                panel1.Controls.Add(_chooseItemForm);
+                _chooseItemForm.Show();
+            }
+            else
+            {
+                _chooseItemForm.Visible = true;
+                _chooseItemForm.BringToFront();
+            }
+        }
+
+        private static void EnableGridDoubleBuffering(DataGridView grid)
+        {
+            try
+            {
+                typeof(DataGridView)
+                    .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                    ?.SetValue(grid, true, null);
+            }
+            catch (Exception)
+            {
+                // Double buffering is an optional UI optimization.
+            }
         }
 
         private void ChangeUnit()
@@ -163,7 +212,7 @@ namespace StoreAndSalesUI.Forms
             ClearForm();
             LoadNextPurchaseId();
             _totalCost = 0;
-            _purchase = new Purchase(); 
+            _purchase = new Purchase();
             PreviewTotalCost(0);
             disscountTextBox.Text = "0";
             EnableDissableEditing(true);
@@ -202,7 +251,7 @@ namespace StoreAndSalesUI.Forms
                 MessageBox.Show("يجب إضافة صنف واحد على الأقل في الفاتورة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
             }
-            else if (IsValidPriceAndQuantity() == false) 
+            else if (IsValidPriceAndQuantity() == false)
             {
                 MessageBox.Show("يجب إدخال جميع الكميات والأسعار بصورة صحيحة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 output = false;
@@ -215,7 +264,8 @@ namespace StoreAndSalesUI.Forms
         {
             try
             {
-                if (_purchaseData.CreatePurchase(_purchase)){
+                if (_purchaseData.CreatePurchase(_purchase))
+                {
                     SavePurchaseVoucher(_purchase.Id);
                     _userLogData.AddLog(LoginDataHelper.UserId, $"تم تسجيل عملية شراء أصناف من المورد {suppliersComboBox.Text} بقيمة {string.Format(totalTextBox.Text, "#,0")} ");
                     MessageBox.Show("تمت الإضافة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -233,7 +283,7 @@ namespace StoreAndSalesUI.Forms
             saveButton.Enabled = isEnabled;
             addItemButton.Enabled = isEnabled;
             purchaseDetailsDataGridView.ReadOnly = !isEnabled;
-            purchaseDetailsDataGridView.Columns[6].Visible = isEnabled;
+            purchaseDetailsDataGridView.Columns["colDelete"].Visible = isEnabled;
             disscountTextBox.Enabled = isEnabled;
             suppliersComboBox.Enabled = isEnabled;
             notesTextBox.Enabled = isEnabled;
@@ -244,11 +294,27 @@ namespace StoreAndSalesUI.Forms
 
         private void LoadItemNameAndUnitFromRow(DataGridViewRow dgvRow)
         {
+            if (dgvRow == null || dgvRow.IsNewRow)
+            {
+                return;
+            }
+
             int itemId = dgvRow.Cells[0].Value.ToString().ParseToInt();
             int unitId = dgvRow.Cells[5].Value.ToString().ParseToInt();
 
-            string unitName = _unitData.GetUnitById(unitId).UnitName;
-            string itemName = _itemData.GetItem(itemId).ItemName;
+            string itemName;
+            if (!_itemNameCache.TryGetValue(itemId, out itemName))
+            {
+                itemName = _itemData.GetItem(itemId).ItemName;
+                _itemNameCache[itemId] = itemName;
+            }
+
+            string unitName;
+            if (!_unitNameCache.TryGetValue(unitId, out unitName))
+            {
+                unitName = _unitData.GetUnitById(unitId).UnitName;
+                _unitNameCache[unitId] = unitName;
+            }
 
             dgvRow.Cells[1].Value = itemName;
             dgvRow.Cells[2].Value = unitName;
@@ -288,75 +354,60 @@ namespace StoreAndSalesUI.Forms
             reportViewerForm.ShowDialog();
         }
 
-        private void SavePurchaseVoucher(int purchaseId) 
+        private void SavePurchaseVoucher(int purchaseId)
         {
             if (suppliersComboBox.SelectedIndex == -1) return;
 
-            if (!isDisscountCheckBox.Checked && disscountTextBox.Text.ParseToDecimal() != 0)
+            if (!isDisscountCheckBox.Checked)
             {
                 int supplierId = suppliersComboBox.SelectedValue.ToString().ParseToInt();
                 decimal currentBalance = _suppliers.Find(c => c.Id == supplierId).Balance;
                 decimal newBalance = currentBalance + disscountTextBox.Text.ParseToDecimal();
 
-                _voucher = new Voucher 
+                _voucher = new Voucher
                 {
                     VoucherType = "R",
                     Amount = disscountTextBox.Text.ParseToDecimal(),
                     PurchaseId = purchaseId,
                     SupplierId = supplierId,
-                    Notes= $"المتبقي من الفاتورة رقم { purchaseId }",
+                    Notes = $"المتبقي من الفاتورة رقم {purchaseId}",
                 };
-                
+
                 _voucherData.CreatePurchaseVoucher(_voucher);
                 _supplierData.UpdateBalance(supplierId, newBalance);
             }
-        }
-
-        private bool IsItemAdded(int itemId)
-        {
-            bool output = false;
-
-            foreach (DataGridViewRow dgvRow in purchaseDetailsDataGridView.Rows)
-            {
-                if (dgvRow.Cells[0].Value.ToString().ParseToInt() == itemId)
-                {
-                    output = true;
-                    break;
-                }
-            }
-
-            return output;
         }
 
         #endregion
 
         private void PurchasesForm_Load(object sender, EventArgs e)
         {
+            LoadStores();
             LoadSuppliers();
             LoadNextPurchaseId();
-            AddItemToPurchase(); 
+            AddItemToPurchase();
         }
 
         public void AddItem(Item item)
         {
-            //Get Default Unit Name            
-            if (item == null || IsItemAdded(item.Id) || isPurchasePreview)
+            if (item == null || isPurchasePreview) return;
+
+            int defaultUnitId = UsefulMethods.GetDefaultUnitId();
+            string defaultUnitName;
+            if (!_unitNameCache.TryGetValue(defaultUnitId, out defaultUnitName))
             {
-                return;
+                defaultUnitName = _unitData.GetUnitById(defaultUnitId).UnitName;
+                _unitNameCache[defaultUnitId] = defaultUnitName;
             }
-            //decimal defaultUnitPrice = itemUnit.UnitPrice;
-            string defaultUnitName = _unitData.GetUnitById(UsefulMethods.GetDefaultUnitId()).UnitName;
-            // Get Default Unit Price
-            int rowIndex = purchaseDetailsDataGridView.Rows.Add
-                (
+
+            purchaseDetailsDataGridView.Rows.Add(
                 item.Id,
                 item.ItemName,
                 defaultUnitName,
                 1,
                 0,
-                UsefulMethods.GetDefaultUnitId()
-                );
-            UpdateLineTotal(purchaseDetailsDataGridView.Rows[rowIndex]);
+                defaultUnitId);
+            UpdateLineTotal(purchaseDetailsDataGridView.Rows[purchaseDetailsDataGridView.Rows.Count - 1]);
         }
 
         public void PreviewPruchase(Purchase purchase)
@@ -366,6 +417,7 @@ namespace StoreAndSalesUI.Forms
             _purchase.Id = purchase.Id;
             purchaseIdTextBox.Text = purchase.Id.ToString();
             suppliersComboBox.SelectedValue = purchase.SupplierId;
+            storesComboBox.SelectedValue = purchase.StoreId;
             totalTextBox.Text = purchase.Total.ToString("#,0");
             disscountTextBox.Text = purchase.Disscount.ToString("#,0");
             notesTextBox.Text = purchase.Notes;
@@ -379,9 +431,10 @@ namespace StoreAndSalesUI.Forms
             {
                 purchaseDetailsDataGridView.Rows.Add(purchaseDetail.ItemId, "", "", purchaseDetail.Quantity, purchaseDetail.Price, purchaseDetail.UnitId);
             });
+            UpdateAllLineTotals();
 
             purchaseDetailsDataGridView.ClearSelection();
-            
+
             EnableDissableEditing(false);
         }
 
@@ -400,14 +453,14 @@ namespace StoreAndSalesUI.Forms
                 MessageBox.Show($"الوحدة {unit.UnitName} لا تنتمي لهذا الصـنف", "وحدة الصنف", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
             currentRow.Cells[2].Value = unit.UnitName;
             currentRow.Cells[4].Value = 0;
             currentRow.Cells[5].Value = unit.Id;
+            UpdateLineTotal(currentRow);
             //currentRow.Cells[4].Value = _itemUnitData.GetItemUnits(itemId)
             //    .Where(itemUnit => itemUnit.UnitId == unit.Id)
             //    .First().UnitPrice;   
-            UpdateLineTotal(currentRow);
         }
 
         private void purchaseDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -417,17 +470,16 @@ namespace StoreAndSalesUI.Forms
                 case 2:
                     ChangeUnit();
                     break;
-                case 6:
+                case 7:
                     DeleteRow(e.RowIndex);
                     CalculateTotalCost();
-                    PreviewTotalCost(_totalCost); 
+                    PreviewTotalCost(_totalCost);
                     break;
             }
         }
 
         private void purchaseDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
             if (_purchase.Id != 0 || purchaseDetailsDataGridView.Rows.Count == 0) return;
 
             if (e.ColumnIndex == 4 || e.ColumnIndex == 3)
@@ -452,7 +504,7 @@ namespace StoreAndSalesUI.Forms
         private void saveButton_Click(object sender, EventArgs e)
         {
             CollectData();
-            if (IsValidData()){ Save(); ResetForm();}
+            if (IsValidData()) { Save(); ResetForm(); }
         }
 
         private void purchaseDetailsDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -469,5 +521,12 @@ namespace StoreAndSalesUI.Forms
         {
             ViewPurchaseReport();
         }
+
+        private void storesComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _chooseItemForm.Dispose();
+            AddItemToPurchase();
+        }
+
     }
 }

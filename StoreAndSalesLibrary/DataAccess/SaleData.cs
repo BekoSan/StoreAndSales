@@ -28,13 +28,14 @@ namespace StoreAndSalesLibrary.DataAccess
         public bool CreateSale(Sale sale)
         {
             _transaction = _connection.BeginTransaction();
-            
+
             using (SqlCommand cmd = new SqlCommand("spCreateSale", _connection, _transaction))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = sale.CustomerId;
+                cmd.Parameters.Add("@StoreId", SqlDbType.Int).Value = sale.StoreId;
                 cmd.Parameters.Add("@Total", SqlDbType.Money).Value = sale.Total;
                 cmd.Parameters.Add("@Disscount", SqlDbType.Money).Value = sale.Disscount;
                 cmd.Parameters.Add("@Notes", SqlDbType.NVarChar).Value = sale.Notes;
@@ -51,7 +52,7 @@ namespace StoreAndSalesLibrary.DataAccess
                 sale.Id = _saleId;
             }
 
-           return CreateSaleDetails(sale.SaleDetails);
+            return CreateSaleDetails(sale.SaleDetails);
         }
 
         public bool CreateSaleDetails(List<SaleDetail> SaleDetails)
@@ -59,7 +60,7 @@ namespace StoreAndSalesLibrary.DataAccess
             bool output = true;
             try
             {
-                
+
                 SaleDetails.ForEach(SaleDetail =>
                 {
 
@@ -82,7 +83,7 @@ namespace StoreAndSalesLibrary.DataAccess
             catch
             {
                 _transaction.Rollback();
-                output=false;
+                output = false;
                 //TODO: Log the Exception
             }
             return output;
@@ -150,8 +151,8 @@ namespace StoreAndSalesLibrary.DataAccess
         {
             var p = new DynamicParameters();
 
-            p.Add("@SaleId", saleId,DbType.Int32);
-            p.Add("@Status", newStatus,DbType.Boolean);
+            p.Add("@SaleId", saleId, DbType.Int32);
+            p.Add("@Status", newStatus, DbType.Boolean);
 
             _sql.SaveData("spEditSaleStatus", p, _sql.GetConnectionName());
         }
@@ -171,7 +172,7 @@ namespace StoreAndSalesLibrary.DataAccess
             var p = new DynamicParameters();
             p.Add("@SaleId", saleId);
 
-            return _sql.LoadData<ReturnableSaleDetail,dynamic>(
+            return _sql.LoadData<ReturnableSaleDetail, dynamic>(
                 "spGetReturnableSaleDetails", p, _sql.GetConnectionName());
         }
 

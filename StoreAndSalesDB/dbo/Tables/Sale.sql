@@ -2,6 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
 	[CustomerId] INT NOT NULL,
+	[StoreId] INT NOT NULL DEFAULT (1),
     [SaleDate] DATETIME2 NOT NULL DEFAULT sysdatetime(), 
     [Total] MONEY NOT NULL, 
     [Disscount] MONEY NOT NULL,  
@@ -11,7 +12,8 @@
     [Status] BIT NOT NULL DEFAULT 1, 
     [UserId] INT NULL , 
     [OriginalSaleId] INT NULL,   -- يربط المرتجع بالفاتورة الأصلية
-    [IsReturn] BIT NOT NULL DEFAULT 0
-    CONSTRAINT [FK_Sale_Customer] FOREIGN KEY (CustomerId) REFERENCES [Customer]([Id]), 
+	[IsReturn] BIT NOT NULL DEFAULT 0,
+	CONSTRAINT [FK_Sale_Customer] FOREIGN KEY (CustomerId) REFERENCES [Customer]([Id]),
+	CONSTRAINT [FK_Sale_Store] FOREIGN KEY (StoreId) REFERENCES [Store]([Id]),
     CONSTRAINT [FK_Sale_Users] FOREIGN KEY (UserId) REFERENCES [Users]([Id])
 )

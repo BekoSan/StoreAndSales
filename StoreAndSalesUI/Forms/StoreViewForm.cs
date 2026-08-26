@@ -19,6 +19,7 @@ namespace StoreAndSalesUI.Forms
             ConfigureGrid(storeViewDataGridView);
             ConfigureGrid(pricesDataGridView);
             ConfigureGrid(calculationsDataGridView);
+            InitializeStoreSelector();
             UpdateSortItemsButtonText();
             FillGrids();
         }
@@ -26,6 +27,7 @@ namespace StoreAndSalesUI.Forms
         #region Private Members
 
         private readonly ItemData _itemData = new ItemData();
+        private readonly StoreData _storeData = new StoreData();
         private List<Item> _items = new List<Item>();
         private readonly UnitData _unitData = new UnitData();
         private List<Unit> _units = new List<Unit>();
@@ -33,6 +35,28 @@ namespace StoreAndSalesUI.Forms
         private bool _isItemNameSortAscending = true;
         private static readonly StringComparer ItemNameComparer = StringComparer.Create(
             CultureInfo.GetCultureInfo("ar-SA"), true);
+        private readonly ComboBox _storesComboBox = new ComboBox();
+
+        private void InitializeStoreSelector()
+        {
+            _storesComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            _storesComboBox.Font = new Font("Arial", 10F, FontStyle.Bold);
+            _storesComboBox.Width = 220;
+            _storesComboBox.Dock = DockStyle.Right;
+            _storesComboBox.DataSource = _storeData.GetAllStores() ?? new List<Store>();
+            _storesComboBox.ValueMember = "Id";
+            _storesComboBox.DisplayMember = "StoreName";
+            _storesComboBox.SelectedValue = _storeData.GetDefaultStoreId();
+            _storesComboBox.SelectionChangeCommitted += (s, e) => FillGrids();
+            headerPanel.Controls.Add(_storesComboBox);
+        }
+
+        private int GetSelectedStoreId()
+        {
+            int storeId;
+            return _storesComboBox.SelectedValue != null && int.TryParse(_storesComboBox.SelectedValue.ToString(), out storeId)
+                ? storeId : _storeData.GetDefaultStoreId();
+        }
 
         #endregion
 
@@ -105,9 +129,9 @@ namespace StoreAndSalesUI.Forms
                 _units = _unitData.GetAllUnits();
 
                 List<ItemUnitValue> quantityRows = Properties.Settings.Default.IsQuantityFilter
-                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate)
-                    : _itemData.GetAllItemQuantities();
-                List<ItemUnitValue> priceRows = _itemData.GetAllItemLatestPurchasePrices();
+                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate, GetSelectedStoreId())
+                    : _itemData.GetAllItemQuantities(GetSelectedStoreId());
+                List<ItemUnitValue> priceRows = _itemData.GetAllItemLatestPurchasePrices(GetSelectedStoreId());
 
                 var quantitiesByKey = new Dictionary<string, int>();
                 foreach (ItemUnitValue value in quantityRows)

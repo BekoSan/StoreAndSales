@@ -144,6 +144,17 @@
     <Build Include="dbo\StoredProcedures\spGetAllItemQuantities.sql" />
     <Build Include="dbo\StoredProcedures\spGetAllItemQuantitiesAfterDate.sql" />
     <Build Include="dbo\StoredProcedures\spGetAllItemLatestPurchasePrices.sql" />
+    <Build Include="dbo\Tables\Store.sql" />
+    <Build Include="dbo\StoredProcedures\spArchiveStore.sql" />
+    <Build Include="dbo\StoredProcedures\spCreateStore.sql" />
+    <Build Include="dbo\StoredProcedures\spEditStore.sql" />
+    <Build Include="dbo\StoredProcedures\spFilterQuantitiesAfterDateByStore.sql" />
+    <Build Include="dbo\StoredProcedures\spGetAllItemLatestPurchasePricesByStore.sql" />
+    <Build Include="dbo\StoredProcedures\spGetAllItemQuantitiesAfterDateByStore.sql" />
+    <Build Include="dbo\StoredProcedures\spGetAllItemQuantitiesByStore.sql" />
+    <Build Include="dbo\StoredProcedures\spGetAllStores.sql" />
+    <Build Include="dbo\StoredProcedures\spGetDefaultStoreId.sql" />
+    <Build Include="dbo\StoredProcedures\spGetItemQuantityByStore.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StoreAndSalesDB.refactorlog" />

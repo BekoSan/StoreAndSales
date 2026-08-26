@@ -42,6 +42,7 @@
             this.backupFormButton = new System.Windows.Forms.Button();
             this.userLogsButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.storesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // salesButton
@@ -248,6 +249,19 @@
             this.titleLabel.TabIndex = 13;
             this.titleLabel.Text = "نظــام هاتسومي للمبيعات";
             // 
+            // storesButton
+            // 
+            this.storesButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(82)))), ((int)(((byte)(46)))));
+            this.storesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(251)))), ((int)(((byte)(234)))));
+            this.storesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.storesButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.storesButton.Location = new System.Drawing.Point(465, 314);
+            this.storesButton.Name = "storesButton";
+            this.storesButton.Size = new System.Drawing.Size(148, 33);
+            this.storesButton.TabIndex = 14;
+            this.storesButton.Text = "المخازن";
+            this.storesButton.Click += new System.EventHandler(this.storesButton_Click);
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -268,6 +282,7 @@
             this.Controls.Add(this.customersButton);
             this.Controls.Add(this.purchasesButton);
             this.Controls.Add(this.salesButton);
+            this.Controls.Add(this.storesButton);
             this.Font = new System.Drawing.Font("Arial", 11F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -298,6 +313,7 @@
         private System.Windows.Forms.Button backupFormButton;
         private System.Windows.Forms.Button userLogsButton;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Button storesButton;
     }
 }
 

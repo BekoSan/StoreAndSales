@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spCreateSale]
 @Id int = 0 output,
 @CustomerId int,
+@StoreId int,
 @Total Money,
 @Disscount Money,
 @Notes nvarchar(2000),
@@ -14,7 +15,7 @@
 AS
 BEGIN
 
-Insert Into Sale(CustomerId,Total,Disscount,Notes,PaymentType,IsDisscount,[Status],UserId,OriginalSaleId,IsReturn) Values(@CustomerId,@Total,@Disscount,@Notes,
+Insert Into Sale(CustomerId,StoreId,Total,Disscount,Notes,PaymentType,IsDisscount,[Status],UserId,OriginalSaleId,IsReturn) Values(@CustomerId,@StoreId,@Total,@Disscount,@Notes,
 @PaymentType,@IsDisscount,@Status,@UserId,@OriginalSaleId,@IsReturn)
 
 Select @Id = SCOPE_IDENTITY()
