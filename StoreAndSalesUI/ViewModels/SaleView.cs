@@ -10,5 +10,6 @@ namespace StoreAndSalesUI.ViewModels
         public decimal Total { get; set; }
         public decimal Disscount { get; set; }
         public string UserName { get; set; }
+        public bool IsReturn { get; set; }
     }
 }

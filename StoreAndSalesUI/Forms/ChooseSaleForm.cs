@@ -20,12 +20,14 @@ namespace StoreAndSalesUI.Forms
         public ChooseSaleForm()
         {
             InitializeComponent();
+            AddReturnFilter();
         }
 
         public ChooseSaleForm(ISaleRequester caller)
         {
             InitializeComponent();
             CallingForm = caller;
+            AddReturnFilter();
         }
 
         #region Private Members
@@ -36,10 +38,27 @@ namespace StoreAndSalesUI.Forms
         private ISaleRequester CallingForm;
 
         private decimal _currentPeriodTotalCost = 0;
+        private CheckBox _showReturnsCheckBox;
 
         #endregion
 
         #region Private Methods
+
+        private void AddReturnFilter()
+        {
+            _showReturnsCheckBox = new CheckBox
+            {
+                Name = "showReturnsCheckBox",
+                Text = "إظهار فواتير المرتجع",
+                AutoSize = true,
+                Location = new Point(18, 14),
+                Font = new Font("Arial", 9F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(31, 55, 82)
+            };
+            _showReturnsCheckBox.CheckedChanged += (sender, args) => ApplyFilters();
+            Controls.Add(_showReturnsCheckBox);
+            _showReturnsCheckBox.BringToFront();
+        }
 
         private async Task LoadSalesByDate(DateTime dateFrom, DateTime dateTo)
         {
@@ -54,12 +73,7 @@ dateTo.Date);
             });
             loadingLabel.Visible = false;
 
-            salesDataGridView.AutoGenerateColumns = false;
-            salesDataGridView.DataSource = _sales;
-            ApplySaleRowColors();
-            CalculatePeriodTotalCost(_sales);
-
-            ViewCurrentPeroidTotalCost();
+            ApplyFilters();
         }
 
         private void SelectSale()
@@ -116,9 +130,9 @@ dateTo.Date);
             else
             {
                 row.DefaultCellStyle.BackColor = Color.White;
-                row.DefaultCellStyle.ForeColor = Color.Black;
-                row.DefaultCellStyle.SelectionBackColor = SystemColors.Control;
-                row.DefaultCellStyle.SelectionForeColor = Color.Black;
+                row.DefaultCellStyle.ForeColor = Color.FromArgb(48, 58, 70);
+                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 150, 136);
+                row.DefaultCellStyle.SelectionForeColor = Color.White;
             }
         }
 
@@ -130,10 +144,12 @@ dateTo.Date);
             }
         }
 
-        private void FilterByName()
-
+        private void ApplyFilters()
         {
-            var filter = _sales.Where(sale => sale.CustomerName.Contains(customerNameTextBox.Text)).ToList();
+            var filter = _sales
+                .Where(sale => _showReturnsCheckBox == null || _showReturnsCheckBox.Checked || !sale.IsReturn)
+                .Where(sale => string.IsNullOrWhiteSpace(customerNameTextBox.Text) || (sale.CustomerName ?? string.Empty).Contains(customerNameTextBox.Text))
+                .ToList();
             salesDataGridView.AutoGenerateColumns = false;
             salesDataGridView.DataSource = filter;
             ApplySaleRowColors();
@@ -152,7 +168,7 @@ dateTo.Date);
             if (customerNameTextBox.Text.Trim().Length != 0)
             {
                 await LoadSalesByDate(dateFromDateTimePicker.Value, dateToDateTimePicker.Value);
-                FilterByName();
+                ApplyFilters();
             }
             else
             {
@@ -178,7 +194,7 @@ dateTo.Date);
 
         private void customerNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            FilterByName();
+            ApplyFilters();
         }
 
         private void salesDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
