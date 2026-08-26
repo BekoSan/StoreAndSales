@@ -183,6 +183,12 @@ namespace StoreAndSalesUI.Forms
             totalTextBox.Text = totalCost.ToString("#,0");
         }
 
+        private void UpdateUnpaidFlag(bool isUnpaid)
+        {
+            unpaidFlagLabel.Visible = isUnpaid;
+            unpaidFlagLabel.Text = isUnpaid ? "غير خالصة - عليها متبقي" : string.Empty;
+        }
+
         private void CalculateDisscount()
         {
             decimal totalAfterDisscount;
@@ -382,6 +388,7 @@ namespace StoreAndSalesUI.Forms
 
         private void PurchasesForm_Load(object sender, EventArgs e)
         {
+            UpdateUnpaidFlag(false);
             LoadStores();
             LoadSuppliers();
             LoadNextPurchaseId();
@@ -423,6 +430,7 @@ namespace StoreAndSalesUI.Forms
             notesTextBox.Text = purchase.Notes;
             isDisscountCheckBox.Checked = purchase.IsDisscount;
             paymentTypeCheckBox.Checked = purchase.PaymentType;
+            UpdateUnpaidFlag(!purchase.Status);
             purchase.PurchaseDetails = _purchaseDetailData.GetPurchasesDetails(purchase.Id);
 
             purchaseDetailsDataGridView.Rows.Clear();
