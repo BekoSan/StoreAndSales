@@ -38,12 +38,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.titleLabel = new System.Windows.Forms.Label();
             this.itemNameTextBox = new System.Windows.Forms.TextBox();
             this.reorderLevelTextBox = new System.Windows.Forms.TextBox();
@@ -60,9 +61,15 @@
             this.itemSerialColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiryStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sortItemsButton = new System.Windows.Forms.Button();
             this.itemDataGroupBox = new System.Windows.Forms.GroupBox();
             this.addUnitButton = new System.Windows.Forms.Button();
+            this.expiryAlertDaysNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.expiryAlertDaysLabel = new System.Windows.Forms.Label();
+            this.expiryDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.expiryDateLabel = new System.Windows.Forms.Label();
+            this.hasExpiryDateCheckBox = new System.Windows.Forms.CheckBox();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchTextBox = new System.Windows.Forms.TextBox();
@@ -72,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemUnitsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).BeginInit();
             this.itemDataGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expiryAlertDaysNumericUpDown)).BeginInit();
             this.itemsListGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +98,7 @@
             // 
             this.itemNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.itemNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.itemNameTextBox.Location = new System.Drawing.Point(6, 52);
+            this.itemNameTextBox.Location = new System.Drawing.Point(6, 46);
             this.itemNameTextBox.Name = "itemNameTextBox";
             this.itemNameTextBox.Size = new System.Drawing.Size(433, 29);
             this.itemNameTextBox.TabIndex = 0;
@@ -99,7 +107,7 @@
             // 
             this.reorderLevelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.reorderLevelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.reorderLevelTextBox.Location = new System.Drawing.Point(6, 88);
+            this.reorderLevelTextBox.Location = new System.Drawing.Point(205, 77);
             this.reorderLevelTextBox.Name = "reorderLevelTextBox";
             this.reorderLevelTextBox.Size = new System.Drawing.Size(130, 29);
             this.reorderLevelTextBox.TabIndex = 1;
@@ -147,7 +155,7 @@
             this.itemUnitsDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.itemUnitsDataGridView.EnableHeadersVisualStyles = false;
             this.itemUnitsDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
-            this.itemUnitsDataGridView.Location = new System.Drawing.Point(6, 121);
+            this.itemUnitsDataGridView.Location = new System.Drawing.Point(3, 227);
             this.itemUnitsDataGridView.Name = "itemUnitsDataGridView";
             this.itemUnitsDataGridView.RowHeadersVisible = false;
             this.itemUnitsDataGridView.RowHeadersWidth = 51;
@@ -214,7 +222,7 @@
             this.itemNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.itemNameLabel.AutoSize = true;
             this.itemNameLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.itemNameLabel.Location = new System.Drawing.Point(364, 30);
+            this.itemNameLabel.Location = new System.Drawing.Point(364, 24);
             this.itemNameLabel.Name = "itemNameLabel";
             this.itemNameLabel.Size = new System.Drawing.Size(73, 19);
             this.itemNameLabel.TabIndex = 5;
@@ -225,7 +233,7 @@
             this.reorderLevelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.reorderLevelLabel.AutoSize = true;
             this.reorderLevelLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.reorderLevelLabel.Location = new System.Drawing.Point(145, 95);
+            this.reorderLevelLabel.Location = new System.Drawing.Point(344, 84);
             this.reorderLevelLabel.Name = "reorderLevelLabel";
             this.reorderLevelLabel.Size = new System.Drawing.Size(95, 19);
             this.reorderLevelLabel.TabIndex = 10;
@@ -236,7 +244,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(352, 96);
+            this.label3.Location = new System.Drawing.Point(337, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 19);
             this.label3.TabIndex = 6;
@@ -270,15 +278,16 @@
             this.IdColumn,
             this.itemSerialColumn,
             this.itemNameColumn,
-            this.quantityColumn});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemsDataGridView.DefaultCellStyle = dataGridViewCellStyle15;
+            this.quantityColumn,
+            this.expiryStatusColumn});
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemsDataGridView.DefaultCellStyle = dataGridViewCellStyle16;
             this.itemsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.itemsDataGridView.EnableHeadersVisualStyles = false;
             this.itemsDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
@@ -288,12 +297,12 @@
             this.itemsDataGridView.RowHeadersVisible = false;
             this.itemsDataGridView.RowHeadersWidth = 51;
             this.itemsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
-            this.itemsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            this.itemsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle17;
             this.itemsDataGridView.RowTemplate.Height = 24;
             this.itemsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itemsDataGridView.Size = new System.Drawing.Size(444, 157);
@@ -355,6 +364,20 @@
             this.quantityColumn.ReadOnly = true;
             this.quantityColumn.Width = 95;
             // 
+            // expiryStatusColumn
+            // 
+            this.expiryStatusColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            this.expiryStatusColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            this.expiryStatusColumn.HeaderText = "الصلاحية";
+            this.expiryStatusColumn.MinimumWidth = 6;
+            this.expiryStatusColumn.Name = "expiryStatusColumn";
+            this.expiryStatusColumn.ReadOnly = true;
+            this.expiryStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.expiryStatusColumn.Width = 120;
+            // 
             // sortItemsButton
             // 
             this.sortItemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -372,6 +395,11 @@
             this.itemDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemDataGroupBox.Controls.Add(this.addUnitButton);
+            this.itemDataGroupBox.Controls.Add(this.expiryAlertDaysNumericUpDown);
+            this.itemDataGroupBox.Controls.Add(this.expiryAlertDaysLabel);
+            this.itemDataGroupBox.Controls.Add(this.expiryDateTimePicker);
+            this.itemDataGroupBox.Controls.Add(this.expiryDateLabel);
+            this.itemDataGroupBox.Controls.Add(this.hasExpiryDateCheckBox);
             this.itemDataGroupBox.Controls.Add(this.reorderLevelLabel);
             this.itemDataGroupBox.Controls.Add(this.reorderLevelTextBox);
             this.itemDataGroupBox.Controls.Add(this.itemNameLabel);
@@ -381,7 +409,7 @@
             this.itemDataGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.itemDataGroupBox.Location = new System.Drawing.Point(5, 84);
             this.itemDataGroupBox.Name = "itemDataGroupBox";
-            this.itemDataGroupBox.Size = new System.Drawing.Size(450, 307);
+            this.itemDataGroupBox.Size = new System.Drawing.Size(450, 391);
             this.itemDataGroupBox.TabIndex = 0;
             this.itemDataGroupBox.TabStop = false;
             this.itemDataGroupBox.Text = "بيانات الصنف";
@@ -392,13 +420,78 @@
             this.addUnitButton.FlatAppearance.BorderSize = 0;
             this.addUnitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addUnitButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.addUnitButton.Location = new System.Drawing.Point(320, 90);
+            this.addUnitButton.Location = new System.Drawing.Point(305, 199);
             this.addUnitButton.Name = "addUnitButton";
             this.addUnitButton.Size = new System.Drawing.Size(25, 25);
             this.addUnitButton.TabIndex = 1;
             this.addUnitButton.Text = "+";
             this.addUnitButton.UseVisualStyleBackColor = true;
             this.addUnitButton.Click += new System.EventHandler(this.addUnitButton_Click);
+            // 
+            // expiryAlertDaysNumericUpDown
+            // 
+            this.expiryAlertDaysNumericUpDown.Location = new System.Drawing.Point(110, 174);
+            this.expiryAlertDaysNumericUpDown.Maximum = new decimal(new int[] {
+            3650,
+            0,
+            0,
+            0});
+            this.expiryAlertDaysNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.expiryAlertDaysNumericUpDown.Name = "expiryAlertDaysNumericUpDown";
+            this.expiryAlertDaysNumericUpDown.Size = new System.Drawing.Size(132, 29);
+            this.expiryAlertDaysNumericUpDown.TabIndex = 14;
+            this.expiryAlertDaysNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.expiryAlertDaysNumericUpDown.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // expiryAlertDaysLabel
+            // 
+            this.expiryAlertDaysLabel.AutoSize = true;
+            this.expiryAlertDaysLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.expiryAlertDaysLabel.Location = new System.Drawing.Point(280, 178);
+            this.expiryAlertDaysLabel.Name = "expiryAlertDaysLabel";
+            this.expiryAlertDaysLabel.Size = new System.Drawing.Size(163, 19);
+            this.expiryAlertDaysLabel.TabIndex = 14;
+            this.expiryAlertDaysLabel.Text = "التنبيه قبل الانتهاء (بالأيام)";
+            // 
+            // expiryDateTimePicker
+            // 
+            this.expiryDateTimePicker.CustomFormat = "yyyy/MM/dd";
+            this.expiryDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.expiryDateTimePicker.Location = new System.Drawing.Point(110, 140);
+            this.expiryDateTimePicker.Name = "expiryDateTimePicker";
+            this.expiryDateTimePicker.RightToLeftLayout = true;
+            this.expiryDateTimePicker.Size = new System.Drawing.Size(196, 29);
+            this.expiryDateTimePicker.TabIndex = 13;
+            // 
+            // expiryDateLabel
+            // 
+            this.expiryDateLabel.AutoSize = true;
+            this.expiryDateLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.expiryDateLabel.Location = new System.Drawing.Point(309, 144);
+            this.expiryDateLabel.Name = "expiryDateLabel";
+            this.expiryDateLabel.Size = new System.Drawing.Size(135, 19);
+            this.expiryDateLabel.TabIndex = 13;
+            this.expiryDateLabel.Text = "تاريخ انتهاء الصلاحية";
+            // 
+            // hasExpiryDateCheckBox
+            // 
+            this.hasExpiryDateCheckBox.AutoSize = true;
+            this.hasExpiryDateCheckBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.hasExpiryDateCheckBox.Location = new System.Drawing.Point(239, 114);
+            this.hasExpiryDateCheckBox.Name = "hasExpiryDateCheckBox";
+            this.hasExpiryDateCheckBox.Size = new System.Drawing.Size(193, 23);
+            this.hasExpiryDateCheckBox.TabIndex = 12;
+            this.hasExpiryDateCheckBox.Text = "هذا الصنف له تاريخ صلاحية";
+            this.hasExpiryDateCheckBox.UseVisualStyleBackColor = true;
+            this.hasExpiryDateCheckBox.CheckedChanged += new System.EventHandler(this.hasExpiryDateCheckBox_CheckedChanged);
             // 
             // itemsListGroupBox
             // 
@@ -409,7 +502,7 @@
             this.itemsListGroupBox.Controls.Add(this.searchTextBox);
             this.itemsListGroupBox.Controls.Add(this.itemsDataGridView);
             this.itemsListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.itemsListGroupBox.Location = new System.Drawing.Point(5, 393);
+            this.itemsListGroupBox.Location = new System.Drawing.Point(12, 500);
             this.itemsListGroupBox.Name = "itemsListGroupBox";
             this.itemsListGroupBox.Size = new System.Drawing.Size(450, 242);
             this.itemsListGroupBox.TabIndex = 1;
@@ -442,7 +535,7 @@
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.newButton.Location = new System.Drawing.Point(60, 641);
+            this.newButton.Location = new System.Drawing.Point(58, 754);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(118, 33);
             this.newButton.TabIndex = 1;
@@ -455,7 +548,7 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.saveButton.Location = new System.Drawing.Point(182, 641);
+            this.saveButton.Location = new System.Drawing.Point(180, 754);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(118, 33);
             this.saveButton.TabIndex = 2;
@@ -468,7 +561,7 @@
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.deleteButton.Location = new System.Drawing.Point(304, 641);
+            this.deleteButton.Location = new System.Drawing.Point(302, 754);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(118, 33);
             this.deleteButton.TabIndex = 3;
@@ -483,7 +576,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(462, 684);
+            this.ClientSize = new System.Drawing.Size(462, 816);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.newButton);
@@ -505,6 +598,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).EndInit();
             this.itemDataGroupBox.ResumeLayout(false);
             this.itemDataGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expiryAlertDaysNumericUpDown)).EndInit();
             this.itemsListGroupBox.ResumeLayout(false);
             this.itemsListGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -541,5 +635,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn itemSerialColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expiryStatusColumn;
+        private System.Windows.Forms.CheckBox hasExpiryDateCheckBox;
+        private System.Windows.Forms.Label expiryDateLabel;
+        private System.Windows.Forms.DateTimePicker expiryDateTimePicker;
+        private System.Windows.Forms.Label expiryAlertDaysLabel;
+        private System.Windows.Forms.NumericUpDown expiryAlertDaysNumericUpDown;
     }
 }

@@ -37,6 +37,11 @@ namespace StoreAndSalesLibrary.DataAccess
                 cmd.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ItemName", SqlDbType.NVarChar).Value = item.ItemName;
                 cmd.Parameters.Add("@ReorderLevel", SqlDbType.Int).Value = item.ReorderLevel;
+                cmd.Parameters.Add("@HasExpiryDate", SqlDbType.Bit).Value = item.HasExpiryDate;
+                cmd.Parameters.Add("@ExpiryDate", SqlDbType.Date).Value = item.HasExpiryDate && item.ExpiryDate.HasValue
+                    ? (object)item.ExpiryDate.Value.Date
+                    : DBNull.Value;
+                cmd.Parameters.Add("@ExpiryAlertDays", SqlDbType.Int).Value = item.ExpiryAlertDays;
 
                 cmd.ExecuteNonQuery();
 
@@ -59,6 +64,11 @@ namespace StoreAndSalesLibrary.DataAccess
                 cmd.Parameters.Add("@ItemId", SqlDbType.Int).Value = item.Id;
                 cmd.Parameters.Add("@ItemName", SqlDbType.NVarChar).Value = item.ItemName;
                 cmd.Parameters.Add("@ReorderLevel", SqlDbType.Int).Value = item.ReorderLevel;
+                cmd.Parameters.Add("@HasExpiryDate", SqlDbType.Bit).Value = item.HasExpiryDate;
+                cmd.Parameters.Add("@ExpiryDate", SqlDbType.Date).Value = item.HasExpiryDate && item.ExpiryDate.HasValue
+                    ? (object)item.ExpiryDate.Value.Date
+                    : DBNull.Value;
+                cmd.Parameters.Add("@ExpiryAlertDays", SqlDbType.Int).Value = item.ExpiryAlertDays;
 
                 cmd.ExecuteNonQuery();
 
