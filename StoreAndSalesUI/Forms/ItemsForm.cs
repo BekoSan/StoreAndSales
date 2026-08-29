@@ -33,6 +33,8 @@ namespace StoreAndSalesUI.Forms
 
         private ItemData _itemData = new ItemData(UsefulMethods.ConnectionStringName());
         private ItemUnitData _itemUnitData = new ItemUnitData();
+        private StoreData _storeData = new StoreData();
+        private List<Store> _stores = new List<Store>();
         private Item _item = new Item();
         private List<ItemUnitView> _itemUnits = new List<ItemUnitView>();
         private List<Item> Items = new List<Item>();
@@ -81,6 +83,24 @@ namespace StoreAndSalesUI.Forms
             itemsDataGridView.AutoGenerateColumns = false;
             itemsDataGridView.DataSource = SortItems(Items);
 
+        }
+
+        private void LoadStores()
+        {
+            _stores = _storeData.GetAllStores() ?? new List<Store>();
+            storesComboBox.DataSource = _stores;
+            storesComboBox.ValueMember = "Id";
+            storesComboBox.DisplayMember = "StoreName";
+            storesComboBox.SelectedValue = _storeData.GetDefaultStoreId();
+        }
+
+        private int GetSelectedStoreId()
+        {
+            int selectedStoreId;
+            return storesComboBox.SelectedValue != null
+                && int.TryParse(storesComboBox.SelectedValue.ToString(), out selectedStoreId)
+                ? selectedStoreId
+                : _storeData.GetDefaultStoreId();
         }
 
         private List<Item> SortItems(IEnumerable<Item> source)
@@ -140,7 +160,9 @@ namespace StoreAndSalesUI.Forms
             _itemQuantities.Clear();
 
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
-            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
+            List<ItemUnitValue> allQuantities = Properties.Settings.Default.IsQuantityFilter
+                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate,GetSelectedStoreId())
+                    : _itemData.GetAllItemQuantities(GetSelectedStoreId())
                 ?? new List<ItemUnitValue>();
 
             // تحميل الكميات باستعلام واحد ثم استخدام الوحدة الافتراضية فقط.
@@ -518,6 +540,7 @@ namespace StoreAndSalesUI.Forms
         private void ItemsForm_Load(object sender, EventArgs e)
         {
             UpdateExpiryControls();
+            LoadStores();
             LoadItems();
             LoadDefaultUnit();
         }
@@ -560,6 +583,12 @@ namespace StoreAndSalesUI.Forms
         private void hasExpiryDateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             UpdateExpiryControls();
+        }
+
+        private void storesComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LoadItemQuantities();
+            itemsDataGridView.Refresh();
         }
     }
 }

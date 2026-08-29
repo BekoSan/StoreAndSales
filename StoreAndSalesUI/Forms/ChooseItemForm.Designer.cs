@@ -39,15 +39,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
             this.itemsDataGridView = new System.Windows.Forms.DataGridView();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchLabel = new System.Windows.Forms.Label();
-            this.sortItemsButton = new System.Windows.Forms.Button();
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.itemSerialColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
+            this.sortItemsButton = new System.Windows.Forms.Button();
             this.itemsListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +88,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.itemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.itemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.itemsDataGridView.ColumnHeadersHeight = 36;
+            this.itemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.itemsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idColumn,
             this.selectColumn,
@@ -117,57 +118,13 @@
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
             this.itemsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.itemsDataGridView.RowTemplate.Height = 24;
+            this.itemsDataGridView.RowTemplate.Height = 34;
             this.itemsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itemsDataGridView.Size = new System.Drawing.Size(372, 255);
             this.itemsDataGridView.TabIndex = 0;
             this.itemsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itemsDataGridView_CellContentClick);
             this.itemsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.itemsDataGridView_CellFormatting);
             this.itemsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.itemsDataGridView_DataError);
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Arial", 25F);
-            this.titleLabel.Location = new System.Drawing.Point(103, 14);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(173, 47);
-            this.titleLabel.TabIndex = 9;
-            this.titleLabel.Text = "إختر صنف";
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchTextBox.Location = new System.Drawing.Point(56, 74);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(224, 29);
-            this.searchTextBox.TabIndex = 10;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchLabel.AutoSize = true;
-            this.searchLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.searchLabel.Location = new System.Drawing.Point(5, 78);
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(45, 22);
-            this.searchLabel.TabIndex = 11;
-            this.searchLabel.Text = "بحــث";
-            // 
-            // sortItemsButton
-            // 
-            this.sortItemsButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.sortItemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sortItemsButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.sortItemsButton.Location = new System.Drawing.Point(286, 73);
-            this.sortItemsButton.Name = "sortItemsButton";
-            this.sortItemsButton.Size = new System.Drawing.Size(84, 29);
-            this.sortItemsButton.TabIndex = 12;
-            this.sortItemsButton.Text = "ترتيب";
-            this.sortItemsButton.UseVisualStyleBackColor = true;
-            this.sortItemsButton.Click += new System.EventHandler(this.sortItemsButton_Click);
             // 
             // idColumn
             // 
@@ -240,6 +197,50 @@
             this.quantityColumn.Name = "quantityColumn";
             this.quantityColumn.ReadOnly = true;
             this.quantityColumn.Width = 80;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Arial", 25F);
+            this.titleLabel.Location = new System.Drawing.Point(103, 14);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(173, 47);
+            this.titleLabel.TabIndex = 9;
+            this.titleLabel.Text = "إختر صنف";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.Location = new System.Drawing.Point(56, 74);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(224, 29);
+            this.searchTextBox.TabIndex = 10;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.searchLabel.Location = new System.Drawing.Point(5, 78);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(45, 22);
+            this.searchLabel.TabIndex = 11;
+            this.searchLabel.Text = "بحــث";
+            // 
+            // sortItemsButton
+            // 
+            this.sortItemsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortItemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortItemsButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.sortItemsButton.Location = new System.Drawing.Point(286, 73);
+            this.sortItemsButton.Name = "sortItemsButton";
+            this.sortItemsButton.Size = new System.Drawing.Size(84, 29);
+            this.sortItemsButton.TabIndex = 12;
+            this.sortItemsButton.Text = "ترتيب";
+            this.sortItemsButton.UseVisualStyleBackColor = true;
+            this.sortItemsButton.Click += new System.EventHandler(this.sortItemsButton_Click);
             // 
             // ChooseItemForm
             // 

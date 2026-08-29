@@ -123,7 +123,9 @@ namespace StoreAndSalesUI.Forms
         {
             Dictionary<int, int> quantities = new Dictionary<int, int>();
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
-            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities(_storeId)
+            List<ItemUnitValue> allQuantities = Properties.Settings.Default.IsQuantityFilter
+                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate, _storeId)
+                    : _itemData.GetAllItemQuantities(_storeId)
                 ?? new List<ItemUnitValue>();
 
             // استخدم الوحدة الافتراضية فقط؛ فهي نفس الوحدة المعتمدة

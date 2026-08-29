@@ -30,19 +30,19 @@ namespace StoreAndSalesUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.purchaseDataGroupBox = new System.Windows.Forms.GroupBox();
             this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
             this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
@@ -63,6 +63,12 @@ namespace StoreAndSalesUI.Forms
             this.purchaseDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.addItemButton = new System.Windows.Forms.Button();
             this.purchaseDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
+            this.printButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,18 +77,15 @@ namespace StoreAndSalesUI.Forms
             this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lineTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
-            this.printButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.purchaseDataGroupBox.SuspendLayout();
             this.purchaseDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDetailsDataGridView)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // purchaseDataGroupBox
             // 
+            this.purchaseDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseDataGroupBox.BackColor = System.Drawing.Color.White;
             this.purchaseDataGroupBox.Controls.Add(this.isDisscountCheckBox);
             this.purchaseDataGroupBox.Controls.Add(this.paymentTypeCheckBox);
@@ -270,24 +273,40 @@ namespace StoreAndSalesUI.Forms
             // 
             // titleLabel
             // 
+            this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
             this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            this.titleLabel.Location = new System.Drawing.Point(682, 9);
+            this.titleLabel.Location = new System.Drawing.Point(501, 9);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(219, 66);
             this.titleLabel.TabIndex = 1;
             this.titleLabel.Text = "المشتريات";
             // 
+            // unpaidFlagLabel
+            // 
+            this.unpaidFlagLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.unpaidFlagLabel.BackColor = System.Drawing.Color.MistyRose;
+            this.unpaidFlagLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.unpaidFlagLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.unpaidFlagLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.unpaidFlagLabel.Location = new System.Drawing.Point(920, 20);
+            this.unpaidFlagLabel.Name = "unpaidFlagLabel";
+            this.unpaidFlagLabel.Size = new System.Drawing.Size(260, 34);
+            this.unpaidFlagLabel.TabIndex = 20;
+            this.unpaidFlagLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.unpaidFlagLabel.Visible = false;
+            // 
             // purchaseDetailsGroupBox
             // 
+            this.purchaseDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseDetailsGroupBox.BackColor = System.Drawing.Color.White;
             this.purchaseDetailsGroupBox.Controls.Add(this.addItemButton);
             this.purchaseDetailsGroupBox.Controls.Add(this.purchaseDetailsDataGridView);
             this.purchaseDetailsGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.purchaseDetailsGroupBox.Location = new System.Drawing.Point(459, 307);
+            this.purchaseDetailsGroupBox.Location = new System.Drawing.Point(459, 304);
             this.purchaseDetailsGroupBox.Name = "purchaseDetailsGroupBox";
-            this.purchaseDetailsGroupBox.Size = new System.Drawing.Size(761, 412);
+            this.purchaseDetailsGroupBox.Size = new System.Drawing.Size(749, 406);
             this.purchaseDetailsGroupBox.TabIndex = 2;
             this.purchaseDetailsGroupBox.TabStop = false;
             this.purchaseDetailsGroupBox.Text = "تفاصيل الفاتورة";
@@ -298,7 +317,7 @@ namespace StoreAndSalesUI.Forms
             this.addItemButton.FlatAppearance.BorderSize = 0;
             this.addItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addItemButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.addItemButton.Location = new System.Drawing.Point(728, 21);
+            this.addItemButton.Location = new System.Drawing.Point(716, 21);
             this.addItemButton.Name = "addItemButton";
             this.addItemButton.Size = new System.Drawing.Size(25, 25);
             this.addItemButton.TabIndex = 4;
@@ -313,24 +332,23 @@ namespace StoreAndSalesUI.Forms
             this.purchaseDetailsDataGridView.AllowUserToDeleteRows = false;
             this.purchaseDetailsDataGridView.AllowUserToResizeColumns = false;
             this.purchaseDetailsDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.White;
-            this.purchaseDetailsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
-            this.purchaseDetailsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.purchaseDetailsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.purchaseDetailsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.purchaseDetailsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.purchaseDetailsDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.purchaseDetailsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchaseDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchaseDetailsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.purchaseDetailsDataGridView.ColumnHeadersHeight = 36;
             this.purchaseDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.purchaseDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -342,167 +360,48 @@ namespace StoreAndSalesUI.Forms
             this.unitIdColumn,
             this.lineTotalColumn,
             this.colDelete});
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.purchaseDetailsDataGridView.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.purchaseDetailsDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
             this.purchaseDetailsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.purchaseDetailsDataGridView.EnableHeadersVisualStyles = false;
             this.purchaseDetailsDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.purchaseDetailsDataGridView.Location = new System.Drawing.Point(3, 25);
             this.purchaseDetailsDataGridView.MultiSelect = false;
             this.purchaseDetailsDataGridView.Name = "purchaseDetailsDataGridView";
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.purchaseDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.purchaseDetailsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.purchaseDetailsDataGridView.RowHeadersVisible = false;
             this.purchaseDetailsDataGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.White;
-            this.purchaseDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White;
+            this.purchaseDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.purchaseDetailsDataGridView.RowTemplate.Height = 34;
             this.purchaseDetailsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.purchaseDetailsDataGridView.Size = new System.Drawing.Size(755, 384);
+            this.purchaseDetailsDataGridView.Size = new System.Drawing.Size(743, 378);
             this.purchaseDetailsDataGridView.TabIndex = 3;
             this.purchaseDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDetailsDataGridView_CellContentClick);
             this.purchaseDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDetailsDataGridView_CellValueChanged);
             this.purchaseDetailsDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.purchaseDetailsDataGridView_RowPostPaint);
             // 
-            // IdColumn
-            // 
-            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White;
-            this.IdColumn.DefaultCellStyle = dataGridViewCellStyle29;
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Visible = false;
-            // 
-            // itemNameColumn
-            // 
-            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White;
-            this.itemNameColumn.DefaultCellStyle = dataGridViewCellStyle30;
-            this.itemNameColumn.FillWeight = 250F;
-            this.itemNameColumn.HeaderText = "الصنف";
-            this.itemNameColumn.MinimumWidth = 120;
-            this.itemNameColumn.Name = "itemNameColumn";
-            this.itemNameColumn.ReadOnly = true;
-            // 
-            // unitColumn
-            // 
-            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.White;
-            this.unitColumn.DefaultCellStyle = dataGridViewCellStyle31;
-            this.unitColumn.HeaderText = "الوحدة";
-            this.unitColumn.MinimumWidth = 85;
-            this.unitColumn.Name = "unitColumn";
-            this.unitColumn.ReadOnly = true;
-            this.unitColumn.Width = 115;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle32.Format = "N0";
-            dataGridViewCellStyle32.NullValue = 0;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.White;
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle32;
-            this.quantityColumn.HeaderText = "الكمية";
-            this.quantityColumn.MinimumWidth = 70;
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.Width = 85;
-            // 
-            // unitPriceColumn
-            // 
-            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle33.Format = "N0";
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.White;
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle33;
-            this.unitPriceColumn.HeaderText = "السعر";
-            this.unitPriceColumn.MinimumWidth = 85;
-            this.unitPriceColumn.Name = "unitPriceColumn";
-            this.unitPriceColumn.ReadOnly = true;
-            this.unitPriceColumn.Width = 105;
-            // 
-            // unitIdColumn
-            // 
-            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.Color.White;
-            this.unitIdColumn.DefaultCellStyle = dataGridViewCellStyle34;
-            this.unitIdColumn.HeaderText = "unitId";
-            this.unitIdColumn.MinimumWidth = 6;
-            this.unitIdColumn.Name = "unitIdColumn";
-            this.unitIdColumn.Visible = false;
-            // 
-            // lineTotalColumn
-            // 
-            this.lineTotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.Format = "N2";
-            this.lineTotalColumn.DefaultCellStyle = dataGridViewCellStyle35;
-            this.lineTotalColumn.HeaderText = "الإجمالي";
-            this.lineTotalColumn.MinimumWidth = 95;
-            this.lineTotalColumn.Name = "lineTotalColumn";
-            this.lineTotalColumn.ReadOnly = true;
-            this.lineTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.lineTotalColumn.Width = 115;
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle36.NullValue = "حذف";
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White;
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle36;
-            this.colDelete.HeaderText = "";
-            this.colDelete.MinimumWidth = 55;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.Width = 65;
-            // 
-            // unpaidFlagLabel
-            // 
-            this.unpaidFlagLabel.BackColor = System.Drawing.Color.MistyRose;
-            this.unpaidFlagLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.unpaidFlagLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.unpaidFlagLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.unpaidFlagLabel.Location = new System.Drawing.Point(920, 20);
-            this.unpaidFlagLabel.Name = "unpaidFlagLabel";
-            this.unpaidFlagLabel.Size = new System.Drawing.Size(260, 34);
-            this.unpaidFlagLabel.TabIndex = 20;
-            this.unpaidFlagLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.unpaidFlagLabel.Visible = false;
-            // 
             // searchButton
             // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
             this.searchButton.FlatAppearance.BorderSize = 0;
             this.searchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(36)))), ((int)(((byte)(57)))));
@@ -510,7 +409,7 @@ namespace StoreAndSalesUI.Forms
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.searchButton.ForeColor = System.Drawing.Color.White;
-            this.searchButton.Location = new System.Drawing.Point(810, 725);
+            this.searchButton.Location = new System.Drawing.Point(469, 5);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(138, 40);
             this.searchButton.TabIndex = 7;
@@ -520,7 +419,7 @@ namespace StoreAndSalesUI.Forms
             // 
             // saveButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(136)))));
             this.saveButton.FlatAppearance.BorderSize = 0;
             this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(92)))));
@@ -528,7 +427,7 @@ namespace StoreAndSalesUI.Forms
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.saveButton.ForeColor = System.Drawing.Color.White;
-            this.saveButton.Location = new System.Drawing.Point(660, 725);
+            this.saveButton.Location = new System.Drawing.Point(613, 5);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(138, 40);
             this.saveButton.TabIndex = 6;
@@ -538,7 +437,7 @@ namespace StoreAndSalesUI.Forms
             // 
             // newButton
             // 
-            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.newButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
             this.newButton.FlatAppearance.BorderSize = 0;
             this.newButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(84)))), ((int)(((byte)(116)))));
@@ -546,7 +445,7 @@ namespace StoreAndSalesUI.Forms
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.newButton.ForeColor = System.Drawing.Color.White;
-            this.newButton.Location = new System.Drawing.Point(510, 725);
+            this.newButton.Location = new System.Drawing.Point(757, 5);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(138, 40);
             this.newButton.TabIndex = 5;
@@ -556,7 +455,7 @@ namespace StoreAndSalesUI.Forms
             // 
             // printButton
             // 
-            this.printButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.printButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.printButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(80)))), ((int)(((byte)(150)))));
             this.printButton.Enabled = false;
             this.printButton.FlatAppearance.BorderSize = 0;
@@ -565,7 +464,7 @@ namespace StoreAndSalesUI.Forms
             this.printButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.printButton.ForeColor = System.Drawing.Color.White;
-            this.printButton.Location = new System.Drawing.Point(960, 725);
+            this.printButton.Location = new System.Drawing.Point(325, 5);
             this.printButton.Name = "printButton";
             this.printButton.Size = new System.Drawing.Size(138, 40);
             this.printButton.TabIndex = 9;
@@ -575,10 +474,131 @@ namespace StoreAndSalesUI.Forms
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Location = new System.Drawing.Point(4, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(449, 759);
+            this.panel1.Size = new System.Drawing.Size(449, 707);
             this.panel1.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.saveButton);
+            this.panel2.Controls.Add(this.newButton);
+            this.panel2.Controls.Add(this.printButton);
+            this.panel2.Controls.Add(this.searchButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 718);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1220, 52);
+            this.panel2.TabIndex = 21;
+            // 
+            // IdColumn
+            // 
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.IdColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Visible = false;
+            this.IdColumn.Width = 125;
+            // 
+            // itemNameColumn
+            // 
+            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.itemNameColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.itemNameColumn.FillWeight = 250F;
+            this.itemNameColumn.HeaderText = "الصنف";
+            this.itemNameColumn.MinimumWidth = 120;
+            this.itemNameColumn.Name = "itemNameColumn";
+            this.itemNameColumn.ReadOnly = true;
+            // 
+            // unitColumn
+            // 
+            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.unitColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.unitColumn.HeaderText = "الوحدة";
+            this.unitColumn.MinimumWidth = 85;
+            this.unitColumn.Name = "unitColumn";
+            this.unitColumn.ReadOnly = true;
+            this.unitColumn.Width = 115;
+            // 
+            // quantityColumn
+            // 
+            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = 0;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.quantityColumn.HeaderText = "الكمية";
+            this.quantityColumn.MinimumWidth = 70;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.Width = 85;
+            // 
+            // unitPriceColumn
+            // 
+            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.unitPriceColumn.HeaderText = "السعر";
+            this.unitPriceColumn.MinimumWidth = 85;
+            this.unitPriceColumn.Name = "unitPriceColumn";
+            this.unitPriceColumn.Width = 105;
+            // 
+            // unitIdColumn
+            // 
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.unitIdColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.unitIdColumn.HeaderText = "unitId";
+            this.unitIdColumn.MinimumWidth = 6;
+            this.unitIdColumn.Name = "unitIdColumn";
+            this.unitIdColumn.Visible = false;
+            this.unitIdColumn.Width = 125;
+            // 
+            // lineTotalColumn
+            // 
+            this.lineTotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Format = "N2";
+            this.lineTotalColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.lineTotalColumn.HeaderText = "الإجمالي";
+            this.lineTotalColumn.MinimumWidth = 95;
+            this.lineTotalColumn.Name = "lineTotalColumn";
+            this.lineTotalColumn.ReadOnly = true;
+            this.lineTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.lineTotalColumn.Width = 110;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle10.NullValue = "حذف";
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colDelete.HeaderText = "";
+            this.colDelete.MinimumWidth = 55;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Width = 65;
             // 
             // PurchasesForm
             // 
@@ -587,11 +607,8 @@ namespace StoreAndSalesUI.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1220, 770);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.printButton);
-            this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.newButton);
             this.Controls.Add(this.purchaseDetailsGroupBox);
             this.Controls.Add(this.unpaidFlagLabel);
             this.Controls.Add(this.titleLabel);
@@ -599,7 +616,6 @@ namespace StoreAndSalesUI.Forms
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PurchasesForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -612,6 +628,7 @@ namespace StoreAndSalesUI.Forms
             this.purchaseDataGroupBox.PerformLayout();
             this.purchaseDetailsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDetailsDataGridView)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -640,17 +657,18 @@ namespace StoreAndSalesUI.Forms
         private System.Windows.Forms.Button addItemButton;
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Label notesLabel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lineTotalColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.CheckBox isDisscountCheckBox;
         private System.Windows.Forms.CheckBox paymentTypeCheckBox;
         private System.Windows.Forms.Button printButton;
         private System.Windows.Forms.Panel panel1;
+        private Panel panel2;
+        private DataGridViewTextBoxColumn IdColumn;
+        private DataGridViewTextBoxColumn itemNameColumn;
+        private DataGridViewTextBoxColumn unitColumn;
+        private DataGridViewTextBoxColumn quantityColumn;
+        private DataGridViewTextBoxColumn unitPriceColumn;
+        private DataGridViewTextBoxColumn unitIdColumn;
+        private DataGridViewTextBoxColumn lineTotalColumn;
+        private DataGridViewButtonColumn colDelete;
     }
 }

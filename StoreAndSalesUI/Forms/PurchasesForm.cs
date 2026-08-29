@@ -81,7 +81,8 @@ namespace StoreAndSalesUI.Forms
             _purchase.Notes = notesTextBox.Text;
             _purchase.PaymentType = paymentTypeCheckBox.Checked;
             _purchase.IsDisscount = isDisscountCheckBox.Checked;
-            _purchase.Status = isDisscountCheckBox.Checked ? true : false;
+            _purchase.Status = (disscountTextBox.Text.ParseToDecimal() != 0
+               && !isDisscountCheckBox.Checked ? false : true);
             _purchase.UserId = LoginDataHelper.UserId;
 
             CollectPurchaseDetails();
@@ -384,6 +385,22 @@ namespace StoreAndSalesUI.Forms
             }
         }
 
+        private bool IsItemAdded(int itemId)
+        {
+            bool output = false;
+
+            foreach (DataGridViewRow dgvRow in purchaseDetailsDataGridView.Rows)
+            {
+                if (dgvRow.Cells[0].Value.ToString().ParseToInt() == itemId)
+                {
+                    output = true;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
         #endregion
 
         private void PurchasesForm_Load(object sender, EventArgs e)
@@ -397,7 +414,7 @@ namespace StoreAndSalesUI.Forms
 
         public void AddItem(Item item)
         {
-            if (item == null || isPurchasePreview) return;
+            if (item == null || isPurchasePreview || IsItemAdded(item.Id)) return;
 
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
             string defaultUnitName;
@@ -488,14 +505,14 @@ namespace StoreAndSalesUI.Forms
 
         private void purchaseDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (_purchase.Id != 0 || purchaseDetailsDataGridView.Rows.Count == 0) return;
+            if (_purchase.Id != 0 || e.RowIndex == -1) return;
 
-            if (e.ColumnIndex == 4 || e.ColumnIndex == 3)
-            {
+            //if (e.ColumnIndex == 4 || e.ColumnIndex == 3)
+            //{
                 UpdateLineTotal(purchaseDetailsDataGridView.Rows[e.RowIndex]);
                 CalculateTotalCost();
                 PreviewTotalCost(_totalCost);
-            }
+            //}
         }
 
         private void disscountTextBox_TextChanged(object sender, EventArgs e)

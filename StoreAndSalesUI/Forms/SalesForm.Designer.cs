@@ -50,14 +50,6 @@
             this.saleDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.addItemButton = new System.Windows.Forms.Button();
             this.saleDetailsDataGridView = new System.Windows.Forms.DataGridView();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lineTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.saleDataGroupBox = new System.Windows.Forms.GroupBox();
             this.isDisscountCheckBox = new System.Windows.Forms.CheckBox();
             this.paymentTypeCheckBox = new System.Windows.Forms.CheckBox();
@@ -75,9 +67,19 @@
             this.saleIdTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.returnButton = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lineTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.saleDetailsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDataGridView)).BeginInit();
             this.saleDataGroupBox.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -107,7 +109,7 @@
             // 
             // searchButton
             // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
             this.searchButton.FlatAppearance.BorderSize = 0;
             this.searchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(36)))), ((int)(((byte)(57)))));
@@ -115,7 +117,7 @@
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.searchButton.ForeColor = System.Drawing.Color.White;
-            this.searchButton.Location = new System.Drawing.Point(705, 710);
+            this.searchButton.Location = new System.Drawing.Point(394, 10);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(138, 40);
             this.searchButton.TabIndex = 7;
@@ -125,7 +127,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(136)))));
             this.saveButton.FlatAppearance.BorderSize = 0;
             this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(92)))));
@@ -133,7 +135,7 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.saveButton.ForeColor = System.Drawing.Color.White;
-            this.saveButton.Location = new System.Drawing.Point(555, 710);
+            this.saveButton.Location = new System.Drawing.Point(688, 10);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(138, 40);
             this.saveButton.TabIndex = 6;
@@ -143,7 +145,7 @@
             // 
             // newButton
             // 
-            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.newButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.newButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(110)))), ((int)(((byte)(145)))));
             this.newButton.FlatAppearance.BorderSize = 0;
             this.newButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(84)))), ((int)(((byte)(116)))));
@@ -151,7 +153,7 @@
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.newButton.ForeColor = System.Drawing.Color.White;
-            this.newButton.Location = new System.Drawing.Point(405, 710);
+            this.newButton.Location = new System.Drawing.Point(832, 10);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(138, 40);
             this.newButton.TabIndex = 5;
@@ -161,7 +163,7 @@
             // 
             // printButton
             // 
-            this.printButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.printButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.printButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(80)))), ((int)(((byte)(150)))));
             this.printButton.Enabled = false;
             this.printButton.FlatAppearance.BorderSize = 0;
@@ -170,7 +172,7 @@
             this.printButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.printButton.ForeColor = System.Drawing.Color.White;
-            this.printButton.Location = new System.Drawing.Point(855, 710);
+            this.printButton.Location = new System.Drawing.Point(544, 10);
             this.printButton.Name = "printButton";
             this.printButton.Size = new System.Drawing.Size(138, 40);
             this.printButton.TabIndex = 9;
@@ -180,6 +182,7 @@
             // 
             // saleDetailsGroupBox
             // 
+            this.saleDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saleDetailsGroupBox.BackColor = System.Drawing.Color.White;
             this.saleDetailsGroupBox.Controls.Add(this.addItemButton);
             this.saleDetailsGroupBox.Controls.Add(this.saleDetailsDataGridView);
@@ -283,114 +286,9 @@
             this.saleDetailsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDetailsDataGridView_CellValueChanged);
             this.saleDetailsDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.saleDetailsDataGridView_RowPostPaint);
             // 
-            // IdColumn
-            // 
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.IdColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Visible = false;
-            // 
-            // itemNameColumn
-            // 
-            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.itemNameColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.itemNameColumn.FillWeight = 250F;
-            this.itemNameColumn.HeaderText = "الصنف";
-            this.itemNameColumn.MinimumWidth = 120;
-            this.itemNameColumn.Name = "itemNameColumn";
-            this.itemNameColumn.ReadOnly = true;
-            // 
-            // unitColumn
-            // 
-            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.unitColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.unitColumn.HeaderText = "الوحدة";
-            this.unitColumn.MinimumWidth = 85;
-            this.unitColumn.Name = "unitColumn";
-            this.unitColumn.ReadOnly = true;
-            this.unitColumn.Width = 115;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = 0;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.quantityColumn.HeaderText = "الكمية";
-            this.quantityColumn.MinimumWidth = 70;
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.Width = 85;
-            // 
-            // unitPriceColumn
-            // 
-            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.unitPriceColumn.HeaderText = "السعر";
-            this.unitPriceColumn.MinimumWidth = 85;
-            this.unitPriceColumn.Name = "unitPriceColumn";
-            this.unitPriceColumn.ReadOnly = true;
-            this.unitPriceColumn.Width = 105;
-            // 
-            // unitIdColumn
-            // 
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.unitIdColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.unitIdColumn.HeaderText = "unitId";
-            this.unitIdColumn.MinimumWidth = 6;
-            this.unitIdColumn.Name = "unitIdColumn";
-            this.unitIdColumn.Visible = false;
-            // 
-            // lineTotalColumn
-            // 
-            this.lineTotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Format = "N2";
-            this.lineTotalColumn.DefaultCellStyle = dataGridViewCellStyle9;
-            this.lineTotalColumn.HeaderText = "الإجمالي";
-            this.lineTotalColumn.MinimumWidth = 95;
-            this.lineTotalColumn.Name = "lineTotalColumn";
-            this.lineTotalColumn.ReadOnly = true;
-            this.lineTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.lineTotalColumn.Width = 115;
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            dataGridViewCellStyle10.NullValue = "حذف";
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle10;
-            this.colDelete.HeaderText = "";
-            this.colDelete.MinimumWidth = 55;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.Width = 65;
-            // 
             // saleDataGroupBox
             // 
+            this.saleDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saleDataGroupBox.BackColor = System.Drawing.Color.White;
             this.saleDataGroupBox.Controls.Add(this.isDisscountCheckBox);
             this.saleDataGroupBox.Controls.Add(this.paymentTypeCheckBox);
@@ -579,15 +477,17 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(24, 75);
+            this.panel1.Location = new System.Drawing.Point(9, 75);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 617);
+            this.panel1.Size = new System.Drawing.Size(390, 617);
             this.panel1.TabIndex = 12;
             // 
             // returnButton
             // 
-            this.returnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.returnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(132)))), ((int)(((byte)(45)))));
             this.returnButton.Enabled = false;
             this.returnButton.FlatAppearance.BorderSize = 0;
@@ -596,13 +496,132 @@
             this.returnButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.returnButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.returnButton.ForeColor = System.Drawing.Color.White;
-            this.returnButton.Location = new System.Drawing.Point(1005, 710);
+            this.returnButton.Location = new System.Drawing.Point(250, 10);
             this.returnButton.Name = "returnButton";
             this.returnButton.Size = new System.Drawing.Size(138, 40);
             this.returnButton.TabIndex = 13;
             this.returnButton.Text = "مرتجع";
             this.returnButton.UseVisualStyleBackColor = false;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.returnButton);
+            this.panel2.Controls.Add(this.newButton);
+            this.panel2.Controls.Add(this.printButton);
+            this.panel2.Controls.Add(this.saveButton);
+            this.panel2.Controls.Add(this.searchButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 710);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1220, 60);
+            this.panel2.TabIndex = 21;
+            // 
+            // IdColumn
+            // 
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.IdColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Visible = false;
+            // 
+            // itemNameColumn
+            // 
+            this.itemNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.itemNameColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.itemNameColumn.FillWeight = 250F;
+            this.itemNameColumn.HeaderText = "الصنف";
+            this.itemNameColumn.MinimumWidth = 120;
+            this.itemNameColumn.Name = "itemNameColumn";
+            this.itemNameColumn.ReadOnly = true;
+            // 
+            // unitColumn
+            // 
+            this.unitColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.unitColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.unitColumn.HeaderText = "الوحدة";
+            this.unitColumn.MinimumWidth = 85;
+            this.unitColumn.Name = "unitColumn";
+            this.unitColumn.ReadOnly = true;
+            this.unitColumn.Width = 115;
+            // 
+            // quantityColumn
+            // 
+            this.quantityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = 0;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.quantityColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.quantityColumn.HeaderText = "الكمية";
+            this.quantityColumn.MinimumWidth = 70;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.Width = 85;
+            // 
+            // unitPriceColumn
+            // 
+            this.unitPriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            this.unitPriceColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.unitPriceColumn.HeaderText = "السعر";
+            this.unitPriceColumn.MinimumWidth = 85;
+            this.unitPriceColumn.Name = "unitPriceColumn";
+            this.unitPriceColumn.ReadOnly = true;
+            this.unitPriceColumn.Width = 105;
+            // 
+            // unitIdColumn
+            // 
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.unitIdColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.unitIdColumn.HeaderText = "unitId";
+            this.unitIdColumn.MinimumWidth = 6;
+            this.unitIdColumn.Name = "unitIdColumn";
+            this.unitIdColumn.Visible = false;
+            // 
+            // lineTotalColumn
+            // 
+            this.lineTotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Format = "N2";
+            this.lineTotalColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.lineTotalColumn.HeaderText = "الإجمالي";
+            this.lineTotalColumn.MinimumWidth = 95;
+            this.lineTotalColumn.Name = "lineTotalColumn";
+            this.lineTotalColumn.ReadOnly = true;
+            this.lineTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.lineTotalColumn.Width = 115;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            dataGridViewCellStyle10.NullValue = "حذف";
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colDelete.HeaderText = "";
+            this.colDelete.MinimumWidth = 55;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Width = 65;
             // 
             // SalesForm
             // 
@@ -611,11 +630,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1220, 770);
-            this.Controls.Add(this.returnButton);
-            this.Controls.Add(this.printButton);
-            this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.newButton);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.saleDetailsGroupBox);
             this.Controls.Add(this.saleDataGroupBox);
@@ -624,7 +639,6 @@
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SalesForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -637,6 +651,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDataGridView)).EndInit();
             this.saleDataGroupBox.ResumeLayout(false);
             this.saleDataGroupBox.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -652,14 +667,6 @@
         private System.Windows.Forms.GroupBox saleDetailsGroupBox;
         private System.Windows.Forms.Button addItemButton;
         private System.Windows.Forms.DataGridView saleDetailsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lineTotalColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.GroupBox saleDataGroupBox;
         private System.Windows.Forms.CheckBox isDisscountCheckBox;
         private System.Windows.Forms.CheckBox paymentTypeCheckBox;
@@ -677,5 +684,14 @@
         private System.Windows.Forms.TextBox saleIdTextBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button returnButton;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lineTotalColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
     }
 }

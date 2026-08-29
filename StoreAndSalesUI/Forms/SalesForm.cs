@@ -84,7 +84,8 @@ namespace StoreAndSalesUI.Forms
             _sale.Notes = notesTextBox.Text;
             _sale.PaymentType = paymentTypeCheckBox.Checked;
             _sale.IsDisscount = isDisscountCheckBox.Checked;
-            _sale.Status = false;
+            _sale.Status = (disscountTextBox.Text.ParseToDecimal() != 0
+               && !isDisscountCheckBox.Checked ? false : true); ;
             _sale.UserId = LoginDataHelper.UserId;
 
             CollectSaleDetails();
@@ -127,6 +128,8 @@ namespace StoreAndSalesUI.Forms
                 _chooseItemForm.Visible = true;
                 _chooseItemForm.BringToFront();
             }
+            CalculateTotalCost();
+            PreviewTotalCost(_totalCost);
         }
 
         private void ChangeUnit()
@@ -593,6 +596,7 @@ namespace StoreAndSalesUI.Forms
                 MessageBox.Show($"لا تتوفر كمية كافية من الوحدة {defaultUnitNameFromCache} قم بتغيير الوحدة!!!", "الكمية", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 saleDetailsDataGridView.Rows.RemoveAt(rowIndex);
                 CalculateTotalCost();
+                PreviewTotalCost(_totalCost);
             }
         }
 
@@ -670,7 +674,7 @@ namespace StoreAndSalesUI.Forms
 
         private void saleDetailsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (saleDetailsDataGridView.Rows.Count == 0) return;
+            if (e.RowIndex == -1) return;
             string unitName = saleDetailsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
             int itemId = saleDetailsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString().ParseToInt();
             int unitId = saleDetailsDataGridView.Rows[e.RowIndex].Cells[5].Value.ToString().ParseToInt();
@@ -689,9 +693,10 @@ namespace StoreAndSalesUI.Forms
                     }
                     isEdit = false;
                 }
-                CalculateTotalCost();
-                PreviewTotalCost(_totalCost);
             }
+            UpdateAllLineTotals();
+            CalculateTotalCost();
+            PreviewTotalCost(_totalCost);
         }
 
         private void disscountTextBox_TextChanged(object sender, EventArgs e)
