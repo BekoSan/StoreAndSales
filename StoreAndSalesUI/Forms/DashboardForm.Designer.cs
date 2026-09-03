@@ -293,6 +293,7 @@
             this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.Text = "نظام هاتسومي للمبيعات";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DashboardForm_FormClosing);
             this.Load += new System.EventHandler(this.DashboardForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

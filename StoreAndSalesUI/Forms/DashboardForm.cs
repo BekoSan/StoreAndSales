@@ -99,9 +99,16 @@ namespace StoreAndSalesUI.Forms
             new UserLogsForm().ShowDialog();
         }
 
+
         private void storesButton_Click(object sender, EventArgs e)
         {
             new StoresForm().ShowDialog();
+        }
+
+
+        private void DashboardForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
