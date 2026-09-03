@@ -291,6 +291,7 @@
             this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.Text = "المنقوري للمعدات الطبية";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DashboardForm_FormClosing);
             this.Load += new System.EventHandler(this.DashboardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
