@@ -218,9 +218,9 @@ namespace StoreAndSalesUI.Forms
             else
             {
                 row.DefaultCellStyle.BackColor = Color.White;
-                row.DefaultCellStyle.ForeColor = Color.Black;
-                row.DefaultCellStyle.SelectionBackColor = SystemColors.Control;
-                row.DefaultCellStyle.SelectionForeColor = Color.Black;
+                row.DefaultCellStyle.ForeColor = Color.FromArgb(255, 31, 55, 82);
+                row.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 0, 150, 136);
+                row.DefaultCellStyle.SelectionForeColor = Color.White;
             }
         }
 
