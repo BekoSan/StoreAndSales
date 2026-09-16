@@ -28,16 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.salesListGroupBox = new System.Windows.Forms.GroupBox();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.salesDataGridView = new System.Windows.Forms.DataGridView();
+            this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.customerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purchaseDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.disscountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coluserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleLabel = new System.Windows.Forms.Label();
             this.dateFromDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.dateFromLabel = new System.Windows.Forms.Label();
@@ -48,13 +55,11 @@
             this.periodTotalValueToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.customerNameLabel = new System.Windows.Forms.Label();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
-            this.selectColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.customerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purchaseDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.disscountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coluserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankakToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.bankakToolStripStatusValueLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cashToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cashToolStripStatusValueLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sepratorToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.salesListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesDataGridView)).BeginInit();
             this.periodTotalCostStatusStrip.SuspendLayout();
@@ -67,7 +72,7 @@
             this.salesListGroupBox.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.salesListGroupBox.Location = new System.Drawing.Point(0, 134);
             this.salesListGroupBox.Name = "salesListGroupBox";
-            this.salesListGroupBox.Size = new System.Drawing.Size(723, 351);
+            this.salesListGroupBox.Size = new System.Drawing.Size(939, 435);
             this.salesListGroupBox.TabIndex = 9;
             this.salesListGroupBox.TabStop = false;
             this.salesListGroupBox.Text = "فواتير المبيعات";
@@ -75,7 +80,7 @@
             // loadingLabel
             // 
             this.loadingLabel.AutoSize = true;
-            this.loadingLabel.Location = new System.Drawing.Point(302, 164);
+            this.loadingLabel.Location = new System.Drawing.Point(410, 171);
             this.loadingLabel.Name = "loadingLabel";
             this.loadingLabel.Size = new System.Drawing.Size(119, 22);
             this.loadingLabel.TabIndex = 2;
@@ -92,14 +97,14 @@
             this.salesDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.salesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.salesDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.salesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.salesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.salesDataGridView.ColumnHeadersHeight = 29;
             this.salesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.salesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -119,128 +124,27 @@
             this.salesDataGridView.RowHeadersVisible = false;
             this.salesDataGridView.RowHeadersWidth = 51;
             this.salesDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.salesDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            this.salesDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle21;
             this.salesDataGridView.RowTemplate.Height = 24;
             this.salesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.salesDataGridView.Size = new System.Drawing.Size(717, 323);
+            this.salesDataGridView.Size = new System.Drawing.Size(933, 407);
             this.salesDataGridView.TabIndex = 0;
             this.salesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesDataGridView_CellContentClick);
             this.salesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.salesDataGridView_CellFormatting);
-
             this.salesDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.salesDataGridView_RowPostPaint);
             this.salesDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.salesDataGridView_RowPrePaint);
             this.salesDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.salesDataGridView_RowsAdded);
             // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Arial", 25F);
-            this.titleLabel.Location = new System.Drawing.Point(218, 12);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(302, 47);
-            this.titleLabel.TabIndex = 10;
-            this.titleLabel.Text = "إختيار فاتورة مبيعات";
-            // 
-            // dateFromDateTimePicker
-            // 
-            this.dateFromDateTimePicker.CustomFormat = "dd/MM/yyyy";
-            this.dateFromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateFromDateTimePicker.Location = new System.Drawing.Point(375, 106);
-            this.dateFromDateTimePicker.Name = "dateFromDateTimePicker";
-            this.dateFromDateTimePicker.ShowUpDown = true;
-            this.dateFromDateTimePicker.Size = new System.Drawing.Size(132, 29);
-            this.dateFromDateTimePicker.TabIndex = 11;
-            this.dateFromDateTimePicker.ValueChanged += new System.EventHandler(this.dateFromDateTimePicker_ValueChanged);
-            // 
-            // dateFromLabel
-            // 
-            this.dateFromLabel.AutoSize = true;
-            this.dateFromLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.dateFromLabel.Location = new System.Drawing.Point(306, 109);
-            this.dateFromLabel.Name = "dateFromLabel";
-            this.dateFromLabel.Size = new System.Drawing.Size(79, 22);
-            this.dateFromLabel.TabIndex = 12;
-            this.dateFromLabel.Text = "الفتره من :";
-            // 
-            // dateToLabel
-            // 
-            this.dateToLabel.AutoSize = true;
-            this.dateToLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.dateToLabel.Location = new System.Drawing.Point(508, 109);
-            this.dateToLabel.Name = "dateToLabel";
-            this.dateToLabel.Size = new System.Drawing.Size(79, 22);
-            this.dateToLabel.TabIndex = 14;
-            this.dateToLabel.Text = "إلى تاريخ :";
-            // 
-            // dateToDateTimePicker
-            // 
-            this.dateToDateTimePicker.CustomFormat = "dd/MM/yyyy";
-            this.dateToDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateToDateTimePicker.Location = new System.Drawing.Point(581, 106);
-            this.dateToDateTimePicker.Name = "dateToDateTimePicker";
-            this.dateToDateTimePicker.ShowUpDown = true;
-            this.dateToDateTimePicker.Size = new System.Drawing.Size(132, 29);
-            this.dateToDateTimePicker.TabIndex = 13;
-            this.dateToDateTimePicker.ValueChanged += new System.EventHandler(this.dateToDateTimePicker_ValueChanged);
-            // 
-            // periodTotalCostStatusStrip
-            // 
-            this.periodTotalCostStatusStrip.BackColor = System.Drawing.SystemColors.Control;
-            this.periodTotalCostStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.periodTotalCostStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.periodTotalTextToolStripStatusLabel,
-            this.periodTotalValueToolStripStatusLabel});
-            this.periodTotalCostStatusStrip.Location = new System.Drawing.Point(0, 483);
-            this.periodTotalCostStatusStrip.Name = "periodTotalCostStatusStrip";
-            this.periodTotalCostStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.periodTotalCostStatusStrip.Size = new System.Drawing.Size(723, 35);
-            this.periodTotalCostStatusStrip.TabIndex = 16;
-            this.periodTotalCostStatusStrip.Text = "statusStrip1";
-            // 
-            // periodTotalTextToolStripStatusLabel
-            // 
-            this.periodTotalTextToolStripStatusLabel.Font = new System.Drawing.Font("Arial Black", 11F, System.Drawing.FontStyle.Bold);
-            this.periodTotalTextToolStripStatusLabel.Name = "periodTotalTextToolStripStatusLabel";
-            this.periodTotalTextToolStripStatusLabel.Size = new System.Drawing.Size(212, 29);
-            this.periodTotalTextToolStripStatusLabel.Text = "إجمالي المبيعات خلال الفترة:";
-            // 
-            // periodTotalValueToolStripStatusLabel
-            // 
-            this.periodTotalValueToolStripStatusLabel.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold);
-            this.periodTotalValueToolStripStatusLabel.Name = "periodTotalValueToolStripStatusLabel";
-            this.periodTotalValueToolStripStatusLabel.Size = new System.Drawing.Size(27, 29);
-            this.periodTotalValueToolStripStatusLabel.Text = "0";
-            // 
-            // customerNameLabel
-            // 
-            this.customerNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customerNameLabel.AutoSize = true;
-            this.customerNameLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.customerNameLabel.Location = new System.Drawing.Point(9, 109);
-            this.customerNameLabel.Name = "customerNameLabel";
-            this.customerNameLabel.Size = new System.Drawing.Size(87, 22);
-            this.customerNameLabel.TabIndex = 19;
-            this.customerNameLabel.Text = "إسم العميل :";
-            // 
-            // customerNameTextBox
-            // 
-            this.customerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customerNameTextBox.Location = new System.Drawing.Point(95, 106);
-            this.customerNameTextBox.Name = "customerNameTextBox";
-            this.customerNameTextBox.Size = new System.Drawing.Size(205, 29);
-            this.customerNameTextBox.TabIndex = 18;
-            this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
-            // 
             // selectColumn
             // 
             this.selectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F);
-            dataGridViewCellStyle2.NullValue = "إختيار";
-            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle16.NullValue = "إختيار";
+            this.selectColumn.DefaultCellStyle = dataGridViewCellStyle16;
             this.selectColumn.HeaderText = "";
             this.selectColumn.MinimumWidth = 6;
             this.selectColumn.Name = "selectColumn";
@@ -251,9 +155,9 @@
             // 
             this.customerNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.customerNameColumn.DataPropertyName = "CustomerName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.customerNameColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.customerNameColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.customerNameColumn.HeaderText = "إسم العميــل";
             this.customerNameColumn.MinimumWidth = 6;
             this.customerNameColumn.Name = "customerNameColumn";
@@ -264,9 +168,9 @@
             // 
             this.purchaseDateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.purchaseDateColumn.DataPropertyName = "SaleDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "d";
-            this.purchaseDateColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.Format = "d";
+            this.purchaseDateColumn.DefaultCellStyle = dataGridViewCellStyle18;
             this.purchaseDateColumn.HeaderText = "التاريخ";
             this.purchaseDateColumn.MinimumWidth = 6;
             this.purchaseDateColumn.Name = "purchaseDateColumn";
@@ -276,9 +180,9 @@
             // totalColumn
             // 
             this.totalColumn.DataPropertyName = "Total";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "N";
-            this.totalColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.Format = "N";
+            this.totalColumn.DefaultCellStyle = dataGridViewCellStyle19;
             this.totalColumn.HeaderText = "الإجمالي";
             this.totalColumn.MinimumWidth = 6;
             this.totalColumn.Name = "totalColumn";
@@ -287,9 +191,9 @@
             // disscountColumn
             // 
             this.disscountColumn.DataPropertyName = "Disscount";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Format = "N";
-            this.disscountColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Format = "N";
+            this.disscountColumn.DefaultCellStyle = dataGridViewCellStyle20;
             this.disscountColumn.HeaderText = "الخصم";
             this.disscountColumn.MinimumWidth = 6;
             this.disscountColumn.Name = "disscountColumn";
@@ -314,12 +218,155 @@
             this.coluserName.ReadOnly = true;
             this.coluserName.Width = 70;
             // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Arial", 25F);
+            this.titleLabel.Location = new System.Drawing.Point(318, 12);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(302, 47);
+            this.titleLabel.TabIndex = 10;
+            this.titleLabel.Text = "إختيار فاتورة مبيعات";
+            // 
+            // dateFromDateTimePicker
+            // 
+            this.dateFromDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateFromDateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.dateFromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateFromDateTimePicker.Location = new System.Drawing.Point(483, 106);
+            this.dateFromDateTimePicker.Name = "dateFromDateTimePicker";
+            this.dateFromDateTimePicker.ShowUpDown = true;
+            this.dateFromDateTimePicker.Size = new System.Drawing.Size(132, 29);
+            this.dateFromDateTimePicker.TabIndex = 11;
+            this.dateFromDateTimePicker.ValueChanged += new System.EventHandler(this.dateFromDateTimePicker_ValueChanged);
+            // 
+            // dateFromLabel
+            // 
+            this.dateFromLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateFromLabel.AutoSize = true;
+            this.dateFromLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.dateFromLabel.Location = new System.Drawing.Point(414, 109);
+            this.dateFromLabel.Name = "dateFromLabel";
+            this.dateFromLabel.Size = new System.Drawing.Size(79, 22);
+            this.dateFromLabel.TabIndex = 12;
+            this.dateFromLabel.Text = "الفتره من :";
+            // 
+            // dateToLabel
+            // 
+            this.dateToLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateToLabel.AutoSize = true;
+            this.dateToLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.dateToLabel.Location = new System.Drawing.Point(616, 109);
+            this.dateToLabel.Name = "dateToLabel";
+            this.dateToLabel.Size = new System.Drawing.Size(79, 22);
+            this.dateToLabel.TabIndex = 14;
+            this.dateToLabel.Text = "إلى تاريخ :";
+            // 
+            // dateToDateTimePicker
+            // 
+            this.dateToDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateToDateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.dateToDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateToDateTimePicker.Location = new System.Drawing.Point(689, 106);
+            this.dateToDateTimePicker.Name = "dateToDateTimePicker";
+            this.dateToDateTimePicker.ShowUpDown = true;
+            this.dateToDateTimePicker.Size = new System.Drawing.Size(132, 29);
+            this.dateToDateTimePicker.TabIndex = 13;
+            this.dateToDateTimePicker.ValueChanged += new System.EventHandler(this.dateToDateTimePicker_ValueChanged);
+            // 
+            // periodTotalCostStatusStrip
+            // 
+            this.periodTotalCostStatusStrip.BackColor = System.Drawing.SystemColors.Control;
+            this.periodTotalCostStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.periodTotalCostStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cashToolStripStatusLabel,
+            this.cashToolStripStatusValueLabel,
+            this.bankakToolStripStatusLabel,
+            this.bankakToolStripStatusValueLabel,
+            this.sepratorToolStripStatusLabel,
+            this.periodTotalTextToolStripStatusLabel,
+            this.periodTotalValueToolStripStatusLabel});
+            this.periodTotalCostStatusStrip.Location = new System.Drawing.Point(0, 572);
+            this.periodTotalCostStatusStrip.Name = "periodTotalCostStatusStrip";
+            this.periodTotalCostStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.periodTotalCostStatusStrip.Size = new System.Drawing.Size(939, 35);
+            this.periodTotalCostStatusStrip.TabIndex = 16;
+            this.periodTotalCostStatusStrip.Text = "statusStrip1";
+            // 
+            // periodTotalTextToolStripStatusLabel
+            // 
+            this.periodTotalTextToolStripStatusLabel.Font = new System.Drawing.Font("Arial Black", 11F, System.Drawing.FontStyle.Bold);
+            this.periodTotalTextToolStripStatusLabel.Name = "periodTotalTextToolStripStatusLabel";
+            this.periodTotalTextToolStripStatusLabel.Size = new System.Drawing.Size(212, 29);
+            this.periodTotalTextToolStripStatusLabel.Text = "إجمالي المبيعات خلال الفترة:";
+            // 
+            // periodTotalValueToolStripStatusLabel
+            // 
+            this.periodTotalValueToolStripStatusLabel.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold);
+            this.periodTotalValueToolStripStatusLabel.Name = "periodTotalValueToolStripStatusLabel";
+            this.periodTotalValueToolStripStatusLabel.Size = new System.Drawing.Size(27, 29);
+            this.periodTotalValueToolStripStatusLabel.Text = "0";
+            // 
+            // customerNameLabel
+            // 
+            this.customerNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.customerNameLabel.AutoSize = true;
+            this.customerNameLabel.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.customerNameLabel.Location = new System.Drawing.Point(117, 109);
+            this.customerNameLabel.Name = "customerNameLabel";
+            this.customerNameLabel.Size = new System.Drawing.Size(87, 22);
+            this.customerNameLabel.TabIndex = 19;
+            this.customerNameLabel.Text = "إسم العميل :";
+            // 
+            // customerNameTextBox
+            // 
+            this.customerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.customerNameTextBox.Location = new System.Drawing.Point(203, 106);
+            this.customerNameTextBox.Name = "customerNameTextBox";
+            this.customerNameTextBox.Size = new System.Drawing.Size(205, 29);
+            this.customerNameTextBox.TabIndex = 18;
+            this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
+            // 
+            // bankakToolStripStatusLabel
+            // 
+            this.bankakToolStripStatusLabel.Font = new System.Drawing.Font("Arial Black", 11F, System.Drawing.FontStyle.Bold);
+            this.bankakToolStripStatusLabel.Name = "bankakToolStripStatusLabel";
+            this.bankakToolStripStatusLabel.Size = new System.Drawing.Size(56, 29);
+            this.bankakToolStripStatusLabel.Text = "بنكك :";
+            // 
+            // bankakToolStripStatusValueLabel
+            // 
+            this.bankakToolStripStatusValueLabel.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold);
+            this.bankakToolStripStatusValueLabel.Name = "bankakToolStripStatusValueLabel";
+            this.bankakToolStripStatusValueLabel.Size = new System.Drawing.Size(27, 29);
+            this.bankakToolStripStatusValueLabel.Text = "0";
+            // 
+            // cashToolStripStatusLabel
+            // 
+            this.cashToolStripStatusLabel.Font = new System.Drawing.Font("Arial Black", 11F, System.Drawing.FontStyle.Bold);
+            this.cashToolStripStatusLabel.Name = "cashToolStripStatusLabel";
+            this.cashToolStripStatusLabel.Size = new System.Drawing.Size(54, 29);
+            this.cashToolStripStatusLabel.Text = "كاش :";
+            // 
+            // cashToolStripStatusValueLabel
+            // 
+            this.cashToolStripStatusValueLabel.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold);
+            this.cashToolStripStatusValueLabel.Name = "cashToolStripStatusValueLabel";
+            this.cashToolStripStatusValueLabel.Size = new System.Drawing.Size(27, 29);
+            this.cashToolStripStatusValueLabel.Text = "0";
+            // 
+            // sepratorToolStripStatusLabel
+            // 
+            this.sepratorToolStripStatusLabel.Name = "sepratorToolStripStatusLabel";
+            this.sepratorToolStripStatusLabel.Size = new System.Drawing.Size(53, 29);
+            this.sepratorToolStripStatusLabel.Text = "           ";
+            // 
             // ChooseSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(723, 518);
+            this.ClientSize = new System.Drawing.Size(939, 607);
             this.Controls.Add(this.customerNameLabel);
             this.Controls.Add(this.customerNameTextBox);
             this.Controls.Add(this.periodTotalCostStatusStrip);
@@ -373,5 +420,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn disscountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn saleIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn coluserName;
+        private System.Windows.Forms.ToolStripStatusLabel bankakToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel bankakToolStripStatusValueLabel;
+        private System.Windows.Forms.ToolStripStatusLabel cashToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel cashToolStripStatusValueLabel;
+        private System.Windows.Forms.ToolStripStatusLabel sepratorToolStripStatusLabel;
     }
 }

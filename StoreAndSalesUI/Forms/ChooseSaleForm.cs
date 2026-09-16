@@ -39,10 +39,13 @@ namespace StoreAndSalesUI.Forms
 
         private decimal _currentPeriodTotalCost = 0;
         private CheckBox _showReturnsCheckBox;
+        private decimal _bankakTotal = 0;
+        private decimal _cashTotal = 0;   
 
         #endregion
 
         #region Private Methods
+
 
         private void AddReturnFilter()
         {
@@ -91,16 +94,22 @@ dateTo.Date);
         private void CalculatePeriodTotalCost(List<SaleView> currentSales)
         {
             _currentPeriodTotalCost = 0;
+            _bankakTotal = 0;
+            _cashTotal  = 0;    
 
             foreach (SaleView saleView in currentSales)
             {
                 _currentPeriodTotalCost += saleView.Total;
+                _bankakTotal += saleView.PaymentType ? saleView.Total : 0;
+                _cashTotal += !saleView.PaymentType ? saleView.Total : 0;
             }
         }
 
         private void ViewCurrentPeroidTotalCost()
         {
             periodTotalValueToolStripStatusLabel.Text = _currentPeriodTotalCost.ToString("#,0");
+            bankakToolStripStatusValueLabel.Text = _bankakTotal.ToString("#,0");
+            cashToolStripStatusValueLabel.Text = _cashTotal.ToString("#,0");
         }
 
         private void ApplySaleRowColors()

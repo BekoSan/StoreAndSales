@@ -11,5 +11,6 @@ namespace StoreAndSalesUI.ViewModels
         public decimal Disscount { get; set; }
         public string UserName { get; set; }
         public bool IsReturn { get; set; }
+        public bool PaymentType { get; set; }
     }
 }
