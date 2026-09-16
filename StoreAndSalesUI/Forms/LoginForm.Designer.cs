@@ -44,7 +44,7 @@
             this.userNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userNameLabel.AutoSize = true;
             this.userNameLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.userNameLabel.Location = new System.Drawing.Point(22, 265);
+            this.userNameLabel.Location = new System.Drawing.Point(19, 265);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(85, 19);
             this.userNameLabel.TabIndex = 7;
@@ -55,9 +55,9 @@
             this.userNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.userNameTextBox.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userNameTextBox.Location = new System.Drawing.Point(26, 287);
+            this.userNameTextBox.Location = new System.Drawing.Point(23, 287);
             this.userNameTextBox.Name = "userNameTextBox";
-            this.userNameTextBox.Size = new System.Drawing.Size(361, 29);
+            this.userNameTextBox.Size = new System.Drawing.Size(316, 29);
             this.userNameTextBox.TabIndex = 6;
             this.userNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -66,9 +66,9 @@
             this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.passwordTextBox.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTextBox.Location = new System.Drawing.Point(26, 347);
+            this.passwordTextBox.Location = new System.Drawing.Point(23, 347);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(361, 29);
+            this.passwordTextBox.Size = new System.Drawing.Size(316, 29);
             this.passwordTextBox.TabIndex = 8;
             this.passwordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.passwordTextBox.UseSystemPasswordChar = true;
@@ -78,7 +78,7 @@
             this.passwordLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.passwordLabel.Location = new System.Drawing.Point(22, 325);
+            this.passwordLabel.Location = new System.Drawing.Point(19, 325);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(75, 19);
             this.passwordLabel.TabIndex = 9;
@@ -89,9 +89,9 @@
             this.loginButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginButton.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.loginButton.Location = new System.Drawing.Point(145, 384);
+            this.loginButton.Location = new System.Drawing.Point(127, 384);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(118, 33);
+            this.loginButton.Size = new System.Drawing.Size(103, 33);
             this.loginButton.TabIndex = 10;
             this.loginButton.Text = "تسجيل الدخول";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Arial", 35F);
-            this.titleLabel.Location = new System.Drawing.Point(57, 199);
+            this.titleLabel.Location = new System.Drawing.Point(50, 199);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(294, 66);
             this.titleLabel.TabIndex = 11;
@@ -111,9 +111,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(68, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(60, 8);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(270, 188);
+            this.pictureBox1.Size = new System.Drawing.Size(236, 188);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -121,10 +121,10 @@
             // LoginForm
             // 
             this.AcceptButton = this.loginButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(408, 422);
+            this.ClientSize = new System.Drawing.Size(357, 422);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.loginButton);
