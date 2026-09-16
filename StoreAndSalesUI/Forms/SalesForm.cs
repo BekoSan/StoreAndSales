@@ -764,7 +764,7 @@ namespace StoreAndSalesUI.Forms
         {
 
             new SaleReturnForm(_sale.Id, customersComboBox.SelectedValue.ToString().ParseToInt(),
-            customersComboBox.Text, LoginDataHelper.UserId).ShowDialog();
+            customersComboBox.Text, LoginDataHelper.UserId,storesComboBox.SelectedValue.ToString().ParseToInt()).ShowDialog();
 
         }
 
