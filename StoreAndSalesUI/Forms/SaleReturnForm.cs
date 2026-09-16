@@ -23,6 +23,7 @@ namespace StoreAndSalesUI.Forms
         private readonly int _saleId;
         private readonly int _customerId;
         private readonly int _userId;
+        private readonly int _storeId;
         private readonly SaleData _saleDal;
         private readonly UserLogData _userLogData;
         private readonly VoucherData _voucherData;
@@ -30,7 +31,7 @@ namespace StoreAndSalesUI.Forms
         private Voucher _voucher;
 
         // الفورم تستقبل بيانات الفاتورة الأصلية اللي رجعت من شاشة البحث عندك
-        public SaleReturnForm(int saleId, int customerId, string customerName, int userId)
+        public SaleReturnForm(int saleId, int customerId, string customerName, int userId,int storeId)
         {
             InitializeComponent();
 
@@ -41,7 +42,7 @@ namespace StoreAndSalesUI.Forms
             _userLogData = new UserLogData();
             _voucherData = new VoucherData();
             _customerData = new CustomerData();
-            
+            _storeId = storeId; //_saleDal.GetSaleById(_saleId).StoreId;
             
             txtInvoiceNo.Text = saleId.ToString();
             txtCustomer.Text = customerName;
@@ -173,6 +174,7 @@ namespace StoreAndSalesUI.Forms
                 CustomerId = _customerId,
                 SaleDate = DateTime.Now,
                 OriginalSaleId = _saleId,
+                StoreId = _storeId,
                 IsReturn = true,
                 UserId = _userId,
                 Notes = $"مرتجع للفاتورة رقم {_saleId}"
