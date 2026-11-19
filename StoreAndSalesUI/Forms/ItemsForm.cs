@@ -14,6 +14,14 @@ namespace StoreAndSalesUI.Forms
 {
     public partial class ItemsForm : Form, IUnitRequester
     {
+        private enum ItemExpiryState
+        {
+            NotApplicable,
+            Valid,
+            Warning,
+            Expired
+        }
+
         public ItemsForm()
         {
             InitializeComponent();
@@ -39,6 +47,11 @@ namespace StoreAndSalesUI.Forms
         {
             _item.ItemName = itemNameTextBox.Text;
             _item.ReorderLevel = reorderLevelTextBox.Text.ParseToInt();
+            _item.HasExpiryDate = hasExpiryDateCheckBox.Checked;
+            _item.ExpiryDate = hasExpiryDateCheckBox.Checked
+                ? expiryDateTimePicker.Value.Date
+                : (DateTime?)null;
+            _item.ExpiryAlertDays = Convert.ToInt32(expiryAlertDaysNumericUpDown.Value);
             _item.ItemUnits.Clear();
 
             if (itemUnitsDataGridView.Rows.Count != 0)
@@ -79,6 +92,9 @@ namespace StoreAndSalesUI.Forms
             _item.Id = selectedItem.Id;
             _item.ItemName = selectedItem.ItemName;
             _item.ReorderLevel = selectedItem.ReorderLevel;
+            _item.HasExpiryDate = selectedItem.HasExpiryDate;
+            _item.ExpiryDate = selectedItem.ExpiryDate;
+            _item.ExpiryAlertDays = selectedItem.ExpiryAlertDays;
             _itemUnits = _itemUnitData.GetItemUnits<ItemUnitView>(_item.Id);
         }
 
@@ -86,6 +102,15 @@ namespace StoreAndSalesUI.Forms
         {
             itemNameTextBox.Text = _item.ItemName;
             reorderLevelTextBox.Text = _item.ReorderLevel.ToString();
+            hasExpiryDateCheckBox.Checked = _item.HasExpiryDate;
+            expiryDateTimePicker.Value = _item.ExpiryDate.HasValue
+                ? _item.ExpiryDate.Value.Date
+                : DateTime.Today.AddMonths(1);
+            expiryAlertDaysNumericUpDown.Value = Math.Min(
+                expiryAlertDaysNumericUpDown.Maximum,
+                Math.Max(expiryAlertDaysNumericUpDown.Minimum,
+                    _item.ExpiryAlertDays <= 0 ? 30 : _item.ExpiryAlertDays));
+            UpdateExpiryControls();
         }
 
         private void LoadItemQuantities()
@@ -93,9 +118,7 @@ namespace StoreAndSalesUI.Forms
             _itemQuantities.Clear();
 
             int defaultUnitId = UsefulMethods.GetDefaultUnitId();
-            List<ItemUnitValue> allQuantities = Properties.Settings.Default.IsQuantityFilter
-                    ? _itemData.GetAllItemQuantitiesAfterDate(Properties.Settings.Default.FilterDate)
-                    : _itemData.GetAllItemQuantities()
+            List<ItemUnitValue> allQuantities = _itemData.GetAllItemQuantities()
                 ?? new List<ItemUnitValue>();
 
             // تحميل الكميات باستعلام واحد ثم استخدام الوحدة الافتراضية فقط.
@@ -126,6 +149,55 @@ namespace StoreAndSalesUI.Forms
                 && quantity <= item.ReorderLevel;
         }
 
+        private ItemExpiryState GetExpiryState(Item item)
+        {
+            if (item == null || !item.HasExpiryDate || !item.ExpiryDate.HasValue)
+            {
+                return ItemExpiryState.NotApplicable;
+            }
+
+            DateTime expiryDate = item.ExpiryDate.Value.Date;
+            if (expiryDate < DateTime.Today)
+            {
+                return ItemExpiryState.Expired;
+            }
+
+            int alertDays = item.ExpiryAlertDays <= 0 ? 30 : item.ExpiryAlertDays;
+            return expiryDate <= DateTime.Today.AddDays(alertDays)
+                ? ItemExpiryState.Warning
+                : ItemExpiryState.Valid;
+        }
+
+        private static string GetExpiryStatusText(Item item, ItemExpiryState state)
+        {
+            if (state == ItemExpiryState.NotApplicable)
+            {
+                return "لا ينطبق";
+            }
+
+            DateTime expiryDate = item.ExpiryDate.Value.Date;
+            if (state == ItemExpiryState.Expired)
+            {
+                return string.Format("منتهي منذ {0} يوم", (DateTime.Today - expiryDate).Days);
+            }
+
+            if (state == ItemExpiryState.Warning)
+            {
+                return string.Format("ينتهي خلال {0} يوم", (expiryDate - DateTime.Today).Days);
+            }
+
+            return "صالح حتى " + expiryDate.ToString("yyyy/MM/dd");
+        }
+
+        private void UpdateExpiryControls()
+        {
+            bool hasExpiryDate = hasExpiryDateCheckBox.Checked;
+            expiryDateTimePicker.Enabled = hasExpiryDate;
+            expiryAlertDaysNumericUpDown.Enabled = hasExpiryDate;
+            expiryDateLabel.Enabled = hasExpiryDate;
+            expiryAlertDaysLabel.Enabled = hasExpiryDate;
+        }
+
         private void itemsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             // منع ظهور نافذة DataGridView الافتراضية عند فشل تحويل قيمة عرضية.
@@ -145,6 +217,30 @@ namespace StoreAndSalesUI.Forms
                 return;
             }
 
+            bool isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
+            e.CellStyle.BackColor = isSelected
+                ? Color.FromArgb(0, 150, 136)
+                : Color.White;
+            e.CellStyle.ForeColor = isSelected
+                ? Color.White
+                : Color.FromArgb(48, 58, 70);
+            e.CellStyle.SelectionBackColor = Color.FromArgb(0, 150, 136);
+            e.CellStyle.SelectionForeColor = Color.White;
+
+            ItemExpiryState expiryState = GetExpiryState(item);
+
+            if (e.ColumnIndex == expiryStatusColumn.Index)
+            {
+                e.Value = GetExpiryStatusText(item, expiryState);
+                e.FormattingApplied = true;
+            }
+
+            if (e.ColumnIndex == itemSerialColumn.Index)
+            {
+                e.Value = (e.RowIndex + 1).ToString();
+                e.FormattingApplied = true;
+            }
+
             if (e.ColumnIndex == quantityColumn.Index)
             {
                 int quantity;
@@ -153,12 +249,30 @@ namespace StoreAndSalesUI.Forms
                 e.FormattingApplied = true;
             }
 
+            if (expiryState == ItemExpiryState.Expired)
+            {
+                e.CellStyle.BackColor = isSelected ? Color.Firebrick : Color.MistyRose;
+                e.CellStyle.ForeColor = isSelected ? Color.White : Color.DarkRed;
+                e.CellStyle.SelectionBackColor = Color.Firebrick;
+                e.CellStyle.SelectionForeColor = Color.White;
+                return;
+            }
+
+            if (expiryState == ItemExpiryState.Warning)
+            {
+                e.CellStyle.BackColor = isSelected ? Color.DarkGoldenrod : Color.LemonChiffon;
+                e.CellStyle.ForeColor = isSelected ? Color.White : Color.SaddleBrown;
+                e.CellStyle.SelectionBackColor = Color.DarkGoldenrod;
+                e.CellStyle.SelectionForeColor = Color.White;
+                return;
+            }
+
             if (!IsLowStock(item))
             {
                 return;
             }
 
-            bool isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
+            isSelected = itemsDataGridView.Rows[e.RowIndex].Selected;
             e.CellStyle.BackColor = isSelected ? Color.IndianRed : Color.MistyRose;
             e.CellStyle.ForeColor = isSelected ? Color.White : Color.DarkRed;
             e.CellStyle.SelectionBackColor = Color.IndianRed;
@@ -179,6 +293,10 @@ namespace StoreAndSalesUI.Forms
         {
             itemNameTextBox.Clear();
             reorderLevelTextBox.Clear();
+            hasExpiryDateCheckBox.Checked = false;
+            expiryDateTimePicker.Value = DateTime.Today.AddMonths(1);
+            expiryAlertDaysNumericUpDown.Value = 30;
+            UpdateExpiryControls();
             itemUnitsDataGridView.Rows.Clear();
 
             searchTextBox.Clear();
@@ -377,6 +495,7 @@ namespace StoreAndSalesUI.Forms
 
         private void ItemsForm_Load(object sender, EventArgs e)
         {
+            UpdateExpiryControls();
             LoadItems();
             LoadDefaultUnit();
         }
@@ -407,6 +526,11 @@ namespace StoreAndSalesUI.Forms
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             Search(searchTextBox.Text);
+        }
+
+        private void hasExpiryDateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateExpiryControls();
         }
     }
 }
